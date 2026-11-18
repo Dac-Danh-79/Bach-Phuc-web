@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tra Cứu & Xác Thực Mộc Bản - Trà Thảo Mộc Bách Phục</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <style>
+    :root {
+      --espresso: #23120B;
+      --espresso-dark: #140702;
+      --wine-red: #5E1914;
+      --burgundy-dark: #22070B;
+      --burgundy-main: #3A0D14;
+      --burgundy-soft: #541620;
+      --gold-primary: #C5A059;
+      --gold-accent: #C59B27;
+      --gold-light: #E8CFA0;
+      --gold-bright: #F7E5C2;
+      --kraft-bg: #FAF5EC;
+      --kraft-card: #F3E9D8;
+      --text-light: #FDFBF7;
+      --text-muted: #D7C4B2;
+      --text-dark: #2B1309;
+      --seal-red: #9E1B1B;
+      --green-verified: #236337;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--burgundy-dark);
+      color: var(--text-light);
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.68;
+      padding-top: 52px;
+      overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CƠ CHẾ CHUYỂN ĐỔI SONG NGỮ VI | EN TỨC THÌ */
+    body[data-lang="vi"] .en { display: none !important; }
+    body[data-lang="en"] .vi { display: none !important; }
+
+    .nowrap { white-space: nowrap; }
+
+    h1, h2, h3, h4, .pillar-title, .cert-heading, .gift-quote, .footer-motto {
+      text-wrap: balance;
+    }
+
+    p, .hero-desc, .pillar-text, .spec-value, .retention-perk {
+      text-wrap: pretty;
+    }
+
+    /* ================= 0. THANH MENU NGANG SONG NGỮ GHIM CỐ ĐỊNH TUYỆT ĐỐI ================= */
+    .top-bilingual-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      width: 100%;
+      z-index: 99999;
+      background: rgba(20, 7, 2, 0.96);
+      border-bottom: 1.5px solid var(--gold-primary);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+    }
+    .top-nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 52px;
+      gap: 10px;
+    }
+    .nav-menu-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-item { position: relative; }
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      background: transparent;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 11px;
+      color: #EFE6D8;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .nav-link:hover { color: var(--gold-bright); background: rgba(197, 160, 89, 0.15); }
+    .nav-link.active {
+      color: var(--gold-bright);
+      background: rgba(197, 160, 89, 0.22);
+      border-bottom: 2px solid var(--gold-primary);
+      font-weight: 600;
+    }
+    .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 2px; }
+
+    .nav-dropdown {
+      position: absolute;
+      top: 100%; left: 0;
+      min-width: 240px;
+      background: #1B0B05;
+      border: 1px solid var(--gold-primary);
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+      list-style: none;
+      padding: 6px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: all 0.2s ease;
+      z-index: 100000;
+    }
+    .nav-item:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown li a {
+      font-family: 'Inter', sans-serif;
+      display: block;
+      padding: 8px 14px;
+      color: #E2D5C4;
+      text-decoration: none;
+      font-size: 12.2px;
+      border-bottom: 1px dashed rgba(197, 160, 89, 0.15);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-dropdown li:last-child a { border-bottom: none; }
+    .nav-dropdown li a:hover {
+      background: var(--wine-red);
+      color: var(--gold-bright);
+      padding-left: 18px;
+      font-weight: 600;
+    }
+
+    .lang-switch-box {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--gold-primary);
+      border-radius: 4px;
+      padding: 2px;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--gold-light);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 9px;
+      cursor: pointer;
+      letter-spacing: 0.6px;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-align: center !important;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #D4AF37 0%, #B38728 100%);
+      color: var(--espresso-dark);
+      font-weight: 700;
+    }
+    .lang-btn:hover:not(.active) { color: #FFFFFF; background: rgba(197, 160, 89, 0.2); }
+
+    /* ================= HERO BANNER TRA CỨU ================= */
+    .hero-lookup {
+      text-align: center;
+      padding: 38px 16px 26px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .eyebrow-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      padding: 5px 18px;
+      border-radius: 30px;
+      margin-bottom: 14px;
+      font-weight: 600;
+      background: rgba(197, 160, 89, 0.08);
+      white-space: nowrap;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 700;
+      color: var(--gold-bright);
+      line-height: 1.22;
+      margin-bottom: 12px;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 610px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ================= KHUNG TRA CỨU TRUNG TÂM ================= */
+    .main-container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 16px 56px;
+    }
+
+    .lookup-box {
+      background: linear-gradient(155deg, var(--burgundy-main), #28080D);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      border-radius: 14px;
+      padding: 26px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+      margin-bottom: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .code-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1.5px solid rgba(197, 160, 89, 0.5);
+      border-radius: 10px;
+      padding: 15px 18px;
+      color: var(--gold-bright);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .code-input:focus {
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+    }
+
+    .code-input::placeholder {
+      color: rgba(215, 196, 178, 0.48);
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #E5C384, #B5893D);
+      color: #22070B;
+      border: none;
+      border-radius: 10px;
+      padding: 0 28px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(197, 160, 89, 0.3);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .helper-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(197, 160, 89, 0.22);
+    }
+
+    .btn-qr-scan {
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      color: var(--gold-light);
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-qr-scan:hover {
+      background: rgba(197, 160, 89, 0.25);
+    }
+
+    .sample-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      width: 100%;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      color: var(--gold-light);
+      padding: 4px 11px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 11.5px;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      background: rgba(197, 160, 89, 0.25);
+    }
+
+    #qr-reader-wrap {
+      display: none;
+      margin-top: 16px;
+      background: #170407;
+      border: 1px solid var(--gold-primary);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    #qr-reader {
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* ================= THÔNG BÁO TRẠNG THÁI ================= */
+    .status-alert {
+      display: none;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 22px;
+      font-size: 14.5px;
+      font-weight: 600;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .status-alert.loading {
+      background: rgba(197, 160, 89, 0.14);
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      color: var(--gold-bright);
+    }
+
+    .status-alert.error {
+      background: rgba(158, 27, 27, 0.28);
+      border: 1px solid #E36464;
+      color: #FFD9D9;
+    }
+
+    .status-alert.success {
+      background: rgba(35, 99, 55, 0.35);
+      border: 1px solid #57B874;
+      color: #E3FFEC;
+    }
+
+    /* ================= TỜ CHỨNG THƯ MỘC BẢN ĐỘC BẢN ================= */
+    .certificate-paper {
+      display: none;
+      background: var(--kraft-bg);
+      color: var(--text-dark);
+      border: 2px solid var(--gold-primary);
+      border-radius: 14px;
+      padding: 38px 30px;
+      position: relative;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+      animation: fadeUp 0.45s ease-out;
+    }
+
+    .certificate-paper::before {
+      content: "";
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid rgba(139, 90, 43, 0.3);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .red-seal {
+      position: absolute;
+      top: 26px;
+      right: 26px;
+      width: 82px;
+      height: 82px;
+      border: 2.5px solid var(--seal-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--seal-red);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      transform: rotate(-12deg);
+      background: rgba(158, 27, 27, 0.05);
+      box-shadow: inset 0 0 0 3px rgba(158, 27, 27, 0.16);
+      padding: 6px;
+      user-select: none;
+    }
+
+    .verified-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-verified);
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+
+    .cert-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--burgundy-soft);
+      line-height: 1.25;
+      padding-right: 88px;
+      margin-bottom: 4px;
+    }
+
+    .cert-code-line {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #7D4E2D;
+      letter-spacing: 1px;
+      margin-bottom: 22px;
+    }
+
+    .spec-grid {
+      border-top: 1.5px solid rgba(139, 90, 43, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 11px 0;
+      border-bottom: 1px dashed rgba(139, 90, 43, 0.24);
+      font-size: 14.5px;
+      gap: 18px;
+    }
+
+    .spec-label {
+      color: #6B4C35;
+      font-weight: 600;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .spec-value {
+      color: #22070B;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* Khung Nhập Mã PIN Mở Khóa Sở Hữu */
+    .pin-unlock-box {
+      background: var(--kraft-card);
+      border: 1.5px dashed #8C5A2B;
+      border-radius: 12px;
+      padding: 22px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .pin-unlock-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--burgundy-soft);
+      margin-bottom: 6px;
+    }
+
+    .pin-unlock-box p {
+      font-size: 13.5px;
+      color: #5A3E28;
+      max-width: 540px;
+      margin: 0 auto 14px;
+    }
+
+    .pin-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .pin-input {
+      width: 145px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      padding: 10px 12px;
+      border: 1.5px solid #8C5A2B;
+      border-radius: 8px;
+      background: #FFFDF9;
+      color: var(--burgundy-soft);
+      outline: none;
+    }
+
+    .btn-unlock {
+      background: var(--burgundy-soft);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-primary);
+      border-radius: 8px;
+      padding: 0 20px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-unlock:hover {
+      background: var(--burgundy-main);
+    }
+
+    /* Thiệp Chúc Tặng Độc Bản */
+    .gift-message-card {
+      display: none;
+      background: linear-gradient(135deg, #4A121A, #26070C);
+      color: var(--gold-bright);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(34, 7, 11, 0.25);
+    }
+
+    .gift-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .gift-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #FFF8EB;
+    }
+
+    /* Khung Đặc Quyền Mua Tiếp (Retention) */
+    .retention-card {
+      display: none;
+      background: #EFE3CE;
+      border: 1.5px solid #C5A059;
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 12px;
+    }
+
+    .retention-header {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--burgundy-soft);
+      margin-bottom: 6px;
+    }
+
+    .retention-perk {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--green-verified);
+      margin-bottom: 16px;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-reorder-zalo {
+      flex: 1.2;
+      min-width: 220px;
+      text-align: center;
+      background: var(--burgundy-soft);
+      color: var(--gold-bright);
+      text-decoration: none;
+      padding: 13px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13.5px;
+      border: 1px solid var(--gold-primary);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-reorder-zalo:hover {
+      background: var(--burgundy-main);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-link {
+      flex: 1;
+      min-width: 190px;
+      text-align: center;
+      background: transparent;
+      color: var(--burgundy-soft);
+      text-decoration: none;
+      padding: 13px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13.5px;
+      border: 1.5px solid var(--burgundy-soft);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-secondary-link:hover {
+      background: rgba(84, 22, 32, 0.08);
+    }
+
+    /* ================= CAM KẾT 3 TRỤ CỘT BẢO CHỨNG ================= */
+    .trust-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .pillar-item {
+      background: rgba(58, 13, 20, 0.55);
+      border: 1px solid rgba(197, 160, 89, 0.25);
+      border-radius: 12px;
+      padding: 22px 18px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19.5px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .pillar-text {
+      font-size: 13px;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    /* ================= FOOTER ĐỒNG BỘ TOÀN HỆ THỐNG ================= */
+    .site-footer {
+      background-color: #190407;
+      color: #D6C7B8;
+      border-top: 3px solid var(--gold-primary);
+      padding: 38px 20px 22px;
+      text-align: left;
+    }
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.3fr;
+      gap: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    }
+    .footer-brand h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      font-size: 18px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .footer-brand p { font-size: 13px; line-height: 1.7; color: #C2B4A8; margin-bottom: 8px; }
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 7px; font-size: 12.8px; line-height: 1.55; color: #D6C7B8; }
+    .footer-col ul a { color: #D6C7B8; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--gold-light); }
+    .contact-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+    .contact-item .icon { color: var(--gold-primary); font-size: 12.5px; line-height: 1.55; flex-shrink: 0; }
+    .contact-link { color: var(--gold-bright) !important; font-weight: 600; }
+    .footer-disclaimer-wrap { max-width: 1180px; margin: 16px auto 0; padding: 0 10px; text-align: center; }
+    .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.55; text-align: center !important; }
+    .footer-bottom { max-width: 1180px; margin: 10px auto 0; text-align: center !important; font-size: 11.5px; color: #8C7B6E; }
+
+    @media (max-width: 960px) {
+      .top-nav-inner { padding: 6px 12px; gap: 8px; }
+      .nav-menu-list {
+        overflow-x: auto; flex-wrap: nowrap; flex: 1; min-width: 0; padding-bottom: 2px;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      }
+      .nav-menu-list::-webkit-scrollbar { display: none; }
+      .nav-dropdown { display: none; }
+      .footer-inner { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding-top: 84px; }
+      .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 8px; gap: 6px; }
+      .lang-switch-box { align-self: flex-end; }
+      .lang-btn { font-size: 10.5px; padding: 3px 8px; }
+      .nav-menu-list { width: 100%; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 5px; gap: 6px; }
+      .nav-link { font-size: 12px; padding: 5px 9px; }
+
+      .hero-lookup { padding-top: 26px; }
+      .input-row { flex-direction: column; }
+      .btn-primary { padding: 15px; }
+      .certificate-paper { padding: 28px 18px; }
+      .cert-heading { font-size: 23px; padding-right: 72px; }
+      .red-seal { width: 66px; height: 66px; font-size: 9.5px; top: 18px; right: 16px; }
+      .spec-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .spec-value { text-align: left; }
+      .trust-pillars { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body id="top-tracuu" data-lang="vi">
+
+  <!-- 0. THANH MENU NGANG SONG NGỮ GHIM CỐ ĐỊNH TRÊN ĐỈNH TRANG (CHUYỂN TRANG CÙNG 1 TAB) -->
+  <nav class="top-bilingual-nav" id="main-fixed-nav" aria-label="Main Navigation">
+    <div class="top-nav-inner">
+      <ul class="nav-menu-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">
+            <span class="vi">Trang&nbsp;Chủ</span>
+            <span class="en">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/dongsanpham" class="nav-link">
+            <span class="vi">Sản&nbsp;Phẩm</span>
+            <span class="en">Products</span>
+            <span class="nav-caret">▾</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang</span></a></li>
+            <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang</span></a></li>
+            <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang</span></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/tailieu" class="nav-link">
+            <span class="vi">Tài&nbsp;Liệu Chuyên&nbsp;Khảo</span>
+            <span class="en">Scientific Monographs</span>
+            <span class="nav-caret">▾</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="/tailieu/tuanhoan"><span class="vi">01. Tuần&nbsp;Hoàn &amp; Thần&nbsp;Kinh</span><span class="en">01. Vascular &amp; Neural</span></a></li>
+            <li><a href="/tailieu/tebao"><span class="vi">02. Miễn&nbsp;Dịch &amp; Tế&nbsp;Bào</span><span class="en">02. Immunity &amp; Cells</span></a></li>
+            <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc</span><span class="en">03. Metabolic &amp; Detox</span></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/suckhoe" class="nav-link">
+            <span class="vi">Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span>
+            <span class="en">Self-Healing Science</span>
+            <span class="nav-caret">▾</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân&nbsp;Bằng Nội&nbsp;Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
+            <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự&nbsp;Chữa&nbsp;Lành Tế&nbsp;Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
+            <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa&nbsp;Học Thích&nbsp;Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
+            <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh&nbsp;Học Thân&nbsp;Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="nav-link active">
+            <span class="vi">Tra&nbsp;Cứu</span>
+            <span class="en">Authentication</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <a href="/thuhai" class="nav-link">
+            <span class="vi">Thu&nbsp;Hái</span>
+            <span class="en">Wild Harvesting</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/lienhe" class="nav-link">
+            <span class="vi">Liên&nbsp;Hệ</span>
+            <span class="en">Contact</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Công tắc chuyển đổi ngôn ngữ VI | EN -->
+      <div class="lang-switch-box" role="group" aria-label="Language Switcher">
+        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')">VI • Tiếng Việt</button>
+        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')">EN • English</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TIÊU ĐỀ TRANG TRA CỨU -->
+  <section class="hero-lookup">
+    <div class="eyebrow-tag">
+      <span class="vi">Bảo Chứng Độc&nbsp;Bản&nbsp;1-1</span>
+      <span class="en">1-to-1 Serialization Security</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="vi">Tra&nbsp;Cứu &amp; Xác&nbsp;Thực Mộc&nbsp;Bản</span>
+      <span class="en">Box Authentication &amp; Origin Portal</span>
+    </h1>
+    <p class="hero-desc">
+      <span class="vi">Mỗi hộp trà Bách&nbsp;Phục đều mang một mã định&nbsp;danh độc&nbsp;bản, lưu&nbsp;giữ trọn&nbsp;vẹn hành&nbsp;trình thu&nbsp;hái từ rừng&nbsp;già Quảng&nbsp;Ngãi, chỉ&nbsp;số kiểm&nbsp;nghiệm và tâm&nbsp;thư gửi&nbsp;trao riêng&nbsp;biệt.</span>
+      <span class="en">Every Bach&nbsp;Phuc tea box carries a unique serialized code recording its wild-harvesting journey in the primeval forests of Quang&nbsp;Ngai, laboratory metrics, and a dedicated personal message.</span>
+    </p>
+  </section>
+
+  <!-- KHUNG TÌM KIẾM & CHỨNG THƯ -->
+  <main class="main-container">
+    <div class="lookup-box">
+      <div class="input-row">
+        <input
+          type="text"
+          id="code-input"
+          class="code-input"
+          placeholder="Nhập mã định danh trên hộp trà (VD: TH26-001-K9M2)..."
+          autocomplete="off"
+        >
+        <button id="btn-lookup" class="btn-primary" onclick="lookupCode()">
+          <span class="vi">Xác&nbsp;Thực Mộc&nbsp;Bản</span>
+          <span class="en">Verify Box</span>
+        </button>
+      </div>
+
+      <div class="helper-bar">
+        <button type="button" class="btn-qr-scan" onclick="toggleQrScanner()">
+          <span class="vi">📷 Mở Camera Quét Mã&nbsp;QR Hộp&nbsp;Trà</span>
+          <span class="en">📷 Open Camera to Scan Box QR Code</span>
+        </button>
+
+        <div class="sample-chips">
+          <span class="nowrap">
+            <span class="vi">Thử nghiệm nhanh:</span>
+            <span class="en">Quick sample test:</span>
+          </span>
+          <span class="chip" onclick="quickTest('TH26-001-K9M2')">TH26-001-K9M2 (PIN:&nbsp;8392)</span>
+          <span class="chip" onclick="quickTest('KH26-001-R7V3')">KH26-001-R7V3 (PIN:&nbsp;9185)</span>
+          <span class="chip" onclick="quickTest('MH26-001-W2B9')">MH26-001-W2B9 (PIN:&nbsp;7799)</span>
+          <span class="chip" onclick="quickTest('TH26-004-M8C4')">
+            <span class="vi">TH26-004-M8C4 (Lưu&nbsp;kho)</span>
+            <span class="en">TH26-004-M8C4 (In Stock)</span>
+          </span>
+        </div>
+      </div>
+
+      <div id="qr-reader-wrap">
+        <div id="qr-reader"></div>
+      </div>
+    </div>
+
+    <!-- Thông báo Trạng thái / Cảnh báo -->
+    <div id="status-alert" class="status-alert"></div>
+
+    <!-- TỜ CHỨNG THƯ MỘC BẢN -->
+    <section id="certificate-paper" class="certificate-paper">
+      <div class="red-seal">
+        <span class="vi">BÁCH&nbsp;PHỤC<br>BẢO&nbsp;CHỨNG<br>MỘC&nbsp;BẢN</span>
+        <span class="en">BACH&nbsp;PHUC<br>AUTHENTIC<br>SEAL</span>
+      </div>
+
+      <div class="verified-pill">
+        <span class="vi">✔ Đã Xác&nbsp;Thực Chính&nbsp;Hãng Bách&nbsp;Phục</span>
+        <span class="en">✔ Verified Authentic Bach&nbsp;Phuc Box</span>
+      </div>
+      <h2 class="cert-heading" id="ui-product">---</h2>
+      <div class="cert-code-line" id="ui-serial">MÃ ĐỘC&nbsp;BẢN: ---</div>
+
+      <div class="spec-grid">
+        <div class="spec-row">
+          <span class="spec-label">
+            <span class="vi">Thứ tự chế tác độc&nbsp;bản:</span>
+            <span class="en">Edition Serial Order:</span>
+          </span>
+          <span class="spec-value" id="ui-order">---</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">
+            <span class="vi">Vùng &amp; Đợt thu&nbsp;hái:</span>
+            <span class="en">Harvest Region &amp; Batch:</span>
+          </span>
+          <span class="spec-value" id="ui-harvest">---</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">
+            <span class="vi">Thợ rừng / Nghệ&nbsp;nhân:</span>
+            <span class="en">Forester / Artisan:</span>
+          </span>
+          <span class="spec-value" id="ui-worker">---</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">
+            <span class="vi">Chỉ số kiểm&nbsp;nghiệm mẻ:</span>
+            <span class="en">Batch Lab Metrics:</span>
+          </span>
+          <span class="spec-value" id="ui-lab">---</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">
+            <span class="vi">Ngày đóng&nbsp;gói — Hạn thưởng&nbsp;trà:</span>
+            <span class="en">Packaged Date — Best Before:</span>
+          </span>
+          <span class="spec-value" id="ui-dates">---</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">
+            <span class="vi">Lịch sử kích&nbsp;hoạt &amp; Tra&nbsp;cứu:</span>
+            <span class="en">Activation &amp; Lookup Log:</span>
+          </span>
+          <span class="spec-value" id="ui-activation">---</span>
+        </div>
+      </div>
+
+      <!-- CỔNG NHẬP MÃ PIN 4 SỐ BÊN TRONG HỘP TRÀ -->
+      <div id="pin-unlock-box" class="pin-unlock-box">
+        <h3>
+          <span class="vi">Kích&nbsp;Hoạt Sở&nbsp;Hữu Độc&nbsp;Bản &amp; Mở Thiệp Gửi&nbsp;Trao</span>
+          <span class="en">Activate 1-to-1 Ownership &amp; Unlock Gift Card</span>
+        </h3>
+        <p>
+          <span class="vi">Quý&nbsp;khách vui&nbsp;lòng nhập <strong>4&nbsp;số&nbsp;PIN bí&nbsp;mật</strong> bên trong hộp&nbsp;trà để xác&nbsp;nhận chủ&nbsp;sở&nbsp;hữu đầu&nbsp;tiên, mở tâm&nbsp;thư gửi&nbsp;tặng và nhận đặc&nbsp;quyền tri&nbsp;ân:</span>
+          <span class="en">Please enter the <strong>secret 4-digit PIN</strong> printed inside the box lid to register first ownership, open your personal message, and unlock gratitude privileges:</span>
+        </p>
+        <div class="pin-form">
+          <input
+            type="password"
+            id="pin-input"
+            class="pin-input"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="••••"
+          >
+          <button id="btn-unlock" class="btn-unlock" onclick="activatePin()">
+            <span class="vi">KÍCH&nbsp;HOẠT</span>
+            <span class="en">ACTIVATE</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- THIỆP CHÚC TẶNG ĐỘC BẢN -->
+      <div id="gift-message-card" class="gift-message-card">
+        <div class="gift-eyebrow">
+          <span class="vi">✦ Tâm&nbsp;Thư Gửi&nbsp;Trao Riêng Hộp&nbsp;Trà&nbsp;Này ✦</span>
+          <span class="en">✦ Personal Message Dedicated to This Box ✦</span>
+        </div>
+        <div class="gift-quote" id="ui-blessing">---</div>
+      </div>
+
+      <!-- ĐẶC QUYỀN TRI ÂN KHÁCH QUEN & NÚT ĐẶT LẠI -->
+      <div id="retention-card" class="retention-card">
+        <div class="retention-header">
+          <span class="vi">Đặc&nbsp;Quyền Tri&nbsp;Ân Chủ&nbsp;Sở&nbsp;Hữu Mộc&nbsp;Bản</span>
+          <span class="en">Exclusive Privilege for Verified Box Owner</span>
+        </div>
+        <div class="retention-perk" id="ui-offer">---</div>
+        <div class="action-buttons">
+          <a id="zalo-reorder-btn" href="https://zalo.me/0796674679" target="_blank" rel="noopener noreferrer" class="btn-reorder-zalo">
+            <span class="vi">ĐẶT TIẾP LIỆU&nbsp;TRÌNH (NHẬN ƯU&nbsp;ĐÃI MÃ&nbsp;NÀY)</span>
+            <span class="en">REORDER REGIMEN (CLAIM OWNER PRIVILEGE)</span>
+          </a>
+          <a id="product-detail-btn" href="/tailieu" class="btn-secondary-link">
+            <span class="vi">XEM CHI&nbsp;TIẾT DÒNG&nbsp;TRÀ &amp; NGHI&nbsp;THỨC PHA</span>
+            <span class="en">VIEW TEA LINE DETAILS &amp; BREWING RITUAL</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 TRỤ CỘT BẢO CHỨNG BÁCH PHỤC -->
+    <div class="trust-pillars">
+      <div class="pillar-item">
+        <div class="pillar-title">
+          <span class="vi">Định&nbsp;Danh Độc&nbsp;Bản&nbsp;1-1</span>
+          <span class="en">1-to-1 Serialization</span>
+        </div>
+        <p class="pillar-text">
+          <span class="vi">Mỗi hộp&nbsp;trà sở&nbsp;hữu cặp Mã&nbsp;QR và Mã&nbsp;PIN 4&nbsp;số riêng&nbsp;biệt, chống sao&nbsp;chép và bảo&nbsp;vệ quyền&nbsp;sở&nbsp;hữu ngay từ lần mở&nbsp;hộp đầu&nbsp;tiên.</span>
+          <span class="en">Every box features a unique paired QR Code and 4-digit PIN, preventing counterfeiting and protecting ownership from the very first opening.</span>
+        </p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-title">
+          <span class="vi">Minh&nbsp;Bạch Hoạt&nbsp;Chất</span>
+          <span class="en">Bioactive Transparency</span>
+        </div>
+        <p class="pillar-text">
+          <span class="vi">Công&nbsp;khai minh&nbsp;bạch hàm&nbsp;lượng Polysaccharide hòa&nbsp;tan thực&nbsp;nghiệm (<span class="nowrap">0.967%</span>) cùng quy&nbsp;trình chế&nbsp;biến thảo&nbsp;mộc đa&nbsp;tầng chuẩn&nbsp;mực.</span>
+          <span class="en">Transparently disclosing laboratory-verified soluble Polysaccharide levels (<span class="nowrap">0.967%</span>) alongside our multi-stage artisanal processing craft.</span>
+        </p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-title">
+          <span class="vi">Tri&nbsp;Ân Trọn Liệu&nbsp;Trình</span>
+          <span class="en">Lifecycle Owner Privilege</span>
+        </div>
+        <p class="pillar-text">
+          <span class="vi">Mỗi mã hộp&nbsp;trà sau khi kích&nbsp;hoạt đều được lưu&nbsp;trữ đặc&nbsp;quyền ưu&nbsp;đãi riêng khi Quý&nbsp;khách đặt tiếp liệu&nbsp;trình dưỡng&nbsp;thân.</span>
+          <span class="en">Once activated, each serialized box code records dedicated gratitude privileges for your family’s subsequent wellness regimens.</span>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER ĐỒNG BỘ TOÀN HỆ THỐNG -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>
+          <span class="vi">CÔNG&nbsp;TY TNHH TRÀ THẢO&nbsp;MỘC BÁCH&nbsp;PHỤC</span>
+          <span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span>
+        </h3>
+        <p style="font-size:12.5px; color:#D6C7B8; margin-bottom:6px;">
+          <span class="vi"><strong>Mã&nbsp;số doanh&nbsp;nghiệp (MST):</strong> 4300901179</span>
+          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> 4300901179</span>
+        </p>
+        <p class="vi">Chắt&nbsp;chiu từng tai&nbsp;nấm Linh&nbsp;Chi chọn&nbsp;lọc từ rừng&nbsp;già tự&nbsp;nhiên Quảng&nbsp;Ngãi thành những ấm&nbsp;trà túi&nbsp;lọc mộc thanh&nbsp;khiết. Đồng&nbsp;hành cùng nếp&nbsp;sống an&nbsp;dưỡng, giúp thân&nbsp;tâm an&nbsp;định, nâng&nbsp;đỡ thể&nbsp;trạng và mang&nbsp;lại sự an&nbsp;yên cho mỗi gia&nbsp;đình.</p>
+        <p class="en">Carefully crafting selected 100% wild-harvested Reishi from the primeval forests of Quang&nbsp;Ngai into pure artisanal filter tea infusions—accompanying mindful living, nurturing physical resilience, and bringing peace to every family.</p>
+        <p style="color:var(--gold-light); font-family:'Playfair Display',serif; font-style:italic;">
+          <span class="vi">“Cha&nbsp;mẹ bình&nbsp;an, chúng&nbsp;con vững&nbsp;vàng.”</span>
+          <span class="en">“When our parents are at peace, we stand&nbsp;strong.”</span>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>
+          <span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục &amp; Tri&nbsp;Thức</span>
+          <span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span>
+        </h4>
+        <ul>
+          <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng (Bách&nbsp;Phục Thượng&nbsp;Hoàng)</span><span class="en">1. Thuong&nbsp;Hoang (Bach&nbsp;Phuc Thuong&nbsp;Hoang)</span></a></li>
+          <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng (Bách&nbsp;Phục Kim&nbsp;Hoàng)</span><span class="en">2. Kim&nbsp;Hoang (Bach&nbsp;Phuc Kim&nbsp;Hoang)</span></a></li>
+          <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh&nbsp;Hoàng (Bách&nbsp;Phục Minh&nbsp;Hoàng)</span><span class="en">3. Minh&nbsp;Hoang (Bach&nbsp;Phuc Minh&nbsp;Hoang)</span></a></li>
+          <li style="margin-top:8px;">
+            <a href="/suckhoe" style="color:var(--gold-light);">
+              <span class="vi">→ Giải&nbsp;mã cơ&nbsp;chế tự&nbsp;chữa&nbsp;lành</span>
+              <span class="en">→ Cellular Self-Healing Science</span>
+            </a>
+          </li>
+          <li>
+            <a href="/tailieu" style="color:var(--gold-primary);">
+              <span class="vi">→ Tài&nbsp;liệu chuyên&nbsp;khảo nấm Linh&nbsp;Chi</span>
+              <span class="en">→ Reishi Scientific Monographs</span>
+            </a>
+          </li>
+          <li>
+            <a href="/thuhai">
+              <span class="vi">→ Hành&nbsp;trình thu&nbsp;hái rừng&nbsp;già</span>
+              <span class="en">→ Wild Harvesting Journey</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>
+          <span class="vi">Thông&nbsp;Tin Kết&nbsp;Nối</span>
+          <span class="en">Contact &amp; Consultation</span>
+        </h4>
+        <ul>
+          <li class="contact-item">
+            <span class="icon">📍</span>
+            <span class="vi"><strong>Địa&nbsp;chỉ:</strong> 136 Mạc&nbsp;Đĩnh&nbsp;Chi, Phường Nghĩa&nbsp;Lộ, Tỉnh Quảng&nbsp;Ngãi</span>
+            <span class="en"><strong>Address:</strong> 136 Mac&nbsp;Dinh&nbsp;Chi St., Nghia&nbsp;Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span>
+          </li>
+          <li class="contact-item">
+            <span class="icon">📞</span>
+            <span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link" href="tel:0796674679">0796&nbsp;674&nbsp;679</a></span>
+          </li>
+          <li class="contact-item">
+            <span class="icon">🌐</span>
+            <span><strong>Website:</strong> <a href="/" style="color:#D6C7B8;">www.trathaomocbachphuc.vn</a></span>
+          </li>
+          <li style="margin-top:6px;">
+            <a href="/lienhe" style="color:var(--gold-light); font-weight:600;">
+              <span class="vi">→ Xem trang Liên&nbsp;Hệ chi&nbsp;tiết</span>
+              <span class="en">→ View Detailed Contact Page</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-disclaimer-wrap">
+      <p class="footer-disclaimer vi">* Lưu&nbsp;ý: Các sản&nbsp;phẩm của Trà Thảo&nbsp;Mộc Bách&nbsp;Phục là thức&nbsp;uống thảo&nbsp;mộc dưỡng&nbsp;sinh tự&nbsp;nhiên theo hồ&nbsp;sơ tự công&nbsp;bố, không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh. Website chỉ giới&nbsp;thiệu thông&nbsp;tin văn&nbsp;hóa trà và kết&nbsp;nối tư&nbsp;vấn, không giao&nbsp;dịch thương&nbsp;mại điện&nbsp;tử trực&nbsp;tuyến.</p>
+      <p class="footer-disclaimer en">* Notice: Bach&nbsp;Phuc Herbal Tea products are natural botanical infusions compliant with statutory self-declaration standards. They are not medicines and do not replace medical treatment. This website provides cultural information and consultation only, with no online commercial transactions.</p>
+    </div>
+    <div class="footer-bottom">
+      <span class="vi">© Bản&nbsp;quyền thuộc về Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục. Bảo&nbsp;lưu mọi&nbsp;quyền.</span>
+      <span class="en">© Copyright by Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- ================= HỆ THỐNG XỬ LÝ TRA CỨU, QUÉT QR & SONG NGỮ ================= -->
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwHWK1tyyZVZnQ_-k32xUkJnpgsr2_SgWp8t4ye2FUDxsR-uEE3chx1p7woGe5le6gs/exec";
+    const ZALO_PHONE = "0796674679";
+
+    let currentCode = "";
+    let html5QrScanner = null;
+    let scannerOpen = false;
+
+    function getCurrentLang() {
+      return document.body.getAttribute('data-lang') === 'en' ? 'en' : 'vi';
+    }
+
+    function syncNavPadding() {
+      const nav = document.getElementById('main-fixed-nav');
+      if (nav) {
+        document.body.style.paddingTop = nav.offsetHeight + 'px';
+      }
+    }
+
+    function setBachPhucLang(lang) {
+      const targetLang = (lang === 'en') ? 'en' : 'vi';
+      document.body.setAttribute('data-lang', targetLang);
+      document.documentElement.setAttribute('lang', targetLang);
+      document.title = (targetLang === 'en')
+        ? "1-to-1 Box Authentication & Origin Portal - Bach Phuc Herbal Tea"
+        : "Tra Cứu & Xác Thực Mộc Bản - Trà Thảo Mộc Bách Phục";
+
+      const codeInput = document.getElementById("code-input");
+      if (codeInput) {
+        codeInput.placeholder = (targetLang === 'en')
+          ? "Enter box serial code (e.g., TH26-001-K9M2)..."
+          : "Nhập mã định danh trên hộp trà (VD: TH26-001-K9M2)...";
+      }
+
+      const btnVi = document.getElementById('btn-lang-vi');
+      const btnEn = document.getElementById('btn-lang-en');
+      if (btnVi && btnEn) {
+        btnVi.classList.toggle('active', targetLang === 'vi');
+        btnEn.classList.toggle('active', targetLang === 'en');
+      }
+      syncNavPadding();
+      try {
+        localStorage.setItem('bachphuc_lang', targetLang);
+      } catch (e) {}
+    }
+
+    window.addEventListener('resize', syncNavPadding);
+
+    function preventOrphanWords(str) {
+      if (!str) return "---";
+      let s = String(str).trim();
+
+      const compoundPhrases = [
+        ["Bách", "Phục"],
+        ["Thượng", "Hoàng"],
+        ["Kim", "Hoàng"],
+        ["Minh", "Hoàng"],
+        ["Quảng", "Ngãi"],
+        ["Cà", "Đăm"],
+        ["Trà", "Bồng"],
+        ["Linh", "Chi"],
+        ["Mã", "Đề"],
+        ["Thu", "Đông"],
+        ["người", "Cor"],
+        ["Hộp", "Gỗ"],
+        ["Độc", "bản"],
+        ["hòa", "tan"],
+        ["thường", "lạc"],
+        ["bình", "an"],
+        ["vững", "vàng"],
+        ["trường", "tồn"],
+        ["giai", "lão"],
+        ["dưỡng", "thân"],
+        ["liệu", "trình"],
+        ["mẫu", "thử"],
+        ["tiếp", "theo"],
+        ["kích", "hoạt"],
+        ["tra", "cứu"]
+      ];
+
+      compoundPhrases.forEach(([w1, w2]) => {
+        const regex = new RegExp(`\\b(${w1})\\s+(${w2})\\b`, "gi");
+        s = s.replace(regex, `$1\u00A0$2`);
+      });
+
+      s = s.replace(/\s+(\S+)$/, "\u00A0$1");
+      return s;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      syncNavPadding();
+      try {
+        const savedLang = localStorage.getItem('bachphuc_lang');
+        if (savedLang === 'en' || savedLang === 'vi') {
+          setBachPhucLang(savedLang);
+        }
+      } catch (e) {}
+
+      const codeInput = document.getElementById("code-input");
+      const pinInput = document.getElementById("pin-input");
+
+      codeInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") lookupCode();
+      });
+
+      pinInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") activatePin();
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const urlCode = params.get("ma") || params.get("id");
+      if (urlCode) {
+        codeInput.value = extractCleanCode(urlCode);
+        lookupCode();
+      }
+    });
+
+    function extractCleanCode(rawText) {
+      let text = String(rawText || "").trim();
+      if (text.includes("ma=")) {
+        try {
+          const u = new URL(text);
+          return (u.searchParams.get("ma") || "").trim().toUpperCase();
+        } catch (e) {
+          const match = text.match(/[?&]ma=([^&]+)/i);
+          if (match) return decodeURIComponent(match[1]).trim().toUpperCase();
+        }
+      }
+      return text.toUpperCase();
+    }
+
+    function getProductPageUrl(code, productName) {
+      const upperCode = String(code || "").toUpperCase();
+      const upperName = String(productName || "").toUpperCase();
+      if (upperCode.startsWith("TH") || upperName.includes("THƯỢNG HOÀNG")) {
+        return "/dongsanpham/thuonghoang";
+      }
+      if (upperCode.startsWith("KH") || upperName.includes("KIM HOÀNG")) {
+        return "/dongsanpham/kimhoang";
+      }
+      if (upperCode.startsWith("MH") || upperName.includes("MINH HOÀNG")) {
+        return "/dongsanpham/minhhoang";
+      }
+      return "/dongsanpham";
+    }
+
+    function quickTest(sampleCode) {
+      document.getElementById("code-input").value = sampleCode;
+      document.getElementById("pin-input").value = "";
+      lookupCode();
+    }
+
+    function showStatus(msg, type = "loading") {
+      const el = document.getElementById("status-alert");
+      el.innerText = preventOrphanWords(msg);
+      el.className = "status-alert " + type;
+      el.style.display = "block";
+    }
+
+    function hideStatus() {
+      document.getElementById("status-alert").style.display = "none";
+    }
+
+    async function lookupCode() {
+      const rawInput = document.getElementById("code-input").value;
+      const code = extractCleanCode(rawInput);
+      document.getElementById("code-input").value = code;
+
+      const certEl = document.getElementById("certificate-paper");
+      const btn = document.getElementById("btn-lookup");
+      const isEn = getCurrentLang() === 'en';
+
+      if (!code) {
+        certEl.style.display = "none";
+        showStatus(
+          isEn ? "Please enter the serial code printed on your tea box." : "Quý khách vui lòng nhập mã xác thực in trên tem hộp trà.",
+          "error"
+        );
+        return;
+      }
+
+      currentCode = code;
+      btn.disabled = true;
+      showStatus(
+        isEn ? "Verifying against Bach Phuc Serialization Database..." : "Đang đối chiếu cơ sở dữ liệu Mộc Bản Bách Phục...",
+        "loading"
+      );
+
+      try {
+        const response = await fetch(
+          `${WEB_APP_URL}?action=lookup&ma=${encodeURIComponent(code)}`,
+          { method: "GET", redirect: "follow" }
+        );
+        const result = await response.json();
+        btn.disabled = false;
+
+        if (result.status === "success") {
+          hideStatus();
+          renderCertificate(result.data, false);
+        } else {
+          certEl.style.display = "none";
+          showStatus(
+            result.message || (isEn ? "Serial code not found. Please check and try again." : "Không tìm thấy mã hộp trà."),
+            "error"
+          );
+        }
+      } catch (error) {
+        btn.disabled = false;
+        showStatus(
+          isEn ? "Connecting to authentication server. Please try again in a moment." : "Đang kết nối máy chủ xác thực. Quý khách vui lòng bấm kiểm tra lại sau giây lát.",
+          "error"
+        );
+      }
+    }
+
+    async function activatePin() {
+      const pin = document.getElementById("pin-input").value.trim();
+      const btnUnlock = document.getElementById("btn-unlock");
+      const isEn = getCurrentLang() === 'en';
+
+      if (!pin || pin.length < 4) {
+        showStatus(
+          isEn ? "Please enter the full 4-digit secret PIN inside your tea box." : "Quý khách vui lòng nhập đủ 4 số PIN bí mật bên trong hộp trà.",
+          "error"
+        );
+        return;
+      }
+
+      btnUnlock.disabled = true;
+      showStatus(
+        isEn ? "Verifying 1-to-1 ownership PIN..." : "Đang xác thực mã PIN sở hữu độc bản...",
+        "loading"
+      );
+
+      try {
+        const response = await fetch(
+          `${WEB_APP_URL}?action=activate&ma=${encodeURIComponent(currentCode)}&pin=${encodeURIComponent(pin)}`,
+          { method: "GET", redirect: "follow" }
+        );
+        const result = await response.json();
+        btnUnlock.disabled = false;
+
+        if (result.status === "activated") {
+          renderCertificate(result.data, true);
+          const msg = result.firstTimeNow
+            ? (isEn
+                ? "✔ Congratulations! You are the first registered owner of this serialized box. Your personal message and privileges are now unlocked."
+                : "✔ Chúc mừng Quý khách là chủ nhân đầu tiên kích hoạt hộp trà độc bản này! Tâm thư và đặc quyền tri ân đã được mở.")
+            : (isEn
+                ? "✔ Owner PIN verified! Your personal message and box privileges are displayed below."
+                : "✔ Xác nhận mã PIN chủ sở hữu thành công! Tâm thư và đặc quyền của hộp trà đã được hiển thị.");
+          showStatus(msg, "success");
+        } else {
+          showStatus(
+            result.message || (isEn ? "Incorrect PIN code. Please check inside your box lid." : "Mã PIN chưa chính xác."),
+            "error"
+          );
+        }
+      } catch (error) {
+        btnUnlock.disabled = false;
+        showStatus(
+          isEn ? "Unable to connect to server while verifying PIN. Please try again." : "Không thể kết nối máy chủ khi xác thực PIN. Vui lòng thử lại.",
+          "error"
+        );
+      }
+    }
+
+    function renderCertificate(d, pinUnlockedNow) {
+      const certEl = document.getElementById("certificate-paper");
+      certEl.style.display = "block";
+      const isEn = getCurrentLang() === 'en';
+
+      document.getElementById("ui-product").innerText = preventOrphanWords(d.dongSanPham);
+      document.getElementById("ui-serial").innerText = isEn
+        ? `SERIAL\u00A0CODE: ${d.ma || currentCode}`
+        : `MÃ ĐỘC\u00A0BẢN: ${d.ma || currentCode}`;
+      document.getElementById("ui-order").innerText = preventOrphanWords(d.thuTuDocBan);
+      document.getElementById("ui-harvest").innerText = preventOrphanWords(d.vungThuHai);
+      document.getElementById("ui-worker").innerText = preventOrphanWords(d.thoRung);
+      document.getElementById("ui-lab").innerText = preventOrphanWords(d.chiSoKiemNghiem);
+      document.getElementById("ui-dates").innerText = `${d.ngayDongGoi || "---"} — ${d.hanThuongTra || "---"}`;
+
+      const activationInfo = d.daKichHoat
+        ? (isEn
+            ? `Activated (${d.thoiDiemKichHoat}) • Lookup #${d.soLuotQuet}`
+            : `Đã kích\u00A0hoạt (${d.thoiDiemKichHoat}) • Lượt tra\u00A0cứu thứ\u00A0${d.soLuotQuet}`)
+        : (isEn
+            ? `Unactivated (In Stock) • Lookup #${d.soLuotQuet}`
+            : `Chưa kích\u00A0hoạt sở\u00A0hữu • Lượt tra\u00A0cứu thứ\u00A0${d.soLuotQuet}`);
+      document.getElementById("ui-activation").innerText = activationInfo;
+
+      const pinBox = document.getElementById("pin-unlock-box");
+      const giftCard = document.getElementById("gift-message-card");
+      const retentionCard = document.getElementById("retention-card");
+
+      if (pinUnlockedNow) {
+        pinBox.style.display = "none";
+
+        if (d.loiChuc && d.loiChuc.trim() !== "") {
+          document.getElementById("ui-blessing").innerText = `“${preventOrphanWords(d.loiChuc.trim())}”`;
+          giftCard.style.display = "block";
+        } else {
+          giftCard.style.display = "none";
+        }
+
+        const offerText = d.uuDaiMuaTiep && d.uuDaiMuaTiep.trim() !== ""
+          ? d.uuDaiMuaTiep.trim()
+          : (isEn
+              ? "10% gratitude privilege for verified owner on your next Bach Phuc regimen"
+              : "Ưu đãi 10% tri ân chủ sở hữu khi đặt tiếp liệu trình Bách Phục");
+        document.getElementById("ui-offer").innerText = "🎁 " + preventOrphanWords(offerText);
+
+        const zaloMessage = encodeURIComponent(
+          `Chào Trà Thảo Mộc Bách Phục, tôi là chủ sở hữu hộp trà mã [${currentCode}] (${d.dongSanPham}), muốn đặt tiếp liệu trình và áp dụng ưu đãi tri ân của mã hộp này.`
+        );
+        document.getElementById("zalo-reorder-btn").href = `https://zalo.me/${ZALO_PHONE}?text=${zaloMessage}`;
+
+        const productBtn = document.getElementById("product-detail-btn");
+        productBtn.href = getProductPageUrl(currentCode, d.dongSanPham);
+
+        retentionCard.style.display = "block";
+      } else {
+        pinBox.style.display = "block";
+        giftCard.style.display = "none";
+        retentionCard.style.display = "none";
+      }
+    }
+
+    function toggleQrScanner() {
+      const wrap = document.getElementById("qr-reader-wrap");
+      if (scannerOpen) {
+        if (html5QrScanner) {
+          html5QrScanner.clear();
+        }
+        wrap.style.display = "none";
+        scannerOpen = false;
+        return;
+      }
+
+      wrap.style.display = "block";
+      scannerOpen = true;
+      html5QrScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 220 }, false);
+      html5QrScanner.render((decodedText) => {
+        const clean = extractCleanCode(decodedText);
+        document.getElementById("code-input").value = clean;
+        html5QrScanner.clear();
+        wrap.style.display = "none";
+        scannerOpen = false;
+        lookupCode();
+      });
+    }
+  </script>
+</body>
+</html>
