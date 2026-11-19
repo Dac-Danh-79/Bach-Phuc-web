@@ -26,6 +26,12 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   body, p, li, td, th, div, button {
     text-align: left !important;
     word-break: keep-all !important;
@@ -33,13 +39,13 @@
     -webkit-hyphens: none;
     hyphens: none;
   }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--cream-bg);
     color: var(--text-dark);
     line-height: 1.72;
     padding-top: 52px;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -51,6 +57,14 @@
   .nowrap { white-space: nowrap; }
   h1, h2, h3, h4, .doc-title, .bridge-title { text-wrap: balance; }
   p, li, td, .doc-quote-box, .academic-framing-note { text-wrap: pretty; }
+
+  /* KHÓA CHỐNG TRÀN NGANG CHO MỌI KHUNG FLEX / GRID / ACCORDION */
+  .doc-workspace, .doc-main-col, .doc-section-card,
+  .acc-panel, .acc-inner, .table-responsive,
+  .patho-3col-grid > *, .study-grid-2x2 > *, .ref-item-info {
+    min-width: 0;
+    max-width: 100%;
+  }
 
   /* ================= 0. THANH MENU NGANG SONG NGỮ + THANH TIẾN ĐỘ ĐỌC ================= */
   .top-bilingual-nav {
@@ -197,6 +211,7 @@
   /* ================= 1. BREADCRUMB ================= */
   .breadcrumb-nav {
     max-width: 1180px;
+    width: 100%;
     margin: 16px auto 0;
     padding: 0 20px;
     font-size: 12.8px;
@@ -256,7 +271,7 @@
     font-family: 'Inter', sans-serif;
     color: var(--gold-light);
     font-size: clamp(11px, 1.6vw, 12.5px);
-    letter-spacing: 3px;
+    letter-spacing: 2.8px;
     text-transform: uppercase;
     font-weight: 600;
     margin-bottom: 10px;
@@ -307,31 +322,33 @@
     font-style: italic;
     line-height: 1.62;
     text-align: center !important;
-    padding: 0 12px;
+    padding: 0 10px;
     opacity: 0.94;
   }
 
   /* DẢI ĐỊNH DANH & THANH ĐIỀU HƯỚNG PHỤ */
   .origin-ribbon {
+    width: 100%;
     background: linear-gradient(90deg, #150702 0%, #2A1107 50%, #150702 100%);
     border-top: 1.5px solid rgba(197, 160, 89, 0.45);
     border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-    padding: 10px 20px;
+    padding: 10px 16px;
     text-align: center;
   }
   .origin-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; }
-  .origin-inner .symbol { color: var(--gold-primary); font-size: 12px; }
+  .origin-inner .symbol { color: var(--gold-primary); font-size: 12px; flex-shrink: 0; }
   .origin-text {
     font-family: 'Inter', sans-serif;
     color: var(--gold-bright);
     font-size: clamp(11px, 1.5vw, 12.8px);
     font-weight: 700;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
     text-align: center !important;
   }
 
   .subpage-nav-bar {
+    width: 100%;
     background: #F4EFE6;
     border-bottom: 1px solid var(--border-warm);
     padding: 10px 20px;
@@ -350,7 +367,7 @@
     color: var(--espresso);
     border: 1px solid var(--border-warm);
     border-left: 3px solid var(--wine-red);
-    padding: 6.5px 13px;
+    padding: 7px 13px;
     border-radius: 4px;
     font-size: 12.2px;
     font-weight: 600;
@@ -366,6 +383,7 @@
   /* ================= 3. BỐ CỤC 2 CỘT: NỘI DUNG CHÍNH + MỤC LỤC TRƯỢT DÍNH ================= */
   .doc-workspace {
     max-width: 1180px;
+    width: 100%;
     margin: 28px auto 56px;
     padding: 0 20px;
     display: flex;
@@ -374,7 +392,6 @@
   }
   .doc-main-col {
     flex: 1;
-    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 26px;
@@ -383,6 +400,7 @@
   /* HỘP MỤC LỤC CUỘN GỌN ĐẦU BÀI (HIỆN TRÊN ĐIỆN THOẠI / TABLET) */
   .mobile-inline-toc {
     display: none;
+    width: 100%;
     background: #FFFFFF;
     border: 1.5px solid var(--gold-primary);
     border-radius: 8px;
@@ -450,6 +468,7 @@
 
   /* ================= KHỐI NỘI DUNG TỪNG PHẦN ================= */
   .doc-section-card {
+    width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--border-warm);
     border-radius: 8px;
@@ -476,7 +495,7 @@
     gap: 12px;
     flex-wrap: wrap;
   }
-  .doc-header-text { flex: 1; min-width: 240px; }
+  .doc-header-text { flex: 1; min-width: 0; }
   .doc-tag {
     font-size: 11px;
     text-transform: uppercase;
@@ -626,9 +645,8 @@
     border-color: var(--espresso);
   }
   .clinical-body-pad {
-    padding: 0 18px 16px;
+    padding: 14px 18px 16px;
     border-top: 1px dashed var(--border-warm);
-    padding-top: 14px;
   }
   .clinical-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
   .clinical-list li {
@@ -686,8 +704,9 @@
     font-style: italic;
   }
 
-  /* PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (LUÔN MỞ) */
+  /* PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (CUỘN GỌN TRONG KHUNG RIÊNG) */
   .table-responsive {
+    width: 100%;
     overflow-x: auto;
     margin: 12px 0 4px;
     border: 1px solid var(--border-warm);
@@ -743,6 +762,7 @@
   }
   .ref-item-card.green-bar { border-left-color: var(--bio-green); }
   .ref-item-card.wine-bar { border-left-color: var(--wine-red); }
+  .ref-item-info { flex: 1; }
   .ref-btn {
     font-size: 11.8px;
     font-weight: 600;
@@ -758,6 +778,7 @@
 
   /* CẦU NỐI CUỐI BÀI & MIỄN TRỪ PHÁP LÝ CUỘN GỌN */
   .academic-bridge-card {
+    width: 100%;
     background: radial-gradient(circle at 50% 50%, #2B1309 0%, #150702 100%);
     border: 1.5px solid var(--gold-primary);
     border-radius: 8px;
@@ -769,7 +790,7 @@
     gap: 18px;
     flex-wrap: wrap;
   }
-  .bridge-info { flex: 1; min-width: 240px; }
+  .bridge-info { flex: 1; min-width: 0; }
   .bridge-tag { font-size: 10.5px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-light); font-weight: 700; display: block; margin-bottom: 4px; }
   .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.2vw, 21px); color: var(--gold-bright); margin-bottom: 5px; }
   .bridge-desc { font-size: 13.2px; color: #DFD3C3; line-height: 1.62; }
@@ -809,6 +830,7 @@
   .btn-outline-cta:hover { background: var(--wine-red); color: #FFFFFF; border-color: #FFFFFF; }
 
   .disclaimer-card {
+    width: 100%;
     background: #F8F4EE;
     border: 1px solid #DFD6C6;
     border-left: 4px solid var(--wine-red);
@@ -884,17 +906,8 @@
     cursor: pointer;
     transition: all 0.2s ease;
   }
-  .toc-jump-btn:hover {
-    background: #FAF5EB;
-    color: var(--wine-red);
-    border-left-color: var(--gold-primary);
-  }
-  .toc-jump-btn.active {
-    background: #FAF4E6;
-    color: var(--wine-red);
-    border-left-color: var(--wine-red);
-    font-weight: 700;
-  }
+  .toc-jump-btn:hover { background: #FAF5EB; color: var(--wine-red); border-left-color: var(--gold-primary); }
+  .toc-jump-btn.active { background: #FAF4E6; color: var(--wine-red); border-left-color: var(--wine-red); font-weight: 700; }
   .toc-roman {
     flex-shrink: 0;
     min-width: 22px;
@@ -932,7 +945,7 @@
   .fab-toc-btn {
     position: fixed;
     right: 16px;
-    bottom: 20px;
+    bottom: 78px;
     z-index: 99980;
     background: linear-gradient(135deg, #23120B 0%, #3E180D 100%);
     color: var(--gold-bright);
@@ -952,11 +965,7 @@
     transform: translateY(14px);
     transition: all 0.25s ease;
   }
-  .fab-toc-btn.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+  .fab-toc-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .toc-drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -974,7 +983,7 @@
     background: #FFFFFF;
     border-top: 3px solid var(--gold-primary);
     border-radius: 14px 14px 0 0;
-    padding: 18px 18px 24px;
+    padding: 18px 18px 28px;
     max-height: 75vh;
     overflow-y: auto;
     transform: translateY(105%);
@@ -1030,7 +1039,8 @@
     }
     .nav-menu-list::-webkit-scrollbar { display: none; }
     .nav-dropdown { display: none; }
-    .doc-workspace { flex-direction: column; }
+    .doc-workspace { flex-direction: column; align-items: stretch; width: 100%; }
+    .doc-main-col { width: 100%; flex: none; }
     .doc-sidebar { display: none; }
     .mobile-inline-toc { display: block; }
     .fab-toc-btn { display: inline-flex; }
@@ -1039,17 +1049,26 @@
   }
   @media (max-width: 640px) {
     body { line-height: 1.64; padding-top: 84px; }
-    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 8px; gap: 6px; }
+    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 7px; gap: 6px; }
     .lang-switch-box { align-self: flex-end; }
     .lang-btn { font-size: 10.5px; padding: 3px 8px; }
-    .nav-menu-list { width: 100%; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 5px; gap: 6px; }
+    .nav-menu-list { width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 5px; gap: 6px; }
     .nav-link { font-size: 12px; padding: 5px 9px; }
 
-    .doc-hero { padding: 32px 14px 26px; }
+    .breadcrumb-nav, .subpage-nav-bar { padding-left: 14px; padding-right: 14px; }
+    .doc-hero { padding: 30px 14px 24px; }
+    .doc-hero::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
     .doc-workspace { padding: 0 14px; margin-top: 20px; }
     .doc-section-card, .academic-bridge-card { padding: 20px 16px; }
     .bridge-btn-row, .subpage-nav-inner { flex-direction: column; width: 100%; }
-    .btn-gold-cta, .btn-outline-cta, .nav-pill-btn { width: 100%; justify-content: center; }
+    .btn-gold-cta, .btn-outline-cta, .nav-pill-btn {
+      width: 100%;
+      justify-content: center;
+      white-space: normal;
+      text-align: center !important;
+      line-height: 1.4;
+    }
+    .ref-item-card { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -1514,7 +1533,7 @@
         </div>
       </article>
 
-      <!-- PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (LUÔN MỞ ĐỂ DỄ QUÉT) -->
+      <!-- PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (LUÔN MỞ, VUỐT NGANG GỌN TRONG KHUNG) -->
       <article id="phan-4" class="doc-section-card spy-section">
         <div class="doc-header">
           <div class="doc-header-text">
@@ -1589,16 +1608,16 @@
           <div class="acc-inner">
             <div class="ref-list-stack">
               <div class="ref-item-card">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">1. PubMed / Chem. Pharm. Bull. (PMID: 3769062 &amp; PMID: 3209675)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Morigiwa, A. et al. (1986). “Angiotensin converting enzyme-inhibitory triterpenes from Ganoderma lucidum” &amp; Kabir, Y. et al. (1988)</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Phân&nbsp;lập Acid&nbsp;Ganoderic B, C2, D, F, H, K, S, Y chứng&nbsp;minh hoạt&nbsp;tính ức&nbsp;chế men ACE tự&nbsp;nhiên.</span><span class="en">Isolation of Ganoderic Acids B, C2, D, F, H, K, S, Y showing natural ACE-inhibitory activity.</span></p>
                 </div>
-                <a href="https://pubmed.ncbi.nlm.nih.gov/3769062/" target="_blank" rel="noopener noreferrer" class="ref-btn"><span class="vi">PMID: 3769062 ↗</span><span class="en">PMID: 3769062 ↗</span></a>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/3769062/" target="_blank" rel="noopener noreferrer" class="ref-btn">PMID: 3769062 ↗</a>
               </div>
 
               <div class="ref-item-card green-bar">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1E6B38; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">2. PubMed / J. Ethnopharmacol. (PMID: 22207209 &amp; PMID: 4070248)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Cui, X. Y. et al. (2012). “Extract of Ganoderma lucidum prolongs sleep time in rats” &amp; Shimizu, A. et al. (1985)</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ&nbsp;chế kéo&nbsp;dài pha ngủ sâu sóng&nbsp;chậm (NREM) và giảm độ nhớt&nbsp;máu của phân&nbsp;đoạn Adenosine.</span><span class="en">NREM slow-wave sleep prolongation and antiplatelet properties of Reishi Adenosine fractions.</span></p>
@@ -1607,7 +1626,7 @@
               </div>
 
               <div class="ref-item-card">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">3. U.S. NLM / NCBI StatPearls (NBK430896 &amp; NBK482339)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Herman, L. L. et al. (2023). “Angiotensin-Converting Enzyme Inhibitors (ACEI)” — StatPearls Publishing</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ&nbsp;chế tích&nbsp;tụ Bradykinin gây ho&nbsp;khan dai&nbsp;dẳng về đêm, phù cổ&nbsp;chân và hạ&nbsp;áp tư&nbsp;thế.</span><span class="en">Clinical review of Bradykinin-induced nocturnal cough, ankle edema, and orthostatic hypotension.</span></p>
@@ -1616,7 +1635,7 @@
               </div>
 
               <div class="ref-item-card">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">4. U.S. NIH / PMC Central (PMC3684331 &amp; BMJ PMC1285096)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Holbrook, A. M. et al. — “Meta-analysis of benzodiazepine use in insomnia” &amp; Glass, J. et al. (BMJ)</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Phân&nbsp;tích gộp về tác&nbsp;dụng phụ của thuốc an&nbsp;thần – gây&nbsp;ngủ tổng&nbsp;hợp ở người lớn&nbsp;tuổi.</span><span class="en">Meta-analysis on sedative-hypnotic adverse effects, delta-sleep suppression, and fall risk in seniors.</span></p>
@@ -1625,7 +1644,7 @@
               </div>
 
               <div class="ref-item-card wine-bar">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:var(--wine-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">5. NIH Bookshelf (NBK92757) &amp; Dược&nbsp;Điển Việt&nbsp;Nam</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Wachtel-Galor, S. et al. (2011) &amp; Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (“Những cây&nbsp;thuốc và vị&nbsp;thuốc Việt&nbsp;Nam”, tr. 831–833)</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Hồ&nbsp;sơ sinh&nbsp;học toàn&nbsp;diện của <em>Ganoderma lucidum</em> và y&nbsp;văn về Hồng&nbsp;Chi với huyết, thần&nbsp;kinh và tim.</span><span class="en">Comprehensive <em>Ganoderma lucidum</em> biology and Red Reishi pharmacognosy for blood, nerves, and heart.</span></p>
@@ -1920,6 +1939,8 @@
         }
       }, autoOpenPanelId ? 60 : 0);
     }
+
+    function bpScrollTo(targetId) { jumpToSection(targetId); }
 
     function updateReadingAndSpy() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
