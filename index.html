@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trà Thảo Mộc Bách Phục - Cha Mẹ Bình An, Chúng Con Vững Vàng</title>
+<link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -34,8 +35,8 @@
 
   body, p, li, td, th, div, button {
     text-align: left !important;
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
+    word-break: normal;
+    overflow-wrap: break-word;
     -webkit-hyphens: none;
     hyphens: none;
   }
@@ -45,7 +46,7 @@
     background-color: var(--cream-bg);
     color: var(--text-dark);
     line-height: 1.72;
-    padding-top: 52px;
+    padding-top: 56px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -57,8 +58,12 @@
   body[data-lang="en"] .vi { display: none !important; }
 
   .nowrap { white-space: nowrap; }
-  h1, h2, h3, h4, .product-name, .science-hub-title { text-wrap: balance; }
-  p, li, td, .story-quote-box, .academic-framing-note { text-wrap: pretty; }
+  h1, h2, h3, h4, .need-title, .product-name, .science-hub-title, .trust-pillars-title, .sub-caption, .origin-text {
+    text-wrap: balance;
+  }
+  p, li, td, .story-quote-box, .academic-framing-note, .footer-disclaimer {
+    text-wrap: pretty;
+  }
 
   /* KHÓA CHỐNG TRÀN NGANG CHO MỌI KHUNG FLEX / GRID / ACCORDION */
   .main-workspace, .content-column, .story-card, .story-content-side,
@@ -69,7 +74,7 @@
     max-width: 100%;
   }
 
-  /* ================= 0. THANH MENU NGANG SONG NGỮ + THANH TIẾN ĐỘ ĐỌC ================= */
+  /* ================= 0. THANH MENU NGANG CÓ LOGO BÁCH PHỤC + THANH TIẾN ĐỘ ĐỌC ================= */
   .top-bilingual-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -87,7 +92,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 52px;
+    min-height: 56px;
     gap: 10px;
   }
   .reading-progress-track {
@@ -104,12 +109,62 @@
     transition: width 0.1s linear;
   }
 
+  .nav-brand-tools {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+  }
+  .nav-logo-btn {
+    background: transparent;
+    border: none;
+    padding: 2px 0;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
+    transition: transform 0.2s ease;
+  }
+  .nav-logo-btn:hover .nav-logo-img { transform: scale(1.04); }
+
+  .nav-mobile-toc-btn {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: rgba(197, 160, 89, 0.14);
+    color: var(--gold-bright);
+    border: 1px solid rgba(197, 160, 89, 0.65);
+    border-radius: 4px;
+    padding: 4.5px 9px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  .nav-mobile-toc-btn:hover { background: rgba(197, 160, 89, 0.28); color: #FFFFFF; }
+
+  .nav-menu-scroll-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+  }
   .nav-menu-list {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
+    gap: 2px;
+    flex-wrap: nowrap;
     margin: 0;
     padding: 0;
   }
@@ -121,12 +176,12 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 8px 11px;
+    padding: 8px 9px;
     color: #EFE6D8;
     text-decoration: none;
-    font-size: 12.5px;
+    font-size: 12.2px;
     font-weight: 500;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     border-radius: 4px;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -139,7 +194,7 @@
     border-bottom: 2px solid var(--gold-primary);
     font-weight: 600;
   }
-  .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 2px; }
+  .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 1px; }
 
   .nav-dropdown {
     position: absolute;
@@ -186,9 +241,9 @@
     font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 600;
-    padding: 5px 9px;
+    padding: 5px 8px;
     cursor: pointer;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.3px;
     border-radius: 2px;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -205,7 +260,7 @@
   .hero-banner {
     position: relative;
     width: 100%;
-    padding: 38px 20px 28px;
+    padding: 36px 20px 26px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -245,7 +300,7 @@
     font-family: 'Inter', sans-serif;
     color: var(--gold-light);
     font-size: clamp(11px, 1.5vw, 12.5px);
-    letter-spacing: 3.8px;
+    letter-spacing: 3.6px;
     text-transform: uppercase;
     font-weight: 600;
     margin-bottom: 10px;
@@ -263,11 +318,12 @@
   }
   .title-line {
     display: block;
+    white-space: nowrap;
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(21px, 4.3vw, 38px);
+    font-size: clamp(19px, 4.2vw, 38px);
     font-weight: 700;
     line-height: 1.24;
-    letter-spacing: 1px;
+    letter-spacing: 0.9px;
     text-transform: uppercase;
     background: linear-gradient(115deg, #E6C786 0%, #FFF8E1 25%, #C5A059 50%, #FFF2C8 75%, #D4AF37 100%);
     background-size: 250% auto;
@@ -315,7 +371,7 @@
     color: var(--gold-bright);
     font-size: clamp(11px, 1.6vw, 13.5px);
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     text-align: center !important;
@@ -333,16 +389,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px 16px;
     flex-wrap: wrap;
     margin-bottom: 14px;
   }
   .monograph-bar-kicker {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
     color: var(--gold-light);
+    line-height: 1.45;
   }
   .monograph-bar-all {
     font-size: 12px;
@@ -403,13 +460,13 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 16.5px;
     color: var(--gold-bright);
-    line-height: 1.32;
+    line-height: 1.34;
     margin-bottom: 6px;
   }
   .need-desc {
-    font-size: 12.6px;
+    font-size: 12.8px;
     color: #D9CABC;
-    line-height: 1.56;
+    line-height: 1.58;
     margin-bottom: 10px;
   }
   .need-cta {
@@ -423,6 +480,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
   }
   .need-card:hover .need-cta { color: #FFFFFF; }
 
@@ -445,6 +503,7 @@
     border-radius: 4px;
     font-size: 12.4px;
     font-weight: 600;
+    line-height: 1.4;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -453,7 +512,7 @@
   }
   .acc-btn:hover { background: var(--espresso); color: var(--gold-bright); border-color: var(--espresso); }
   .acc-btn.full-bar { width: 100%; justify-content: space-between; padding: 9px 14px; }
-  .acc-chevron { display: inline-block; font-size: 10px; transition: transform 0.25s ease; flex-shrink: 0; }
+  .acc-chevron { display: inline-block; font-size: 13px; line-height: 1; transition: transform 0.25s ease; flex-shrink: 0; }
   .acc-btn[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
 
   /* ================= 3. THÔNG ĐIỆP TÂM TÌNH (ẢNH SLIDESHOW ĐI TRƯỚC + CUỘN CHỮ) ================= */
@@ -469,11 +528,11 @@
     gap: 28px;
     align-items: flex-start;
   }
-  .story-slideshow-side { width: 370px; flex-shrink: 0; }
+  .story-slideshow-side { width: 365px; flex-shrink: 0; }
   .slideshow-container {
     position: relative;
     width: 100%;
-    height: 290px;
+    height: 270px;
     border-radius: 6px;
     overflow: hidden;
     border: 2px solid var(--gold-primary);
@@ -494,13 +553,14 @@
     font-size: 11.8px;
     color: var(--text-muted);
     font-style: italic;
+    line-height: 1.45;
     text-align: center !important;
   }
 
   .story-content-side { flex: 1; }
   .story-header { margin-bottom: 12px; }
   .story-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--wine-red); font-weight: 700; display: block; margin-bottom: 4px; }
-  .story-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.4vw, 24px); color: var(--espresso); margin-bottom: 4px; }
+  .story-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.4vw, 24px); color: var(--espresso); margin-bottom: 4px; line-height: 1.32; }
   .story-slogan-highlight { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 700; font-style: italic; color: var(--wine-red); }
   .story-quote-box {
     background: #FAF5EB;
@@ -509,7 +569,7 @@
     border-radius: 0 6px 6px 0;
     margin-bottom: 14px;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 16.5px;
+    font-size: 16.8px;
     font-style: italic;
     line-height: 1.64;
     color: var(--espresso);
@@ -544,22 +604,23 @@
     align-items: center;
     margin: 0 0 22px 0;
     text-align: center;
-    scroll-margin-top: 70px;
+    scroll-margin-top: 76px;
   }
   .section-heading h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(19px, 2.3vw, 23px);
     color: var(--espresso);
     text-transform: uppercase;
-    margin-bottom: 4px;
-    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    letter-spacing: 0.4px;
+    line-height: 1.32;
     text-align: center !important;
   }
   .section-heading span.sub-caption {
     font-size: 12.5px;
     color: var(--text-muted);
     font-style: italic;
-    letter-spacing: 0.4px;
+    line-height: 1.5;
     text-align: center !important;
   }
   .cor-motif-line {
@@ -579,7 +640,7 @@
     background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
   }
 
-  /* THẺ SẢN PHẨM (ẢNH RÕ ĐẦU TIÊN + CUỘN GỌN CHI TIẾT PHỤ) */
+  /* THẺ SẢN PHẨM */
   .product-card {
     display: flex;
     gap: 22px;
@@ -589,14 +650,14 @@
     padding: 22px;
     margin-bottom: 20px;
     box-shadow: 0 6px 16px rgba(35, 18, 11, 0.04);
-    scroll-margin-top: 70px;
+    scroll-margin-top: 76px;
   }
   .product-card.thuong-hoang { border-top: 4px solid var(--wine-red); }
   .product-card.kim-hoang { border-top: 4px solid var(--gold-accent); }
   .product-card.minh-hoang { border-top: 4px solid var(--bio-green); }
 
   .product-visual {
-    width: 225px; height: 215px; flex-shrink: 0; border-radius: 6px;
+    width: 220px; height: 215px; flex-shrink: 0; border-radius: 6px;
     background: radial-gradient(circle, #FDFBF7 0%, #F2ECE1 100%);
     border: 1px solid #EAE2D3; display: flex; align-items: center; justify-content: center; padding: 10px; overflow: hidden;
   }
@@ -608,13 +669,13 @@
   }
   .box-placeholder .bp-brand { font-size: 9px; letter-spacing: 2px; color: var(--gold-light); text-transform: uppercase; text-align: center !important; }
   .box-placeholder .bp-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold-bright); margin: 3px 0; text-align: center !important; }
-  .box-placeholder .bp-sub { font-size: 9px; color: #D6C6B8; text-align: center !important; }
+  .box-placeholder .bp-sub { font-size: 9.5px; color: #D6C6B8; text-align: center !important; }
 
   .product-details { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .product-line-tag { font-size: 10.8px; text-transform: uppercase; letter-spacing: 1.3px; color: var(--wine-red); font-weight: 700; }
+  .product-line-tag { font-size: 10.8px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--wine-red); font-weight: 700; line-height: 1.45; }
   .product-card.kim-hoang .product-line-tag { color: var(--gold-deep); }
   .product-card.minh-hoang .product-line-tag { color: var(--bio-green); }
-  .product-name { font-family: 'Playfair Display', serif; font-size: 20.5px; color: var(--espresso); margin: 3px 0 7px; }
+  .product-name { font-family: 'Playfair Display', serif; font-size: 20.5px; color: var(--espresso); margin: 4px 0 8px; }
 
   .product-badge-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
   .product-spec-badge {
@@ -622,18 +683,18 @@
     font-weight: 600; background: #FAF5EB; border: 1px solid #EFE4D2; border-left: 3px solid var(--gold-primary);
     padding: 3px 9px; border-radius: 0 4px 4px 0;
   }
-  .product-lead-summary { font-size: 13.5px; color: var(--text-dark); line-height: 1.66; margin-bottom: 10px; }
+  .product-lead-summary { font-size: 13.6px; color: var(--text-dark); line-height: 1.66; margin-bottom: 10px; }
   .product-lead-summary strong { color: var(--espresso); }
 
   .product-spec-list { list-style: none; padding: 10px 0 4px; }
-  .product-spec-list li { font-size: 13.2px; color: var(--text-dark); margin-bottom: 7px; padding-left: 16px; position: relative; line-height: 1.65; }
+  .product-spec-list li { font-size: 13.3px; color: var(--text-dark); margin-bottom: 7px; padding-left: 16px; position: relative; line-height: 1.65; }
   .product-spec-list li:last-child { margin-bottom: 0; }
   .product-spec-list li::before { content: "❖"; position: absolute; left: 0; top: 2px; color: var(--gold-primary); font-size: 8.5px; }
   .product-spec-list strong { color: var(--espresso); }
 
   .product-action-group { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 12px; }
   .product-action {
-    display: inline-flex; align-items: center; gap: 7px; padding: 8.5px 15px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 15px;
     background-color: var(--espresso); color: var(--gold-light); text-decoration: none;
     font-size: 12px; font-weight: 600; border-radius: 4px; border: 1px solid var(--gold-primary);
     transition: all 0.25s ease; box-shadow: 0 3px 8px rgba(35, 18, 11, 0.12); cursor: pointer; white-space: nowrap;
@@ -641,7 +702,7 @@
   .product-action:hover { background-color: var(--wine-red); color: #FFF; transform: translateY(-1px); }
   .product-action.secondary-academic { background-color: #FAF5EB; color: var(--espresso); border-color: var(--border-warm); box-shadow: none; }
   .product-action.secondary-academic:hover { background-color: var(--espresso); color: var(--gold-bright); border-color: var(--espresso); }
-  .product-action .action-arrow { font-size: 13px; transition: transform 0.2s ease; }
+  .product-action .action-arrow { font-size: 13px; transition: transform 0.2s ease; flex-shrink: 0; }
   .product-action:hover .action-arrow { transform: translateX(3px); }
 
   /* ================= 4.1 VỊ TRÍ MỚI: 4 TRỤ CỘT BẢO CHỨNG ================= */
@@ -653,14 +714,14 @@
     padding: 26px 24px;
     color: #F4EAE0;
     box-shadow: 0 10px 26px rgba(20, 7, 2, 0.15);
-    scroll-margin-top: 70px;
+    scroll-margin-top: 76px;
   }
   .trust-pillars-head { border-bottom: 1px solid rgba(197, 160, 89, 0.28); padding-bottom: 12px; margin-bottom: 18px; }
   .trust-pillars-kicker {
     font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
     color: var(--gold-primary); display: block; margin-bottom: 4px;
   }
-  .trust-pillars-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(18.5px, 2.2vw, 22px); color: var(--gold-bright); }
+  .trust-pillars-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(18.5px, 2.2vw, 22px); color: var(--gold-bright); line-height: 1.32; }
   .trust-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .trust-box {
     display: flex; align-items: flex-start; gap: 12px;
@@ -677,7 +738,7 @@
   }
   .trust-icon span { transform: rotate(-45deg); font-family: 'Playfair Display', serif; font-weight: 600; font-size: 10.5px; line-height: 1; }
   .trust-text h4 { font-family: 'Playfair Display', serif; color: var(--gold-bright); font-size: 15px; margin-bottom: 4px; letter-spacing: 0.3px; }
-  .trust-text p { color: #D4C5B7; font-size: 12.6px; line-height: 1.58; }
+  .trust-text p { color: #D4C5B7; font-size: 12.8px; line-height: 1.6; }
 
   /* ================= 4.2 GIẢI MÃ 6 DÒNG LINH CHI ================= */
   .academic-framing-note {
@@ -686,42 +747,50 @@
   }
   .academic-framing-note strong { color: var(--espresso); }
   .reishi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
-  .reishi-card { background: var(--card-bg); border: 1px solid var(--border-warm); border-radius: 8px; padding: 16px; box-shadow: 0 4px 10px rgba(35, 18, 11, 0.03); scroll-margin-top: 70px; }
+  .reishi-card { background: var(--card-bg); border: 1px solid var(--border-warm); border-radius: 8px; padding: 16px; box-shadow: 0 4px 10px rgba(35, 18, 11, 0.03); scroll-margin-top: 76px; }
   .reishi-top { display: flex; align-items: center; gap: 12px; margin-bottom: 9px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-warm); }
   .reishi-thumb { width: 66px; height: 66px; border-radius: 6px; border: 1.5px solid var(--gold-primary); overflow: hidden; flex-shrink: 0; background: #F4EFE6; display: flex; align-items: center; justify-content: center; }
   .reishi-thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .reishi-name { font-family: 'Playfair Display', serif; font-size: 15.5px; color: var(--espresso); font-weight: 700; }
-  .reishi-subname { font-size: 11.5px; color: var(--text-muted); font-style: italic; }
-  .reishi-body { font-size: 13.2px; color: var(--text-dark); line-height: 1.65; }
+  .reishi-name { font-family: 'Playfair Display', serif; font-size: 15.5px; color: var(--espresso); font-weight: 700; line-height: 1.3; }
+  .reishi-subname { font-size: 11.5px; color: var(--text-muted); font-style: italic; margin-top: 2px; }
+  .reishi-body { font-size: 13.3px; color: var(--text-dark); line-height: 1.66; }
 
   /* ================= 4.3 CỔNG KHOA HỌC DƯỠNG SINH ================= */
   .science-hub-showcase {
     margin-top: 34px; background: var(--card-bg); border: 1px solid var(--border-warm);
     border-top: 4px solid var(--academic-blue); border-radius: 8px; padding: 24px 24px; box-shadow: 0 6px 18px rgba(35, 18, 11, 0.04);
-    scroll-margin-top: 70px;
+    scroll-margin-top: 76px;
   }
-  .science-hub-tag { font-size: 10.8px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--academic-blue); display: block; margin-bottom: 4px; }
-  .science-hub-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(18.5px, 2.2vw, 22px); color: var(--espresso); margin-bottom: 8px; }
+  .science-hub-tag { font-size: 10.8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; color: var(--academic-blue); display: block; margin-bottom: 4px; }
+  .science-hub-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(18.5px, 2.2vw, 22px); color: var(--espresso); margin-bottom: 8px; line-height: 1.32; }
   .science-hub-desc { font-size: 13.4px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
   .science-mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
   .science-mini-item {
     background: #FAF7F2; border: 1px solid var(--border-warm); border-left: 3px solid var(--gold-primary);
-    border-radius: 0 6px 6px 0; padding: 11px 13px; text-decoration: none; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 3px;
+    border-radius: 0 6px 6px 0; padding: 12px 13px; text-decoration: none; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 4px;
   }
   .science-mini-item:hover { background: #F3EDE2; transform: translateY(-2px); }
-  .science-mini-item strong { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--espresso); }
-  .science-mini-item span.mini-desc { font-size: 12.2px; color: var(--text-muted); line-height: 1.5; }
+  .science-mini-head {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+    font-family: 'Playfair Display', serif; font-size: 14.2px; font-weight: 700; color: var(--espresso); line-height: 1.35;
+  }
+  .science-mini-arrow { color: var(--gold-deep); flex-shrink: 0; font-family: 'Inter', sans-serif; }
+  .science-mini-item span.mini-desc { font-size: 12.4px; color: var(--text-muted); line-height: 1.54; }
 
-  /* ================= 4.4 DẤU ẤN ĐẠI NGÀN (ẢNH TRƯỚC CHỮ) & ĐẠO GIỮ RỪNG ================= */
+  /* ================= 4.4 DẤU ẤN ĐẠI NGÀN & ĐẠO GIỮ RỪNG ================= */
   .info-extra-section { display: flex; flex-direction: column; gap: 22px; margin-top: 30px; }
   .info-extra-card {
     background: var(--card-bg); border: 1px solid var(--border-warm); border-radius: 8px;
     padding: 24px 24px; box-shadow: 0 6px 16px rgba(35, 18, 11, 0.04); position: relative; overflow: hidden;
-    scroll-margin-top: 70px;
+    scroll-margin-top: 76px;
   }
   .info-extra-card::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold-primary), var(--wine-red)); }
-  .info-extra-card h3 { font-family: 'Playfair Display', serif; font-size: 18.5px; color: var(--espresso); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.4px; display: flex; align-items: center; gap: 9px; }
-  .info-extra-card h3 span.glyph { color: var(--gold-primary); font-size: 12.5px; flex-shrink: 0; }
+  .info-extra-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--espresso);
+    margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.4px; line-height: 1.35;
+    display: flex; align-items: flex-start; gap: 9px;
+  }
+  .info-extra-card h3 span.glyph { color: var(--gold-primary); font-size: 12.5px; margin-top: 4px; flex-shrink: 0; }
   .info-extra-card p { font-size: 13.8px; color: var(--text-dark); line-height: 1.72; margin-bottom: 11px; }
   .info-extra-card p:last-child { margin-bottom: 0; }
 
@@ -735,14 +804,15 @@
   .home-disclaimer-box { margin-top: 22px; background: #F8F4EE; border: 1px solid #DFD6C6; border-left: 4px solid var(--wine-red); border-radius: 6px; padding: 14px 18px; }
   .disclaimer-trigger {
     width: 100%; background: transparent; border: none; font-family: 'Playfair Display', Georgia, serif;
-    font-size: 15px; font-weight: 700; color: var(--wine-red); cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    font-size: 15px; font-weight: 700; color: var(--wine-red); cursor: pointer; line-height: 1.38;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
   }
+  .disclaimer-title-inner { display: inline-flex; align-items: flex-start; gap: 7px; }
   .disclaimer-trigger[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
-  .disclaimer-body { padding-top: 10px; margin-top: 8px; border-top: 1px dashed #D8CCB8; font-size: 12.8px; color: var(--text-dark); line-height: 1.64; }
+  .disclaimer-body { padding-top: 10px; margin-top: 8px; border-top: 1px dashed #D8CCB8; font-size: 12.8px; color: var(--text-dark); line-height: 1.66; }
 
   /* ================= 5. SIDEBAR PHẢI TRƯỢT DÍNH (DESKTOP STICKY + SCROLLSPY) ================= */
-  .sticky-sidebar { width: 295px; position: sticky; top: 68px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
+  .sticky-sidebar { width: 290px; position: sticky; top: 72px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
   .sidebar-widget { background: var(--card-bg); border: 1px solid var(--border-warm); border-top: 3px solid var(--espresso); border-radius: 8px; padding: 16px 17px; box-shadow: 0 6px 18px rgba(35, 18, 11, 0.04); }
   .widget-header { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--espresso); text-transform: uppercase; padding-bottom: 8px; margin-bottom: 10px; border-bottom: 1.5px solid var(--border-warm); display: flex; justify-content: space-between; align-items: center; }
   .widget-group-title { font-size: 10.6px; font-weight: 700; text-transform: uppercase; color: var(--wine-red); letter-spacing: 1px; margin: 10px 0 4px 0; }
@@ -753,48 +823,25 @@
     font-family: 'Inter', sans-serif;
     display: flex; align-items: center; text-decoration: none; color: var(--text-dark);
     font-size: 12.6px; font-weight: 500; padding: 5.5px 7px; border-radius: 0 4px 4px 0; transition: all 0.2s; cursor: pointer;
+    line-height: 1.38;
   }
   .toc-btn:hover { background-color: #FAF5EB; color: var(--wine-red); border-left-color: var(--gold-primary); }
   .toc-btn.active { background-color: #FAF4E6; color: var(--wine-red); border-left-color: var(--wine-red); font-weight: 700; }
   .toc-index { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background-color: var(--espresso); color: var(--gold-light); font-size: 9.5px; font-weight: 600; border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
   .toc-btn.active .toc-index { background-color: var(--wine-red); color: #FFFFFF; }
-  .toc-btn .toc-arrow { margin-left: auto; font-size: 13px; color: var(--gold-primary); opacity: 0.6; transition: transform 0.2s, opacity 0.2s; }
+  .toc-btn .toc-arrow { margin-left: auto; padding-left: 6px; font-size: 13px; color: var(--gold-primary); opacity: 0.6; transition: transform 0.2s, opacity 0.2s; flex-shrink: 0; }
   .toc-btn:hover .toc-arrow { opacity: 1; transform: translateX(2px); }
 
   .article-links { list-style: none; }
   .article-links li { padding: 7px 0; border-bottom: 1px dashed var(--border-warm); }
   .article-links li:last-child { border-bottom: none; }
-  .article-links a { text-decoration: none; color: var(--espresso); font-size: 12.8px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
+  .article-links a { text-decoration: none; color: var(--espresso); font-size: 12.8px; font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; line-height: 1.38; transition: color 0.2s; }
   .article-links a:hover { color: var(--wine-red); }
-  .article-links a .link-arrow { color: var(--gold-primary); font-size: 13px; transition: transform 0.2s; }
+  .article-links a .link-arrow { color: var(--gold-primary); font-size: 13px; flex-shrink: 0; transition: transform 0.2s; }
   .article-links a:hover .link-arrow { transform: translateX(3px); }
-  .article-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .article-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.45; }
 
-  /* ================= 5.1 NÚT NỔI & NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI ================= */
-  .fab-toc-btn {
-    position: fixed;
-    right: 16px;
-    bottom: 78px;
-    z-index: 99980;
-    background: linear-gradient(135deg, #23120B 0%, #3E180D 100%);
-    color: var(--gold-bright);
-    border: 1.5px solid var(--gold-primary);
-    border-radius: 999px;
-    padding: 10px 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12.5px;
-    font-weight: 700;
-    box-shadow: 0 8px 22px rgba(20, 7, 2, 0.38);
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    gap: 7px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(14px);
-    transition: all 0.25s ease;
-  }
-  .fab-toc-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  /* ================= 5.1 NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI ================= */
   .toc-drawer-backdrop {
     position: fixed; inset: 0;
     background: rgba(14, 5, 2, 0.62);
@@ -828,10 +875,19 @@
     cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
   }
 
-  /* ================= 6. CHÂN TRANG ĐỒNG BỘ TOÀN HỆ THỐNG ================= */
+  /* ================= 6. CHÂN TRANG ĐỒNG BỘ CÓ LOGO ================= */
   .site-footer { background-color: var(--espresso); color: #D6C7B8; border-top: 3px solid var(--gold-primary); padding: 38px 20px 22px; }
   .footer-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1.3fr; gap: 28px; padding-bottom: 22px; border-bottom: 1px solid rgba(197, 160, 89, 0.25); }
-  .footer-brand h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 18px; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .footer-brand-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .footer-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
+  }
+  .footer-brand h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 16.5px; margin: 0; letter-spacing: 0.4px; line-height: 1.35; }
   .footer-brand p { font-size: 13px; line-height: 1.7; color: #C2B4A8; margin-bottom: 8px; }
   .footer-col h4 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .footer-col ul { list-style: none; }
@@ -842,17 +898,52 @@
   .contact-item .icon { color: var(--gold-primary); font-size: 12.5px; line-height: 1.55; flex-shrink: 0; }
   .contact-link { color: var(--gold-bright) !important; font-weight: 600; }
   .footer-disclaimer-wrap { max-width: 1180px; margin: 16px auto 0; padding: 0 10px; text-align: center; }
-  .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.55; text-align: center !important; text-wrap: balance; }
+  .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.58; text-align: center !important; }
   .footer-bottom { max-width: 1180px; margin: 10px auto 0; text-align: center !important; font-size: 11.5px; color: #8C7B6E; }
 
-  @media (max-width: 960px) {
-    .top-nav-inner { padding: 6px 12px; gap: 8px; }
+  /* ================= RESPONSIVE CHỐNG VỠ HÀNG LAPTOP NHỎ & TABLET (<= 1080px) ================= */
+  @media (max-width: 1080px) {
+    .top-nav-inner {
+      flex-wrap: wrap;
+      padding: 7px 14px 6px;
+      gap: 6px 10px;
+      min-height: auto;
+    }
+    .nav-brand-tools { order: 1; }
+    .nav-logo-img { height: 34px; }
+    .lang-switch-box { order: 2; }
+    .nav-menu-scroll-wrap {
+      order: 3;
+      width: 100%;
+      flex-basis: 100%;
+      justify-content: flex-start;
+      position: relative;
+      border-top: 1px solid rgba(197, 160, 89, 0.22);
+      padding-top: 5px;
+    }
+    .nav-menu-scroll-wrap::after {
+      content: "";
+      position: absolute;
+      top: 5px; right: 0; bottom: 0;
+      width: 28px;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(20, 7, 2, 0), rgba(20, 7, 2, 0.96));
+    }
     .nav-menu-list {
-      overflow-x: auto; flex-wrap: nowrap; flex: 1; min-width: 0; padding-bottom: 2px;
-      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      width: 100%;
+      padding-right: 26px;
+      gap: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
     .nav-menu-list::-webkit-scrollbar { display: none; }
     .nav-dropdown { display: none; }
+  }
+
+  @media (max-width: 960px) {
+    .nav-mobile-toc-btn { display: inline-flex; }
     .monograph-need-grid { grid-template-columns: 1fr; gap: 12px; }
     .story-card { flex-direction: column; align-items: stretch; }
     .story-slideshow-side { width: 100%; }
@@ -861,24 +952,24 @@
     .content-column { width: 100%; flex: none; }
     .sticky-sidebar { width: 100%; position: static; }
     .desktop-toc-widget { display: none; }
-    .fab-toc-btn { display: inline-flex; }
     .trust-grid-2x2 { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; gap: 22px; }
   }
 
   @media (max-width: 640px) {
-    body { line-height: 1.64; padding-top: 84px; }
-    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 7px; gap: 6px; }
-    .lang-switch-box { align-self: flex-end; }
-    .lang-btn { font-size: 10.5px; padding: 3px 8px; }
-    .nav-menu-list { width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 5px; gap: 6px; }
+    body { line-height: 1.65; padding-top: 90px; }
+    .top-nav-inner { padding: 6px 10px 6px; }
+    .nav-logo-img { height: 30px; }
+    .nav-mobile-toc-btn { font-size: 11px; padding: 4px 8px; }
+    .lang-btn { font-size: 10.5px; padding: 4px 7px; }
     .nav-link { font-size: 12px; padding: 5px 9px; }
 
-    .hero-banner { padding: 26px 14px 20px; }
+    .hero-banner { padding: 24px 12px 18px; }
     .hero-banner::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
-    .title-line { font-size: clamp(19px, 5.5vw, 26px); letter-spacing: 0.6px; line-height: 1.3; white-space: normal; }
+    .hero-sub { letter-spacing: 2.6px; }
+    .title-line { font-size: clamp(16.5px, 4.7vw, 25px); letter-spacing: 0.45px; line-height: 1.3; }
     .origin-ribbon { padding: 10px 12px; }
-    .origin-text { letter-spacing: 1.1px; font-size: 11.2px; }
+    .origin-text { letter-spacing: 1px; font-size: 11.2px; }
     .monograph-bar { padding: 16px 14px 20px; }
     .story-section { padding: 0 14px; margin: 20px auto; }
     .main-workspace { padding: 0 14px; }
@@ -886,69 +977,87 @@
     .product-card { flex-direction: column; padding: 18px 16px; gap: 14px; }
     .product-visual { width: 100%; height: 200px; }
     .product-action-group { flex-direction: column; width: 100%; }
-    .product-action { width: 100%; justify-content: center; white-space: normal; text-align: center !important; line-height: 1.4; }
+    .product-action { width: 100%; white-space: normal; text-align: center !important; line-height: 1.4; }
     .reishi-grid, .science-mini-grid, .story-img-grid { grid-template-columns: 1fr; gap: 12px; }
     .story-img-item { height: 195px; }
+  }
+
+  @media (max-width: 420px) {
+    .lang-code { display: none; }
+    .nav-brand-tools { gap: 6px; }
   }
 </style>
 </head>
 <body id="top-trang-chu" data-lang="vi">
 
-  <!-- 0. THANH MENU NGANG SONG NGỮ GHIM CỐ ĐỊNH + THANH TIẾN ĐỘ ĐỌC -->
+  <!-- 0. THANH MENU NGANG CÓ LOGO BÁCH PHỤC + MỤC LỤC DI ĐỘNG + SONG NGỮ -->
   <nav class="top-bilingual-nav" id="main-fixed-nav" aria-label="Main Navigation">
     <div class="top-nav-inner">
-      <ul class="nav-menu-list">
-        <li class="nav-item">
-          <button type="button" onclick="jumpToSection('top')" class="nav-link active">
-            <span class="vi">Trang&nbsp;Chủ</span>
-            <span class="en">Home</span>
-          </button>
-        </li>
-        <li class="nav-item">
-          <a href="/dongsanpham" class="nav-link">
-            <span class="vi">Sản&nbsp;Phẩm</span>
-            <span class="en">Products</span>
-            <span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang</span></a></li>
-            <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang</span></a></li>
-            <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/tailieu" class="nav-link">
-            <span class="vi">Tài&nbsp;Liệu Chuyên&nbsp;Khảo</span>
-            <span class="en">Scientific Monographs</span>
-            <span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/tailieu/tuanhoan"><span class="vi">01. Tuần&nbsp;Hoàn &amp; Thần&nbsp;Kinh</span><span class="en">01. Vascular &amp; Neural Harmony</span></a></li>
-            <li><a href="/tailieu/tebao"><span class="vi">02. Miễn&nbsp;Dịch &amp; Tế&nbsp;Bào</span><span class="en">02. Immunity &amp; Cellular Resilience</span></a></li>
-            <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc</span><span class="en">03. Metabolic &amp; Detoxification</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/suckhoe" class="nav-link">
-            <span class="vi">Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span>
-            <span class="en">Self-Healing Science</span>
-            <span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân&nbsp;Bằng Nội&nbsp;Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
-            <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự&nbsp;Chữa&nbsp;Lành Tế&nbsp;Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
-            <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa&nbsp;Học Thích&nbsp;Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
-            <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh&nbsp;Học Thân&nbsp;Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="/tracuu" class="nav-link"><span class="vi">Tra&nbsp;Cứu</span><span class="en">Authentication</span></a></li>
-        <li class="nav-item"><a href="/thuhai" class="nav-link"><span class="vi">Thu&nbsp;Hái</span><span class="en">Wild Harvesting</span></a></li>
-        <li class="nav-item"><a href="/lienhe" class="nav-link"><span class="vi">Liên&nbsp;Hệ</span><span class="en">Contact</span></a></li>
-      </ul>
+      <div class="nav-brand-tools">
+        <button type="button" onclick="jumpToSection('top')" class="nav-logo-btn" aria-label="Trà Thảo Mộc Bách Phục">
+          <img src="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri" alt="Logo Trà Thảo Mộc Bách Phục" class="nav-logo-img">
+        </button>
+        <button type="button" class="nav-mobile-toc-btn" onclick="openTocDrawer()" aria-label="Mở mục lục nhanh">
+          <span>☰</span>
+          <span class="vi">Mục&nbsp;Lục</span>
+          <span class="en">Contents</span>
+        </button>
+      </div>
+
+      <div class="nav-menu-scroll-wrap">
+        <ul class="nav-menu-list">
+          <li class="nav-item">
+            <button type="button" onclick="jumpToSection('top')" class="nav-link active">
+              <span class="vi">Trang Chủ</span>
+              <span class="en">Home</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <a href="/dongsanpham" class="nav-link">
+              <span class="vi">Sản Phẩm</span>
+              <span class="en">Products</span>
+              <span class="nav-caret">▾</span>
+            </a>
+            <ul class="nav-dropdown">
+              <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng Hoàng</span><span class="en">1. Thuong Hoang</span></a></li>
+              <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim Hoàng</span><span class="en">2. Kim Hoang</span></a></li>
+              <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh Hoàng</span><span class="en">3. Minh Hoang</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/tailieu" class="nav-link">
+              <span class="vi">Tài Liệu Chuyên Khảo</span>
+              <span class="en">Scientific Monographs</span>
+              <span class="nav-caret">▾</span>
+            </a>
+            <ul class="nav-dropdown">
+              <li><a href="/tailieu/tuanhoan"><span class="vi">01. Tuần Hoàn &amp; Thần Kinh</span><span class="en">01. Vascular &amp; Neural Harmony</span></a></li>
+              <li><a href="/tailieu/tebao"><span class="vi">02. Miễn Dịch &amp; Tế Bào</span><span class="en">02. Immunity &amp; Cellular Resilience</span></a></li>
+              <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển Hóa &amp; Thanh Lọc</span><span class="en">03. Metabolic &amp; Detoxification</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/suckhoe" class="nav-link">
+              <span class="vi">Cơ Chế Tự Chữa Lành</span>
+              <span class="en">Self-Healing Science</span>
+              <span class="nav-caret">▾</span>
+            </a>
+            <ul class="nav-dropdown">
+              <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân Bằng Nội Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
+              <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự Chữa Lành Tế Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
+              <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa Học Thích Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
+              <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh Học Thân Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/tracuu" class="nav-link"><span class="vi">Tra Cứu</span><span class="en">Authentication</span></a></li>
+          <li class="nav-item"><a href="/thuhai" class="nav-link"><span class="vi">Thu Hái</span><span class="en">Wild Harvesting</span></a></li>
+          <li class="nav-item"><a href="/lienhe" class="nav-link"><span class="vi">Liên Hệ</span><span class="en">Contact</span></a></li>
+        </ul>
+      </div>
 
       <div class="lang-switch-box" role="group" aria-label="Language Switcher">
-        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')">VI • Tiếng Việt</button>
-        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')">EN • English</button>
+        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')"><span class="lang-code">VI • </span>Tiếng Việt</button>
+        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')"><span class="lang-code">EN • </span>English</button>
       </div>
     </div>
     <div class="reading-progress-track" aria-hidden="true">
@@ -961,15 +1070,15 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-sub">
-        <span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục</span>
-        <span class="en">Bach&nbsp;Phuc Herbal&nbsp;Tea</span>
+        <span class="vi">Trà Thảo Mộc Bách&nbsp;Phục</span>
+        <span class="en">Bach&nbsp;Phuc Herbal Tea</span>
       </div>
 
       <h1 class="hero-title">
-        <span class="title-line vi">CHA&nbsp;MẸ BÌNH&nbsp;AN,</span>
-        <span class="title-line vi">CHÚNG&nbsp;CON VỮNG&nbsp;VÀNG</span>
-        <span class="title-line en">OUR PARENTS AT&nbsp;PEACE,</span>
-        <span class="title-line en">WE STAND&nbsp;STRONG</span>
+        <span class="title-line vi">CHA MẸ BÌNH AN,</span>
+        <span class="title-line vi">CHÚNG CON VỮNG VÀNG</span>
+        <span class="title-line en">OUR PARENTS AT PEACE,</span>
+        <span class="title-line en">WE STAND STRONG</span>
       </h1>
 
       <div class="hero-cor-divider">
@@ -992,7 +1101,7 @@
   <section class="origin-ribbon">
     <div class="origin-inner">
       <span class="cor-symbol">❖</span>
-      <span class="origin-text vi">100% NẤM LINH&nbsp;CHI RỪNG TỰ&nbsp;NHIÊN QUẢNG&nbsp;NGÃI</span>
+      <span class="origin-text vi">100% NẤM LINH&nbsp;CHI RỪNG TỰ NHIÊN QUẢNG&nbsp;NGÃI</span>
       <span class="origin-text en">100% WILD-HARVESTED REISHI FROM QUANG&nbsp;NGAI, VIETNAM</span>
       <span class="cor-symbol">❖</span>
     </div>
@@ -1003,7 +1112,7 @@
     <div class="monograph-bar-inner">
       <div class="monograph-bar-head">
         <span class="monograph-bar-kicker">
-          <span class="vi">❖ Tài Liệu Chuyên Khảo Khoa Học Theo Nhu Cầu Sức Khỏe</span>
+          <span class="vi">❖ Tài Liệu Chuyên Khảo Khoa Học Theo Nhu Cầu Sức&nbsp;Khỏe</span>
           <span class="en">❖ Scientific Monographs by Wellness Focus</span>
         </span>
         <a href="/tailieu" class="monograph-bar-all">
@@ -1020,11 +1129,11 @@
               <span class="need-align"><span class="vi">Thượng&nbsp;Hoàng</span><span class="en">Thuong&nbsp;Hoang</span></span>
             </div>
             <h2 class="need-title">
-              <span class="vi">Tuần&nbsp;Hoàn, Thành&nbsp;Mạch &amp; Thần&nbsp;Kinh Giấc&nbsp;Ngủ</span>
+              <span class="vi">Tuần Hoàn, Thành Mạch &amp; Thần Kinh Giấc&nbsp;Ngủ</span>
               <span class="en">Vascular Tone, Circulation &amp; Restorative&nbsp;Sleep</span>
             </h2>
             <p class="need-desc">
-              <span class="vi">Dành cho giấc&nbsp;ngủ chập&nbsp;chờn, hay trằn&nbsp;trọc, cần êm&nbsp;dịu thần&nbsp;kinh tim và nhịp tuần&nbsp;hoàn ổn&nbsp;định.</span>
+              <span class="vi">Dành cho giấc ngủ chập chờn, hay trằn trọc, cần êm dịu thần kinh tim và nhịp tuần hoàn ổn định.</span>
               <span class="en">For restless nights and mental tension seeking calm autonomic balance and smooth circulation.</span>
             </p>
           </div>
@@ -1042,11 +1151,11 @@
               <span class="need-align"><span class="vi">Kim&nbsp;Hoàng</span><span class="en">Kim&nbsp;Hoang</span></span>
             </div>
             <h2 class="need-title">
-              <span class="vi">Miễn&nbsp;Dịch Nội&nbsp;Sinh, Nguyên&nbsp;Khí &amp; Tế&nbsp;Bào</span>
+              <span class="vi">Miễn Dịch Nội Sinh, Nguyên Khí &amp; Tế&nbsp;Bào</span>
               <span class="en">Innate Immunity, Vitality &amp; Cellular&nbsp;Resilience</span>
             </h2>
             <p class="need-desc">
-              <span class="vi">Dành cho thể&nbsp;trạng suy&nbsp;nhược, dễ mệt&nbsp;mỏi, cần bồi&nbsp;đắp sinh&nbsp;lực và nâng&nbsp;đỡ sức đề&nbsp;kháng tự&nbsp;nhiên.</span>
+              <span class="vi">Dành cho thể trạng suy nhược, dễ mệt mỏi, cần bồi đắp sinh lực và nâng đỡ sức đề kháng tự nhiên.</span>
               <span class="en">For fatigued or recovering constitutions needing deeper vitality and natural immune support.</span>
             </p>
           </div>
@@ -1064,11 +1173,11 @@
               <span class="need-align"><span class="vi">Minh&nbsp;Hoàng</span><span class="en">Minh&nbsp;Hoang</span></span>
             </div>
             <h2 class="need-title">
-              <span class="vi">Chuyển&nbsp;Hóa, Gan&nbsp;Thận &amp; Thanh&nbsp;Lọc Nội&nbsp;Môi</span>
+              <span class="vi">Chuyển Hóa, Gan Thận &amp; Thanh Lọc Nội&nbsp;Môi</span>
               <span class="en">Metabolic Balance, Hepato-Renal &amp; Internal&nbsp;Detox</span>
             </h2>
             <p class="need-desc">
-              <span class="vi">Dành cho nhu&nbsp;cầu làm dịu&nbsp;mát nội&nbsp;môi, giảm áp&nbsp;lực chuyển&nbsp;hóa và giữ tâm&nbsp;trí sáng&nbsp;suốt, minh&nbsp;mẫn.</span>
+              <span class="vi">Dành cho nhu cầu làm dịu mát nội môi, giảm áp lực chuyển hóa và giữ tâm trí sáng suốt, minh mẫn.</span>
               <span class="en">For cooling internal heat, easing metabolic load, and sustaining daily mental clarity.</span>
             </p>
           </div>
@@ -1092,7 +1201,7 @@
           <img class="slide-img" id="slide-3" alt="Hành trình Bách Phục 3">
         </div>
         <div class="slide-caption-bar">
-          <span class="vi">Khoảnh&nbsp;khắc bình&nbsp;an cùng ấm trà nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi</span>
+          <span class="vi">Khoảnh khắc bình an cùng ấm trà nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi</span>
           <span class="en">Moments of calm with wild Quang&nbsp;Ngai Reishi herbal tea</span>
         </div>
       </div>
@@ -1100,26 +1209,26 @@
       <div class="story-content-side">
         <div class="story-header">
           <span class="story-tag">
-            <span class="vi">Tâm&nbsp;tư người&nbsp;con trưởng&nbsp;thành</span>
-            <span class="en">Heartfelt Reflections of Grown&nbsp;Children</span>
+            <span class="vi">Tâm tư người con trưởng thành</span>
+            <span class="en">Heartfelt Reflections of Grown Children</span>
           </span>
           <h2>
-            <span class="vi">Hành&nbsp;Trình Chăm&nbsp;Lo Sức&nbsp;Khỏe Đấng Sinh&nbsp;Thành</span>
+            <span class="vi">Hành Trình Chăm Lo Sức Khỏe Đấng Sinh&nbsp;Thành</span>
             <span class="en">Devoted to the Well-Being of Our Aging&nbsp;Parents</span>
           </h2>
           <div class="story-slogan-highlight">
-            <span class="vi">“Cha&nbsp;mẹ bình&nbsp;an, chúng&nbsp;con vững&nbsp;vàng.”</span>
+            <span class="vi">“Cha mẹ bình an, chúng con vững&nbsp;vàng.”</span>
             <span class="en">“When our parents are at peace, we stand&nbsp;strong.”</span>
           </div>
         </div>
 
         <div class="story-quote-box">
-          <span class="vi">“Khi sức&nbsp;khỏe và tinh&nbsp;thần của đấng sinh&nbsp;thành được chăm&nbsp;lo vẹn&nbsp;toàn, đó chính là nguồn năng&nbsp;lượng bình&nbsp;yên nhất để bạn và tôi toàn&nbsp;tâm toàn&nbsp;ý chinh&nbsp;phục mọi mục&nbsp;tiêu trong sự&nbsp;nghiệp.”</span>
+          <span class="vi">“Khi sức khỏe và tinh thần của đấng sinh thành được chăm lo vẹn toàn, đó chính là nguồn năng lượng bình yên nhất để bạn và tôi toàn tâm toàn ý chinh phục mọi mục tiêu trong sự nghiệp.”</span>
           <span class="en">“When our parents’ health and spirit are thoughtfully cared for, it becomes our deepest source of serenity—allowing you and me to wholeheartedly pursue every aspiration in life and career.”</span>
         </div>
 
         <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-story-list" onclick="toggleAcc(this, 'acc-story-list')">
-          <span class="vi" data-closed="Đọc trọn vẹn tâm thư Bách Phục" data-open="Thu gọn tâm thư">Đọc trọn vẹn tâm thư Bách Phục</span>
+          <span class="vi" data-closed="Đọc trọn vẹn tâm thư Bách Phục" data-open="Thu gọn tâm thư">Đọc trọn vẹn tâm thư Bách&nbsp;Phục</span>
           <span class="en" data-closed="Read full heartfelt reflections" data-open="Collapse reflections">Read full heartfelt reflections</span>
           <span class="acc-chevron">▾</span>
         </button>
@@ -1128,19 +1237,19 @@
           <div class="acc-inner">
             <ul class="story-list">
               <li>
-                <span class="vi">Ở tuổi trưởng&nbsp;thành, nỗi trăn&nbsp;trở sâu&nbsp;kín nhất của một người&nbsp;con là cuộc chạy&nbsp;đua thầm&nbsp;lặng giữa tốc&nbsp;độ thành&nbsp;công của mình và tốc&nbsp;độ già&nbsp;đi của đấng sinh&nbsp;thành.</span>
+                <span class="vi">Ở tuổi trưởng thành, nỗi trăn trở sâu kín nhất của một người con là cuộc chạy đua thầm lặng giữa tốc độ thành công của mình và tốc độ già đi của đấng sinh thành.</span>
                 <span class="en">In adulthood, our deepest unspoken contemplation is the silent race between the pace of our own success and the quiet aging of our parents.</span>
               </li>
               <li>
-                <span class="vi">Vì guồng&nbsp;quay công&nbsp;việc, ta thường vội&nbsp;tin câu&nbsp;nói từ quê&nbsp;nhà: <em>"Ba&nbsp;mẹ vẫn khỏe, con cứ yên&nbsp;tâm"</em>. Nhưng ở tuổi xế&nbsp;chiều, thể&nbsp;trạng mẹ&nbsp;cha thường suy&nbsp;giảm âm&nbsp;thầm qua những đêm khó&nbsp;ngủ, những sớm trở&nbsp;trời mà con&nbsp;cái ở xa khó&nbsp;lòng thấu&nbsp;hết.</span>
+                <span class="vi">Vì guồng quay công việc, ta thường vội tin câu nói từ quê nhà: <em>“Ba mẹ vẫn khỏe, con cứ yên tâm”</em>. Nhưng ở tuổi xế chiều, thể trạng mẹ cha thường suy giảm âm thầm qua những đêm khó ngủ, những sớm trở trời mà con cái ở xa khó lòng thấu hết.</span>
                 <span class="en">Caught up in daily work, we readily believe the familiar reassurance from home: <em>“We are doing well, do not worry.”</em> Yet in their twilight years, our parents’ vitality often wanes quietly through sleepless nights and shifting weather that grown children living far away can hardly see.</span>
               </li>
               <li>
-                <span class="vi">Bản&nbsp;lĩnh và sự vững&nbsp;vàng của người&nbsp;con ngoài xã&nbsp;hội thực&nbsp;chất được nuôi&nbsp;dưỡng từ cảm&nbsp;giác an&nbsp;tâm khi biết đấng sinh&nbsp;thành vẫn giữ được nếp sinh&nbsp;hoạt khỏe&nbsp;khoắn, bình&nbsp;yên mỗi&nbsp;ngày.</span>
+                <span class="vi">Bản lĩnh và sự vững vàng của người con ngoài xã hội thực chất được nuôi dưỡng từ cảm giác an tâm khi biết đấng sinh thành vẫn giữ được nếp sinh hoạt khỏe khoắn, bình yên mỗi ngày.</span>
                 <span class="en">Our strength and composure out in the world are truly nurtured by the peace of mind of knowing our parents enjoy a healthy, tranquil rhythm of life each day.</span>
               </li>
               <li>
-                <span class="vi">Bách&nbsp;Phục xin gửi&nbsp;gắm tình yêu&nbsp;thương ấy trong từng ấm&nbsp;trà, để những giá&nbsp;trị quý từ thiên&nbsp;nhiên được tiếp&nbsp;nối, lan&nbsp;tỏa, hòa cùng nhịp&nbsp;sống mỗi&nbsp;ngày.</span>
+                <span class="vi">Bách&nbsp;Phục xin gửi gắm tình yêu thương ấy trong từng ấm trà, để những giá trị quý từ thiên nhiên được tiếp nối, lan tỏa, hòa cùng nhịp sống mỗi ngày.</span>
                 <span class="en">Bach&nbsp;Phuc pours that filial love into every warm pot of tea—so the precious gifts of nature may continue to flow, spread, and harmonize with daily life.</span>
               </li>
             </ul>
@@ -1158,10 +1267,10 @@
       <div id="danh-muc-san-pham" class="section-heading">
         <div class="cor-motif-line">❖ ❖ ❖</div>
         <h2>
-          <span class="vi" style="display:inline-block;">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục</span>
-          <span class="en" style="display:inline-block;">Bach&nbsp;Phuc Herbal&nbsp;Tea</span>
+          <span class="vi">Trà Thảo Mộc Bách&nbsp;Phục</span>
+          <span class="en">Bach&nbsp;Phuc Herbal Tea</span>
         </h2>
-        <span class="sub-caption vi">Ba Dòng Trà Mộc&nbsp;Bản: Thượng&nbsp;Hoàng • Kim&nbsp;Hoàng • Minh&nbsp;Hoàng (100% Nấm Linh&nbsp;Chi Rừng Quảng&nbsp;Ngãi)</span>
+        <span class="sub-caption vi">Ba Dòng Trà Mộc Bản: Thượng&nbsp;Hoàng • Kim&nbsp;Hoàng • Minh&nbsp;Hoàng (100% Nấm Linh&nbsp;Chi Rừng Quảng&nbsp;Ngãi)</span>
         <span class="sub-caption en">Three Artisanal Tea Lines: Thuong&nbsp;Hoang • Kim&nbsp;Hoang • Minh&nbsp;Hoang (100% Wild-Harvested Quang&nbsp;Ngai Reishi)</span>
       </div>
 
@@ -1172,17 +1281,17 @@
         </div>
         <div class="product-details">
           <span class="product-line-tag">
-            <span class="vi">Dòng Mộc&nbsp;Bản Độc&nbsp;Vị • Thư&nbsp;Thái Thân&nbsp;Tâm &amp; Giấc&nbsp;Ngủ Êm&nbsp;Lành</span>
-            <span class="en">Pure Single-Origin Line • Calm Mind &amp; Restorative&nbsp;Sleep</span>
+            <span class="vi">Dòng Mộc Bản Độc Vị • Thư Thái Thân Tâm &amp; Giấc Ngủ Êm&nbsp;Lành</span>
+            <span class="en">Pure Single-Origin Line • Calm Mind &amp; Restorative Sleep</span>
           </span>
           <h3 class="product-name"><span class="vi">1. Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang</span></h3>
           <div class="product-badge-row">
-            <span class="product-spec-badge"><span class="vi">Hộp 24 túi&nbsp;lọc (100g)</span><span class="en">24 Filter Bags (100g)</span></span>
-            <span class="product-spec-badge">Polysaccharide <span class="nowrap">0.967%</span></span>
+            <span class="product-spec-badge"><span class="vi">Hộp 24&nbsp;túi lọc (100g)</span><span class="en">24&nbsp;Filter Bags (100g)</span></span>
+            <span class="product-spec-badge"><span class="vi">Polysaccharide <span class="nowrap">0,967%</span></span><span class="en">Polysaccharide <span class="nowrap">0.967%</span></span></span>
             <span class="product-spec-badge"><span class="vi">QR &amp; PIN 4&nbsp;số</span><span class="en">1-to-1 QR &amp; PIN</span></span>
           </div>
           <p class="product-lead-summary">
-            <span class="vi"><strong>Phù&nbsp;hợp:</strong> 100% nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi nguyên&nbsp;bản, dành cho bậc cha&nbsp;mẹ lớn&nbsp;tuổi và người làm&nbsp;việc trí&nbsp;óc căng&nbsp;thẳng cần thư&nbsp;giãn tinh&nbsp;thần và nâng&nbsp;đỡ giấc&nbsp;ngủ đêm an&nbsp;lành.</span>
+            <span class="vi"><strong>Phù hợp:</strong> 100% nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi nguyên bản, dành cho bậc cha mẹ lớn tuổi và người làm việc trí óc căng thẳng cần thư giãn tinh thần và nâng đỡ giấc ngủ đêm an lành.</span>
             <span class="en"><strong>Ideal For:</strong> 100% pure wild Quang&nbsp;Ngai Reishi dedicated to aging parents and mentally active adults seeking calm nerves and restful nighttime sleep.</span>
           </p>
 
@@ -1195,11 +1304,11 @@
             <div class="acc-inner">
               <ul class="product-spec-list">
                 <li>
-                  <span class="vi"><strong>Cảm&nbsp;quan &amp; Dưỡng&nbsp;chất tự&nbsp;nhiên:</strong> Vị đắng&nbsp;thanh sâu&nbsp;lắng chuyển nhanh sang hậu&nbsp;ngọt mộc&nbsp;bản; hội&nbsp;tụ <strong>Polysaccharide hòa&nbsp;tan <span class="nowrap">0.967%</span></strong> cùng <em>Acid&nbsp;Ganoderic</em> và <em>Adenosine</em> tự&nbsp;nhiên.</span>
+                  <span class="vi"><strong>Cảm quan &amp; Dưỡng chất tự nhiên:</strong> Vị đắng thanh sâu lắng chuyển nhanh sang hậu ngọt mộc bản; hội tụ <strong>Polysaccharide hòa tan <span class="nowrap">0,967%</span></strong> cùng <em>Acid Ganoderic</em> và <em>Adenosine</em> tự nhiên.</span>
                   <span class="en"><strong>Sensory &amp; Bioactives:</strong> Refined initial bitterness yielding swiftly to a pure sweet finish; brings together <strong><span class="nowrap">0.967%</span> soluble Polysaccharides</strong> alongside natural <em>Ganoderic Acids</em> and <em>Adenosine</em>.</span>
                 </li>
                 <li>
-                  <span class="vi"><strong>Thói&nbsp;quen thưởng&nbsp;trà gợi&nbsp;ý:</strong> Thưởng&nbsp;thức ấm&nbsp;nóng mỗi&nbsp;ngày vào buổi&nbsp;sáng sau bữa&nbsp;ăn để khởi&nbsp;đầu ngày mới khoan&nbsp;khoái, và buổi&nbsp;chiều để lắng&nbsp;dịu thân&nbsp;tâm trước nhịp nghỉ&nbsp;ngơi buổi&nbsp;tối.</span>
+                  <span class="vi"><strong>Thói quen thưởng trà gợi ý:</strong> Thưởng thức ấm nóng mỗi ngày vào buổi sáng sau bữa ăn để khởi đầu ngày mới khoan khoái, và buổi chiều để lắng dịu thân tâm trước nhịp nghỉ ngơi buổi tối.</span>
                   <span class="en"><strong>Suggested Ritual:</strong> Savor warm in the morning after breakfast for a refreshing start, and in the afternoon to gently settle body and mind before evening rest.</span>
                 </li>
               </ul>
@@ -1208,10 +1317,10 @@
 
           <div class="product-action-group">
             <a class="product-action" href="/dongsanpham/thuonghoang">
-              <span class="vi">Xem Chi&nbsp;Tiết Thượng&nbsp;Hoàng</span><span class="en">Explore Thuong&nbsp;Hoang</span><span class="action-arrow">→</span>
+              <span class="vi">Xem Chi Tiết Thượng&nbsp;Hoàng</span><span class="en">Explore Thuong&nbsp;Hoang</span><span class="action-arrow">→</span>
             </a>
             <a class="product-action secondary-academic" href="/tailieu/tuanhoan">
-              <span class="vi">Chuyên&nbsp;Khảo 01: Tuần&nbsp;Hoàn</span><span class="en">Monograph 01: Vascular</span><span class="action-arrow">→</span>
+              <span class="vi">Chuyên Khảo 01: Tuần Hoàn</span><span class="en">Monograph 01: Vascular</span><span class="action-arrow">→</span>
             </a>
           </div>
         </div>
@@ -1224,17 +1333,17 @@
         </div>
         <div class="product-details">
           <span class="product-line-tag">
-            <span class="vi">Dòng Mộc&nbsp;Bản Chuyên&nbsp;Sâu • Bồi&nbsp;Đắp Nguyên&nbsp;Khí &amp; Nâng&nbsp;Đỡ Thể&nbsp;Trạng</span>
-            <span class="en">Vital Essence Line • Foundational Vitality &amp; Physical&nbsp;Recovery</span>
+            <span class="vi">Dòng Mộc Bản Chuyên Sâu • Bồi Đắp Nguyên Khí &amp; Nâng Đỡ Thể&nbsp;Trạng</span>
+            <span class="en">Vital Essence Line • Foundational Vitality &amp; Physical Recovery</span>
           </span>
           <h3 class="product-name"><span class="vi">2. Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang</span></h3>
           <div class="product-badge-row">
-            <span class="product-spec-badge"><span class="vi">Hộp 24 túi&nbsp;lọc (100g)</span><span class="en">24 Filter Bags (100g)</span></span>
+            <span class="product-spec-badge"><span class="vi">Hộp 24&nbsp;túi lọc (100g)</span><span class="en">24&nbsp;Filter Bags (100g)</span></span>
             <span class="product-spec-badge"><span class="vi">100% Nấm Linh&nbsp;Chi Rừng</span><span class="en">100% Wild Reishi</span></span>
             <span class="product-spec-badge"><span class="vi">QR &amp; PIN 4&nbsp;số</span><span class="en">1-to-1 QR &amp; PIN</span></span>
           </div>
           <p class="product-lead-summary">
-            <span class="vi"><strong>Phù&nbsp;hợp:</strong> Tuyển&nbsp;chọn từ 100% nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi già&nbsp;tuổi, dành cho người thể&nbsp;trạng suy&nbsp;nhược, mệt&nbsp;mỏi kéo&nbsp;dài hoặc mới ốm&nbsp;dậy cần bồi&nbsp;bổ nguyên&nbsp;khí và phục&nbsp;hồi sức&nbsp;bền tự&nbsp;nhiên.</span>
+            <span class="vi"><strong>Phù hợp:</strong> Tuyển chọn từ 100% nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi già tuổi, dành cho người thể trạng suy nhược, mệt mỏi kéo dài hoặc mới ốm dậy cần bồi bổ nguyên khí và phục hồi sức bền tự nhiên.</span>
             <span class="en"><strong>Ideal For:</strong> Mature 100% wild Quang&nbsp;Ngai Reishi tailored for physical weakness, prolonged fatigue, or post-illness recovery to replenish foundational vitality.</span>
           </p>
 
@@ -1247,11 +1356,11 @@
             <div class="acc-inner">
               <ul class="product-spec-list">
                 <li>
-                  <span class="vi"><strong>Cảm&nbsp;quan &amp; Dưỡng&nbsp;chất tự&nbsp;nhiên:</strong> Vị đắng&nbsp;thanh hài&nbsp;hòa chuyển hậu&nbsp;ngọt sâu&nbsp;lắng giúp làm dịu cảm&nbsp;giác khô nhạt&nbsp;miệng, đắng&nbsp;miệng, thân&nbsp;thiện với hệ tiêu&nbsp;hóa nhạy&nbsp;cảm; giàu <em>Beta-D-Glucan, Triterpenoids</em> và vi&nbsp;khoáng hữu&nbsp;cơ.</span>
+                  <span class="vi"><strong>Cảm quan &amp; Dưỡng chất tự nhiên:</strong> Vị đắng thanh hài hòa chuyển hậu ngọt sâu lắng giúp làm dịu cảm giác khô nhạt miệng, đắng miệng, thân thiện với hệ tiêu hóa nhạy cảm; giàu <em>Beta-D-Glucan, Triterpenoids</em> và vi khoáng hữu cơ.</span>
                   <span class="en"><strong>Sensory &amp; Bioactives:</strong> Balanced bitterness yielding to a deep, mellow sweetness that soothes dry palates and stays gentle on sensitive digestion; rich in <em>Beta-D-Glucans, Triterpenoids</em>, and organic trace minerals.</span>
                 </li>
                 <li>
-                  <span class="vi"><strong>Thói&nbsp;quen thưởng&nbsp;trà gợi&nbsp;ý:</strong> Thưởng&nbsp;thức ấm&nbsp;nóng mỗi&nbsp;ngày vào buổi&nbsp;sáng sau bữa&nbsp;ăn để đánh&nbsp;thức sinh&nbsp;lực, và buổi&nbsp;chiều để bồi&nbsp;đắp nguyên&nbsp;khí bền&nbsp;bỉ.</span>
+                  <span class="vi"><strong>Thói quen thưởng trà gợi ý:</strong> Thưởng thức ấm nóng mỗi ngày vào buổi sáng sau bữa ăn để đánh thức sinh lực, và buổi chiều để bồi đắp nguyên khí bền bỉ.</span>
                   <span class="en"><strong>Suggested Ritual:</strong> Savor warm in the morning after meals to awaken vitality, and in the afternoon to steadily nourish foundational energy.</span>
                 </li>
               </ul>
@@ -1260,10 +1369,10 @@
 
           <div class="product-action-group">
             <a class="product-action" href="/dongsanpham/kimhoang">
-              <span class="vi">Xem Chi&nbsp;Tiết Kim&nbsp;Hoàng</span><span class="en">Explore Kim&nbsp;Hoang</span><span class="action-arrow">→</span>
+              <span class="vi">Xem Chi Tiết Kim&nbsp;Hoàng</span><span class="en">Explore Kim&nbsp;Hoang</span><span class="action-arrow">→</span>
             </a>
             <a class="product-action secondary-academic" href="/tailieu/tebao">
-              <span class="vi">Chuyên&nbsp;Khảo 02: Miễn&nbsp;Dịch</span><span class="en">Monograph 02: Immunity</span><span class="action-arrow">→</span>
+              <span class="vi">Chuyên Khảo 02: Miễn Dịch</span><span class="en">Monograph 02: Immunity</span><span class="action-arrow">→</span>
             </a>
           </div>
         </div>
@@ -1276,22 +1385,22 @@
           <div class="box-placeholder">
             <span class="bp-brand">Bách&nbsp;Phục</span>
             <span class="bp-name">MINH&nbsp;HOÀNG</span>
-            <span class="bp-sub"><span class="vi">Định&nbsp;Mức Dưỡng&nbsp;Chất Cao</span><span class="en">High-Potency Reserve</span></span>
+            <span class="bp-sub"><span class="vi">Định Mức Dưỡng Chất Cao</span><span class="en">High-Potency Reserve</span></span>
           </div>
         </div>
         <div class="product-details">
           <span class="product-line-tag">
-            <span class="vi">Dòng Mộc&nbsp;Bản Tuyển&nbsp;Chọn • Thanh&nbsp;Lọc Nội&nbsp;Môi, Chuyển&nbsp;Hóa &amp; Dưỡng&nbsp;Trí</span>
-            <span class="en">High-Potency Reserve • Internal Balance, Metabolism &amp; Mental&nbsp;Clarity</span>
+            <span class="vi">Dòng Mộc Bản Tuyển Chọn • Thanh Lọc Nội Môi, Chuyển Hóa &amp; Dưỡng&nbsp;Trí</span>
+            <span class="en">High-Potency Reserve • Internal Balance, Metabolism &amp; Mental Clarity</span>
           </span>
           <h3 class="product-name"><span class="vi">3. Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang</span></h3>
           <div class="product-badge-row">
-            <span class="product-spec-badge"><span class="vi">Hộp 24 túi&nbsp;lọc (100g)</span><span class="en">24 Filter Bags (100g)</span></span>
-            <span class="product-spec-badge"><span class="vi">Định&nbsp;mức hoạt&nbsp;chất cao</span><span class="en">High Bioactive Potency</span></span>
+            <span class="product-spec-badge"><span class="vi">Hộp 24&nbsp;túi lọc (100g)</span><span class="en">24&nbsp;Filter Bags (100g)</span></span>
+            <span class="product-spec-badge"><span class="vi">Định mức hoạt chất cao</span><span class="en">High Bioactive Potency</span></span>
             <span class="product-spec-badge"><span class="vi">QR &amp; PIN 4&nbsp;số</span><span class="en">1-to-1 QR &amp; PIN</span></span>
           </div>
           <p class="product-lead-summary">
-            <span class="vi"><strong>Phù&nbsp;hợp:</strong> Phối&nbsp;trộn mộc&nbsp;bản độc&nbsp;quyền đạt định&nbsp;mức hoạt&nbsp;chất cao, dành cho người hay nóng&nbsp;trong, khô&nbsp;đắng miệng do áp&nbsp;lực chuyển&nbsp;hóa cần thanh&nbsp;dịu nội&nbsp;môi và giữ tâm&nbsp;trí minh&nbsp;mẫn.</span>
+            <span class="vi"><strong>Phù hợp:</strong> Phối trộn mộc bản độc quyền đạt định mức hoạt chất cao, dành cho người hay nóng trong, khô đắng miệng do áp lực chuyển hóa cần thanh dịu nội môi và giữ tâm trí minh mẫn.</span>
             <span class="en"><strong>Ideal For:</strong> Proprietary high-potency wild Reishi blend for adults experiencing internal heat or metabolic stress who seek internal cooling and mental clarity.</span>
           </p>
 
@@ -1304,11 +1413,11 @@
             <div class="acc-inner">
               <ul class="product-spec-list">
                 <li>
-                  <span class="vi"><strong>Định&nbsp;mức dưỡng&nbsp;chất cao:</strong> Chế&nbsp;tác từ <strong>100% Nấm Linh&nbsp;Chi rừng tự&nbsp;nhiên Quảng&nbsp;Ngãi</strong> được kiểm&nbsp;tra đạt định&nbsp;mức cao về các hợp&nbsp;chất <em>Triterpenoids (Acid&nbsp;Ganoderic), Polysaccharides</em> và hoạt&nbsp;chất chống oxy&nbsp;hóa tự&nbsp;nhiên.</span>
+                  <span class="vi"><strong>Định mức dưỡng chất cao:</strong> Chế tác từ <strong>100% Nấm Linh&nbsp;Chi rừng tự nhiên Quảng&nbsp;Ngãi</strong> được kiểm tra đạt định mức cao về các hợp chất <em>Triterpenoids (Acid Ganoderic), Polysaccharides</em> và hoạt chất chống oxy hóa tự nhiên.</span>
                   <span class="en"><strong>High Bioactive Potency:</strong> Crafted from <strong>100% wild Quang&nbsp;Ngai Reishi</strong>, verified for elevated <em>Triterpenoids (Ganoderic Acids), Polysaccharides</em>, and natural antioxidants.</span>
                 </li>
                 <li>
-                  <span class="vi"><strong>Thói&nbsp;quen thưởng&nbsp;trà gợi&nbsp;ý:</strong> Thưởng&nbsp;thức ấm&nbsp;nóng mỗi&nbsp;ngày vào buổi&nbsp;sáng và buổi&nbsp;chiều sau bữa&nbsp;ăn để làm dịu&nbsp;mát cơ&nbsp;thể và giữ cho thân&nbsp;nhẹ, tâm&nbsp;minh.</span>
+                  <span class="vi"><strong>Thói quen thưởng trà gợi ý:</strong> Thưởng thức ấm nóng mỗi ngày vào buổi sáng và buổi chiều sau bữa ăn để làm dịu mát cơ thể và giữ cho thân nhẹ, tâm minh.</span>
                   <span class="en"><strong>Suggested Ritual:</strong> Savor warm in the morning and afternoon after meals to refresh internal balance and maintain physical lightness and mental clarity.</span>
                 </li>
               </ul>
@@ -1317,16 +1426,16 @@
 
           <div class="product-action-group">
             <a class="product-action" href="/dongsanpham/minhhoang">
-              <span class="vi">Xem Chi&nbsp;Tiết Minh&nbsp;Hoàng</span><span class="en">Explore Minh&nbsp;Hoang</span><span class="action-arrow">→</span>
+              <span class="vi">Xem Chi Tiết Minh&nbsp;Hoàng</span><span class="en">Explore Minh&nbsp;Hoang</span><span class="action-arrow">→</span>
             </a>
             <a class="product-action secondary-academic" href="/tailieu/chuyenhoa">
-              <span class="vi">Chuyên&nbsp;Khảo 03: Chuyển&nbsp;Hóa</span><span class="en">Monograph 03: Metabolic</span><span class="action-arrow">→</span>
+              <span class="vi">Chuyên Khảo 03: Chuyển Hóa</span><span class="en">Monograph 03: Metabolic</span><span class="action-arrow">→</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- VỊ TRÍ MỚI: 4 TRỤ CỘT BẢO CHỨNG (NGAY DƯỚI SẢN PHẨM ĐỂ CHỐT NIỀM TIN) -->
+      <!-- VỊ TRÍ MỚI: 4 TRỤ CỘT BẢO CHỨNG -->
       <section id="bon-tru-cot" class="trust-pillars-card spy-section">
         <div class="trust-pillars-head">
           <span class="trust-pillars-kicker">
@@ -1343,47 +1452,47 @@
           <div class="trust-box">
             <div class="trust-icon"><span>I</span></div>
             <div class="trust-text">
-              <h4><span class="vi">Linh&nbsp;Khí Đại&nbsp;Ngàn</span><span class="en">Primeval Forest&nbsp;Origin</span></h4>
-              <p class="vi">Nấm Linh&nbsp;Chi tự&nbsp;nhiên sinh&nbsp;trưởng nơi rừng&nbsp;già Quảng&nbsp;Ngãi, tích&nbsp;tụ trọn&nbsp;vẹn tinh&nbsp;hoa sương&nbsp;gió đất&nbsp;trời.</p>
+              <h4><span class="vi">Linh Khí Đại&nbsp;Ngàn</span><span class="en">Primeval Forest Origin</span></h4>
+              <p class="vi">Nấm Linh&nbsp;Chi tự nhiên sinh trưởng nơi rừng già Quảng&nbsp;Ngãi, tích tụ trọn vẹn tinh hoa sương gió đất trời.</p>
               <p class="en">Wild Reishi naturally matured in the old-growth forests of Quang&nbsp;Ngai, absorbing pure mountain mist and earth.</p>
             </div>
           </div>
           <div class="trust-box">
             <div class="trust-icon"><span>II</span></div>
             <div class="trust-text">
-              <h4><span class="vi">Kỹ&nbsp;Nghệ Mộc&nbsp;Bản</span><span class="en">Artisanal Craftsmanship</span></h4>
-              <p class="vi">Kế&nbsp;thừa kinh&nbsp;nghiệm tuyển&nbsp;chọn nấm già&nbsp;tuổi và kỹ&nbsp;nghệ chế&nbsp;biến mộc&nbsp;bản bảo&nbsp;toàn dưỡng&nbsp;chất quý.</p>
+              <h4><span class="vi">Kỹ Nghệ Mộc&nbsp;Bản</span><span class="en">Artisanal Craftsmanship</span></h4>
+              <p class="vi">Kế thừa kinh nghiệm tuyển chọn nấm già tuổi và kỹ nghệ chế biến mộc bản bảo toàn dưỡng chất quý.</p>
               <p class="en">Combining time-honored selection of fully matured wild Reishi with proprietary artisanal processing to preserve bioactives.</p>
             </div>
           </div>
           <div class="trust-box">
             <div class="trust-icon"><span>III</span></div>
             <div class="trust-text">
-              <h4><span class="vi">Dưỡng&nbsp;Chất Kiểm&nbsp;Định</span><span class="en">Lab-Verified Bioactives</span></h4>
-              <p class="vi">Hội&nbsp;tụ Polysaccharide hòa&nbsp;tan (<span class="nowrap">0.967%</span>), Adenosine và Triterpenoids tự&nbsp;nhiên nâng&nbsp;đỡ thể&nbsp;trạng.</p>
+              <h4><span class="vi">Dưỡng Chất Kiểm&nbsp;Định</span><span class="en">Lab-Verified Bioactives</span></h4>
+              <p class="vi">Hội tụ Polysaccharide hòa tan (<span class="nowrap">0,967%</span>), Adenosine và Triterpenoids tự nhiên nâng đỡ thể trạng.</p>
               <p class="en">Delivering soluble Polysaccharides (<span class="nowrap">0.967%</span>), natural Adenosine, and Triterpenoids to gently support daily vitality.</p>
             </div>
           </div>
           <div class="trust-box">
             <div class="trust-icon"><span>IV</span></div>
             <div class="trust-text">
-              <h4><span class="vi">Bảo&nbsp;Chứng Độc&nbsp;Bản</span><span class="en">1-to-1 Authentication</span></h4>
-              <p class="vi">Mỗi hộp&nbsp;trà được định&nbsp;danh bằng cặp Mã&nbsp;QR và PIN 4&nbsp;số xác&nbsp;thực nguồn&nbsp;gốc mộc&nbsp;bản 1-1.</p>
+              <h4><span class="vi">Bảo Chứng Độc&nbsp;Bản</span><span class="en">1-to-1 Authentication</span></h4>
+              <p class="vi">Mỗi hộp trà được định danh bằng cặp Mã QR và PIN 4&nbsp;số xác thực nguồn gốc mộc bản 1-1.</p>
               <p class="en">Every box is individually protected with a paired QR code and 4-digit PIN for direct 1-to-1 origin verification.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- GIẢI MÃ 6 DÒNG LINH CHI (GIỮ MỞ 6 HÌNH ẢNH NẤM + CUỘN CHÚ GIẢI HỌC THUẬT) -->
+      <!-- GIẢI MÃ 6 DÒNG LINH CHI -->
       <div id="luc-bao-linh-chi" class="section-heading spy-section">
         <div class="cor-motif-line">❖ ❖ ❖</div>
         <h2>
-          <span class="vi">Giải&nbsp;Mã 6 Dòng Nấm Linh&nbsp;Chi Trong Y&nbsp;Điển</span>
+          <span class="vi">Giải Mã 6 Dòng Nấm Linh&nbsp;Chi Trong Y&nbsp;Điển</span>
           <span class="en">The Six Classical Reishi Varieties in Eastern&nbsp;Herbology</span>
         </h2>
-        <span class="sub-caption vi">Trích&nbsp;lục nguyên&nbsp;văn: "Những cây&nbsp;thuốc và vị&nbsp;thuốc Việt&nbsp;Nam" — Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi</span>
-        <span class="sub-caption en">Verbatim Excerpts: "Medicinal Plants and Remedies of Vietnam" — Late Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi</span>
+        <span class="sub-caption vi">Trích lục nguyên văn: “Những cây thuốc và vị thuốc Việt Nam” — Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi</span>
+        <span class="sub-caption en">Verbatim Excerpts: “Medicinal Plants and Remedies of Vietnam” — Late Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi</span>
       </div>
 
       <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-academic-note" onclick="toggleAcc(this, 'acc-academic-note')">
@@ -1394,7 +1503,7 @@
       <div class="acc-panel" id="acc-academic-note">
         <div class="acc-inner">
           <div class="academic-framing-note">
-            <span class="vi"><strong>❖ Chú&nbsp;giải học&nbsp;thuật:</strong> Nội&nbsp;dung dưới đây trích&nbsp;dẫn nguyên&nbsp;văn tư&nbsp;liệu khảo&nbsp;cứu dược&nbsp;điển của Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (trang 831–833, NXB Y&nbsp;học) về tính&nbsp;vị của 6 nhóm nấm Linh&nbsp;Chi theo cổ&nbsp;thư phương&nbsp;Đông nhằm cung&nbsp;cấp tri&nbsp;thức văn&nbsp;hóa thảo&nbsp;dược bản&nbsp;địa (không&nbsp;phải là công&nbsp;bố chỉ&nbsp;định điều&nbsp;trị bệnh của thực&nbsp;phẩm&nbsp;trà).</span>
+            <span class="vi"><strong>❖ Chú giải học thuật:</strong> Nội dung dưới đây trích dẫn nguyên văn tư liệu khảo cứu dược điển của Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (trang 831–833, NXB Y học) về tính vị của 6 nhóm nấm Linh&nbsp;Chi theo cổ thư phương Đông nhằm cung cấp tri thức văn hóa thảo dược bản địa (không phải là công bố chỉ định điều trị bệnh của thực phẩm trà).</span>
             <span class="en"><strong>❖ Academic Note:</strong> The passages below translate verbatim the classical pharmacognosy reference by the late Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi (pp. 831–833, Medical Publishing House) regarding the traditional properties of the six Reishi varieties recorded in ancient Eastern texts for botanical and cultural education (not intended as clinical medical claims for herbal tea infusions).</span>
           </div>
         </div>
@@ -1406,11 +1515,11 @@
             <div class="reishi-thumb"><img id="img-thanh-chi" alt="Thanh Chi - Green Reishi"></div>
             <div>
               <div class="reishi-name"><span class="vi">1. Thanh&nbsp;Chi</span><span class="en">1. Green Reishi (Thanh&nbsp;Chi)</span></div>
-              <div class="reishi-subname"><span class="vi">Linh&nbsp;chi màu&nbsp;xanh</span><span class="en">Blue-Green Lingzhi Variety</span></div>
+              <div class="reishi-subname"><span class="vi">Linh chi màu xanh</span><span class="en">Blue-Green Lingzhi Variety</span></div>
             </div>
           </div>
           <p class="reishi-body">
-            <span class="vi">“Tính&nbsp;bình, không&nbsp;độc chủ&nbsp;trị sáng&nbsp;mắt, bổ can&nbsp;khí, an&nbsp;thần, tăng trí&nbsp;nhớ, cường&nbsp;khí, chữa viêm&nbsp;gan cấp và mãn&nbsp;tính.”</span>
+            <span class="vi">“Tính bình, không độc chủ trị sáng mắt, bổ can khí, an thần, tăng trí nhớ, cường khí, chữa viêm gan cấp và mãn tính.”</span>
             <span class="en">“Neutral in nature, non-toxic; traditionally recorded for brightening eyesight, nourishing liver qi, calming the spirit, enhancing memory, reinforcing vital energy, and addressing acute and chronic hepatitis.”</span>
           </p>
         </div>
@@ -1419,12 +1528,12 @@
           <div class="reishi-top">
             <div class="reishi-thumb"><img id="img-hong-chi" alt="Hồng Chi - Red Reishi"></div>
             <div>
-              <div class="reishi-name"><span class="vi">2. Hồng&nbsp;Chi (Xích&nbsp;Chi, Đơn&nbsp;Chi)</span><span class="en">2. Red Reishi (Hong&nbsp;Chi)</span></div>
-              <div class="reishi-subname"><span class="vi">Linh&nbsp;chi màu&nbsp;hồng</span><span class="en">Crimson Lingzhi Variety</span></div>
+              <div class="reishi-name"><span class="vi">2. Hồng&nbsp;Chi (Xích Chi, Đơn Chi)</span><span class="en">2. Red Reishi (Hong&nbsp;Chi)</span></div>
+              <div class="reishi-subname"><span class="vi">Linh chi màu hồng</span><span class="en">Crimson Lingzhi Variety</span></div>
             </div>
           </div>
           <p class="reishi-body">
-            <span class="vi">“Vị&nbsp;đắng, tính&nbsp;bình, không&nbsp;độc, tăng trí&nbsp;nhớ, chữa các bệnh thuộc về huyết và thần&nbsp;kinh,&nbsp;tim.”</span>
+            <span class="vi">“Vị đắng, tính bình, không độc, tăng trí nhớ, chữa các bệnh thuộc về huyết và thần kinh, tim.”</span>
             <span class="en">“Bitter in taste, neutral in nature, non-toxic; enhances memory and traditionally addresses conditions related to blood, the nervous system, and the heart.”</span>
           </p>
         </div>
@@ -1433,12 +1542,12 @@
           <div class="reishi-top">
             <div class="reishi-thumb"><img id="img-hoang-chi" alt="Hoàng Chi - Yellow Reishi"></div>
             <div>
-              <div class="reishi-name"><span class="vi">3. Hoàng&nbsp;Chi (Kim&nbsp;Chi)</span><span class="en">3. Yellow Reishi (Hoang&nbsp;Chi)</span></div>
-              <div class="reishi-subname"><span class="vi">Linh&nbsp;chi màu&nbsp;vàng</span><span class="en">Golden Lingzhi Variety</span></div>
+              <div class="reishi-name"><span class="vi">3. Hoàng&nbsp;Chi (Kim Chi)</span><span class="en">3. Yellow Reishi (Hoang&nbsp;Chi)</span></div>
+              <div class="reishi-subname"><span class="vi">Linh chi màu vàng</span><span class="en">Golden Lingzhi Variety</span></div>
             </div>
           </div>
           <p class="reishi-body">
-            <span class="vi">“Vị&nbsp;ngọt, tính&nbsp;bình, không&nbsp;độc, làm mạnh hệ&nbsp;thống miễn&nbsp;dịch.”</span>
+            <span class="vi">“Vị ngọt, tính bình, không độc, làm mạnh hệ thống miễn dịch.”</span>
             <span class="en">“Sweet in taste, neutral in nature, non-toxic; strengthens the immune system.”</span>
           </p>
         </div>
@@ -1447,12 +1556,12 @@
           <div class="reishi-top">
             <div class="reishi-thumb"><img id="img-bach-chi" alt="Bạch Chi - White Reishi"></div>
             <div>
-              <div class="reishi-name"><span class="vi">4. Bạch&nbsp;Chi (Ngọc&nbsp;Chi)</span><span class="en">4. White Reishi (Bach&nbsp;Chi)</span></div>
-              <div class="reishi-subname"><span class="vi">Linh&nbsp;chi màu&nbsp;trắng</span><span class="en">Jade-White Lingzhi Variety</span></div>
+              <div class="reishi-name"><span class="vi">4. Bạch&nbsp;Chi (Ngọc Chi)</span><span class="en">4. White Reishi (Bach&nbsp;Chi)</span></div>
+              <div class="reishi-subname"><span class="vi">Linh chi màu trắng</span><span class="en">Jade-White Lingzhi Variety</span></div>
             </div>
           </div>
           <p class="reishi-body">
-            <span class="vi">“Vị&nbsp;cay, tính&nbsp;bình, không&nbsp;độc, chủ&nbsp;trị hen, ích phế&nbsp;khí.”</span>
+            <span class="vi">“Vị cay, tính bình, không độc, chủ trị hen, ích phế khí.”</span>
             <span class="en">“Pungent in taste, neutral in nature, non-toxic; traditionally addresses asthma and benefits lung qi.”</span>
           </p>
         </div>
@@ -1461,12 +1570,12 @@
           <div class="reishi-top">
             <div class="reishi-thumb"><img id="img-hac-chi" alt="Hắc Chi - Black Reishi"></div>
             <div>
-              <div class="reishi-name"><span class="vi">5. Hắc&nbsp;Chi (Huyền&nbsp;Chi)</span><span class="en">5. Black Reishi (Hac&nbsp;Chi)</span></div>
-              <div class="reishi-subname"><span class="vi">Linh&nbsp;chi màu&nbsp;đen</span><span class="en">Dark Lingzhi Variety</span></div>
+              <div class="reishi-name"><span class="vi">5. Hắc&nbsp;Chi (Huyền Chi)</span><span class="en">5. Black Reishi (Hac&nbsp;Chi)</span></div>
+              <div class="reishi-subname"><span class="vi">Linh chi màu đen</span><span class="en">Dark Lingzhi Variety</span></div>
             </div>
           </div>
           <p class="reishi-body">
-            <span class="vi">“Vị&nbsp;mặn, tính&nbsp;bình, không&nbsp;độc, chủ&nbsp;trị bí tiểu&nbsp;tiện, sỏi&nbsp;thận, bệnh ở cơ&nbsp;quan bài&nbsp;tiết.”</span>
+            <span class="vi">“Vị mặn, tính bình, không độc, chủ trị bí tiểu tiện, sỏi thận, bệnh ở cơ quan bài tiết.”</span>
             <span class="en">“Salty in taste, neutral in nature, non-toxic; traditionally addresses urinary retention, kidney stones, and conditions of the excretory organs.”</span>
           </p>
         </div>
@@ -1475,81 +1584,93 @@
           <div class="reishi-top">
             <div class="reishi-thumb"><img id="img-tu-chi" alt="Tử Chi - Purple Reishi"></div>
             <div>
-              <div class="reishi-name"><span class="vi">6. Tử&nbsp;Chi (Linh&nbsp;Chi Tím)</span><span class="en">6. Purple Reishi (Tu&nbsp;Chi)</span></div>
-              <div class="reishi-subname"><span class="vi">Linh&nbsp;chi màu&nbsp;tím</span><span class="en">Purple Lingzhi Variety</span></div>
+              <div class="reishi-name"><span class="vi">6. Tử&nbsp;Chi (Linh Chi Tím)</span><span class="en">6. Purple Reishi (Tu&nbsp;Chi)</span></div>
+              <div class="reishi-subname"><span class="vi">Linh chi màu tím</span><span class="en">Purple Lingzhi Variety</span></div>
             </div>
           </div>
           <p class="reishi-body">
-            <span class="vi">“Vị&nbsp;ngọt, tính&nbsp;ôn, không có độc, chủ&nbsp;trị đau&nbsp;nhức khớp&nbsp;xương, gân&nbsp;cốt.”</span>
+            <span class="vi">“Vị ngọt, tính ôn, không có độc, chủ trị đau nhức khớp xương, gân cốt.”</span>
             <span class="en">“Sweet in taste, warm in nature, non-toxic; traditionally addresses aching joints, bones, and sinews.”</span>
           </p>
         </div>
       </div>
 
-      <div style="margin-top: 14px; padding: 12px 16px; background: #FAF5EB; border-left: 3px solid var(--gold-primary); border-radius: 0 6px 6px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16px; font-style: italic; color: var(--espresso); line-height: 1.62;">
-        <span class="vi">“Nói tóm&nbsp;lại dùng 6&nbsp;loại linh&nbsp;chi lâu&nbsp;ngày sẽ giúp cho nhẹ&nbsp;người, tăng tuổi&nbsp;thọ.” — <em>Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi ("Những cây&nbsp;thuốc và vị&nbsp;thuốc Việt&nbsp;Nam")</em></span>
-        <span class="en">“In summary, long-term use of the six types of Reishi helps make the body light and increases longevity.” — <em>Late Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi ("Medicinal Plants and Remedies of Vietnam")</em></span>
+      <div class="story-quote-box" style="margin-top: 14px; margin-bottom: 0; border-left-color: var(--gold-primary); font-size: 16px;">
+        <span class="vi">“Nói tóm lại dùng 6 loại linh chi lâu ngày sẽ giúp cho nhẹ người, tăng tuổi thọ.” — <em>Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (“Những cây thuốc và vị thuốc Việt Nam”)</em></span>
+        <span class="en">“In summary, long-term use of the six types of Reishi helps make the body light and increases longevity.” — <em>Late Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi (“Medicinal Plants and Remedies of Vietnam”)</em></span>
       </div>
 
       <!-- CỔNG TRI THỨC KHOA HỌC DƯỠNG SINH (/suckhoe) -->
       <section id="khoa-hoc-duong-sinh" class="science-hub-showcase spy-section">
         <span class="science-hub-tag">
-          <span class="vi">Chuyên&nbsp;Mục Khảo&nbsp;Luận Học&nbsp;Thuật • Y&nbsp;Sinh&nbsp;Học Phân&nbsp;Tử</span>
+          <span class="vi">Chuyên Mục Khảo Luận Học Thuật • Y Sinh Học Phân Tử</span>
           <span class="en">Academic Monograph Series • Molecular Biomedicine</span>
         </span>
         <h3 class="science-hub-title">
-          <span class="vi">Giải&nbsp;Mã Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành &amp; Khoa&nbsp;Học Dưỡng&nbsp;Sinh</span>
-          <span class="en">Decoding Cellular Self-Healing &amp; Longevity Science</span>
+          <span class="vi">Giải Mã Cơ Chế Tự Chữa Lành &amp; Khoa Học Dưỡng&nbsp;Sinh</span>
+          <span class="en">Decoding Cellular Self-Healing &amp; Longevity&nbsp;Science</span>
         </h3>
         <p class="science-hub-desc">
-          <span class="vi">4 chuyên&nbsp;luận đối&nbsp;chiếu nguyên&nbsp;lý dưỡng&nbsp;mạng cổ&nbsp;phương với các công&nbsp;trình đoạt Giải Nobel Y&nbsp;Sinh&nbsp;học hiện&nbsp;đại:</span>
+          <span class="vi">4 chuyên luận đối chiếu nguyên lý dưỡng mạng cổ phương với các công trình đoạt Giải Nobel Y Sinh học hiện đại:</span>
           <span class="en">4 academic monographs bridging classical Eastern longevity principles with Nobel Prize-winning biomedical discoveries:</span>
         </p>
 
         <div class="science-mini-grid">
           <a href="/suckhoe/noicanbang" class="science-mini-item">
-            <strong><span class="vi">01. Cân&nbsp;Bằng Nội&nbsp;Môi (Homeostasis) →</span><span class="en">01. Biological Homeostasis →</span></strong>
-            <span class="mini-desc vi">Trục Thần&nbsp;kinh Tự&nbsp;chủ (Âm – Dương), năng&nbsp;lượng ATP ty&nbsp;thể &amp; cảm&nbsp;biến oxy.</span>
+            <div class="science-mini-head">
+              <span><span class="vi">01. Cân Bằng Nội Môi (Homeostasis)</span><span class="en">01. Biological Homeostasis</span></span>
+              <span class="science-mini-arrow">→</span>
+            </div>
+            <span class="mini-desc vi">Trục Thần kinh Tự chủ (Âm – Dương), năng lượng ATP ty thể &amp; cảm biến oxy.</span>
             <span class="mini-desc en">Autonomic balance (Yin–Yang), mitochondrial ATP &amp; oxygen sensing.</span>
           </a>
           <a href="/suckhoe/tuchualanh" class="science-mini-item">
-            <strong><span class="vi">02. Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành Tế&nbsp;Bào →</span><span class="en">02. Cellular Self-Healing →</span></strong>
-            <span class="mini-desc vi">Tự&nbsp;thực&nbsp;bào Autophagy (Nobel&nbsp;2016), Apoptosis &amp; kiểm&nbsp;soát viêm âm&nbsp;thầm.</span>
+            <div class="science-mini-head">
+              <span><span class="vi">02. Cơ Chế Tự Chữa Lành Tế Bào</span><span class="en">02. Cellular Self-Healing</span></span>
+              <span class="science-mini-arrow">→</span>
+            </div>
+            <span class="mini-desc vi">Tự thực bào Autophagy (Nobel 2016), Apoptosis &amp; kiểm soát viêm âm thầm.</span>
             <span class="mini-desc en">Autophagy (2016 Nobel), programmed Apoptosis &amp; inflammation control.</span>
           </a>
           <a href="/suckhoe/thichnghi" class="science-mini-item">
-            <strong><span class="vi">03. Khoa&nbsp;Học Dược&nbsp;Tính Thích&nbsp;Nghi →</span><span class="en">03. Adaptogenic Science →</span></strong>
-            <span class="mini-desc vi">Học&nbsp;thuyết Adaptogen hai&nbsp;chiều &amp; thích&nbsp;nghi chéo rừng&nbsp;già Xenohormesis.</span>
+            <div class="science-mini-head">
+              <span><span class="vi">03. Khoa Học Dược Tính Thích Nghi</span><span class="en">03. Adaptogenic Science</span></span>
+              <span class="science-mini-arrow">→</span>
+            </div>
+            <span class="mini-desc vi">Học thuyết Adaptogen hai chiều &amp; thích nghi chéo rừng già Xenohormesis.</span>
             <span class="mini-desc en">Bidirectional Adaptogens &amp; old-growth forest Xenohormesis.</span>
           </a>
           <a href="/suckhoe/nhipsinhhoc" class="science-mini-item">
-            <strong><span class="vi">04. Nhịp Sinh&nbsp;Học Thân&nbsp;Tâm →</span><span class="en">04. Circadian Rhythm →</span></strong>
-            <span class="mini-desc vi">Đồng&nbsp;hồ gen 24&nbsp;giờ (Nobel&nbsp;2017), Adenosine &amp; hệ rửa&nbsp;não Glymphatic.</span>
+            <div class="science-mini-head">
+              <span><span class="vi">04. Nhịp Sinh Học Thân Tâm</span><span class="en">04. Circadian Rhythm</span></span>
+              <span class="science-mini-arrow">→</span>
+            </div>
+            <span class="mini-desc vi">Đồng hồ gen 24 giờ (Nobel 2017), Adenosine &amp; hệ rửa não Glymphatic.</span>
             <span class="mini-desc en">24h clock genes (2017 Nobel), Adenosine &amp; Glymphatic cleansing.</span>
           </a>
         </div>
 
         <div class="product-action-group" style="margin-top:0;">
           <a class="product-action" href="/suckhoe">
-            <span class="vi">Mở Cổng Tri&nbsp;Thức Tự&nbsp;Chữa&nbsp;Lành</span><span class="en">Explore Longevity Science Hub</span><span class="action-arrow">→</span>
+            <span class="vi">Mở Cổng Tri Thức Tự Chữa Lành</span><span class="en">Explore Longevity Science Hub</span><span class="action-arrow">→</span>
           </a>
           <a class="product-action secondary-academic" href="/tailieu">
-            <span class="vi">Thư&nbsp;Viện Chuyên&nbsp;Khảo</span><span class="en">Monograph Library</span><span class="action-arrow">→</span>
+            <span class="vi">Thư Viện Chuyên Khảo</span><span class="en">Monograph Library</span><span class="action-arrow">→</span>
           </a>
         </div>
       </section>
 
-      <!-- TẦNG THỰC ĐỊA (ẢNH TRƯỚC CHỮ) & CAM KẾT (CUỘN GỌN) -->
+      <!-- TẦNG THỰC ĐỊA & CAM KẾT -->
       <div class="info-extra-section">
         <div id="van-hoa-cor" class="info-extra-card spy-section">
-          <h3><span class="glyph">❖</span><span class="vi">Dấu&nbsp;Chân Đại&nbsp;Ngàn &amp; Tri&nbsp;Thức Rừng&nbsp;Sâu</span><span class="en">Footprints in the Primeval Forest &amp; Indigenous Wisdom</span></h3>
+          <h3><span class="glyph">❖</span><span><span class="vi">Dấu Chân Đại Ngàn &amp; Tri Thức Rừng&nbsp;Sâu</span><span class="en">Footprints in the Primeval Forest &amp; Indigenous&nbsp;Wisdom</span></span></h3>
 
           <div class="story-img-grid">
             <div class="story-img-item"><img id="story-extra-1" alt="Thợ rừng bản địa thu hái nấm Linh Chi Quảng Ngãi"></div>
             <div class="story-img-item"><img id="story-extra-2" alt="Những tai nấm Linh Chi rừng già nguyên bản"></div>
           </div>
 
-          <p class="vi">Không sinh&nbsp;trưởng trong điều&nbsp;kiện nhân&nbsp;tạo được che&nbsp;chắn của nhà&nbsp;kính, nấm Linh&nbsp;Chi rừng&nbsp;già Quảng&nbsp;Ngãi lớn lên hoàn&nbsp;toàn tự&nbsp;nhiên nơi rừng&nbsp;sâu — nương&nbsp;mình trên thân gỗ&nbsp;mục cổ&nbsp;thụ qua nhiều mùa mưa&nbsp;nắng để tôi&nbsp;luyện nên thớ&nbsp;gỗ đanh&nbsp;chắc và nguồn dưỡng&nbsp;chất thuần&nbsp;khiết.</p>
+          <p class="vi">Không sinh trưởng trong điều kiện nhân tạo được che chắn của nhà kính, nấm Linh&nbsp;Chi rừng già Quảng&nbsp;Ngãi lớn lên hoàn toàn tự nhiên nơi rừng sâu — nương mình trên thân gỗ mục cổ thụ qua nhiều mùa mưa nắng để tôi luyện nên thớ gỗ đanh chắc và nguồn dưỡng chất thuần khiết.</p>
           <p class="en">Unlike greenhouse mushrooms grown under artificial shelter, wild Reishi in Quang&nbsp;Ngai matures naturally within deep primeval forests—anchoring onto ancient fallen timber through seasons of monsoon rain and sun to forge a dense woody grain and pure nutrients.</p>
 
           <div style="margin-top: 10px;">
@@ -1562,19 +1683,19 @@
 
           <div class="acc-panel" id="acc-forest-story">
             <div class="acc-inner extra-acc-content">
-              <p class="vi">Qua bao thế&nbsp;hệ, những người&nbsp;con gắn&nbsp;bó máu&nbsp;thịt cùng núi&nbsp;rừng đã tích&nbsp;lũy và lưu&nbsp;truyền những tri&nbsp;thức quý&nbsp;báu về thảo&nbsp;mộc bản&nbsp;địa: từ cách tìm&nbsp;hái nấm Linh&nbsp;Chi đúng độ&nbsp;tuổi trên thân gỗ&nbsp;mục, cách nhận&nbsp;biết từng cây&nbsp;lá thảo&nbsp;mộc dưới tán rừng&nbsp;sâu, đến kinh&nbsp;nghiệm chắt&nbsp;lọc và chế&nbsp;biến thành những thức&nbsp;uống quen&nbsp;thuộc trong nếp&nbsp;sống hàng&nbsp;ngày.</p>
+              <p class="vi">Qua bao thế hệ, những người con gắn bó máu thịt cùng núi rừng đã tích lũy và lưu truyền những tri thức quý báu về thảo mộc bản địa: từ cách tìm hái nấm Linh&nbsp;Chi đúng độ tuổi trên thân gỗ mục, cách nhận biết từng cây lá thảo mộc dưới tán rừng sâu, đến kinh nghiệm chắt lọc và chế biến thành những thức uống quen thuộc trong nếp sống hàng ngày.</p>
               <p class="en">Across generations, indigenous communities deeply bonded with these mountains have passed down precious knowledge of native herbs: from foraging wild Reishi at peak maturity on decaying trunks to distilling them into familiar daily infusions.</p>
-              <p class="vi">Những kinh&nbsp;nghiệm quý ấy kết&nbsp;tinh thành một lối&nbsp;sống thuận theo tự&nbsp;nhiên: nuôi&nbsp;dưỡng thân&nbsp;tâm bền&nbsp;bỉ từ những thói&nbsp;quen giản&nbsp;dị, lành&nbsp;mạnh mỗi&nbsp;ngày. Chính sự chăm&nbsp;sóc nhẹ&nbsp;nhàng, tích&nbsp;lũy từng ngày ấy giúp bậc sinh&nbsp;thành bồi&nbsp;đắp nguyên&nbsp;khí và duy&nbsp;trì thể&nbsp;trạng dẻo&nbsp;dai.</p>
+              <p class="vi">Những kinh nghiệm quý ấy kết tinh thành một lối sống thuận theo tự nhiên: nuôi dưỡng thân tâm bền bỉ từ những thói quen giản dị, lành mạnh mỗi ngày. Chính sự chăm sóc nhẹ nhàng, tích lũy từng ngày ấy giúp bậc sinh thành bồi đắp nguyên khí và duy trì thể trạng dẻo dai.</p>
               <p class="en">This wisdom crystallizes into living in harmony with nature: nurturing lasting physical and mental resilience through wholesome daily habits—helping our aging parents replenish vitality day by day.</p>
-              <p class="vi">Bách&nbsp;Phục xin trân&nbsp;trọng gìn&nbsp;giữ và gửi&nbsp;gắm tinh&nbsp;hoa ấy trong từng ấm&nbsp;trà, để những giá&nbsp;trị quý từ thiên&nbsp;nhiên được tiếp&nbsp;nối, lan&nbsp;tỏa, hòa cùng nhịp&nbsp;sống mỗi&nbsp;ngày.</p>
+              <p class="vi">Bách&nbsp;Phục xin trân trọng gìn giữ và gửi gắm tinh hoa ấy trong từng ấm trà, để những giá trị quý từ thiên nhiên được tiếp nối, lan tỏa, hòa cùng nhịp sống mỗi ngày.</p>
               <p class="en">Bach&nbsp;Phuc respectfully safeguards and entrusts this essence into every pot of tea, so nature’s precious values may be carried forward into everyday life.</p>
             </div>
           </div>
         </div>
 
         <div id="cam-ket" class="info-extra-card spy-section">
-          <h3><span class="glyph">❖</span><span class="vi">Đạo Giữ&nbsp;Rừng &amp; Điều Chúng&nbsp;Tôi Cam&nbsp;Kết</span><span class="en">The Forest-Keeping Ethic &amp; Our Commitments</span></h3>
-          <p class="vi"><strong>Triết&nbsp;lý không tận&nbsp;diệt:</strong> Chỉ thu&nbsp;hái nấm đã trọn&nbsp;tuổi để mầm&nbsp;non tiếp&nbsp;tục sinh&nbsp;sôi; cam&nbsp;kết 100% nấm Linh&nbsp;Chi rừng tự&nbsp;nhiên Quảng&nbsp;Ngãi theo quy&nbsp;chế bảo&nbsp;vệ&nbsp;rừng.</p>
+          <h3><span class="glyph">❖</span><span><span class="vi">Đạo Giữ Rừng &amp; Điều Chúng Tôi Cam&nbsp;Kết</span><span class="en">The Forest-Keeping Ethic &amp; Our&nbsp;Commitments</span></span></h3>
+          <p class="vi"><strong>Triết lý không tận diệt:</strong> Chỉ thu hái nấm đã trọn tuổi để mầm non tiếp tục sinh sôi; cam kết 100% nấm Linh&nbsp;Chi rừng tự nhiên Quảng&nbsp;Ngãi theo quy chế bảo vệ rừng.</p>
           <p class="en"><strong>Philosophy of Non-Depletion:</strong> Harvesting only fully matured mushrooms so young buds continue to thrive; 100% wild Quang&nbsp;Ngai Reishi under formal forest-protection covenants.</p>
 
           <div style="margin-top: 10px;">
@@ -1587,7 +1708,7 @@
 
           <div class="acc-panel" id="acc-commitment">
             <div class="acc-inner extra-acc-content">
-              <p class="vi"><strong>Minh&nbsp;bạch và nguyên&nbsp;bản:</strong> Tuyệt&nbsp;đối không pha&nbsp;tạp nấm trồng công&nbsp;nghiệp, không sử&nbsp;dụng hương&nbsp;liệu hay chất bảo&nbsp;quản. Nấm&nbsp;rừng sau khi tuyển&nbsp;lựa và làm&nbsp;sạch được ứng&nbsp;dụng <strong>kỹ&nbsp;nghệ chế&nbsp;biến mộc&nbsp;bản độc&nbsp;quyền của Bách&nbsp;Phục</strong> giúp mở&nbsp;khóa cấu&nbsp;trúc thớ&nbsp;nấm rừng&nbsp;già, giữ trọn vị đắng&nbsp;thanh mộc&nbsp;mạc cùng hàm&nbsp;lượng dưỡng&nbsp;chất tự&nbsp;nhiên dễ&nbsp;dàng hòa&nbsp;tan trong từng túi&nbsp;lọc tiện&nbsp;dụng gửi đến mỗi gia&nbsp;đình.</p>
+              <p class="vi"><strong>Minh bạch và nguyên bản:</strong> Tuyệt đối không pha tạp nấm trồng công nghiệp, không sử dụng hương liệu hay chất bảo quản. Nấm rừng sau khi tuyển lựa và làm sạch được ứng dụng <strong>kỹ nghệ chế biến mộc bản độc quyền của Bách&nbsp;Phục</strong> giúp mở khóa cấu trúc thớ nấm rừng già, giữ trọn vị đắng thanh mộc mạc cùng hàm lượng dưỡng chất tự nhiên dễ dàng hòa tan trong từng túi lọc tiện dụng gửi đến mỗi gia đình.</p>
               <p class="en"><strong>Transparency &amp; Authenticity:</strong> Zero admixture of farm-cultivated mushrooms, zero artificial flavorings, and zero preservatives. Wild Reishi undergoes <strong>Bach&nbsp;Phuc’s proprietary artisanal processing craft</strong> to unlock its dense old-growth woody fibers—retaining its refined natural bitterness, sweet aftertaste, and water-soluble nutrients in every convenient filter bag.</p>
             </div>
           </div>
@@ -1597,17 +1718,19 @@
       <!-- KHUYẾN CÁO PHÁP LÝ CUỘN GỌN -->
       <section class="home-disclaimer-box">
         <button type="button" class="disclaimer-trigger" aria-expanded="false" aria-controls="acc-home-legal" onclick="toggleAcc(this, 'acc-home-legal')">
-          <span>
+          <span class="disclaimer-title-inner">
             <span>❖</span>
-            <span class="vi">Khuyến&nbsp;Cáo Minh&nbsp;Bạch Pháp&nbsp;Lý &amp; Phạm&nbsp;Vi Thông&nbsp;Tin</span>
-            <span class="en">Legal Transparency &amp; Scope of Information</span>
+            <span>
+              <span class="vi">Khuyến Cáo Minh Bạch Pháp Lý &amp; Phạm Vi Thông&nbsp;Tin</span>
+              <span class="en">Legal Transparency &amp; Scope of Information</span>
+            </span>
           </span>
           <span class="acc-chevron">▾</span>
         </button>
         <div class="acc-panel" id="acc-home-legal">
           <div class="acc-inner">
             <div class="disclaimer-body">
-              <p class="vi">Các dòng sản&nbsp;phẩm <strong>Trà Thảo&nbsp;Mộc Bách&nbsp;Phục (Thượng&nbsp;Hoàng, Kim&nbsp;Hoàng, Minh&nbsp;Hoàng)</strong> của Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục là thực&nbsp;phẩm trà thảo&nbsp;mộc tự&nbsp;nhiên chế&nbsp;biến từ 100% nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi theo hồ&nbsp;sơ tự công&nbsp;bố hợp quy&nbsp;định pháp&nbsp;luật, không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh. Website hoạt&nbsp;động nhằm mục&nbsp;đích giới&nbsp;thiệu văn&nbsp;hóa trà thảo&nbsp;mộc, chia&nbsp;sẻ tri&nbsp;thức khoa&nbsp;học thường&nbsp;thức và kết&nbsp;nối tư&nbsp;vấn, không thực&nbsp;hiện giao&nbsp;dịch thương&nbsp;mại điện&nbsp;tử trực&nbsp;tuyến.</p>
+              <p class="vi">Các dòng sản phẩm <strong>Trà Thảo Mộc Bách&nbsp;Phục (Thượng&nbsp;Hoàng, Kim&nbsp;Hoàng, Minh&nbsp;Hoàng)</strong> của Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục là thực phẩm trà thảo mộc tự nhiên chế biến từ 100% nấm Linh&nbsp;Chi rừng Quảng&nbsp;Ngãi theo hồ sơ tự công bố hợp quy định pháp luật, không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh. Website hoạt động nhằm mục đích giới thiệu văn hóa trà thảo mộc, chia sẻ tri thức khoa học thường thức và kết nối tư vấn, không thực hiện giao dịch thương mại điện tử trực tuyến.</p>
               <p class="en">All <strong>Bach&nbsp;Phuc Herbal Tea lines (Thuong&nbsp;Hoang, Kim&nbsp;Hoang, Minh&nbsp;Hoang)</strong> of Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. are natural herbal tea infusions crafted from 100% wild-harvested Quang&nbsp;Ngai Reishi in compliance with statutory product self-declaration regulations. These products are not pharmaceuticals and are not intended to diagnose, treat, cure, or prevent any disease. This website operates to share herbal tea culture, educational science, and direct consultation, without conducting online e-commerce transactions.</p>
             </div>
           </div>
@@ -1620,169 +1743,166 @@
     <aside class="sticky-sidebar">
       <div class="sidebar-widget desktop-toc-widget">
         <div class="widget-header">
-          <span class="vi">Danh&nbsp;Mục Nhanh</span>
+          <span class="vi">Danh Mục Nhanh</span>
           <span class="en">Quick Navigation</span>
           <span style="color:var(--gold-primary);">❖</span>
         </div>
 
-        <div class="widget-group-title"><span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục</span><span class="en">Bach&nbsp;Phuc Herbal&nbsp;Tea</span></div>
+        <div class="widget-group-title"><span class="vi">Trà Thảo Mộc Bách&nbsp;Phục</span><span class="en">Bach&nbsp;Phuc Herbal Tea</span></div>
         <ul class="toc-nav">
           <li><button type="button" class="toc-btn active" data-target="muc-1" onclick="jumpToSection('muc-1')"><span class="toc-index">1</span><span class="vi">Thượng&nbsp;Hoàng</span><span class="en">Thuong&nbsp;Hoang</span><span class="toc-arrow">›</span></button></li>
           <li><button type="button" class="toc-btn" data-target="muc-2" onclick="jumpToSection('muc-2')"><span class="toc-index">2</span><span class="vi">Kim&nbsp;Hoàng</span><span class="en">Kim&nbsp;Hoang</span><span class="toc-arrow">›</span></button></li>
           <li><button type="button" class="toc-btn" data-target="muc-3" onclick="jumpToSection('muc-3')"><span class="toc-index">3</span><span class="vi">Minh&nbsp;Hoàng</span><span class="en">Minh&nbsp;Hoang</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" data-target="bon-tru-cot" onclick="jumpToSection('bon-tru-cot')"><span class="toc-index">✦</span><span class="vi">4 Trụ&nbsp;Cột Bảo&nbsp;Chứng</span><span class="en">4 Pillars of Provenance</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" data-target="bon-tru-cot" onclick="jumpToSection('bon-tru-cot')"><span class="toc-index">✦</span><span class="vi">4 Trụ Cột Bảo Chứng</span><span class="en">4 Pillars of Provenance</span><span class="toc-arrow">›</span></button></li>
         </ul>
 
-        <div class="widget-group-title"><span class="vi">Giải&nbsp;Mã 6 Dòng Linh&nbsp;Chi</span><span class="en">6 Classical Reishi Types</span></div>
+        <div class="widget-group-title"><span class="vi">Giải Mã 6 Dòng Linh&nbsp;Chi</span><span class="en">6 Classical Reishi Types</span></div>
         <ul class="toc-nav">
-          <li><button type="button" class="toc-btn" data-target="luc-bao-linh-chi" onclick="jumpToSection('nam-1')"><span class="toc-index">1</span><span class="vi">Thanh&nbsp;Chi (Xanh)</span><span class="en">Green Reishi</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-2')"><span class="toc-index">2</span><span class="vi">Hồng&nbsp;Chi (Hồng&nbsp;Đỏ)</span><span class="en">Red Reishi</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-3')"><span class="toc-index">3</span><span class="vi">Hoàng&nbsp;Chi (Vàng)</span><span class="en">Yellow Reishi</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-4')"><span class="toc-index">4</span><span class="vi">Bạch&nbsp;Chi (Trắng)</span><span class="en">White Reishi</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-5')"><span class="toc-index">5</span><span class="vi">Hắc&nbsp;Chi (Đen)</span><span class="en">Black Reishi</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-6')"><span class="toc-index">6</span><span class="vi">Tử&nbsp;Chi (Tím)</span><span class="en">Purple Reishi</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" data-target="luc-bao-linh-chi" onclick="jumpToSection('nam-1')"><span class="toc-index">1</span><span class="vi">Thanh Chi (Xanh)</span><span class="en">Green Reishi</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-2')"><span class="toc-index">2</span><span class="vi">Hồng Chi (Hồng Đỏ)</span><span class="en">Red Reishi</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-3')"><span class="toc-index">3</span><span class="vi">Hoàng Chi (Vàng)</span><span class="en">Yellow Reishi</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-4')"><span class="toc-index">4</span><span class="vi">Bạch Chi (Trắng)</span><span class="en">White Reishi</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-5')"><span class="toc-index">5</span><span class="vi">Hắc Chi (Đen)</span><span class="en">Black Reishi</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" onclick="jumpToSection('nam-6')"><span class="toc-index">6</span><span class="vi">Tử Chi (Tím)</span><span class="en">Purple Reishi</span><span class="toc-arrow">›</span></button></li>
         </ul>
 
-        <div class="widget-group-title"><span class="vi">Khoa&nbsp;Học &amp; Dấu&nbsp;Ấn Rừng</span><span class="en">Science &amp; Forest Heritage</span></div>
+        <div class="widget-group-title"><span class="vi">Khoa Học &amp; Dấu Ấn Rừng</span><span class="en">Science &amp; Forest Heritage</span></div>
         <ul class="toc-nav">
-          <li><button type="button" class="toc-btn" data-target="khoa-hoc-duong-sinh" onclick="jumpToSection('khoa-hoc-duong-sinh')"><span class="toc-index">❖</span><span class="vi">Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span><span class="en">Self-Healing Science</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" data-target="van-hoa-cor" onclick="jumpToSection('van-hoa-cor')"><span class="toc-index">❖</span><span class="vi">Tri&nbsp;Thức Bản&nbsp;Địa</span><span class="en">Indigenous Wisdom</span><span class="toc-arrow">›</span></button></li>
-          <li><button type="button" class="toc-btn" data-target="cam-ket" onclick="jumpToSection('cam-ket')"><span class="toc-index">❖</span><span class="vi">Đạo Giữ&nbsp;Rừng</span><span class="en">Forest-Keeping Ethic</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" data-target="khoa-hoc-duong-sinh" onclick="jumpToSection('khoa-hoc-duong-sinh')"><span class="toc-index">❖</span><span class="vi">Cơ Chế Tự Chữa Lành</span><span class="en">Self-Healing Science</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" data-target="van-hoa-cor" onclick="jumpToSection('van-hoa-cor')"><span class="toc-index">❖</span><span class="vi">Tri Thức Bản Địa</span><span class="en">Indigenous Wisdom</span><span class="toc-arrow">›</span></button></li>
+          <li><button type="button" class="toc-btn" data-target="cam-ket" onclick="jumpToSection('cam-ket')"><span class="toc-index">❖</span><span class="vi">Đạo Giữ Rừng</span><span class="en">Forest-Keeping Ethic</span><span class="toc-arrow">›</span></button></li>
         </ul>
       </div>
 
       <div class="sidebar-widget" style="border-top-color: var(--gold-primary);">
-        <div class="widget-header"><span class="vi">Chuyên&nbsp;Khảo &amp; Xác&nbsp;Thực</span><span class="en">Monographs &amp; Verification</span></div>
+        <div class="widget-header"><span class="vi">Chuyên Khảo &amp; Xác Thực</span><span class="en">Monographs &amp; Verification</span></div>
         <ul class="article-links">
           <li>
             <a href="/tracuu" style="color:var(--wine-red);">
-              <span class="vi">✔ Tra&nbsp;cứu &amp; Xác&nbsp;thực Mộc&nbsp;bản</span><span class="en">✔ Verify Box Authenticity</span><span class="link-arrow">→</span>
+              <span><span class="vi">✔ Tra cứu &amp; Xác thực Mộc bản</span><span class="en">✔ Verify Box Authenticity</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">Kiểm&nbsp;tra Mã&nbsp;QR &amp; PIN 4&nbsp;số 1-1</span><span class="en">1-to-1 QR Code &amp; 4-Digit PIN Portal</span></div>
+            <div class="article-meta"><span class="vi">Kiểm tra Mã QR &amp; PIN 4&nbsp;số 1-1</span><span class="en">1-to-1 QR Code &amp; 4-Digit PIN Portal</span></div>
           </li>
           <li>
             <a href="/tailieu/tuanhoan">
-              <span class="vi">01. Tuần&nbsp;Hoàn &amp; Thần&nbsp;Kinh</span><span class="en">01. Vascular &amp; Neural Harmony</span><span class="link-arrow">→</span>
+              <span><span class="vi">01. Tuần Hoàn &amp; Thần Kinh</span><span class="en">01. Vascular &amp; Neural Harmony</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">Thành&nbsp;mạch, thần&nbsp;kinh tim &amp; giấc&nbsp;ngủ</span><span class="en">Vascular tone, cardiac nerves &amp; sleep</span></div>
+            <div class="article-meta"><span class="vi">Thành mạch, thần kinh tim &amp; giấc ngủ</span><span class="en">Vascular tone, cardiac nerves &amp; sleep</span></div>
           </li>
           <li>
             <a href="/tailieu/tebao">
-              <span class="vi">02. Miễn&nbsp;Dịch &amp; Tế&nbsp;Bào</span><span class="en">02. Immunity &amp; Cellular Resilience</span><span class="link-arrow">→</span>
+              <span><span class="vi">02. Miễn Dịch &amp; Tế Bào</span><span class="en">02. Immunity &amp; Cellular Resilience</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">Chu&nbsp;trình tế&nbsp;bào, miễn&nbsp;dịch &amp; sinh&nbsp;lực</span><span class="en">Cell cycle, immune defense &amp; vitality</span></div>
+            <div class="article-meta"><span class="vi">Chu trình tế bào, miễn dịch &amp; sinh lực</span><span class="en">Cell cycle, immune defense &amp; vitality</span></div>
           </li>
           <li>
             <a href="/tailieu/chuyenhoa">
-              <span class="vi">03. Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc</span><span class="en">03. Metabolic &amp; Detoxification</span><span class="link-arrow">→</span>
+              <span><span class="vi">03. Chuyển Hóa &amp; Thanh Lọc</span><span class="en">03. Metabolic &amp; Detoxification</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">Cân&nbsp;bằng nội&nbsp;môi, gốc tự&nbsp;do &amp; enzyme</span><span class="en">Internal balance, free radicals &amp; enzymes</span></div>
+            <div class="article-meta"><span class="vi">Cân bằng nội môi, gốc tự do &amp; enzyme</span><span class="en">Internal balance, free radicals &amp; enzymes</span></div>
           </li>
           <li>
             <a href="/suckhoe">
-              <span class="vi">Giải&nbsp;mã cơ&nbsp;chế tự&nbsp;chữa&nbsp;lành</span><span class="en">Decode Cellular Self-Healing</span><span class="link-arrow">→</span>
+              <span><span class="vi">Giải mã cơ chế tự chữa lành</span><span class="en">Decode Cellular Self-Healing</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">4 Chuyên&nbsp;luận Y&nbsp;sinh&nbsp;học &amp; Nobel</span><span class="en">4 Biomedical &amp; Nobel Prize Monographs</span></div>
+            <div class="article-meta"><span class="vi">4 Chuyên luận Y sinh học &amp; Nobel</span><span class="en">4 Biomedical &amp; Nobel Prize Monographs</span></div>
           </li>
           <li>
             <a href="/thuhai">
-              <span class="vi">Hành&nbsp;trình thu&nbsp;hái nấm&nbsp;rừng</span><span class="en">Wild Reishi Harvesting Journey</span><span class="link-arrow">→</span>
+              <span><span class="vi">Hành trình thu hái nấm rừng</span><span class="en">Wild Reishi Harvesting Journey</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">Thực&nbsp;địa rừng&nbsp;già Quảng&nbsp;Ngãi</span><span class="en">Fieldwork in Quang&nbsp;Ngai forests</span></div>
+            <div class="article-meta"><span class="vi">Thực địa rừng già Quảng&nbsp;Ngãi</span><span class="en">Fieldwork in Quang&nbsp;Ngai forests</span></div>
           </li>
           <li>
             <a href="/lienhe">
-              <span class="vi">Thông&nbsp;tin liên&nbsp;hệ &amp; Kết&nbsp;nối</span><span class="en">Contact &amp; Direct Consultation</span><span class="link-arrow">→</span>
+              <span><span class="vi">Thông tin liên hệ &amp; Kết nối</span><span class="en">Contact &amp; Direct Consultation</span></span><span class="link-arrow">→</span>
             </a>
-            <div class="article-meta"><span class="vi">Hotline &amp; Zalo: 0796&nbsp;674&nbsp;679</span><span class="en">Hotline &amp; Zalo: 0796&nbsp;674&nbsp;679</span></div>
+            <div class="article-meta"><span class="vi">Hotline &amp; Zalo: <span class="nowrap">0796 674 679</span></span><span class="en">Hotline &amp; Zalo: <span class="nowrap">0796 674 679</span></span></div>
           </li>
         </ul>
       </div>
     </aside>
   </main>
 
-  <!-- 5.1 NÚT NỔI & NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI -->
-  <button type="button" class="fab-toc-btn" id="fab-toc-btn" onclick="openTocDrawer()" aria-label="Mở mục lục nhanh">
-    <span>☰</span>
-    <span class="vi">Mục&nbsp;Lục</span>
-    <span class="en">Contents</span>
-  </button>
-
+  <!-- 5.1 NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI (MỞ TỪ NÚT ☰ MỤC LỤC TRÊN THANH HEADER) -->
   <div class="toc-drawer-backdrop" id="toc-drawer-backdrop" onclick="closeTocDrawer()"></div>
   <div class="toc-drawer-sheet" id="toc-drawer-sheet" role="dialog" aria-modal="true" aria-label="Danh mục nhanh trang chủ">
     <div class="drawer-head">
       <div class="drawer-title">
-        <span class="vi">❖ Danh&nbsp;Mục Nhanh Trang&nbsp;Chủ</span>
+        <span class="vi">❖ Danh Mục Nhanh Trang Chủ</span>
         <span class="en">❖ Homepage Quick Navigation</span>
       </div>
       <button type="button" class="drawer-close" onclick="closeTocDrawer()" aria-label="Đóng">✕</button>
     </div>
     <ul class="toc-nav">
-      <li><button type="button" class="toc-btn" onclick="jumpToSection('tam-thu')"><span class="toc-index">✦</span><span class="vi">Tâm&nbsp;thư người&nbsp;con trưởng&nbsp;thành</span><span class="en">Heartfelt Reflections</span><span class="toc-arrow">›</span></button></li>
+      <li><button type="button" class="toc-btn" onclick="jumpToSection('tam-thu')"><span class="toc-index">✦</span><span class="vi">Tâm thư người con trưởng thành</span><span class="en">Heartfelt Reflections</span><span class="toc-arrow">›</span></button></li>
       <li><button type="button" class="toc-btn" data-target="muc-1" onclick="jumpToSection('muc-1')"><span class="toc-index">1</span><span class="vi">Trà Bách&nbsp;Phục Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang Tea</span><span class="toc-arrow">›</span></button></li>
       <li><button type="button" class="toc-btn" data-target="muc-2" onclick="jumpToSection('muc-2')"><span class="toc-index">2</span><span class="vi">Trà Bách&nbsp;Phục Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang Tea</span><span class="toc-arrow">›</span></button></li>
       <li><button type="button" class="toc-btn" data-target="muc-3" onclick="jumpToSection('muc-3')"><span class="toc-index">3</span><span class="vi">Trà Bách&nbsp;Phục Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang Tea</span><span class="toc-arrow">›</span></button></li>
-      <li><button type="button" class="toc-btn" data-target="bon-tru-cot" onclick="jumpToSection('bon-tru-cot')"><span class="toc-index">❖</span><span class="vi">4 Trụ&nbsp;Cột Bảo&nbsp;Chứng</span><span class="en">4 Pillars of Provenance</span><span class="toc-arrow">›</span></button></li>
-      <li><button type="button" class="toc-btn" data-target="luc-bao-linh-chi" onclick="jumpToSection('luc-bao-linh-chi')"><span class="toc-index">6</span><span class="vi">Giải&nbsp;Mã 6 Dòng Nấm Linh&nbsp;Chi</span><span class="en">6 Classical Reishi Types</span><span class="toc-arrow">›</span></button></li>
-      <li><button type="button" class="toc-btn" data-target="khoa-hoc-duong-sinh" onclick="jumpToSection('khoa-hoc-duong-sinh')"><span class="toc-index">❖</span><span class="vi">Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span><span class="en">Self-Healing Science</span><span class="toc-arrow">›</span></button></li>
-      <li><button type="button" class="toc-btn" data-target="van-hoa-cor" onclick="jumpToSection('van-hoa-cor')"><span class="toc-index">❖</span><span class="vi">Dấu&nbsp;Chân Đại&nbsp;Ngàn &amp; Tri&nbsp;Thức Rừng</span><span class="en">Indigenous Forest Wisdom</span><span class="toc-arrow">›</span></button></li>
-      <li><button type="button" class="toc-btn" data-target="cam-ket" onclick="jumpToSection('cam-ket')"><span class="toc-index">❖</span><span class="vi">Đạo Giữ&nbsp;Rừng &amp; Cam&nbsp;Kết</span><span class="en">Forest-Keeping Ethic</span><span class="toc-arrow">›</span></button></li>
+      <li><button type="button" class="toc-btn" data-target="bon-tru-cot" onclick="jumpToSection('bon-tru-cot')"><span class="toc-index">❖</span><span class="vi">4 Trụ Cột Bảo Chứng</span><span class="en">4 Pillars of Provenance</span><span class="toc-arrow">›</span></button></li>
+      <li><button type="button" class="toc-btn" data-target="luc-bao-linh-chi" onclick="jumpToSection('luc-bao-linh-chi')"><span class="toc-index">6</span><span class="vi">Giải Mã 6 Dòng Nấm Linh&nbsp;Chi</span><span class="en">6 Classical Reishi Types</span><span class="toc-arrow">›</span></button></li>
+      <li><button type="button" class="toc-btn" data-target="khoa-hoc-duong-sinh" onclick="jumpToSection('khoa-hoc-duong-sinh')"><span class="toc-index">❖</span><span class="vi">Cơ Chế Tự Chữa Lành</span><span class="en">Self-Healing Science</span><span class="toc-arrow">›</span></button></li>
+      <li><button type="button" class="toc-btn" data-target="van-hoa-cor" onclick="jumpToSection('van-hoa-cor')"><span class="toc-index">❖</span><span class="vi">Dấu Chân Đại Ngàn &amp; Tri Thức Rừng</span><span class="en">Indigenous Forest Wisdom</span><span class="toc-arrow">›</span></button></li>
+      <li><button type="button" class="toc-btn" data-target="cam-ket" onclick="jumpToSection('cam-ket')"><span class="toc-index">❖</span><span class="vi">Đạo Giữ Rừng &amp; Cam Kết</span><span class="en">Forest-Keeping Ethic</span><span class="toc-arrow">›</span></button></li>
     </ul>
   </div>
 
-  <!-- 6. CHÂN TRANG ĐỒNG BỘ TOÀN HỆ THỐNG -->
+  <!-- 6. CHÂN TRANG ĐỒNG BỘ CÓ LOGO BÁCH PHỤC -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <h3><span class="vi">CÔNG&nbsp;TY TNHH TRÀ THẢO&nbsp;MỘC BÁCH&nbsp;PHỤC</span><span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span></h3>
+        <div class="footer-brand-head">
+          <img src="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri" alt="Logo Trà Thảo Mộc Bách Phục" class="footer-logo-img">
+          <h3><span class="vi">CÔNG TY TNHH TRÀ THẢO MỘC BÁCH&nbsp;PHỤC</span><span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span></h3>
+        </div>
         <p style="font-size:12.5px; color:#D6C7B8; margin-bottom:6px;">
-          <span class="vi"><strong>Mã&nbsp;số doanh&nbsp;nghiệp (MST):</strong> 4300901179</span>
-          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> 4300901179</span>
+          <span class="vi"><strong>Mã số doanh nghiệp (MST):</strong> <span class="nowrap">4300901179</span></span>
+          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> <span class="nowrap">4300901179</span></span>
         </p>
-        <p class="vi">Chắt&nbsp;chiu từng tai&nbsp;nấm Linh&nbsp;Chi chọn&nbsp;lọc từ rừng&nbsp;già tự&nbsp;nhiên Quảng&nbsp;Ngãi thành những ấm&nbsp;trà túi&nbsp;lọc mộc thanh&nbsp;khiết. Đồng&nbsp;hành cùng nếp&nbsp;sống an&nbsp;dưỡng, giúp thân&nbsp;tâm an&nbsp;định, nâng&nbsp;đỡ thể&nbsp;trạng và mang&nbsp;lại sự an&nbsp;yên cho mỗi gia&nbsp;đình.</p>
+        <p class="vi">Chắt chiu từng tai nấm Linh&nbsp;Chi chọn lọc từ rừng già tự nhiên Quảng&nbsp;Ngãi thành những ấm trà túi lọc mộc thanh khiết. Đồng hành cùng nếp sống an dưỡng, giúp thân tâm an định, nâng đỡ thể trạng và mang lại sự an yên cho mỗi gia đình.</p>
         <p class="en">Carefully crafting selected 100% wild-harvested Reishi from the primeval forests of Quang&nbsp;Ngai into pure artisanal filter tea infusions—accompanying mindful living, nurturing physical resilience, and bringing peace to every family.</p>
         <p style="color:var(--gold-light); font-family:'Playfair Display',serif; font-style:italic;">
-          <span class="vi">“Cha&nbsp;mẹ bình&nbsp;an, chúng&nbsp;con vững&nbsp;vàng.”</span>
+          <span class="vi">“Cha mẹ bình an, chúng con vững&nbsp;vàng.”</span>
           <span class="en">“When our parents are at peace, we stand&nbsp;strong.”</span>
         </p>
       </div>
 
       <div class="footer-col">
-        <h4><span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục &amp; Tri&nbsp;Thức</span><span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span></h4>
+        <h4><span class="vi">Trà Thảo Mộc Bách&nbsp;Phục &amp; Tri Thức</span><span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span></h4>
         <ul>
           <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng (Bách&nbsp;Phục Thượng&nbsp;Hoàng)</span><span class="en">1. Thuong&nbsp;Hoang (Bach&nbsp;Phuc Thuong&nbsp;Hoang)</span></a></li>
           <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng (Bách&nbsp;Phục Kim&nbsp;Hoàng)</span><span class="en">2. Kim&nbsp;Hoang (Bach&nbsp;Phuc Kim&nbsp;Hoang)</span></a></li>
           <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh&nbsp;Hoàng (Bách&nbsp;Phục Minh&nbsp;Hoàng)</span><span class="en">3. Minh&nbsp;Hoang (Bach&nbsp;Phuc Minh&nbsp;Hoang)</span></a></li>
-          <li style="margin-top:8px;"><a href="/tracuu" style="color:var(--gold-bright);"><span class="vi">→ Tra&nbsp;cứu &amp; Xác&nbsp;thực Mộc&nbsp;bản</span><span class="en">→ 1-to-1 Box Authentication</span></a></li>
-          <li><a href="/suckhoe" style="color:var(--gold-light);"><span class="vi">→ Giải&nbsp;mã cơ&nbsp;chế tự&nbsp;chữa&nbsp;lành</span><span class="en">→ Cellular Self-Healing Science</span></a></li>
-          <li><a href="/tailieu" style="color:var(--gold-primary);"><span class="vi">→ Tài&nbsp;liệu chuyên&nbsp;khảo nấm Linh&nbsp;Chi</span><span class="en">→ Reishi Scientific Monographs</span></a></li>
-          <li><a href="/thuhai"><span class="vi">→ Hành&nbsp;trình thu&nbsp;hái rừng&nbsp;già</span><span class="en">→ Wild Harvesting Journey</span></a></li>
+          <li style="margin-top:8px;"><a href="/tracuu" style="color:var(--gold-bright);"><span class="vi">→ Tra cứu &amp; Xác thực Mộc bản</span><span class="en">→ 1-to-1 Box Authentication</span></a></li>
+          <li><a href="/suckhoe" style="color:var(--gold-light);"><span class="vi">→ Giải mã cơ chế tự chữa lành</span><span class="en">→ Cellular Self-Healing Science</span></a></li>
+          <li><a href="/tailieu" style="color:var(--gold-primary);"><span class="vi">→ Tài liệu chuyên khảo nấm Linh&nbsp;Chi</span><span class="en">→ Reishi Scientific Monographs</span></a></li>
+          <li><a href="/thuhai"><span class="vi">→ Hành trình thu hái rừng già</span><span class="en">→ Wild Harvesting Journey</span></a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4><span class="vi">Thông&nbsp;Tin Kết&nbsp;Nối</span><span class="en">Contact &amp; Consultation</span></h4>
+        <h4><span class="vi">Thông Tin Kết Nối</span><span class="en">Contact &amp; Consultation</span></h4>
         <ul>
-          <li class="contact-item"><span class="icon">📍</span><span class="vi"><strong>Địa&nbsp;chỉ:</strong> 136 Mạc&nbsp;Đĩnh&nbsp;Chi, Phường Nghĩa&nbsp;Lộ, Tỉnh Quảng&nbsp;Ngãi</span><span class="en"><strong>Address:</strong> 136 Mac&nbsp;Dinh&nbsp;Chi St., Nghia&nbsp;Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span></li>
-          <li class="contact-item"><span class="icon">📞</span><span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link" href="tel:0796674679">0796&nbsp;674&nbsp;679</a></span></li>
+          <li class="contact-item"><span class="icon">📍</span><span class="vi"><strong>Địa chỉ:</strong> 136 Mạc Đĩnh Chi, Phường Nghĩa Lộ, Tỉnh Quảng&nbsp;Ngãi</span><span class="en"><strong>Address:</strong> 136 Mac Dinh Chi St., Nghia Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span></li>
+          <li class="contact-item"><span class="icon">📞</span><span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link nowrap" href="tel:0796674679">0796 674 679</a></span></li>
           <li class="contact-item"><span class="icon">🌐</span><span><strong>Website:</strong> <a href="/" style="color:#D6C7B8;">www.trathaomocbachphuc.vn</a></span></li>
-          <li style="margin-top:6px;"><a href="/lienhe" style="color:var(--gold-light); font-weight:600;"><span class="vi">→ Xem trang Liên&nbsp;Hệ chi&nbsp;tiết</span><span class="en">→ View Detailed Contact Page</span></a></li>
+          <li style="margin-top:6px;"><a href="/lienhe" style="color:var(--gold-light); font-weight:600;"><span class="vi">→ Xem trang Liên Hệ chi tiết</span><span class="en">→ View Detailed Contact Page</span></a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-disclaimer-wrap">
-      <p class="footer-disclaimer vi">* Lưu&nbsp;ý: Các sản&nbsp;phẩm của Trà Thảo&nbsp;Mộc Bách&nbsp;Phục là thức&nbsp;uống thảo&nbsp;mộc dưỡng&nbsp;sinh tự&nbsp;nhiên theo hồ&nbsp;sơ tự công&nbsp;bố, không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh. Website chỉ giới&nbsp;thiệu thông&nbsp;tin văn&nbsp;hóa trà và kết&nbsp;nối tư&nbsp;vấn, không giao&nbsp;dịch thương&nbsp;mại điện&nbsp;tử trực&nbsp;tuyến.</p>
+      <p class="footer-disclaimer vi">* Lưu ý: Các sản phẩm của Trà Thảo Mộc Bách&nbsp;Phục là thức uống thảo mộc dưỡng sinh tự nhiên theo hồ sơ tự công bố, không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh. Website chỉ giới thiệu thông tin văn hóa trà và kết nối tư vấn, không giao dịch thương mại điện tử trực tuyến.</p>
       <p class="footer-disclaimer en">* Notice: Bach&nbsp;Phuc Herbal Tea products are natural botanical infusions compliant with statutory self-declaration standards. They are not medicines and do not replace medical treatment. This website provides cultural information and consultation only, with no online commercial transactions.</p>
     </div>
 
     <div class="footer-bottom">
-      <span class="vi">© Bản&nbsp;quyền thuộc về Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục. Bảo&nbsp;lưu mọi&nbsp;quyền.</span>
+      <span class="vi">© Bản quyền thuộc về Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục. Bảo lưu mọi quyền.</span>
       <span class="en">© Copyright by Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. All rights reserved.</span>
     </div>
   </footer>
 
-  <!-- BẢNG QUẢN LÝ LINK ẢNH, ACCORDION, MỤC LỤC SCROLLSPY & SONG NGỮ -->
+  <!-- BẢNG QUẢN LÝ LINK ẢNH, ACCORDION, MỤC LỤC SCROLLSPY, CHỐNG RỚT CHỮ & SONG NGỮ -->
   <script>
     const KHO_ANH_BACH_PHUC = {
       slide1:      "https://lh3.googleusercontent.com/d/19RMt6JT7IWO-8KfFe0o9dyhYj8DSWq-7",
@@ -1887,11 +2007,6 @@
         fill.style.width = pct.toFixed(1) + '%';
       }
 
-      const fab = document.getElementById('fab-toc-btn');
-      if (fab) {
-        fab.classList.toggle('visible', scrollTop > 280);
-      }
-
       const sections = document.querySelectorAll('.spy-section');
       const nav = document.getElementById('main-fixed-nav');
       const offset = (nav ? nav.offsetHeight : 56) + 95;
@@ -1925,8 +2040,29 @@
       try { localStorage.setItem('bachphuc_lang', targetLang); } catch (e) {}
     }
 
+    /* HÀM CHỐNG RỚT CHỮ MỒ CÔI CUỐI ĐOẠN (CHẠY CHO CẢ VI & EN) */
+    function fixOrphans(selector) {
+      document.querySelectorAll(selector).forEach((el) => {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+        let lastText = null;
+        let current;
+        while ((current = walker.nextNode())) {
+          if (current.nodeValue && current.nodeValue.trim().length > 0) {
+            lastText = current;
+          }
+        }
+        if (lastText) {
+          lastText.nodeValue = lastText.nodeValue.replace(/\s+([^\s]+)\s*$/, '\u00A0$1');
+        }
+      });
+    }
+
     window.addEventListener('resize', syncNavPadding);
+    window.addEventListener('load', syncNavPadding);
     window.addEventListener('scroll', updateReadingAndSpy, { passive: true });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeTocDrawer();
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       syncNavPadding();
@@ -1938,17 +2074,15 @@
         }
       } catch (e) {}
 
-      const textBlocks = document.querySelectorAll(
-        ".need-desc .vi, .trust-text p.vi, .story-list li .vi, .product-lead-summary .vi, .product-spec-list li .vi, .reishi-body .vi, .science-hub-desc .vi, .info-extra-card p.vi, .disclaimer-body p.vi"
+      fixOrphans(
+        ".need-desc .vi, .need-desc .en, .story-quote-box .vi, .story-quote-box .en, " +
+        ".story-list li .vi, .story-list li .en, .product-lead-summary .vi, .product-lead-summary .en, " +
+        ".product-spec-list li .vi, .product-spec-list li .en, .trust-text p.vi, .trust-text p.en, " +
+        ".reishi-body .vi, .reishi-body .en, .science-hub-desc .vi, .science-hub-desc .en, " +
+        ".mini-desc, .info-extra-card p.vi, .info-extra-card p.en, " +
+        ".disclaimer-body p.vi, .disclaimer-body p.en, .footer-brand p.vi, .footer-brand p.en, " +
+        ".footer-disclaimer, .footer-bottom .vi, .footer-bottom .en"
       );
-      textBlocks.forEach((node) => {
-        if (node.childNodes.length > 0) {
-          const last = node.childNodes[node.childNodes.length - 1];
-          if (last.nodeType === Node.TEXT_NODE) {
-            last.nodeValue = last.nodeValue.replace(/\s+(\S+)\s*$/, "\u00A0$1");
-          }
-        }
-      });
     });
   </script>
 </body>
