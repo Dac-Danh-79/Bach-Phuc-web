@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chuyên Khảo 01: Sinh Lý Bệnh Áp Lực Thành Mạch, Thần Kinh Tim & Cơ Chế Hoạt Chất Nấm Linh Chi - Trà Thảo Mộc Bách Phục</title>
+<link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -34,8 +35,8 @@
 
   body, p, li, td, th, div, button {
     text-align: left !important;
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
+    word-break: normal;
+    overflow-wrap: break-word;
     -webkit-hyphens: none;
     hyphens: none;
   }
@@ -45,28 +46,31 @@
     background-color: var(--cream-bg);
     color: var(--text-dark);
     line-height: 1.72;
-    padding-top: 52px;
+    padding-top: 56px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+
+  img { max-width: 100%; }
 
   /* CƠ CHẾ CHUYỂN ĐỔI SONG NGỮ VI | EN TỨC THÌ */
   body[data-lang="vi"] .en { display: none !important; }
   body[data-lang="en"] .vi { display: none !important; }
 
   .nowrap { white-space: nowrap; }
-  h1, h2, h3, h4, .doc-title, .bridge-title { text-wrap: balance; }
-  p, li, td, .doc-quote-box, .academic-framing-note { text-wrap: pretty; }
+  h1, h2, h3, h4, .doc-title, .bridge-title, .origin-text { text-wrap: balance; }
+  p, li, td, .doc-quote-box, .academic-framing-note, .footer-disclaimer { text-wrap: pretty; }
 
-  /* KHÓA CHỐNG TRÀN NGANG CHO MỌI KHUNG FLEX / GRID / ACCORDION */
+  /* KHÓA CHỐNG TRÀN NGANG CHO MỌI KHUNG FLEX / GRID / ACCORDION / BẢNG */
   .doc-workspace, .doc-main-col, .doc-section-card,
   .acc-panel, .acc-inner, .table-responsive,
-  .patho-3col-grid > *, .study-grid-2x2 > *, .ref-item-info {
+  .patho-3col-grid > *, .study-grid-2x2 > *, .ref-item-info,
+  .doc-header-text, .bridge-info {
     min-width: 0;
     max-width: 100%;
   }
 
-  /* ================= 0. THANH MENU NGANG SONG NGỮ + THANH TIẾN ĐỘ ĐỌC ================= */
+  /* ================= 0. THANH MENU NGANG CÓ LOGO BÁCH PHỤC + THANH TIẾN ĐỘ ĐỌC ================= */
   .top-bilingual-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -84,7 +88,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 52px;
+    min-height: 56px;
     gap: 10px;
   }
   .reading-progress-track {
@@ -101,12 +105,59 @@
     transition: width 0.1s linear;
   }
 
+  .nav-brand-tools {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+  }
+  .nav-logo-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 0;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
+    transition: transform 0.2s ease;
+  }
+  .nav-logo-link:hover .nav-logo-img { transform: scale(1.04); }
+
+  .nav-mobile-toc-btn {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: rgba(197, 160, 89, 0.14);
+    color: var(--gold-bright);
+    border: 1px solid rgba(197, 160, 89, 0.65);
+    border-radius: 4px;
+    padding: 4.5px 9px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  .nav-mobile-toc-btn:hover { background: rgba(197, 160, 89, 0.28); color: #FFFFFF; }
+
+  .nav-menu-scroll-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+  }
   .nav-menu-list {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
+    gap: 2px;
+    flex-wrap: nowrap;
     margin: 0;
     padding: 0;
   }
@@ -118,12 +169,12 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 8px 11px;
+    padding: 8px 9px;
     color: #EFE6D8;
     text-decoration: none;
-    font-size: 12.5px;
+    font-size: 12.2px;
     font-weight: 500;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     border-radius: 4px;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -136,7 +187,7 @@
     border-bottom: 2px solid var(--gold-primary);
     font-weight: 600;
   }
-  .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 2px; }
+  .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 1px; }
 
   .nav-dropdown {
     position: absolute;
@@ -193,9 +244,9 @@
     font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 600;
-    padding: 5px 9px;
+    padding: 5px 8px;
     cursor: pointer;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.3px;
     border-radius: 2px;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -260,7 +311,7 @@
   .hero-container {
     position: relative;
     z-index: 3;
-    max-width: 960px;
+    max-width: 940px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -270,7 +321,7 @@
   .hero-sub {
     font-family: 'Inter', sans-serif;
     color: var(--gold-light);
-    font-size: clamp(11px, 1.6vw, 12.5px);
+    font-size: clamp(11px, 1.5vw, 12.5px);
     letter-spacing: 2.8px;
     text-transform: uppercase;
     font-weight: 600;
@@ -397,40 +448,6 @@
     gap: 26px;
   }
 
-  /* HỘP MỤC LỤC CUỘN GỌN ĐẦU BÀI (HIỆN TRÊN ĐIỆN THOẠI / TABLET) */
-  .mobile-inline-toc {
-    display: none;
-    width: 100%;
-    background: #FFFFFF;
-    border: 1.5px solid var(--gold-primary);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 14px rgba(35, 18, 11, 0.05);
-  }
-  .mobile-toc-trigger {
-    width: 100%;
-    background: linear-gradient(90deg, #23120B 0%, #3A1A0E 100%);
-    color: var(--gold-bright);
-    border: none;
-    padding: 12px 16px;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 14.5px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .mobile-toc-trigger[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
-  .mobile-toc-list {
-    list-style: none;
-    padding: 10px 14px 12px;
-    background: #FDFBF8;
-  }
-  .mobile-toc-list li { border-bottom: 1px dashed var(--border-warm); }
-  .mobile-toc-list li:last-child { border-bottom: none; }
-
   /* CƠ CHẾ CUỘN GỌN MƯỢT (ACCORDION DÙNG CHUNG) */
   .acc-panel {
     display: grid;
@@ -441,7 +458,8 @@
   .acc-inner { overflow: hidden; }
   .acc-chevron {
     display: inline-block;
-    font-size: 10px;
+    font-size: 13px;
+    line-height: 1;
     transition: transform 0.25s ease;
     flex-shrink: 0;
   }
@@ -455,6 +473,7 @@
     border-radius: 4px;
     font-size: 12.4px;
     font-weight: 600;
+    line-height: 1.4;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -475,7 +494,7 @@
     padding: 28px 26px;
     box-shadow: 0 8px 22px rgba(35, 18, 11, 0.04);
     position: relative;
-    scroll-margin-top: 70px;
+    scroll-margin-top: 76px;
   }
   .doc-section-card::before {
     content: "";
@@ -495,15 +514,16 @@
     gap: 12px;
     flex-wrap: wrap;
   }
-  .doc-header-text { flex: 1; min-width: 0; }
+  .doc-header-text { flex: 1; }
   .doc-tag {
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
     color: var(--wine-red);
     font-weight: 700;
     display: block;
     margin-bottom: 4px;
+    line-height: 1.45;
   }
   .doc-title {
     font-family: 'Playfair Display', Georgia, serif;
@@ -581,7 +601,7 @@
   }
   .patho-num { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--wine-red); }
   .patho-box h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; color: var(--espresso); line-height: 1.32; }
-  .patho-box p { font-size: 13px; color: var(--text-dark); line-height: 1.62; margin: 0; }
+  .patho-box p { font-size: 13.2px; color: var(--text-dark); line-height: 1.64; margin: 0; }
 
   /* PHẦN II: 2 KHỐI TÁC DỤNG PHỤ DẠNG ACCORDION GỌN */
   .clinical-stack {
@@ -617,24 +637,26 @@
     font-size: 16.5px;
     color: var(--espresso);
     line-height: 1.35;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
   .clinical-summary-tags {
     font-size: 12.2px;
     color: var(--text-muted);
     font-style: italic;
+    line-height: 1.5;
   }
   .clinical-icon-circle {
     flex-shrink: 0;
-    width: 26px; height: 26px;
+    width: 28px; height: 28px;
     border-radius: 50%;
-    border: 1px solid var(--gold-primary);
+    border: 1.2px solid var(--gold-primary);
     background: #FFFFFF;
     color: var(--wine-red);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 13px;
+    line-height: 1;
     margin-top: 2px;
     transition: transform 0.25s ease, background 0.2s ease;
   }
@@ -650,7 +672,7 @@
   }
   .clinical-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
   .clinical-list li {
-    font-size: 13.4px;
+    font-size: 13.5px;
     color: var(--text-dark);
     line-height: 1.66;
     position: relative;
@@ -658,7 +680,7 @@
   }
   .clinical-list li::before { content: "•"; position: absolute; left: 2px; top: 0; font-weight: 700; color: var(--wine-red); }
 
-  /* PHẦN III: 4 ĐỀ TÀI NGHIÊN CỨU (MỞ SẴN TÓM TẮT + CUỘN CƠ CHẾ PHÂN TỬ) */
+  /* PHẦN III: 4 ĐỀ TÀI NGHIÊN CỨU (MỞ SẴN KẾT LUẬN + CUỘN CƠ CHẾ PHÂN TỬ) */
   .study-grid-2x2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -685,12 +707,12 @@
     color: var(--wine-red);
     background: #FAF4EA;
     border-radius: 4px;
-    padding: 7px 10px;
-    line-height: 1.5;
+    padding: 8px 10px;
+    line-height: 1.54;
     font-weight: 500;
   }
   .study-detail-text {
-    font-size: 13.2px;
+    font-size: 13.3px;
     color: var(--text-dark);
     line-height: 1.66;
     padding-top: 8px;
@@ -702,6 +724,7 @@
     font-size: 11.8px;
     color: var(--text-muted);
     font-style: italic;
+    line-height: 1.55;
   }
 
   /* PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (CUỘN GỌN TRONG KHUNG RIÊNG) */
@@ -790,10 +813,10 @@
     gap: 18px;
     flex-wrap: wrap;
   }
-  .bridge-info { flex: 1; min-width: 0; }
+  .bridge-info { flex: 1; }
   .bridge-tag { font-size: 10.5px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-light); font-weight: 700; display: block; margin-bottom: 4px; }
-  .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.2vw, 21px); color: var(--gold-bright); margin-bottom: 5px; }
-  .bridge-desc { font-size: 13.2px; color: #DFD3C3; line-height: 1.62; }
+  .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.2vw, 21px); color: var(--gold-bright); margin-bottom: 5px; line-height: 1.34; }
+  .bridge-desc { font-size: 13.2px; color: #DFD3C3; line-height: 1.64; }
   .bridge-btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
   .btn-gold-cta {
     background: linear-gradient(135deg, #D4AF37 0%, #B38728 100%);
@@ -846,21 +869,23 @@
     font-weight: 700;
     color: var(--wine-red);
     cursor: pointer;
+    line-height: 1.38;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
   }
+  .disclaimer-title-inner { display: inline-flex; align-items: flex-start; gap: 7px; }
   .disclaimer-trigger[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
   .disclaimer-body { padding-top: 10px; margin-top: 8px; border-top: 1px dashed #D8CCB8; }
-  .disclaimer-body p { font-size: 13px; color: var(--text-dark); line-height: 1.65; margin-bottom: 8px; }
+  .disclaimer-body p { font-size: 13px; color: var(--text-dark); line-height: 1.66; margin-bottom: 8px; }
   .disclaimer-body p:last-child { margin-bottom: 0; }
 
-  /* ================= 4. CỘT PHẢI: MỤC LỤC TRƯỢT DÍNH (DESKTOP STICKY TOC) ================= */
+  /* ================= 4. CỘT PHẢI: MỤC LỤC TRƯỢT DÍNH (DESKTOP STICKY TOC + SCROLLSPY) ================= */
   .doc-sidebar {
-    width: 290px;
+    width: 285px;
     position: sticky;
-    top: 68px;
+    top: 72px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -871,7 +896,7 @@
     border: 1px solid var(--border-warm);
     border-top: 3.5px solid var(--espresso);
     border-radius: 8px;
-    padding: 16px 16px;
+    padding: 16px;
     box-shadow: 0 6px 18px rgba(35, 18, 11, 0.04);
   }
   .toc-widget-head {
@@ -934,38 +959,15 @@
     font-weight: 600;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 6px;
+    line-height: 1.38;
     transition: color 0.2s ease;
   }
   .sidebar-series-list a:hover { color: var(--wine-red); }
-  .sidebar-series-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .sidebar-series-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.42; }
 
-  /* ================= 5. NÚT NỔI & NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI ================= */
-  .fab-toc-btn {
-    position: fixed;
-    right: 16px;
-    bottom: 78px;
-    z-index: 99980;
-    background: linear-gradient(135deg, #23120B 0%, #3E180D 100%);
-    color: var(--gold-bright);
-    border: 1.5px solid var(--gold-primary);
-    border-radius: 999px;
-    padding: 10px 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12.5px;
-    font-weight: 700;
-    box-shadow: 0 8px 22px rgba(20, 7, 2, 0.38);
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    gap: 7px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(14px);
-    transition: all 0.25s ease;
-  }
-  .fab-toc-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  /* ================= 5. NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI ================= */
   .toc-drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -1014,10 +1016,15 @@
     justify-content: center;
   }
 
-  /* FOOTER ĐỒNG BỘ */
+  /* ================= 6. FOOTER ĐỒNG BỘ CÓ LOGO ================= */
   .site-footer { background-color: var(--espresso); color: #D6C7B8; border-top: 3px solid var(--gold-primary); padding: 38px 20px 22px; }
   .footer-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1.3fr; gap: 28px; padding-bottom: 22px; border-bottom: 1px solid rgba(197, 160, 89, 0.25); }
-  .footer-brand h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 18px; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .footer-brand-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .footer-logo-img {
+    height: 48px; width: auto; object-fit: contain; flex-shrink: 0; display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
+  }
+  .footer-brand h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 16.5px; margin: 0; letter-spacing: 0.4px; line-height: 1.35; }
   .footer-brand p { font-size: 13px; line-height: 1.7; color: #C2B4A8; margin-bottom: 8px; }
   .footer-col h4 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .footer-col ul { list-style: none; }
@@ -1028,103 +1035,128 @@
   .contact-item .icon { color: var(--gold-primary); font-size: 12.5px; line-height: 1.55; flex-shrink: 0; }
   .contact-link { color: var(--gold-bright) !important; font-weight: 600; }
   .footer-disclaimer-wrap { max-width: 1180px; margin: 16px auto 0; padding: 0 10px; text-align: center; }
-  .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.55; text-align: center !important; text-wrap: balance; }
+  .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.58; text-align: center !important; }
   .footer-bottom { max-width: 1180px; margin: 10px auto 0; text-align: center !important; font-size: 11.5px; color: #8C7B6E; }
 
-  @media (max-width: 960px) {
-    .top-nav-inner { padding: 6px 12px; gap: 8px; }
+  /* ================= RESPONSIVE CHỐNG VỠ HÀNG LAPTOP NHỎ & ĐIỆN THOẠI ================= */
+  @media (max-width: 1080px) {
+    .top-nav-inner { flex-wrap: wrap; padding: 7px 14px 6px; gap: 6px 10px; min-height: auto; }
+    .nav-brand-tools { order: 1; }
+    .nav-logo-img { height: 34px; }
+    .lang-switch-box { order: 2; }
+    .nav-menu-scroll-wrap {
+      order: 3; width: 100%; flex-basis: 100%; justify-content: flex-start;
+      position: relative; border-top: 1px solid rgba(197, 160, 89, 0.22); padding-top: 5px;
+    }
+    .nav-menu-scroll-wrap::after {
+      content: ""; position: absolute; top: 5px; right: 0; bottom: 0; width: 28px; pointer-events: none;
+      background: linear-gradient(90deg, rgba(20, 7, 2, 0), rgba(20, 7, 2, 0.96));
+    }
     .nav-menu-list {
-      overflow-x: auto; flex-wrap: nowrap; flex: 1; min-width: 0; padding-bottom: 2px;
+      overflow-x: auto; flex-wrap: nowrap; width: 100%; padding-right: 26px; gap: 4px;
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
     }
     .nav-menu-list::-webkit-scrollbar { display: none; }
     .nav-dropdown { display: none; }
+  }
+
+  @media (max-width: 960px) {
+    .nav-mobile-toc-btn { display: inline-flex; }
     .doc-workspace { flex-direction: column; align-items: stretch; width: 100%; }
     .doc-main-col { width: 100%; flex: none; }
     .doc-sidebar { display: none; }
-    .mobile-inline-toc { display: block; }
-    .fab-toc-btn { display: inline-flex; }
     .patho-3col-grid, .study-grid-2x2 { grid-template-columns: 1fr; gap: 14px; }
     .footer-inner { grid-template-columns: 1fr; gap: 22px; }
   }
+
   @media (max-width: 640px) {
-    body { line-height: 1.64; padding-top: 84px; }
-    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 7px; gap: 6px; }
-    .lang-switch-box { align-self: flex-end; }
-    .lang-btn { font-size: 10.5px; padding: 3px 8px; }
-    .nav-menu-list { width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 5px; gap: 6px; }
+    body { line-height: 1.65; padding-top: 90px; }
+    .top-nav-inner { padding: 6px 10px 6px; }
+    .nav-logo-img { height: 30px; }
+    .nav-mobile-toc-btn { font-size: 11px; padding: 4px 8px; }
+    .lang-btn { font-size: 10.5px; padding: 4px 7px; }
     .nav-link { font-size: 12px; padding: 5px 9px; }
 
     .breadcrumb-nav, .subpage-nav-bar { padding-left: 14px; padding-right: 14px; }
     .doc-hero { padding: 30px 14px 24px; }
     .doc-hero::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
+    .hero-sub { letter-spacing: 2px; }
+    .origin-text { letter-spacing: 1px; font-size: 11px; }
+
     .doc-workspace { padding: 0 14px; margin-top: 20px; }
     .doc-section-card, .academic-bridge-card { padding: 20px 16px; }
+    .doc-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     .bridge-btn-row, .subpage-nav-inner { flex-direction: column; width: 100%; }
     .btn-gold-cta, .btn-outline-cta, .nav-pill-btn {
-      width: 100%;
-      justify-content: center;
-      white-space: normal;
-      text-align: center !important;
-      line-height: 1.4;
+      width: 100%; justify-content: center; white-space: normal; text-align: center !important; line-height: 1.4;
     }
     .ref-item-card { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 420px) {
+    .lang-code { display: none; }
+    .nav-brand-tools { gap: 6px; }
   }
 </style>
 </head>
 <body id="top-chuyen-khao-01" data-lang="vi">
 
-  <!-- 0. THANH MENU NGANG SONG NGỮ GHIM CỐ ĐỊNH + THANH TIẾN ĐỘ ĐỌC -->
+  <!-- 0. THANH MENU NGANG CÓ LOGO BÁCH PHỤC + MỤC LỤC DI ĐỘNG + SONG NGỮ -->
   <nav class="top-bilingual-nav" id="main-fixed-nav" aria-label="Main Navigation">
     <div class="top-nav-inner">
-      <ul class="nav-menu-list">
-        <li class="nav-item">
-          <a href="/" class="nav-link"><span class="vi">Trang&nbsp;Chủ</span><span class="en">Home</span></a>
-        </li>
-        <li class="nav-item">
-          <a href="/dongsanpham" class="nav-link">
-            <span class="vi">Sản&nbsp;Phẩm</span><span class="en">Products</span><span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang</span></a></li>
-            <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang</span></a></li>
-            <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/tailieu" class="nav-link active">
-            <span class="vi">Tài&nbsp;Liệu Chuyên&nbsp;Khảo</span><span class="en">Scientific Monographs</span><span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li>
-              <button type="button" onclick="jumpToSection('top')" class="sub-active">
-                <span class="vi">01. Tuần&nbsp;Hoàn &amp; Thần&nbsp;Kinh (Đang&nbsp;xem)</span>
-                <span class="en">01. Vascular &amp; Neural (Current)</span>
-              </button>
-            </li>
-            <li><a href="/tailieu/tebao"><span class="vi">02. Miễn&nbsp;Dịch &amp; Tế&nbsp;Bào</span><span class="en">02. Immunity &amp; Cellular</span></a></li>
-            <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc</span><span class="en">03. Metabolic &amp; Detox</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/suckhoe" class="nav-link">
-            <span class="vi">Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span><span class="en">Self-Healing Science</span><span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân&nbsp;Bằng Nội&nbsp;Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
-            <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự&nbsp;Chữa&nbsp;Lành Tế&nbsp;Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
-            <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa&nbsp;Học Thích&nbsp;Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
-            <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh&nbsp;Học Thân&nbsp;Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="/tracuu" class="nav-link"><span class="vi">Tra&nbsp;Cứu</span><span class="en">Authentication</span></a></li>
-        <li class="nav-item"><a href="/thuhai" class="nav-link"><span class="vi">Thu&nbsp;Hái</span><span class="en">Wild Harvesting</span></a></li>
-        <li class="nav-item"><a href="/lienhe" class="nav-link"><span class="vi">Liên&nbsp;Hệ</span><span class="en">Contact</span></a></li>
-      </ul>
+      <div class="nav-brand-tools">
+        <a href="/" class="nav-logo-link" aria-label="Trà Thảo Mộc Bách Phục">
+          <img src="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri" alt="Logo Trà Thảo Mộc Bách Phục" class="nav-logo-img">
+        </a>
+        <button type="button" class="nav-mobile-toc-btn" onclick="openTocDrawer()" aria-label="Mở mục lục">
+          <span>☰</span>
+          <span class="vi">Mục&nbsp;Lục</span>
+          <span class="en">Contents</span>
+        </button>
+      </div>
+
+      <div class="nav-menu-scroll-wrap">
+        <ul class="nav-menu-list">
+          <li class="nav-item"><a href="/" class="nav-link"><span class="vi">Trang Chủ</span><span class="en">Home</span></a></li>
+          <li class="nav-item">
+            <a href="/dongsanpham" class="nav-link"><span class="vi">Sản Phẩm</span><span class="en">Products</span><span class="nav-caret">▾</span></a>
+            <ul class="nav-dropdown">
+              <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng Hoàng</span><span class="en">1. Thuong Hoang</span></a></li>
+              <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim Hoàng</span><span class="en">2. Kim Hoang</span></a></li>
+              <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh Hoàng</span><span class="en">3. Minh Hoang</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/tailieu" class="nav-link active"><span class="vi">Tài Liệu Chuyên Khảo</span><span class="en">Scientific Monographs</span><span class="nav-caret">▾</span></a>
+            <ul class="nav-dropdown">
+              <li>
+                <button type="button" onclick="jumpToSection('top')" class="sub-active">
+                  <span class="vi">01. Tuần Hoàn &amp; Thần Kinh (Đang xem)</span>
+                  <span class="en">01. Vascular &amp; Neural (Current)</span>
+                </button>
+              </li>
+              <li><a href="/tailieu/tebao"><span class="vi">02. Miễn Dịch &amp; Tế Bào</span><span class="en">02. Immunity &amp; Cellular</span></a></li>
+              <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển Hóa &amp; Thanh Lọc</span><span class="en">03. Metabolic &amp; Detox</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/suckhoe" class="nav-link"><span class="vi">Cơ Chế Tự Chữa Lành</span><span class="en">Self-Healing Science</span><span class="nav-caret">▾</span></a>
+            <ul class="nav-dropdown">
+              <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân Bằng Nội Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
+              <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự Chữa Lành Tế Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
+              <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa Học Thích Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
+              <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh Học Thân Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/tracuu" class="nav-link"><span class="vi">Tra Cứu</span><span class="en">Authentication</span></a></li>
+          <li class="nav-item"><a href="/thuhai" class="nav-link"><span class="vi">Thu Hái</span><span class="en">Wild Harvesting</span></a></li>
+          <li class="nav-item"><a href="/lienhe" class="nav-link"><span class="vi">Liên Hệ</span><span class="en">Contact</span></a></li>
+        </ul>
+      </div>
 
       <div class="lang-switch-box" role="group" aria-label="Language Switcher">
-        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')">VI • Tiếng Việt</button>
-        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')">EN • English</button>
+        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')"><span class="lang-code">VI • </span>Tiếng Việt</button>
+        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')"><span class="lang-code">EN • </span>English</button>
       </div>
     </div>
     <div class="reading-progress-track" aria-hidden="true">
@@ -1134,12 +1166,12 @@
 
   <!-- 1. BREADCRUMB -->
   <nav class="breadcrumb-nav">
-    <a href="/"><span class="vi">Trang&nbsp;chủ</span><span class="en">Home</span></a>
+    <a href="/"><span class="vi">Trang chủ</span><span class="en">Home</span></a>
     <span class="sep">❖</span>
-    <a href="/tailieu"><span class="vi">Tài&nbsp;liệu chuyên&nbsp;khảo</span><span class="en">Scientific Monographs</span></a>
+    <a href="/tailieu"><span class="vi">Tài liệu chuyên khảo</span><span class="en">Scientific Monographs</span></a>
     <span class="sep">❖</span>
     <span class="current">
-      <span class="vi">Chuyên&nbsp;khảo 01: Tuần&nbsp;hoàn, Thần&nbsp;kinh&nbsp;tim &amp; Giấc&nbsp;ngủ</span>
+      <span class="vi">Chuyên khảo 01: Tuần hoàn, Thần kinh tim &amp; Giấc&nbsp;ngủ</span>
       <span class="en">Monograph 01: Vascular, Neural &amp; Sleep</span>
     </span>
   </nav>
@@ -1149,24 +1181,24 @@
     <div class="hero-overlay"></div>
     <div class="hero-container">
       <div class="hero-sub">
-        <span class="vi">Chuyên&nbsp;Khảo Y&nbsp;Sinh&nbsp;Học Độc&nbsp;Lập • Hồ&nbsp;Sơ Khoa&nbsp;Học Số&nbsp;01</span>
-        <span class="en">Independent Biomedical Monograph • Research File No. 01</span>
+        <span class="vi">Chuyên Khảo Y Sinh Học Độc Lập • Hồ Sơ Khoa Học Số&nbsp;01</span>
+        <span class="en">Independent Biomedical Monograph • Research File No.&nbsp;01</span>
       </div>
 
       <h1 class="hero-title">
-        <span class="vi">BỆNH&nbsp;LÝ ÁP&nbsp;LỰC THÀNH&nbsp;MẠCH (HUYẾT&nbsp;ÁP), RỐI&nbsp;LOẠN THẦN&nbsp;KINH TIM – MẤT&nbsp;NGỦ &amp; CƠ&nbsp;CHẾ ĐA&nbsp;ĐÍCH CỦA HOẠT&nbsp;CHẤT NẤM LINH&nbsp;CHI</span>
+        <span class="vi">BỆNH LÝ ÁP LỰC THÀNH MẠCH (HUYẾT ÁP), RỐI LOẠN THẦN KINH TIM – MẤT NGỦ &amp; CƠ CHẾ ĐA ĐÍCH CỦA HOẠT CHẤT NẤM LINH&nbsp;CHI</span>
         <span class="en">PATHOPHYSIOLOGY OF VASCULAR PRESSURE, CARDIAC AUTONOMIC IMBALANCE &amp; SLEEP DISORDERS — MULTI-TARGET MECHANISMS OF REISHI BIOACTIVES</span>
       </h1>
 
       <div class="hero-tagline">
-        <span class="vi">“Đối&nbsp;chiếu Dược&nbsp;lý Lâm&nbsp;sàng Hiện&nbsp;đại (NIH/NCBI) &amp; Y&nbsp;văn Thượng&nbsp;phẩm Phương&nbsp;Đông”</span>
-        <span class="en">“Bridging Modern Clinical Pharmacology (NIH/NCBI) &amp; Ancient Superior Tonics”</span>
+        <span class="vi">“Đối chiếu Dược lý Lâm sàng Hiện đại (NIH/NCBI) &amp; Y văn Thượng phẩm Phương&nbsp;Đông”</span>
+        <span class="en">“Bridging Modern Clinical Pharmacology (NIH/NCBI) &amp; Ancient Superior&nbsp;Tonics”</span>
       </div>
 
       <div class="cor-hero-divider"><span class="line"></span><span class="symbol">❖ ❖ ❖</span><span class="line"></span></div>
 
       <p class="hero-desc">
-        <span class="vi">Phân&nbsp;tích chuyên&nbsp;sâu vòng&nbsp;xoáy sinh&nbsp;lý bệnh tuần&nbsp;hoàn – thần&nbsp;kinh ở người lớn&nbsp;tuổi, các triệu&nbsp;chứng phụ thường&nbsp;gặp khi can&nbsp;thiệp hóa&nbsp;dược đơn&nbsp;đích dài&nbsp;ngày và cơ&nbsp;chế điều&nbsp;hòa nội&nbsp;môi tự&nbsp;nhiên của Acid&nbsp;Ganoderic, Adenosine, Polysaccharides trong Nấm Linh&nbsp;Chi (<em>Ganoderma lucidum</em>).</span>
+        <span class="vi">Phân tích chuyên sâu vòng xoáy sinh lý bệnh tuần hoàn – thần kinh ở người lớn tuổi, các triệu chứng phụ thường gặp khi can thiệp hóa dược đơn đích dài ngày và cơ chế điều hòa nội môi tự nhiên của Acid Ganoderic, Adenosine, Polysaccharides trong Nấm Linh&nbsp;Chi (<em>Ganoderma lucidum</em>).</span>
         <span class="en">In-depth analysis of circulatory-neural pathophysiology in seniors, common adverse effects of long-term single-target synthetic drugs, and natural homeostatic regulation of Ganoderic Acids, Adenosine, and Polysaccharides in wild Reishi (<em>Ganoderma lucidum</em>).</span>
       </p>
     </div>
@@ -1176,7 +1208,7 @@
     <div class="origin-inner">
       <span class="symbol">❖</span>
       <span class="origin-text">
-        <span class="vi">Ấn&nbsp;phẩm khảo&nbsp;cứu khoa&nbsp;học phi thương&nbsp;mại — Dẫn&nbsp;chứng y&nbsp;văn quốc&nbsp;tế (NIH / PubMed / StatPearls)</span>
+        <span class="vi">Ấn phẩm khảo cứu khoa học phi thương mại — Dẫn chứng y văn quốc tế (NIH / PubMed / StatPearls)</span>
         <span class="en">Non-commercial academic monograph — International medical evidence (NIH / PubMed / StatPearls)</span>
       </span>
       <span class="symbol">❖</span>
@@ -1186,12 +1218,12 @@
   <nav class="subpage-nav-bar">
     <div class="subpage-nav-inner">
       <a href="/tailieu" class="nav-pill-btn">
-        <span class="vi">← Quay&nbsp;về Thư&nbsp;Viện Chuyên&nbsp;Khảo</span>
+        <span class="vi">← Quay về Thư Viện Chuyên Khảo</span>
         <span class="en">← Back to Monograph Library</span>
       </a>
       <a href="/tailieu/tebao" class="nav-pill-btn gold-pill">
-        <span class="vi">Tiếp: Chuyên&nbsp;Khảo 02 — Tế&nbsp;bào “K” &amp; Miễn&nbsp;dịch →</span>
-        <span class="en">Next: Monograph 02 — Cell "K" &amp; Immunity →</span>
+        <span class="vi">Tiếp: Chuyên Khảo 02 — Tế bào “K” &amp; Miễn dịch →</span>
+        <span class="en">Next: Monograph 02 — Cell “K” &amp; Immunity →</span>
       </a>
     </div>
   </nav>
@@ -1201,74 +1233,52 @@
 
     <main class="doc-main-col">
 
-      <!-- HỘP MỤC LỤC CUỘN GỌN ĐẦU BÀI (CHỈ HIỆN TRÊN ĐIỆN THOẠI / TABLET) -->
-      <div class="mobile-inline-toc">
-        <button type="button" class="mobile-toc-trigger" aria-expanded="false" aria-controls="panel-mobile-toc" onclick="toggleAcc(this, 'panel-mobile-toc')">
-          <span>
-            <span class="vi">❖ Mục&nbsp;Lục Chuyên&nbsp;Khảo 01 (5 Phần)</span>
-            <span class="en">❖ Monograph 01 Contents (5 Parts)</span>
-          </span>
-          <span class="acc-chevron">▾</span>
-        </button>
-        <div class="acc-panel" id="panel-mobile-toc">
-          <div class="acc-inner">
-            <ul class="mobile-toc-list">
-              <li><button type="button" class="toc-jump-btn" data-target="phan-1" onclick="jumpToSection('phan-1')"><span class="toc-roman">I</span><span class="vi">Tam&nbsp;giác bệnh&nbsp;lý tuần&nbsp;hoàn – thần&nbsp;kinh – mất&nbsp;ngủ</span><span class="en">Vascular – Cardiac – Sleep Triad</span></button></li>
-              <li><button type="button" class="toc-jump-btn" data-target="phan-2" onclick="jumpToSection('phan-2', 'acc-clin-1')"><span class="toc-roman">II</span><span class="vi">Tác&nbsp;dụng phụ khi dùng hóa&nbsp;dược đơn&nbsp;đích dài&nbsp;ngày</span><span class="en">Adverse Effects of Chronic Synthetic Drugs</span></button></li>
-              <li><button type="button" class="toc-jump-btn" data-target="phan-3" onclick="jumpToSection('phan-3')"><span class="toc-roman">III</span><span class="vi">4 Đề&nbsp;tài quốc&nbsp;tế giải&nbsp;mã hoạt&nbsp;chất Linh&nbsp;Chi</span><span class="en">4 International Reishi Bioactive Studies</span></button></li>
-              <li><button type="button" class="toc-jump-btn" data-target="phan-4" onclick="jumpToSection('phan-4')"><span class="toc-roman">IV</span><span class="vi">Bảng đối&nbsp;chiếu dược&nbsp;lý tổng&nbsp;hợp</span><span class="en">Summary Pharmacological Comparison</span></button></li>
-              <li><button type="button" class="toc-jump-btn" data-target="phan-5" onclick="jumpToSection('phan-5', 'acc-ref-dossier')"><span class="toc-roman">V</span><span class="vi">5 Công&nbsp;trình nghiên&nbsp;cứu PubMed / NIH</span><span class="en">5 PubMed / NIH Reference Dossier</span></button></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       <!-- PHẦN I: GIẢI PHẪU SINH LÝ BỆNH HỌC -->
       <article id="phan-1" class="doc-section-card spy-section">
         <div class="doc-header">
           <div class="doc-header-text">
             <span class="doc-tag">
-              <span class="vi">Phần I • Sinh&nbsp;Lý Bệnh&nbsp;Học Tuần&nbsp;Hoàn &amp; Thần&nbsp;Kinh</span>
+              <span class="vi">Phần I • Sinh Lý Bệnh Học Tuần Hoàn &amp; Thần Kinh</span>
               <span class="en">Part I • Circulatory &amp; Neural Pathophysiology</span>
             </span>
             <h2 class="doc-title">
-              <span class="vi">I. Tam&nbsp;Giác Bệnh&nbsp;Lý Xoắn&nbsp;Xuýt Ở Người Lớn&nbsp;Tuổi: Áp&nbsp;Lực Thành&nbsp;Mạch – Thần&nbsp;Kinh Tim – Mất&nbsp;Ngủ</span>
-              <span class="en">I. The Entangled Pathophysiological Triad: Vascular Pressure – Cardiac Nerves – Broken Sleep</span>
+              <span class="vi">I. Tam Giác Bệnh Lý Xoắn Xuýt Ở Người Lớn Tuổi: Áp Lực Thành Mạch – Thần Kinh Tim – Mất&nbsp;Ngủ</span>
+              <span class="en">I. The Entangled Pathophysiological Triad: Vascular Pressure – Cardiac Nerves – Broken&nbsp;Sleep</span>
             </h2>
           </div>
         </div>
 
         <div class="doc-prose">
           <p>
-            <span class="vi">Trong y&nbsp;học lâm&nbsp;sàng lão&nbsp;khoa, ba biểu&nbsp;hiện <strong>Áp&nbsp;lực máu lên thành&nbsp;mạch tăng&nbsp;cao (Tăng huyết&nbsp;áp)</strong>, <strong>Rối&nbsp;loạn thần&nbsp;kinh tim (nhịp tim nhanh, hồi&nbsp;hộp đánh trống&nbsp;ngực, đau tức ngực khi lo&nbsp;âu hoặc trở&nbsp;trời)</strong> và <strong>Chứng mất&nbsp;ngủ mạn&nbsp;tính ban&nbsp;đêm</strong> hiếm khi xuất&nbsp;hiện đơn&nbsp;lẻ. Chúng là hệ&nbsp;quả tất&nbsp;yếu của 3 quá&nbsp;trình suy&nbsp;giảm nội&nbsp;môi thúc&nbsp;đẩy lẫn nhau:</span>
+            <span class="vi">Trong y học lâm sàng lão khoa, ba biểu hiện <strong>Áp lực máu lên thành mạch tăng cao (Tăng huyết áp)</strong>, <strong>Rối loạn thần kinh tim (nhịp tim nhanh, hồi hộp đánh trống ngực, đau tức ngực khi lo âu hoặc trở trời)</strong> và <strong>Chứng mất ngủ mạn tính ban đêm</strong> hiếm khi xuất hiện đơn lẻ. Chúng là hệ quả tất yếu của 3 quá trình suy giảm nội môi thúc đẩy lẫn nhau:</span>
             <span class="en">In clinical geriatric medicine, <strong>elevated vascular pressure (hypertension)</strong>, <strong>cardiac autonomic imbalance (tachycardia, palpitations, unexplained chest discomfort)</strong>, and <strong>chronic nighttime insomnia</strong> rarely occur in isolation. They stem from three interconnected homeostatic declines:</span>
           </p>
         </div>
 
         <div class="patho-3col-grid">
           <div class="patho-box">
-            <span class="patho-num"><span class="vi">Cơ&nbsp;Chế 01</span><span class="en">Mechanism 01</span></span>
-            <h3><span class="vi">Suy&nbsp;Giảm Nội&nbsp;Mô &amp; Hệ RAA</span><span class="en">Endothelial Decline &amp; RAAS</span></h3>
+            <span class="patho-num"><span class="vi">Cơ Chế 01</span><span class="en">Mechanism 01</span></span>
+            <h3><span class="vi">Suy Giảm Nội Mô &amp; Hệ RAA</span><span class="en">Endothelial Decline &amp; RAAS</span></h3>
             <p>
-              <span class="vi">Theo tuổi&nbsp;tác và gốc tự&nbsp;do (ROS), lớp tế&nbsp;bào nội&nbsp;mô mạch&nbsp;máu tổn&nbsp;thương làm giảm tiết phân&nbsp;tử giãn&nbsp;mạch tự&nbsp;nhiên <em>Nitric Oxide (NO)</em>. Đồng&nbsp;thời, men&nbsp;chuyển <strong>Angiotensin (ACE)</strong> hoạt&nbsp;động quá&nbsp;mức tạo <em>Angiotensin&nbsp;II</em> gây co&nbsp;thắt tiểu động&nbsp;mạch, đẩy áp&nbsp;lực máu tăng&nbsp;vọt.</span>
+              <span class="vi">Theo tuổi tác và gốc tự do (ROS), lớp tế bào nội mô mạch máu tổn thương làm giảm tiết phân tử giãn mạch tự nhiên <em>Nitric Oxide (NO)</em>. Đồng thời, men chuyển <strong>Angiotensin (ACE)</strong> hoạt động quá mức tạo <em>Angiotensin II</em> gây co thắt tiểu động mạch, đẩy áp lực máu tăng vọt.</span>
               <span class="en">With aging and ROS stress, endothelial injury impairs natural <em>Nitric Oxide (NO)</em> vasodilation, while overactive <strong>ACE</strong> generates <em>Angiotensin II</em>, constricting arterioles and elevating blood pressure.</span>
             </p>
           </div>
 
           <div class="patho-box">
-            <span class="patho-num"><span class="vi">Cơ&nbsp;Chế 02</span><span class="en">Mechanism 02</span></span>
-            <h3><span class="vi">Cường Giao&nbsp;Cảm &amp; Thần&nbsp;Kinh Tim</span><span class="en">Sympathetic Overactivity</span></h3>
+            <span class="patho-num"><span class="vi">Cơ Chế 02</span><span class="en">Mechanism 02</span></span>
+            <h3><span class="vi">Cường Giao Cảm &amp; Thần Kinh Tim</span><span class="en">Sympathetic Overactivity</span></h3>
             <p>
-              <span class="vi">Thành&nbsp;mạch căng&nbsp;cứng và máu tăng độ nhớt khiến nhánh <strong>Thần&nbsp;kinh Giao&nbsp;cảm</strong> bị kích&nbsp;hoạt liên&nbsp;tục, giải&nbsp;phóng <em>Adrenaline / Noradrenaline</em>. Nút xoang tim bị kích&nbsp;thích gây <strong>tim đập nhanh, đánh trống&nbsp;ngực, hồi&nbsp;hộp, hụt&nbsp;hơi</strong> ngay cả khi nghỉ&nbsp;ngơi.</span>
+              <span class="vi">Thành mạch căng cứng và máu tăng độ nhớt khiến nhánh <strong>Thần kinh Giao cảm</strong> bị kích hoạt liên tục, giải phóng <em>Adrenaline / Noradrenaline</em>. Nút xoang tim bị kích thích gây <strong>tim đập nhanh, đánh trống ngực, hồi hộp, hụt hơi</strong> ngay cả khi nghỉ ngơi.</span>
               <span class="en">Stiff vessels and higher blood viscosity continually trigger the <strong>Sympathetic nervous system</strong> to release <em>Catecholamines</em>, irritating the sinus node and causing <strong>tachycardia, palpitations, and restlessness</strong> even at rest.</span>
             </p>
           </div>
 
           <div class="patho-box">
-            <span class="patho-num"><span class="vi">Cơ&nbsp;Chế 03</span><span class="en">Mechanism 03</span></span>
-            <h3><span class="vi">Đứt&nbsp;Gãy Giấc&nbsp;Ngủ &amp; Hệ Glymphatic</span><span class="en">Broken Sleep &amp; Glymphatic Block</span></h3>
+            <span class="patho-num"><span class="vi">Cơ Chế 03</span><span class="en">Mechanism 03</span></span>
+            <h3><span class="vi">Đứt Gãy Giấc Ngủ &amp; Hệ Glymphatic</span><span class="en">Broken Sleep &amp; Glymphatic Block</span></h3>
             <p>
-              <span class="vi">Cường giao&nbsp;cảm về đêm ngăn não tích&nbsp;lũy phân&nbsp;tử ngủ tự&nbsp;nhiên <em>Adenosine</em>. Người lớn&nbsp;tuổi khó vào pha ngủ sóng&nbsp;chậm (<em>Slow-wave sleep</em>), khiến hệ <strong>Glymphatic</strong> không mở&nbsp;cổng rửa độc&nbsp;tố thần&nbsp;kinh — sáng hôm sau huyết&nbsp;áp lại càng tăng&nbsp;cao.</span>
+              <span class="vi">Cường giao cảm về đêm ngăn não tích lũy phân tử ngủ tự nhiên <em>Adenosine</em>. Người lớn tuổi khó vào pha ngủ sóng chậm (<em>Slow-wave sleep</em>), khiến hệ <strong>Glymphatic</strong> không mở cổng rửa độc tố thần kinh — sáng hôm sau huyết áp lại càng tăng cao.</span>
               <span class="en">Nighttime sympathetic surge blocks <em>Adenosine</em> accumulation, preventing <em>slow-wave sleep</em> and keeping the <strong>Glymphatic</strong> brain-cleansing system shut—driving morning blood pressure even higher.</span>
             </p>
           </div>
@@ -1283,7 +1293,7 @@
           <div class="acc-panel" id="acc-note-1">
             <div class="acc-inner">
               <div class="academic-framing-note">
-                <span class="vi"><strong>❖ Chú&nbsp;giải học&nbsp;thuật:</strong> Nội&nbsp;dung trên tổng&nbsp;hợp cơ&nbsp;chế sinh&nbsp;lý bệnh học tim&nbsp;mạch – thần&nbsp;kinh lão&nbsp;khoa từ các tài&nbsp;liệu y&nbsp;sinh quốc&nbsp;tế nhằm cung&nbsp;cấp kiến&nbsp;thức khoa&nbsp;học nền&nbsp;tảng.</span>
+                <span class="vi"><strong>❖ Chú giải học thuật:</strong> Nội dung trên tổng hợp cơ chế sinh lý bệnh học tim mạch – thần kinh lão khoa từ các tài liệu y sinh quốc tế nhằm cung cấp kiến thức khoa học nền tảng.</span>
                 <span class="en"><strong>❖ Academic Note:</strong> The content above synthesizes geriatric cardiovascular-neurological pathophysiology from international biomedical literature for foundational education.</span>
               </div>
             </div>
@@ -1296,12 +1306,12 @@
         <div class="doc-header">
           <div class="doc-header-text">
             <span class="doc-tag">
-              <span class="vi">Phần II • Phân&nbsp;Tích Dược&nbsp;Lý Học Lâm&nbsp;Sàng Quốc&nbsp;Tế</span>
+              <span class="vi">Phần II • Phân Tích Dược Lý Học Lâm Sàng Quốc Tế</span>
               <span class="en">Part II • International Clinical Pharmacology</span>
             </span>
             <h2 class="doc-title">
-              <span class="vi">II. Những Triệu&nbsp;Chứng Tác&nbsp;Dụng Phụ Điển&nbsp;Hình Khi Duy&nbsp;Trì Hóa&nbsp;Dược Đơn&nbsp;Đích Dài&nbsp;Ngày</span>
-              <span class="en">II. Typical Adverse Effects of Long-Term Single-Target Synthetic Drugs</span>
+              <span class="vi">II. Những Triệu Chứng Tác Dụng Phụ Điển Hình Khi Duy Trì Hóa Dược Đơn Đích Dài&nbsp;Ngày</span>
+              <span class="en">II. Typical Adverse Effects of Long-Term Single-Target Synthetic&nbsp;Drugs</span>
             </h2>
           </div>
           <button type="button" class="expand-all-chip" onclick="toggleGroup(this, ['acc-clin-1','acc-clin-2'])">
@@ -1312,7 +1322,7 @@
 
         <div class="doc-prose">
           <p>
-            <span class="vi">Các hoạt&nbsp;chất hóa&nbsp;dược tổng&nbsp;hợp đóng vai&nbsp;trò thiết&nbsp;yếu trong việc kiểm&nbsp;soát nhanh các cơn tăng huyết&nbsp;áp cấp&nbsp;tính. Tuy&nbsp;nhiên, theo các báo&nbsp;cáo tại <strong>Thư&nbsp;viện Y&nbsp;khoa Quốc&nbsp;gia Hoa&nbsp;Kỳ (NCBI/NIH)</strong>, do hoạt&nbsp;động theo cơ&nbsp;chế <em>“khóa – chặn đơn&nbsp;đích cưỡng&nbsp;bức”</em>, việc duy&nbsp;trì dài&nbsp;ngày ở người cao&nbsp;tuổi thường đi&nbsp;kèm những phản&nbsp;ứng bất&nbsp;lợi sau (chạm vào từng nhóm để xem chi&nbsp;tiết dẫn&nbsp;chứng):</span>
+            <span class="vi">Các hoạt chất hóa dược tổng hợp đóng vai trò thiết yếu trong việc kiểm soát nhanh các cơn tăng huyết áp cấp tính. Tuy nhiên, theo các báo cáo tại <strong>Thư viện Y khoa Quốc gia Hoa Kỳ (NCBI/NIH)</strong>, do hoạt động theo cơ chế <em>“khóa – chặn đơn đích cưỡng bức”</em>, việc duy trì dài ngày ở người cao tuổi thường đi kèm những phản ứng bất lợi sau (chạm vào từng nhóm để xem chi tiết dẫn chứng):</span>
             <span class="en">Synthetic drugs are essential for acute hypertensive crises. However, per reports from the <strong>U.S. National Library of Medicine (NCBI/NIH)</strong>, chronic single-target blockade in seniors often causes adverse reactions (tap each group to expand evidence):</span>
           </p>
         </div>
@@ -1323,12 +1333,12 @@
             <button type="button" class="clinical-acc-trigger" aria-expanded="false" aria-controls="acc-clin-1" onclick="toggleAcc(this, 'acc-clin-1')">
               <div>
                 <h3>
-                  <span class="vi">1. Nhóm Hoạt&nbsp;Chất Kiểm&nbsp;Soát Huyết&nbsp;Áp &amp; Nhịp&nbsp;Tim (ACEI, CCB, Chẹn&nbsp;Beta)</span>
+                  <span class="vi">1. Nhóm Hoạt Chất Kiểm Soát Huyết Áp &amp; Nhịp Tim (ACEI, CCB, Chẹn&nbsp;Beta)</span>
                   <span class="en">1. Synthetic Blood Pressure &amp; Heart Rate Drugs (ACEI, CCB, Beta-Blockers)</span>
                 </h3>
                 <div class="clinical-summary-tags">
-                  <span class="vi">Ho&nbsp;khan về đêm do ứ Bradykinin (5%–35%) • Phù cổ&nbsp;chân &amp; hạ&nbsp;áp tư&nbsp;thế • Mệt&nbsp;cơ &amp; lạnh đầu&nbsp;chi</span>
-                  <span class="en">Nocturnal Bradykinin cough (5%–35%) • Ankle edema &amp; orthostatic dizziness • Fatigue &amp; cold extremities</span>
+                  <span class="vi">Ho khan về đêm do ứ Bradykinin (<span class="nowrap">5%–35%</span>) • Phù cổ chân &amp; hạ áp tư thế • Mệt cơ &amp; lạnh đầu chi</span>
+                  <span class="en">Nocturnal Bradykinin cough (<span class="nowrap">5%–35%</span>) • Ankle edema &amp; orthostatic dizziness • Fatigue &amp; cold extremities</span>
                 </div>
               </div>
               <span class="clinical-icon-circle">▾</span>
@@ -1338,18 +1348,18 @@
                 <div class="clinical-body-pad">
                   <ul class="clinical-list">
                     <li>
-                      <strong><span class="vi">Chứng ho&nbsp;khan dai&nbsp;dẳng về đêm do ứ&nbsp;đọng Bradykinin:</span><span class="en">Persistent Nocturnal Cough from Bradykinin Accumulation:</span></strong>
-                      <span class="vi">Theo chuyên&nbsp;luận lâm&nbsp;sàng của Herman et al. (2023) trên <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK430896/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK430896 ↗</a>), men&nbsp;chuyển <em>ACE</em> cũng có nhiệm&nbsp;vụ phân&nbsp;hủy <strong>Bradykinin</strong> và <strong>Substance&nbsp;P</strong>. Khi ức&nbsp;chế <em>ACE</em> mạnh một&nbsp;chiều, <em>Bradykinin</em> ứ&nbsp;đọng tại niêm&nbsp;mạc phế&nbsp;quản kích&nbsp;thích dây thần&nbsp;kinh <em>C-fibers</em> — gây <strong>ho&nbsp;khan, ngứa rát cổ&nbsp;họng kéo&nbsp;dài (tăng nặng khi nằm ban&nbsp;đêm ở 5%–35% bệnh&nbsp;nhân)</strong>.</span>
-                      <span class="en">According to Herman et al. (2023) on <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK430896/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK430896 ↗</a>), <em>ACE</em> also degrades <strong>Bradykinin</strong> and <strong>Substance P</strong>. Chronic ACE inhibition accumulates Bradykinin in bronchial mucosa, stimulating <em>C-fibers</em> to trigger <strong>persistent dry nocturnal cough in 5%–35% of patients</strong>.</span>
+                      <strong><span class="vi">Chứng ho khan dai dẳng về đêm do ứ đọng Bradykinin:</span><span class="en">Persistent Nocturnal Cough from Bradykinin Accumulation:</span></strong>
+                      <span class="vi">Theo chuyên luận lâm sàng của Herman et al. (2023) trên <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK430896/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK430896 ↗</a>), men chuyển <em>ACE</em> cũng có nhiệm vụ phân hủy <strong>Bradykinin</strong> và <strong>Substance P</strong>. Khi ức chế <em>ACE</em> mạnh một chiều, <em>Bradykinin</em> ứ đọng tại niêm mạc phế quản kích thích dây thần kinh <em>C-fibers</em> — gây <strong>ho khan, ngứa rát cổ họng kéo dài (tăng nặng khi nằm ban đêm ở <span class="nowrap">5%–35%</span> bệnh nhân)</strong>.</span>
+                      <span class="en">According to Herman et al. (2023) on <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK430896/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK430896 ↗</a>), <em>ACE</em> also degrades <strong>Bradykinin</strong> and <strong>Substance P</strong>. Chronic ACE inhibition accumulates Bradykinin in bronchial mucosa, stimulating <em>C-fibers</em> to trigger <strong>persistent dry nocturnal cough in <span class="nowrap">5%–35%</span> of patients</strong>.</span>
                     </li>
                     <li>
-                      <strong><span class="vi">Sưng&nbsp;phù mắt&nbsp;cá chân &amp; Choáng&nbsp;váng hạ&nbsp;áp tư&nbsp;thế:</span><span class="en">Ankle Edema &amp; Orthostatic Dizziness:</span></strong>
-                      <span class="vi">Theo <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK482339/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK482339 ↗</a>), hoạt&nbsp;chất chẹn kênh Canxi (<em>CCB</em>) làm giãn tiểu động&nbsp;mạch tiền mao&nbsp;mạch nhưng không giãn tĩnh&nbsp;mạch hậu mao&nbsp;mạch, gây thoát dịch ra mô kẽ dẫn đến <strong>phù cổ&nbsp;chân, nặng&nbsp;chân</strong> và <strong>tụt huyết&nbsp;áp tư&nbsp;thế đứng, hoa&nbsp;mắt</strong> ở người già.</span>
+                      <strong><span class="vi">Sưng phù mắt cá chân &amp; Choáng váng hạ áp tư thế:</span><span class="en">Ankle Edema &amp; Orthostatic Dizziness:</span></strong>
+                      <span class="vi">Theo <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK482339/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK482339 ↗</a>), hoạt chất chẹn kênh Canxi (<em>CCB</em>) làm giãn tiểu động mạch tiền mao mạch nhưng không giãn tĩnh mạch hậu mao mạch, gây thoát dịch ra mô kẽ dẫn đến <strong>phù cổ chân, nặng chân</strong> và <strong>tụt huyết áp tư thế đứng, hoa mắt</strong> ở người già.</span>
                       <span class="en">Per <em>NCBI StatPearls</em> (<a href="https://www.ncbi.nlm.nih.gov/books/NBK482339/" target="_blank" rel="noopener noreferrer" class="cite-badge">NBK482339 ↗</a>), calcium channel blockers (<em>CCBs</em>) dilate pre-capillary arterioles without post-capillary venules, raising hydrostatic pressure to cause <strong>ankle edema</strong> and <strong>orthostatic hypotension</strong>.</span>
                     </li>
                     <li>
-                      <strong><span class="vi">Mệt&nbsp;mỏi cơ&nbsp;bắp &amp; Lạnh đầu&nbsp;chi khi ức&nbsp;chế thụ&nbsp;thể Beta:</span><span class="en">Muscle Fatigue &amp; Cold Extremities from Beta-Blockade:</span></strong>
-                      <span class="vi">Khóa cứng thụ&nbsp;thể <em>Beta-adrenergic</em> để ép nhịp tim giảm xuống thường làm giảm cung&nbsp;lượng tim, gây <strong>hụt&nbsp;hơi khi vận&nbsp;động nhẹ, tay&nbsp;chân lạnh và ác&nbsp;mộng ban&nbsp;đêm</strong>.</span>
+                      <strong><span class="vi">Mệt mỏi cơ bắp &amp; Lạnh đầu chi khi ức chế thụ thể Beta:</span><span class="en">Muscle Fatigue &amp; Cold Extremities from Beta-Blockade:</span></strong>
+                      <span class="vi">Khóa cứng thụ thể <em>Beta-adrenergic</em> để ép nhịp tim giảm xuống thường làm giảm cung lượng tim, gây <strong>hụt hơi khi vận động nhẹ, tay chân lạnh và ác mộng ban đêm</strong>.</span>
                       <span class="en">Locking <em>Beta-adrenergic</em> receptors lowers cardiac output, often causing <strong>exertional dyspnea, cold extremities, and nightmares</strong>.</span>
                     </li>
                   </ul>
@@ -1363,11 +1373,11 @@
             <button type="button" class="clinical-acc-trigger" aria-expanded="false" aria-controls="acc-clin-2" onclick="toggleAcc(this, 'acc-clin-2')">
               <div>
                 <h3>
-                  <span class="vi">2. Nhóm An&nbsp;Thần – Ngủ&nbsp;Nhanh &amp; Gánh&nbsp;Nặng Lọc&nbsp;Thải Gan&nbsp;Thận</span>
-                  <span class="en">2. Sedative-Hypnotic Drugs &amp; Hepato-Renal Filtration Burden</span>
+                  <span class="vi">2. Nhóm An Thần – Ngủ Nhanh &amp; Gánh Nặng Lọc Thải Gan&nbsp;Thận</span>
+                  <span class="en">2. Sedative-Hypnotic Drugs &amp; Hepato-Renal Filtration&nbsp;Burden</span>
                 </h3>
                 <div class="clinical-summary-tags">
-                  <span class="vi">Giấc&nbsp;ngủ cưỡng&nbsp;bức &amp; nặng&nbsp;đầu sáng • Quen&nbsp;liều &amp; mất&nbsp;ngủ dội&nbsp;ngược • Quá&nbsp;tải CYP450 &amp; cầu&nbsp;thận</span>
+                  <span class="vi">Giấc ngủ cưỡng bức &amp; nặng đầu sáng • Quen liều &amp; mất ngủ dội ngược • Quá tải CYP450 &amp; cầu thận</span>
                   <span class="en">Forced sleep &amp; morning hangover • Tolerance &amp; rebound insomnia • Hepatic CYP450 &amp; renal overload</span>
                 </div>
               </div>
@@ -1378,19 +1388,19 @@
                 <div class="clinical-body-pad">
                   <ul class="clinical-list">
                     <li>
-                      <strong><span class="vi">“Giấc&nbsp;ngủ cưỡng&nbsp;bức” &amp; Hội&nbsp;chứng nặng&nbsp;đầu buổi&nbsp;sáng:</span><span class="en">“Forced Sleep” &amp; Morning Hangover Syndrome:</span></strong>
-                      <span class="vi">Theo phân&nbsp;tích gộp của Holbrook et al. tại <em>Viện Y&nbsp;tế Quốc&nbsp;gia Hoa&nbsp;Kỳ</em> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3684331/" target="_blank" rel="noopener noreferrer" class="cite-badge">PMC3684331 ↗</a>), dẫn&nbsp;xuất an&nbsp;thần – gây&nbsp;ngủ (<em>Benzodiazepines / Z-drugs</em>) cưỡng&nbsp;ép mở kênh <em>Chloride</em> tại thụ&nbsp;thể <em>GABA-A</em>, <strong>bóp&nbsp;nghẹt pha ngủ sâu sóng&nbsp;chậm (Delta sleep)</strong>, gây <strong>nặng&nbsp;đầu, uể&nbsp;oải ban&nbsp;ngày, suy&nbsp;giảm trí&nbsp;nhớ và tăng nguy&nbsp;cơ té&nbsp;ngã gấp 1.5–2&nbsp;lần</strong> ở người lớn&nbsp;tuổi (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1285096/" target="_blank" rel="noopener noreferrer" class="cite-badge">BMJ PMC1285096 ↗</a>).</span>
-                      <span class="en">Per Holbrook et al. at the <em>U.S. NIH</em> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3684331/" target="_blank" rel="noopener noreferrer" class="cite-badge">PMC3684331 ↗</a>), sedatives (<em>Benzodiazepines / Z-drugs</em>) force open <em>GABA-A</em> channels, <strong>crushing slow-wave delta sleep</strong> and causing <strong>morning hangover, memory decline, and 1.5–2x higher fall risk in seniors</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1285096/" target="_blank" rel="noopener noreferrer" class="cite-badge">BMJ PMC1285096 ↗</a>).</span>
+                      <strong><span class="vi">“Giấc ngủ cưỡng bức” &amp; Hội chứng nặng đầu buổi sáng:</span><span class="en">“Forced Sleep” &amp; Morning Hangover Syndrome:</span></strong>
+                      <span class="vi">Theo phân tích gộp của Holbrook et al. tại <em>Viện Y tế Quốc gia Hoa Kỳ</em> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3684331/" target="_blank" rel="noopener noreferrer" class="cite-badge">PMC3684331 ↗</a>), dẫn xuất an thần – gây ngủ (<em>Benzodiazepines / Z-drugs</em>) cưỡng ép mở kênh <em>Chloride</em> tại thụ thể <em>GABA-A</em>, <strong>bóp nghẹt pha ngủ sâu sóng chậm (Delta sleep)</strong>, gây <strong>nặng đầu, uể oải ban ngày, suy giảm trí nhớ và tăng nguy cơ té ngã gấp <span class="nowrap">1,5–2 lần</span></strong> ở người lớn tuổi (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1285096/" target="_blank" rel="noopener noreferrer" class="cite-badge">BMJ PMC1285096 ↗</a>).</span>
+                      <span class="en">Per Holbrook et al. at the <em>U.S. NIH</em> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3684331/" target="_blank" rel="noopener noreferrer" class="cite-badge">PMC3684331 ↗</a>), sedatives (<em>Benzodiazepines / Z-drugs</em>) force open <em>GABA-A</em> channels, <strong>crushing slow-wave delta sleep</strong> and causing <strong>morning hangover, memory decline, and <span class="nowrap">1.5–2x</span> higher fall risk in seniors</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1285096/" target="_blank" rel="noopener noreferrer" class="cite-badge">BMJ PMC1285096 ↗</a>).</span>
                     </li>
                     <li>
-                      <strong><span class="vi">Hiện&nbsp;tượng dung&nbsp;nạp (Quen&nbsp;liều) &amp; Mất&nbsp;ngủ dội&nbsp;ngược:</span><span class="en">Tolerance &amp; Rebound Insomnia:</span></strong>
-                      <span class="vi">Dùng liên&nbsp;tục khiến thụ&nbsp;thể thần&nbsp;kinh tự trơ&nbsp;hóa (<em>Down-regulation</em>), buộc tăng&nbsp;liều mới ngủ được; ngưng đột&nbsp;ngột dễ gây bồn&nbsp;chồn, tim đập nhanh và mất&nbsp;ngủ nặng hơn.</span>
+                      <strong><span class="vi">Hiện tượng dung nạp (Quen liều) &amp; Mất ngủ dội ngược:</span><span class="en">Tolerance &amp; Rebound Insomnia:</span></strong>
+                      <span class="vi">Dùng liên tục khiến thụ thể thần kinh tự trơ hóa (<em>Down-regulation</em>), buộc tăng liều mới ngủ được; ngưng đột ngột dễ gây bồn chồn, tim đập nhanh và mất ngủ nặng hơn.</span>
                       <span class="en">Chronic use induces receptor <em>down-regulation</em>, forcing dosage escalation; abrupt cessation causes agitation, tachycardia, and severe rebound insomnia.</span>
                     </li>
                     <li>
-                      <strong><span class="vi">Quá&nbsp;tải hệ Enzyme Gan (Cytochrome P450) &amp; Cầu&nbsp;thận:</span><span class="en">Hepatic Enzyme (CYP450) &amp; Glomerular Overload:</span></strong>
-                      <span class="vi">Ở người lớn&nbsp;tuổi, lưu&nbsp;lượng máu qua gan và độ lọc cầu&nbsp;thận (<em>eGFR</em>) giảm tự&nbsp;nhiên 30%–40%. Chuyển&nbsp;hóa hóa&nbsp;dược hàng&nbsp;ngày qua hệ men <em>CYP3A4 / CYP2D6</em> tạo áp&nbsp;lực tích&nbsp;lũy lâu&nbsp;dài lên gan thận.</span>
-                      <span class="en">In seniors, hepatic blood flow and <em>eGFR</em> naturally drop by 30%–40%. Daily synthetic metabolism via <em>CYP3A4 / CYP2D6</em> adds cumulative stress to liver and kidneys.</span>
+                      <strong><span class="vi">Quá tải hệ Enzyme Gan (Cytochrome P450) &amp; Cầu thận:</span><span class="en">Hepatic Enzyme (CYP450) &amp; Glomerular Overload:</span></strong>
+                      <span class="vi">Ở người lớn tuổi, lưu lượng máu qua gan và độ lọc cầu thận (<em>eGFR</em>) giảm tự nhiên <span class="nowrap">30%–40%</span>. Chuyển hóa hóa dược hàng ngày qua hệ men <em>CYP3A4 / CYP2D6</em> tạo áp lực tích lũy lâu dài lên gan thận.</span>
+                      <span class="en">In seniors, hepatic blood flow and <em>eGFR</em> naturally drop by <span class="nowrap">30%–40%</span>. Daily synthetic metabolism via <em>CYP3A4 / CYP2D6</em> adds cumulative stress to liver and kidneys.</span>
                     </li>
                   </ul>
                 </div>
@@ -1405,12 +1415,12 @@
         <div class="doc-header">
           <div class="doc-header-text">
             <span class="doc-tag">
-              <span class="vi">Phần III • Bằng&nbsp;Chứng Sinh&nbsp;Học Phân&nbsp;Tử Quốc&nbsp;Tế</span>
+              <span class="vi">Phần III • Bằng Chứng Sinh Học Phân Tử Quốc Tế</span>
               <span class="en">Part III • International Molecular Evidence</span>
             </span>
             <h2 class="doc-title">
-              <span class="vi">III. Bốn Đề&nbsp;Tài Y&nbsp;Sinh Quốc&nbsp;Tế Giải&nbsp;Mã Cơ&nbsp;Chế Đa&nbsp;Đích Của Hoạt&nbsp;Chất Nấm Linh&nbsp;Chi</span>
-              <span class="en">III. Four International Studies Decoding Multi-Target Reishi Bioactives</span>
+              <span class="vi">III. Bốn Đề Tài Y Sinh Quốc Tế Giải Mã Cơ Chế Đa Đích Của Hoạt Chất Nấm Linh&nbsp;Chi</span>
+              <span class="en">III. Four International Studies Decoding Multi-Target Reishi&nbsp;Bioactives</span>
             </h2>
           </div>
           <button type="button" class="expand-all-chip" onclick="toggleGroup(this, ['acc-study-1','acc-study-2','acc-study-3','acc-study-4'])">
@@ -1421,19 +1431,19 @@
 
         <div class="doc-prose">
           <p>
-            <span class="vi">Nguyên&nbsp;liệu <strong>Nấm Linh&nbsp;Chi tự&nbsp;nhiên (<em>Ganoderma lucidum</em>)</strong> được Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi ghi&nbsp;nhận (trang&nbsp;831, <em>Hồng&nbsp;Chi</em>): <strong><em>“Vị&nbsp;đắng, tính&nbsp;bình, không&nbsp;độc, tăng trí&nbsp;nhớ, chữa các bệnh thuộc về huyết và thần&nbsp;kinh, tim”</em></strong>. Các công&nbsp;trình phân&nbsp;tử quốc&nbsp;tế làm rõ tác&nbsp;động hiệp&nbsp;đồng đa&nbsp;đích (<em>Multi-target synergy</em>) qua 4 đề&nbsp;tài tiêu&nbsp;biểu:</span>
-            <span class="en"><strong>Wild Reishi (<em>Ganoderma lucidum</em>)</strong>—recorded by Prof. Dr. Do Tat Loi (p. 831, <em>Red Reishi</em>): <strong><em>“Bitter in taste, neutral, non-toxic, enhances memory, addresses blood, neural, and heart conditions”</em></strong>—shows multi-target synergy across 4 landmark studies:</span>
+            <span class="vi">Nguyên liệu <strong>Nấm Linh&nbsp;Chi tự nhiên (<em>Ganoderma lucidum</em>)</strong> được Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi ghi nhận (trang&nbsp;831, <em>Hồng&nbsp;Chi</em>): <strong><em>“Vị đắng, tính bình, không độc, tăng trí nhớ, chữa các bệnh thuộc về huyết và thần kinh, tim”</em></strong>. Các công trình phân tử quốc tế làm rõ tác động hiệp đồng đa đích (<em>Multi-target synergy</em>) qua 4 đề tài tiêu biểu:</span>
+            <span class="en"><strong>Wild Reishi (<em>Ganoderma lucidum</em>)</strong>—recorded by Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi (p.&nbsp;831, <em>Red Reishi</em>): <strong><em>“Bitter in taste, neutral, non-toxic, enhances memory, addresses blood, neural, and heart conditions”</em></strong>—shows multi-target synergy across 4 landmark studies:</span>
           </p>
         </div>
 
         <div class="study-grid-2x2">
           <!-- Đề tài 1 -->
           <div class="study-card">
-            <span class="study-meta"><span class="vi">Đề&nbsp;Tài 01 • Điều&nbsp;Hòa Men&nbsp;Chuyển ACE</span><span class="en">Study 01 • Natural ACE Regulation</span></span>
-            <h3><span class="vi">Acid&nbsp;Ganoderic B, C2, F, H, K, S, Y Ức&nbsp;Chế Men&nbsp;Chuyển ACE Tự&nbsp;Nhiên</span><span class="en">ACE-Inhibitory Activity of Ganoderic Acids B, C2, F, H, K, S, Y</span></h3>
+            <span class="study-meta"><span class="vi">Đề Tài 01 • Điều Hòa Men Chuyển ACE</span><span class="en">Study 01 • Natural ACE Regulation</span></span>
+            <h3><span class="vi">Acid Ganoderic B, C2, F, H, K, S, Y Ức Chế Men Chuyển ACE Tự&nbsp;Nhiên</span><span class="en">ACE-Inhibitory Activity of Ganoderic Acids B, C2, F, H, K, S, Y</span></h3>
             <div class="study-key-point">
-              <span class="vi">✦ Kết&nbsp;luận cốt&nbsp;lõi: Giãn&nbsp;mạch êm&nbsp;dịu (IC<sub>50</sub> = 4.7 × 10<sup>−6</sup> M), <strong>không ứ Bradykinin, không gây ho&nbsp;khan về đêm</strong>.</span>
-              <span class="en">✦ Core finding: Gentle vasodilation (IC<sub>50</sub> = 4.7 × 10<sup>−6</sup> M), <strong>zero Bradykinin cough or edema</strong>.</span>
+              <span class="vi">✦ Kết luận cốt lõi: Giãn mạch êm dịu (<span class="nowrap">IC<sub>50</sub> = 4,7 × 10<sup>−6</sup> M</span>), <strong>không ứ Bradykinin, không gây ho khan về đêm</strong>.</span>
+              <span class="en">✦ Core finding: Gentle vasodilation (<span class="nowrap">IC<sub>50</sub> = 4.7 × 10<sup>−6</sup> M</span>), <strong>zero Bradykinin cough or edema</strong>.</span>
             </div>
             <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-study-1" onclick="toggleAcc(this, 'acc-study-1')">
               <span class="vi" data-closed="Xem cơ chế phân tử chi tiết" data-open="Thu gọn chi tiết">Xem cơ chế phân tử chi tiết</span>
@@ -1443,8 +1453,8 @@
             <div class="acc-panel" id="acc-study-1">
               <div class="acc-inner">
                 <p class="study-detail-text">
-                  <span class="vi">Công&nbsp;trình của <strong>Morigiwa et al. (1986)</strong> và <strong>Kabir et al. (1988)</strong> tại Nhật&nbsp;Bản phân&nbsp;lập thành&nbsp;công các triterpenes đặc&nbsp;hiệu từ quả&nbsp;thể <em>Ganoderma lucidum</em> (nổi&nbsp;bật nhất là <strong>Ganoderic Acid&nbsp;F</strong> với IC<sub>50</sub> = 4.7 × 10<sup>−6</sup> M cùng <strong>Acid&nbsp;Ganoderic B, D, H, K, S, Y</strong> và <strong>Ganoderol&nbsp;B</strong>). Các phân&nbsp;tử này điều&nbsp;hòa men <em>ACE</em> êm&nbsp;dịu, giúp cơ&nbsp;trơn thành&nbsp;mạch thư&nbsp;giãn mà không gây ứ&nbsp;đọng Bradykinin tại phế&nbsp;quản.</span>
-                  <span class="en"><strong>Morigiwa et al. (1986)</strong> and <strong>Kabir et al. (1988)</strong> isolated specific triterpenes from <em>Ganoderma lucidum</em> (notably <strong>Ganoderic Acid F</strong>, IC<sub>50</sub> = 4.7 × 10<sup>−6</sup> M, alongside <strong>Ganoderic Acids B, D, H, K, S, Y</strong>). They gently modulate <em>ACE</em> without bronchial Bradykinin accumulation.</span>
+                  <span class="vi">Công trình của <strong>Morigiwa et al. (1986)</strong> và <strong>Kabir et al. (1988)</strong> tại Nhật Bản phân lập thành công các triterpenes đặc hiệu từ quả thể <em>Ganoderma lucidum</em> (nổi bật nhất là <strong>Ganoderic Acid F</strong> với <span class="nowrap">IC<sub>50</sub> = 4,7 × 10<sup>−6</sup> M</span> cùng <strong>Acid Ganoderic B, D, H, K, S, Y</strong> và <strong>Ganoderol B</strong>). Các phân tử này điều hòa men <em>ACE</em> êm dịu, giúp cơ trơn thành mạch thư giãn mà không gây ứ đọng Bradykinin tại phế quản.</span>
+                  <span class="en"><strong>Morigiwa et al. (1986)</strong> and <strong>Kabir et al. (1988)</strong> isolated specific triterpenes from <em>Ganoderma lucidum</em> (notably <strong>Ganoderic Acid F</strong>, <span class="nowrap">IC<sub>50</sub> = 4.7 × 10<sup>−6</sup> M</span>, alongside <strong>Ganoderic Acids B, D, H, K, S, Y</strong>). They gently modulate <em>ACE</em> without bronchial Bradykinin accumulation.</span>
                 </p>
               </div>
             </div>
@@ -1455,10 +1465,10 @@
 
           <!-- Đề tài 2 -->
           <div class="study-card blue-left">
-            <span class="study-meta"><span class="vi">Đề&nbsp;Tài 02 • Lưu&nbsp;Biến Máu &amp; Thần&nbsp;Kinh Tim</span><span class="en">Study 02 • Blood Rheology &amp; Cardiac Nerves</span></span>
-            <h3><span class="vi">Adenosine Giảm Độ Nhớt&nbsp;Máu, Hạn&nbsp;Chế Kết&nbsp;Tập Tiểu&nbsp;Cầu &amp; Dịu Nhịp&nbsp;Tim</span><span class="en">Adenosine Lowers Blood Viscosity &amp; Calms Cardiac Autonomic Nerves</span></h3>
+            <span class="study-meta"><span class="vi">Đề Tài 02 • Lưu Biến Máu &amp; Thần Kinh Tim</span><span class="en">Study 02 • Blood Rheology &amp; Cardiac Nerves</span></span>
+            <h3><span class="vi">Adenosine Giảm Độ Nhớt Máu, Hạn Chế Kết Tập Tiểu Cầu &amp; Dịu Nhịp&nbsp;Tim</span><span class="en">Adenosine Lowers Blood Viscosity &amp; Calms Cardiac Autonomic&nbsp;Nerves</span></h3>
             <div class="study-key-point" style="color:var(--academic-blue); background:#EEF5FA;">
-              <span class="vi">✦ Kết&nbsp;luận cốt&nbsp;lõi: Thông&nbsp;thoáng vi&nbsp;mạch vành, dịu xung giao&nbsp;cảm tại thụ&nbsp;thể A1, <strong>giảm hồi&nbsp;hộp đánh trống&nbsp;ngực</strong>.</span>
+              <span class="vi">✦ Kết luận cốt lõi: Thông thoáng vi mạch vành, dịu xung giao cảm tại thụ thể A1, <strong>giảm hồi hộp đánh trống ngực</strong>.</span>
               <span class="en">✦ Core finding: Smoother coronary microcirculation, calms A1 sinus receptors to <strong>ease palpitations</strong>.</span>
             </div>
             <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-study-2" onclick="toggleAcc(this, 'acc-study-2')">
@@ -1469,7 +1479,7 @@
             <div class="acc-panel" id="acc-study-2">
               <div class="acc-inner">
                 <p class="study-detail-text">
-                  <span class="vi">Nghiên&nbsp;cứu của <strong>Shimizu et al. (1985)</strong> và <strong>Wachtel-Galor et al. (2011)</strong> tại <em>NIH Hoa&nbsp;Kỳ</em> chứng&nbsp;minh phân&nbsp;đoạn <strong>Adenosine</strong> và <strong>Guanosine</strong> tự&nbsp;nhiên ức&nbsp;chế kết&nbsp;tập tiểu&nbsp;cầu bất&nbsp;thường và giảm độ nhớt huyết&nbsp;tương. Dòng&nbsp;máu lưu&nbsp;thông thanh&nbsp;thoát giúp cơ&nbsp;tim giảm gánh&nbsp;nặng co&nbsp;bóp; đồng&nbsp;thời <em>Adenosine</em> gắn thụ&nbsp;thể <em>A1</em> tại nút xoang làm&nbsp;dịu xung&nbsp;điện giao&nbsp;cảm.</span>
+                  <span class="vi">Nghiên cứu của <strong>Shimizu et al. (1985)</strong> và <strong>Wachtel-Galor et al. (2011)</strong> tại <em>NIH Hoa Kỳ</em> chứng minh phân đoạn <strong>Adenosine</strong> và <strong>Guanosine</strong> tự nhiên ức chế kết tập tiểu cầu bất thường và giảm độ nhớt huyết tương. Dòng máu lưu thông thanh thoát giúp cơ tim giảm gánh nặng co bóp; đồng thời <em>Adenosine</em> gắn thụ thể <em>A1</em> tại nút xoang làm dịu xung điện giao cảm.</span>
                   <span class="en"><strong>Shimizu et al. (1985)</strong> and <strong>Wachtel-Galor et al. (2011)</strong> at the <em>U.S. NIH</em> proved natural <strong>Adenosine</strong> and <strong>Guanosine</strong> inhibit abnormal platelet aggregation and lower plasma viscosity, while <em>Adenosine</em> binding to <em>A1</em> sinus receptors calms sympathetic impulses.</span>
                 </p>
               </div>
@@ -1481,10 +1491,10 @@
 
           <!-- Đề tài 3 -->
           <div class="study-card green-left">
-            <span class="study-meta"><span class="vi">Đề&nbsp;Tài 03 • Cấu&nbsp;Trúc Giấc&nbsp;Ngủ Sóng&nbsp;Chậm</span><span class="en">Study 03 • Slow-Wave Sleep Architecture</span></span>
-            <h3><span class="vi">Tái&nbsp;Lập Pha Ngủ Sâu Sinh&nbsp;Lý (NREM) Không Gây Lệ&nbsp;Thuộc</span><span class="en">Restoring Physiological NREM Slow-Wave Sleep Without Dependency</span></h3>
+            <span class="study-meta"><span class="vi">Đề Tài 03 • Cấu Trúc Giấc Ngủ Sóng Chậm</span><span class="en">Study 03 • Slow-Wave Sleep Architecture</span></span>
+            <h3><span class="vi">Tái Lập Pha Ngủ Sâu Sinh Lý (NREM) Không Gây Lệ&nbsp;Thuộc</span><span class="en">Restoring Physiological NREM Slow-Wave Sleep Without&nbsp;Dependency</span></h3>
             <div class="study-key-point" style="color:var(--bio-green); background:#EEF6F1;">
-              <span class="vi">✦ Kết&nbsp;luận cốt&nbsp;lõi: Kéo&nbsp;dài pha ngủ sâu tự&nbsp;nhiên, mở&nbsp;cổng <em>Glymphatic</em> rửa não, <strong>sáng dậy nhẹ&nbsp;đầu, không quen&nbsp;liều</strong>.</span>
+              <span class="vi">✦ Kết luận cốt lõi: Kéo dài pha ngủ sâu tự nhiên, mở cổng <em>Glymphatic</em> rửa não, <strong>sáng dậy nhẹ đầu, không quen liều</strong>.</span>
               <span class="en">✦ Core finding: Lengthens physiological deep sleep, opens <em>Glymphatic</em> cleansing, <strong>zero tolerance</strong>.</span>
             </div>
             <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-study-3" onclick="toggleAcc(this, 'acc-study-3')">
@@ -1495,7 +1505,7 @@
             <div class="acc-panel" id="acc-study-3">
               <div class="acc-inner">
                 <p class="study-detail-text">
-                  <span class="vi">Nghiên&nbsp;cứu của <strong>Cui et al. (2012)</strong> và <strong>Chu et al. (2007)</strong> trên <em>Journal of Ethnopharmacology</em> ghi điện&nbsp;não&nbsp;đồ (EEG) chứng&nbsp;minh chiết&nbsp;xuất <em>Ganoderma lucidum</em> không cưỡng&nbsp;ép đóng vỏ&nbsp;não như thuốc ngủ tổng&nbsp;hợp, mà kéo&nbsp;dài <strong>pha ngủ sâu sóng&nbsp;chậm (NREM)</strong> qua thụ&nbsp;thể <em>Adenosine A1/A2A</em> và đường&nbsp;dẫn <em>GABAergic</em> tự&nbsp;nhiên.</span>
+                  <span class="vi">Nghiên cứu của <strong>Cui et al. (2012)</strong> và <strong>Chu et al. (2007)</strong> trên <em>Journal of Ethnopharmacology</em> ghi điện não đồ (EEG) chứng minh chiết xuất <em>Ganoderma lucidum</em> không cưỡng ép đóng vỏ não như thuốc ngủ tổng hợp, mà kéo dài <strong>pha ngủ sâu sóng chậm (NREM)</strong> qua thụ thể <em>Adenosine A1/A2A</em> và đường dẫn <em>GABAergic</em> tự nhiên.</span>
                   <span class="en"><strong>Cui et al. (2012)</strong> and <strong>Chu et al. (2007)</strong> in <em>Journal of Ethnopharmacology</em> proved via EEG that <em>Ganoderma lucidum</em> lengthens <strong>NREM slow-wave sleep</strong> via <em>Adenosine A1/A2A</em> and natural <em>GABAergic</em> pathways without forcing cortical suppression.</span>
                 </p>
               </div>
@@ -1507,10 +1517,10 @@
 
           <!-- Đề tài 4 -->
           <div class="study-card gold-left">
-            <span class="study-meta"><span class="vi">Đề&nbsp;Tài 04 • Bảo&nbsp;Vệ Nội&nbsp;Mô &amp; Gan&nbsp;Thận</span><span class="en">Study 04 • Endothelial &amp; Hepato-Renal Shield</span></span>
-            <h3><span class="vi">Chống Oxy&nbsp;Hóa Lipid Thành&nbsp;Mạch &amp; Bảo&nbsp;Vệ Hệ Enzyme Gan – Thận</span><span class="en">Inhibiting Vascular Lipid Peroxidation &amp; Protecting Liver Enzymes</span></h3>
+            <span class="study-meta"><span class="vi">Đề Tài 04 • Bảo Vệ Nội Mô &amp; Gan Thận</span><span class="en">Study 04 • Endothelial &amp; Hepato-Renal Shield</span></span>
+            <h3><span class="vi">Chống Oxy Hóa Lipid Thành Mạch &amp; Bảo Vệ Hệ Enzyme Gan –&nbsp;Thận</span><span class="en">Inhibiting Vascular Lipid Peroxidation &amp; Protecting Liver&nbsp;Enzymes</span></h3>
             <div class="study-key-point" style="color:var(--gold-deep); background:#FAF5E8;">
-              <span class="vi">✦ Kết&nbsp;luận cốt&nbsp;lõi: Tăng men chống oxy&nbsp;hóa nội&nbsp;sinh <em>SOD, Catalase</em>, phục&nbsp;hồi tiết <em>Nitric Oxide</em> và bảo&nbsp;vệ gan&nbsp;thận.</span>
+              <span class="vi">✦ Kết luận cốt lõi: Tăng men chống oxy hóa nội sinh <em>SOD, Catalase</em>, phục hồi tiết <em>Nitric Oxide</em> và bảo vệ gan thận.</span>
               <span class="en">✦ Core finding: Boosts <em>SOD, Catalase</em>, restores endothelial <em>NO</em> elasticity, and shields liver &amp; kidneys.</span>
             </div>
             <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-study-4" onclick="toggleAcc(this, 'acc-study-4')">
@@ -1521,13 +1531,13 @@
             <div class="acc-panel" id="acc-study-4">
               <div class="acc-inner">
                 <p class="study-detail-text">
-                  <span class="vi">Theo <em>NCBI Bookshelf (NBK92757)</em> và nghiên&nbsp;cứu của <strong>Lasukpli / Gao et al.</strong>, chuỗi <em>Beta-D-Glucan</em> kết&nbsp;hợp Sterol tự&nbsp;nhiên gia&nbsp;tăng hoạt&nbsp;lực enzyme chống oxy&nbsp;hóa nội&nbsp;sinh (<em>SOD, Catalase</em>), ngăn oxy&nbsp;hóa <em>LDL-Cholesterol</em> bám thành&nbsp;mạch, trả&nbsp;lại độ đàn&nbsp;hồi mạch&nbsp;máu và hỗ&nbsp;trợ bảo&nbsp;vệ màng lọc cầu&nbsp;thận.</span>
+                  <span class="vi">Theo <em>NCBI Bookshelf (NBK92757)</em> và nghiên cứu của <strong>Lasukpli / Gao et al.</strong>, chuỗi <em>Beta-D-Glucan</em> kết hợp Sterol tự nhiên gia tăng hoạt lực enzyme chống oxy hóa nội sinh (<em>SOD, Catalase</em>), ngăn oxy hóa <em>LDL-Cholesterol</em> bám thành mạch, trả lại độ đàn hồi mạch máu và hỗ trợ bảo vệ màng lọc cầu thận.</span>
                   <span class="en">Per <em>NCBI Bookshelf (NBK92757)</em> and <strong>Lasukpli / Gao et al.</strong>, soluble <em>Beta-D-Glucans</em> and Sterols boost endogenous <em>SOD</em> and <em>Catalase</em>, preventing <em>LDL</em> oxidation on vessel walls and protecting liver and glomerular membranes.</span>
                 </p>
               </div>
             </div>
             <div class="study-ref-box">
-              <strong><span class="vi">Nguồn:</span><span class="en">Ref:</span></strong> Wachtel-Galor et al. (2011), Ch. 9 <a href="https://www.ncbi.nlm.nih.gov/books/NBK92757/" target="_blank" rel="noopener noreferrer" class="cite-badge">NIH NBK92757 ↗</a>
+              <strong><span class="vi">Nguồn:</span><span class="en">Ref:</span></strong> Wachtel-Galor et al. (2011), Ch.&nbsp;9 <a href="https://www.ncbi.nlm.nih.gov/books/NBK92757/" target="_blank" rel="noopener noreferrer" class="cite-badge">NIH NBK92757 ↗</a>
             </div>
           </div>
         </div>
@@ -1537,10 +1547,10 @@
       <article id="phan-4" class="doc-section-card spy-section">
         <div class="doc-header">
           <div class="doc-header-text">
-            <span class="doc-tag"><span class="vi">Phần IV • Bảng Đối&nbsp;Chiếu Tổng&nbsp;Hợp</span><span class="en">Part IV • Summary Comparison Table</span></span>
+            <span class="doc-tag"><span class="vi">Phần IV • Bảng Đối Chiếu Tổng Hợp</span><span class="en">Part IV • Summary Comparison Table</span></span>
             <h2 class="doc-title">
-              <span class="vi">IV. Đối&nbsp;Chiếu Cơ&nbsp;Chế Can&nbsp;Thiệp Đơn&nbsp;Đích &amp; Cơ&nbsp;Chế Điều&nbsp;Hòa Đa&nbsp;Đích Của Hoạt&nbsp;Chất Linh&nbsp;Chi</span>
-              <span class="en">IV. Single-Target Synthetic Intervention vs. Multi-Target Reishi Regulation</span>
+              <span class="vi">IV. Đối Chiếu Cơ Chế Can Thiệp Đơn Đích &amp; Cơ Chế Điều Hòa Đa Đích Của Hoạt Chất Linh&nbsp;Chi</span>
+              <span class="en">IV. Single-Target Synthetic Intervention vs. Multi-Target Reishi&nbsp;Regulation</span>
             </h2>
           </div>
         </div>
@@ -1549,37 +1559,37 @@
           <table class="compare-pharma-table">
             <thead>
               <tr>
-                <th style="width: 22%;"><span class="vi">Đích Sinh&nbsp;Lý</span><span class="en">Physiological Target</span></th>
+                <th style="width: 22%;"><span class="vi">Đích Sinh Lý</span><span class="en">Physiological Target</span></th>
                 <th style="width: 39%;">
-                  <span class="vi">Can&nbsp;Thiệp Đơn&nbsp;Đích Hóa&nbsp;Dược<br><span style="font-size:11px; font-weight:400; color:#E6C786;">(NCBI NBK430896 &amp; NIH PMC3684331)</span></span>
+                  <span class="vi">Can Thiệp Đơn Đích Hóa Dược<br><span style="font-size:11px; font-weight:400; color:#E6C786;">(NCBI NBK430896 &amp; NIH PMC3684331)</span></span>
                   <span class="en">Single-Target Synthetic Drugs<br><span style="font-size:11px; font-weight:400; color:#E6C786;">(NCBI NBK430896 &amp; NIH PMC3684331)</span></span>
                 </th>
                 <th style="width: 39%;">
-                  <span class="vi">Điều&nbsp;Hòa Đa&nbsp;Đích Hoạt&nbsp;Chất Linh&nbsp;Chi<br><span style="font-size:11px; font-weight:400; color:#E6C786;">(PMID: 3769062, 22207209 &amp; NBK92757)</span></span>
+                  <span class="vi">Điều Hòa Đa Đích Hoạt Chất Linh&nbsp;Chi<br><span style="font-size:11px; font-weight:400; color:#E6C786;">(PMID: 3769062, 22207209 &amp; NBK92757)</span></span>
                   <span class="en">Multi-Target Reishi Bioactives<br><span style="font-size:11px; font-weight:400; color:#E6C786;">(PMID: 3769062, 22207209 &amp; NBK92757)</span></span>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong><span class="vi">1. Sức&nbsp;cản mạch &amp; Men ACE</span><span class="en">1. Vascular Tone &amp; ACE</span></strong></td>
-                <td><span class="vi">Khóa mạnh <em>ACE</em> hoặc kênh Canxi để ép giãn&nbsp;mạch nhanh; dễ ứ <em>Bradykinin</em> gây <strong>ho&nbsp;khan về đêm, phù cổ&nbsp;chân, hạ&nbsp;áp tư&nbsp;thế</strong>.</span><span class="en">Forces strong <em>ACE</em> or CCB blockade; often accumulates <em>Bradykinin</em>, causing <strong>nocturnal cough, ankle edema, or dizziness</strong>.</span></td>
-                <td><span class="vi"><em>Acid&nbsp;Ganoderic B, F, H, K, S</em> điều&nbsp;hòa men <em>ACE</em> êm&nbsp;dịu kết&nbsp;hợp bảo&nbsp;vệ nội&nbsp;mô; <strong>không gây ứ Bradykinin (không ho&nbsp;khan)</strong>.</span><span class="en"><em>Ganoderic Acids B, F, H, K, S</em> gently modulate <em>ACE</em> while protecting endothelium; <strong>zero Bradykinin cough</strong>.</span></td>
+                <td><strong><span class="vi">1. Sức cản mạch &amp; Men ACE</span><span class="en">1. Vascular Tone &amp; ACE</span></strong></td>
+                <td><span class="vi">Khóa mạnh <em>ACE</em> hoặc kênh Canxi để ép giãn mạch nhanh; dễ ứ <em>Bradykinin</em> gây <strong>ho khan về đêm, phù cổ chân, hạ áp tư thế</strong>.</span><span class="en">Forces strong <em>ACE</em> or CCB blockade; often accumulates <em>Bradykinin</em>, causing <strong>nocturnal cough, ankle edema, or dizziness</strong>.</span></td>
+                <td><span class="vi"><em>Acid Ganoderic B, F, H, K, S</em> điều hòa men <em>ACE</em> êm dịu kết hợp bảo vệ nội mô; <strong>không gây ứ Bradykinin (không ho khan)</strong>.</span><span class="en"><em>Ganoderic Acids B, F, H, K, S</em> gently modulate <em>ACE</em> while protecting endothelium; <strong>zero Bradykinin cough</strong>.</span></td>
               </tr>
               <tr>
-                <td><strong><span class="vi">2. Nhịp tim &amp; Lưu&nbsp;thông máu</span><span class="en">2. Heart Rhythm &amp; Flow</span></strong></td>
-                <td><span class="vi">Khóa thụ&nbsp;thể <em>Beta</em> ép giảm nhịp&nbsp;tim; dễ giảm cung&nbsp;lượng tim, mệt&nbsp;lả cơ&nbsp;bắp và lạnh đầu&nbsp;chi.</span><span class="en">Blocks <em>Beta</em> receptors to lower heart rate; may lower cardiac output, causing fatigue and cold extremities.</span></td>
-                <td><span class="vi"><em>Adenosine</em> giảm độ nhớt&nbsp;máu, hạn&nbsp;chế kết&nbsp;tập tiểu&nbsp;cầu giúp thông&nbsp;mạch và làm dịu nút xoang êm nhịp thần&nbsp;kinh tim.</span><span class="en"><em>Adenosine</em> reduces viscosity and platelet clumping while calming sinus impulses to soothe cardiac nerves.</span></td>
+                <td><strong><span class="vi">2. Nhịp tim &amp; Lưu thông máu</span><span class="en">2. Heart Rhythm &amp; Flow</span></strong></td>
+                <td><span class="vi">Khóa thụ thể <em>Beta</em> ép giảm nhịp tim; dễ giảm cung lượng tim, mệt lả cơ bắp và lạnh đầu chi.</span><span class="en">Blocks <em>Beta</em> receptors to lower heart rate; may lower cardiac output, causing fatigue and cold extremities.</span></td>
+                <td><span class="vi"><em>Adenosine</em> giảm độ nhớt máu, hạn chế kết tập tiểu cầu giúp thông mạch và làm dịu nút xoang êm nhịp thần kinh tim.</span><span class="en"><em>Adenosine</em> reduces viscosity and platelet clumping while calming sinus impulses to soothe cardiac nerves.</span></td>
               </tr>
               <tr>
-                <td><strong><span class="vi">3. Giấc&nbsp;ngủ &amp; Thần&nbsp;kinh</span><span class="en">3. Sleep &amp; CNS</span></strong></td>
-                <td><span class="vi">Cưỡng&nbsp;bức thụ&nbsp;thể <em>GABA-A</em>; giảm pha ngủ sâu sóng&nbsp;chậm, gây <strong>nặng&nbsp;đầu sáng, giảm trí&nbsp;nhớ và quen&nbsp;liều</strong>.</span><span class="en">Forcibly activates <em>GABA-A</em>; crushes slow-wave sleep, causing <strong>morning hangover, memory decline, and tolerance</strong>.</span></td>
-                <td><span class="vi">Kéo&nbsp;dài pha ngủ sâu sinh&nbsp;lý (<em>NREM</em>), mở&nbsp;cổng <em>Glymphatic</em> rửa độc não; sáng dậy tỉnh&nbsp;táo và không lệ&nbsp;thuộc.</span><span class="en">Prolongs physiological <em>NREM</em> deep sleep and <em>Glymphatic</em> brain detox; wake refreshed without dependency.</span></td>
+                <td><strong><span class="vi">3. Giấc ngủ &amp; Thần kinh</span><span class="en">3. Sleep &amp; CNS</span></strong></td>
+                <td><span class="vi">Cưỡng bức thụ thể <em>GABA-A</em>; giảm pha ngủ sâu sóng chậm, gây <strong>nặng đầu sáng, giảm trí nhớ và quen liều</strong>.</span><span class="en">Forcibly activates <em>GABA-A</em>; crushes slow-wave sleep, causing <strong>morning hangover, memory decline, and tolerance</strong>.</span></td>
+                <td><span class="vi">Kéo dài pha ngủ sâu sinh lý (<em>NREM</em>), mở cổng <em>Glymphatic</em> rửa độc não; sáng dậy tỉnh táo và không lệ thuộc.</span><span class="en">Prolongs physiological <em>NREM</em> deep sleep and <em>Glymphatic</em> brain detox; wake refreshed without dependency.</span></td>
               </tr>
               <tr>
-                <td><strong><span class="vi">4. Chuyển&nbsp;hóa Gan &amp; Thận</span><span class="en">4. Hepato-Renal Load</span></strong></td>
-                <td><span class="vi">Tạo áp&nbsp;lực phân&nbsp;giải liên&nbsp;tục lên hệ enzyme gan <em>Cytochrome P450</em> và màng lọc cầu&nbsp;thận.</span><span class="en">Places continuous degradation stress on hepatic <em>CYP450</em> enzymes and glomerular filtration membranes.</span></td>
-                <td><span class="vi">Bậc <em>“Thượng&nbsp;phẩm dưỡng&nbsp;mạng”</em> — tăng hoạt&nbsp;lực enzyme chống oxy&nbsp;hóa <em>SOD, Catalase</em> bảo&nbsp;vệ tế&nbsp;bào gan thận.</span><span class="en"><em>“Superior Longevity Tonic”</em>—boosts antioxidant enzymes <em>SOD, Catalase</em> to protect liver and kidneys.</span></td>
+                <td><strong><span class="vi">4. Chuyển hóa Gan &amp; Thận</span><span class="en">4. Hepato-Renal Load</span></strong></td>
+                <td><span class="vi">Tạo áp lực phân giải liên tục lên hệ enzyme gan <em>Cytochrome P450</em> và màng lọc cầu thận.</span><span class="en">Places continuous degradation stress on hepatic <em>CYP450</em> enzymes and glomerular filtration membranes.</span></td>
+                <td><span class="vi">Bậc <em>“Thượng phẩm dưỡng mạng”</em> — tăng hoạt lực enzyme chống oxy hóa <em>SOD, Catalase</em> bảo vệ tế bào gan thận.</span><span class="en"><em>“Superior Longevity Tonic”</em>—boosts antioxidant enzymes <em>SOD, Catalase</em> to protect liver and kidneys.</span></td>
               </tr>
             </tbody>
           </table>
@@ -1590,10 +1600,10 @@
       <section id="phan-5" class="doc-section-card spy-section">
         <div class="doc-header" style="margin-bottom:14px;">
           <div class="doc-header-text">
-            <span class="doc-tag"><span class="vi">Phần V • Hồ&nbsp;Sơ Dẫn&nbsp;Chứng Khoa&nbsp;Học</span><span class="en">Part V • Evidence Dossier</span></span>
+            <span class="doc-tag"><span class="vi">Phần V • Hồ Sơ Dẫn Chứng Khoa Học</span><span class="en">Part V • Evidence Dossier</span></span>
             <h2 class="doc-title">
-              <span class="vi">V. Danh&nbsp;Mục 5 Công&nbsp;Trình Nghiên&nbsp;Cứu Y&nbsp;Khoa Quốc&nbsp;Tế &amp; Y&nbsp;Văn Đối&nbsp;Chiếu</span>
-              <span class="en">V. 5 International Medical Research &amp; Reference Dossier</span>
+              <span class="vi">V. Danh Mục 5 Công Trình Nghiên Cứu Y Khoa Quốc Tế &amp; Y Văn Đối&nbsp;Chiếu</span>
+              <span class="en">V. 5 International Medical Research &amp; Reference&nbsp;Dossier</span>
             </h2>
           </div>
         </div>
@@ -1611,7 +1621,7 @@
                 <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">1. PubMed / Chem. Pharm. Bull. (PMID: 3769062 &amp; PMID: 3209675)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Morigiwa, A. et al. (1986). “Angiotensin converting enzyme-inhibitory triterpenes from Ganoderma lucidum” &amp; Kabir, Y. et al. (1988)</h4>
-                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Phân&nbsp;lập Acid&nbsp;Ganoderic B, C2, D, F, H, K, S, Y chứng&nbsp;minh hoạt&nbsp;tính ức&nbsp;chế men ACE tự&nbsp;nhiên.</span><span class="en">Isolation of Ganoderic Acids B, C2, D, F, H, K, S, Y showing natural ACE-inhibitory activity.</span></p>
+                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Phân lập Acid Ganoderic B, C2, D, F, H, K, S, Y chứng minh hoạt tính ức chế men ACE tự nhiên.</span><span class="en">Isolation of Ganoderic Acids B, C2, D, F, H, K, S, Y showing natural ACE-inhibitory activity.</span></p>
                 </div>
                 <a href="https://pubmed.ncbi.nlm.nih.gov/3769062/" target="_blank" rel="noopener noreferrer" class="ref-btn">PMID: 3769062 ↗</a>
               </div>
@@ -1620,7 +1630,7 @@
                 <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1E6B38; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">2. PubMed / J. Ethnopharmacol. (PMID: 22207209 &amp; PMID: 4070248)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Cui, X. Y. et al. (2012). “Extract of Ganoderma lucidum prolongs sleep time in rats” &amp; Shimizu, A. et al. (1985)</h4>
-                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ&nbsp;chế kéo&nbsp;dài pha ngủ sâu sóng&nbsp;chậm (NREM) và giảm độ nhớt&nbsp;máu của phân&nbsp;đoạn Adenosine.</span><span class="en">NREM slow-wave sleep prolongation and antiplatelet properties of Reishi Adenosine fractions.</span></p>
+                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ chế kéo dài pha ngủ sâu sóng chậm (NREM) và giảm độ nhớt máu của phân đoạn Adenosine.</span><span class="en">NREM slow-wave sleep prolongation and antiplatelet properties of Reishi Adenosine fractions.</span></p>
                 </div>
                 <a href="https://pubmed.ncbi.nlm.nih.gov/22207209/" target="_blank" rel="noopener noreferrer" class="ref-btn" style="color:#1E6B38; border-color:#1E6B38;">PMID: 22207209 ↗</a>
               </div>
@@ -1629,7 +1639,7 @@
                 <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">3. U.S. NLM / NCBI StatPearls (NBK430896 &amp; NBK482339)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Herman, L. L. et al. (2023). “Angiotensin-Converting Enzyme Inhibitors (ACEI)” — StatPearls Publishing</h4>
-                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ&nbsp;chế tích&nbsp;tụ Bradykinin gây ho&nbsp;khan dai&nbsp;dẳng về đêm, phù cổ&nbsp;chân và hạ&nbsp;áp tư&nbsp;thế.</span><span class="en">Clinical review of Bradykinin-induced nocturnal cough, ankle edema, and orthostatic hypotension.</span></p>
+                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ chế tích tụ Bradykinin gây ho khan dai dẳng về đêm, phù cổ chân và hạ áp tư thế.</span><span class="en">Clinical review of Bradykinin-induced nocturnal cough, ankle edema, and orthostatic hypotension.</span></p>
                 </div>
                 <a href="https://www.ncbi.nlm.nih.gov/books/NBK430896/" target="_blank" rel="noopener noreferrer" class="ref-btn">NBK430896 ↗</a>
               </div>
@@ -1638,16 +1648,16 @@
                 <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">4. U.S. NIH / PMC Central (PMC3684331 &amp; BMJ PMC1285096)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Holbrook, A. M. et al. — “Meta-analysis of benzodiazepine use in insomnia” &amp; Glass, J. et al. (BMJ)</h4>
-                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Phân&nbsp;tích gộp về tác&nbsp;dụng phụ của thuốc an&nbsp;thần – gây&nbsp;ngủ tổng&nbsp;hợp ở người lớn&nbsp;tuổi.</span><span class="en">Meta-analysis on sedative-hypnotic adverse effects, delta-sleep suppression, and fall risk in seniors.</span></p>
+                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Phân tích gộp về tác dụng phụ của thuốc an thần – gây ngủ tổng hợp ở người lớn tuổi.</span><span class="en">Meta-analysis on sedative-hypnotic adverse effects, delta-sleep suppression, and fall risk in seniors.</span></p>
                 </div>
                 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3684331/" target="_blank" rel="noopener noreferrer" class="ref-btn">PMC3684331 ↗</a>
               </div>
 
               <div class="ref-item-card wine-bar">
                 <div class="ref-item-info">
-                  <div style="font-size:10.5px; font-weight:700; color:var(--wine-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">5. NIH Bookshelf (NBK92757) &amp; Dược&nbsp;Điển Việt&nbsp;Nam</div>
-                  <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Wachtel-Galor, S. et al. (2011) &amp; Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (“Những cây&nbsp;thuốc và vị&nbsp;thuốc Việt&nbsp;Nam”, tr. 831–833)</h4>
-                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Hồ&nbsp;sơ sinh&nbsp;học toàn&nbsp;diện của <em>Ganoderma lucidum</em> và y&nbsp;văn về Hồng&nbsp;Chi với huyết, thần&nbsp;kinh và tim.</span><span class="en">Comprehensive <em>Ganoderma lucidum</em> biology and Red Reishi pharmacognosy for blood, nerves, and heart.</span></p>
+                  <div style="font-size:10.5px; font-weight:700; color:var(--wine-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">5. NIH Bookshelf (NBK92757) &amp; Dược Điển Việt Nam</div>
+                  <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Wachtel-Galor, S. et al. (2011) &amp; Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (“Những cây thuốc và vị thuốc Việt Nam”, tr.&nbsp;831–833)</h4>
+                  <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Hồ sơ sinh học toàn diện của <em>Ganoderma lucidum</em> và y văn về Hồng&nbsp;Chi với huyết, thần kinh và tim.</span><span class="en">Comprehensive <em>Ganoderma lucidum</em> biology and Red Reishi pharmacognosy for blood, nerves, and heart.</span></p>
                 </div>
                 <a href="https://www.ncbi.nlm.nih.gov/books/NBK92757/" target="_blank" rel="noopener noreferrer" class="ref-btn" style="color:var(--wine-red); border-color:var(--wine-red);">NBK92757 ↗</a>
               </div>
@@ -1659,19 +1669,19 @@
       <!-- CẦU NỐI CHUYỂN TIẾP -->
       <section class="academic-bridge-card">
         <div class="bridge-info">
-          <span class="bridge-tag"><span class="vi">Hệ&nbsp;Thống Chuyên&nbsp;Khảo Khoa&nbsp;Học</span><span class="en">Monograph Series</span></span>
+          <span class="bridge-tag"><span class="vi">Hệ Thống Chuyên Khảo Khoa Học</span><span class="en">Monograph Series</span></span>
           <h3 class="bridge-title">
-            <span class="vi">Tiếp&nbsp;Tục Chuyên&nbsp;Khảo 02 Hoặc Tham&nbsp;Khảo Dòng Trà Mộc&nbsp;Bản</span>
-            <span class="en">Continue to Monograph 02 or Explore Artisanal Tea</span>
+            <span class="vi">Tiếp Tục Chuyên Khảo 02 Hoặc Tham Khảo Dòng Trà Mộc&nbsp;Bản</span>
+            <span class="en">Continue to Monograph 02 or Explore Artisanal&nbsp;Tea</span>
           </h3>
           <p class="bridge-desc">
-            <span class="vi">Khám&nbsp;phá tiếp Chuyên&nbsp;khảo 02 về miễn&nbsp;dịch tế&nbsp;bào “K” và phục&nbsp;hồi suy&nbsp;kiệt, hoặc tìm&nbsp;hiểu dòng trà mộc&nbsp;bản độc&nbsp;vị Thượng&nbsp;Hoàng (Polysaccharide 0,967%).</span>
-            <span class="en">Explore Monograph 02 on cellular immunity and vitality recovery, or discover our pure single-origin Thuong&nbsp;Hoang herbal tea (0.967% soluble Polysaccharides).</span>
+            <span class="vi">Khám phá tiếp Chuyên khảo 02 về miễn dịch tế bào “K” và phục hồi suy kiệt, hoặc tìm hiểu dòng trà mộc bản độc vị Thượng&nbsp;Hoàng (Polysaccharide <span class="nowrap">0,967%</span>).</span>
+            <span class="en">Explore Monograph 02 on cellular immunity and vitality recovery, or discover our pure single-origin Thuong&nbsp;Hoang herbal tea (<span class="nowrap">0.967%</span> soluble Polysaccharides).</span>
           </p>
         </div>
         <div class="bridge-btn-row">
           <a href="/tailieu/tebao" class="btn-gold-cta">
-            <span class="vi">Chuyên&nbsp;Khảo 02: Miễn&nbsp;Dịch →</span><span class="en">Monograph 02: Immunity →</span>
+            <span class="vi">Chuyên Khảo 02: Miễn Dịch →</span><span class="en">Monograph 02: Immunity →</span>
           </a>
           <a href="/dongsanpham/thuonghoang" class="btn-outline-cta">
             <span class="vi">Trà Thượng&nbsp;Hoàng →</span><span class="en">Thuong&nbsp;Hoang Tea →</span>
@@ -1682,10 +1692,12 @@
       <!-- TUYÊN BỐ MIỄN TRỪ PHÁP LÝ CUỘN GỌN -->
       <section class="disclaimer-card">
         <button type="button" class="disclaimer-trigger" aria-expanded="false" aria-controls="acc-doc-legal" onclick="toggleAcc(this, 'acc-doc-legal')">
-          <span>
+          <span class="disclaimer-title-inner">
             <span>❖</span>
-            <span class="vi">Tuyên&nbsp;Bố Miễn&nbsp;Trừ &amp; Phân&nbsp;Định Pháp&nbsp;Lý Học&nbsp;Thuật</span>
-            <span class="en">Academic &amp; Legal Disclaimer Notice</span>
+            <span>
+              <span class="vi">Tuyên Bố Miễn Trừ &amp; Phân Định Pháp Lý Học&nbsp;Thuật</span>
+              <span class="en">Academic &amp; Legal Disclaimer Notice</span>
+            </span>
           </span>
           <span class="acc-chevron">▾</span>
         </button>
@@ -1693,12 +1705,12 @@
           <div class="acc-inner">
             <div class="disclaimer-body">
               <p>
-                <span class="vi">Chuyên&nbsp;khảo khoa&nbsp;học này là ấn&nbsp;phẩm tổng&nbsp;hợp tri&nbsp;thức y&nbsp;sinh độc&nbsp;lập từ cơ&nbsp;sở dữ&nbsp;liệu của Viện Y&nbsp;tế Quốc&nbsp;gia Hoa&nbsp;Kỳ (NIH/NCBI/PubMed) và dược&nbsp;điển truyền&nbsp;thống về nguyên&nbsp;liệu <strong>Nấm Linh&nbsp;Chi tự&nbsp;nhiên (Ganoderma lucidum)</strong> nhằm mục&nbsp;đích phổ&nbsp;biến kiến&nbsp;thức khoa&nbsp;học thường&nbsp;thức; hoàn&nbsp;toàn không&nbsp;phải là tài&nbsp;liệu quảng&nbsp;cáo chỉ&nbsp;định điều&nbsp;trị của bất&nbsp;kỳ sản&nbsp;phẩm thực&nbsp;phẩm thương&nbsp;mại nào.</span>
+                <span class="vi">Chuyên khảo khoa học này là ấn phẩm tổng hợp tri thức y sinh độc lập từ cơ sở dữ liệu của Viện Y tế Quốc gia Hoa Kỳ (NIH/NCBI/PubMed) và dược điển truyền thống về nguyên liệu <strong>Nấm Linh&nbsp;Chi tự nhiên (Ganoderma lucidum)</strong> nhằm mục đích phổ biến kiến thức khoa học thường thức; hoàn toàn không phải là tài liệu quảng cáo chỉ định điều trị của bất kỳ sản phẩm thực phẩm thương mại nào.</span>
                 <span class="en">This scientific monograph is an independent synthesis of biomedical knowledge from U.S. NIH/NCBI/PubMed databases and traditional pharmacopeia regarding natural <strong>Reishi (Ganoderma lucidum)</strong> for educational purposes; it is not commercial advertising or therapeutic prescription for any commercial product.</span>
               </p>
               <p>
-                <span class="vi">Người có bệnh&nbsp;lý tim&nbsp;mạch, huyết&nbsp;áp cần tuân&nbsp;thủ phác&nbsp;đồ khám và theo&nbsp;dõi chuyên&nbsp;môn của bác&nbsp;sĩ điều&nbsp;trị, không tự&nbsp;ý ngưng đột&nbsp;ngột các thuốc kê&nbsp;đơn cấp&nbsp;tính. Các sản&nbsp;phẩm trà của Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục là thực&nbsp;phẩm trà thảo&nbsp;mộc tự&nbsp;nhiên theo hồ&nbsp;sơ tự công&nbsp;bố, không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh.</span>
-                <span class="en">Individuals with cardiovascular or hypertensive conditions must follow professional medical treatment and monitoring, and should never abruptly discontinue acute prescription drugs. Bach&nbsp;Phuc Herbal Tea Co., Ltd. products are natural dietary herbal infusions compliant with statutory self-declaration standards; they are not medicines and do not replace medical treatment.</span>
+                <span class="vi">Người có bệnh lý tim mạch, huyết áp cần tuân thủ phác đồ khám và theo dõi chuyên môn của bác sĩ điều trị, không tự ý ngưng đột ngột các thuốc kê đơn cấp tính. Các sản phẩm trà của Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục là thực phẩm trà thảo mộc tự nhiên theo hồ sơ tự công bố, không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</span>
+                <span class="en">Individuals with cardiovascular or hypertensive conditions must follow professional medical treatment and monitoring, and should never abruptly discontinue acute prescription drugs. Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. products are natural dietary herbal infusions compliant with statutory self-declaration standards; they are not medicines and do not replace medical treatment.</span>
               </p>
             </div>
           </div>
@@ -1711,7 +1723,7 @@
     <aside class="doc-sidebar" aria-label="Mục lục bài viết">
       <div class="toc-widget">
         <div class="toc-widget-head">
-          <span class="vi">Mục&nbsp;Lục Chuyên&nbsp;Khảo</span>
+          <span class="vi">Mục Lục Chuyên Khảo</span>
           <span class="en">Table of Contents</span>
           <span style="color:var(--gold-primary);">❖</span>
         </div>
@@ -1719,31 +1731,31 @@
           <li>
             <button type="button" class="toc-jump-btn active" data-target="phan-1" onclick="jumpToSection('phan-1')">
               <span class="toc-roman">I</span>
-              <span><span class="vi">Tam&nbsp;giác bệnh&nbsp;lý tuần&nbsp;hoàn – tim – ngủ</span><span class="en">Vascular – Cardiac – Sleep Triad</span></span>
+              <span><span class="vi">Tam giác bệnh lý tuần hoàn – tim – ngủ</span><span class="en">Vascular – Cardiac – Sleep Triad</span></span>
             </button>
           </li>
           <li>
             <button type="button" class="toc-jump-btn" data-target="phan-2" onclick="jumpToSection('phan-2', 'acc-clin-1')">
               <span class="toc-roman">II</span>
-              <span><span class="vi">Tác&nbsp;dụng phụ hóa&nbsp;dược đơn&nbsp;đích</span><span class="en">Synthetic Drug Adverse Effects</span></span>
+              <span><span class="vi">Tác dụng phụ hóa dược đơn đích</span><span class="en">Synthetic Drug Adverse Effects</span></span>
             </button>
           </li>
           <li>
             <button type="button" class="toc-jump-btn" data-target="phan-3" onclick="jumpToSection('phan-3')">
               <span class="toc-roman">III</span>
-              <span><span class="vi">4 Đề&nbsp;tài hoạt&nbsp;chất nấm Linh&nbsp;Chi</span><span class="en">4 Reishi Bioactive Studies</span></span>
+              <span><span class="vi">4 Đề tài hoạt chất nấm Linh&nbsp;Chi</span><span class="en">4 Reishi Bioactive Studies</span></span>
             </button>
           </li>
           <li>
             <button type="button" class="toc-jump-btn" data-target="phan-4" onclick="jumpToSection('phan-4')">
               <span class="toc-roman">IV</span>
-              <span><span class="vi">Bảng đối&nbsp;chiếu dược&nbsp;lý</span><span class="en">Pharmacological Comparison</span></span>
+              <span><span class="vi">Bảng đối chiếu dược lý</span><span class="en">Pharmacological Comparison</span></span>
             </button>
           </li>
           <li>
             <button type="button" class="toc-jump-btn" data-target="phan-5" onclick="jumpToSection('phan-5', 'acc-ref-dossier')">
               <span class="toc-roman">V</span>
-              <span><span class="vi">5 Công&nbsp;trình PubMed / NIH</span><span class="en">5 PubMed / NIH References</span></span>
+              <span><span class="vi">5 Công trình PubMed / NIH</span><span class="en">5 PubMed / NIH References</span></span>
             </button>
           </li>
         </ul>
@@ -1751,37 +1763,37 @@
 
       <div class="toc-widget" style="border-top-color: var(--gold-primary);">
         <div class="toc-widget-head">
-          <span class="vi">Chuyên&nbsp;Khảo &amp; Liên&nbsp;Kết</span>
+          <span class="vi">Chuyên Khảo &amp; Liên Kết</span>
           <span class="en">Series &amp; Links</span>
         </div>
         <ul class="sidebar-series-list">
           <li>
             <a href="/tailieu/tebao">
-              <span><span class="vi">02. Miễn&nbsp;Dịch &amp; Tế&nbsp;Bào “K”</span><span class="en">02. Immunity &amp; Cell "K"</span></span>
+              <span><span class="vi">02. Miễn Dịch &amp; Tế Bào “K”</span><span class="en">02. Immunity &amp; Cell “K”</span></span>
               <span style="color:var(--gold-primary);">→</span>
             </a>
-            <div class="sidebar-series-meta"><span class="vi">Tủy&nbsp;xương, tế&nbsp;bào NK &amp; sinh&nbsp;lực</span><span class="en">Marrow, NK cells &amp; recovery</span></div>
+            <div class="sidebar-series-meta"><span class="vi">Tủy xương, tế bào NK &amp; sinh lực</span><span class="en">Marrow, NK cells &amp; recovery</span></div>
           </li>
           <li>
             <a href="/tailieu/chuyenhoa">
-              <span><span class="vi">03. Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc</span><span class="en">03. Metabolic &amp; Detox</span></span>
+              <span><span class="vi">03. Chuyển Hóa &amp; Thanh Lọc</span><span class="en">03. Metabolic &amp; Detox</span></span>
               <span style="color:var(--gold-primary);">→</span>
             </a>
-            <div class="sidebar-series-meta"><span class="vi">Nội&nbsp;môi, gan&nbsp;thận &amp; chống oxy&nbsp;hóa</span><span class="en">Hepato-renal &amp; antioxidants</span></div>
+            <div class="sidebar-series-meta"><span class="vi">Nội môi, gan thận &amp; chống oxy hóa</span><span class="en">Hepato-renal &amp; antioxidants</span></div>
           </li>
           <li>
             <a href="/dongsanpham/thuonghoang" style="color:var(--wine-red);">
               <span><span class="vi">✦ Trà Bách&nbsp;Phục Thượng&nbsp;Hoàng</span><span class="en">✦ Bach&nbsp;Phuc Thuong&nbsp;Hoang</span></span>
               <span>→</span>
             </a>
-            <div class="sidebar-series-meta"><span class="vi">100% Nấm rừng • Polysaccharide 0,967%</span><span class="en">100% Wild Reishi • 0.967% Polysaccharide</span></div>
+            <div class="sidebar-series-meta"><span class="vi">100% Nấm rừng • Polysaccharide <span class="nowrap">0,967%</span></span><span class="en">100% Wild Reishi • <span class="nowrap">0.967%</span> Polysaccharide</span></div>
           </li>
           <li>
             <a href="/suckhoe">
-              <span><span class="vi">Cổng Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span><span class="en">Cellular Self-Healing Hub</span></span>
+              <span><span class="vi">Cổng Cơ Chế Tự Chữa Lành</span><span class="en">Cellular Self-Healing Hub</span></span>
               <span style="color:var(--gold-primary);">→</span>
             </a>
-            <div class="sidebar-series-meta"><span class="vi">4 Chuyên&nbsp;luận Nobel Y&nbsp;Sinh</span><span class="en">4 Nobel Biomedical Essays</span></div>
+            <div class="sidebar-series-meta"><span class="vi">4 Chuyên luận Nobel Y Sinh</span><span class="en">4 Nobel Biomedical Essays</span></div>
           </li>
         </ul>
       </div>
@@ -1789,84 +1801,81 @@
 
   </div>
 
-  <!-- 5. NÚT NỔI & NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI -->
-  <button type="button" class="fab-toc-btn" id="fab-toc-btn" onclick="openTocDrawer()" aria-label="Mở mục lục">
-    <span>☰</span>
-    <span class="vi">Mục&nbsp;Lục</span>
-    <span class="en">Contents</span>
-  </button>
-
+  <!-- 5. NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI (MỞ TỪ NÚT ☰ MỤC LỤC TRÊN THANH HEADER) -->
   <div class="toc-drawer-backdrop" id="toc-drawer-backdrop" onclick="closeTocDrawer()"></div>
   <div class="toc-drawer-sheet" id="toc-drawer-sheet" role="dialog" aria-modal="true" aria-label="Mục lục chuyên khảo">
     <div class="drawer-head">
       <div class="drawer-title">
-        <span class="vi">❖ Mục&nbsp;Lục Chuyên&nbsp;Khảo 01</span>
+        <span class="vi">❖ Mục Lục Chuyên Khảo 01</span>
         <span class="en">❖ Monograph 01 Contents</span>
       </div>
       <button type="button" class="drawer-close" onclick="closeTocDrawer()" aria-label="Đóng">✕</button>
     </div>
     <ul class="toc-list">
-      <li><button type="button" class="toc-jump-btn" data-target="phan-1" onclick="jumpToSection('phan-1')"><span class="toc-roman">I</span><span><span class="vi">Tam&nbsp;giác bệnh&nbsp;lý tuần&nbsp;hoàn – tim – ngủ</span><span class="en">Vascular – Cardiac – Sleep Triad</span></span></button></li>
-      <li><button type="button" class="toc-jump-btn" data-target="phan-2" onclick="jumpToSection('phan-2', 'acc-clin-1')"><span class="toc-roman">II</span><span><span class="vi">Tác&nbsp;dụng phụ hóa&nbsp;dược đơn&nbsp;đích</span><span class="en">Synthetic Drug Adverse Effects</span></span></button></li>
-      <li><button type="button" class="toc-jump-btn" data-target="phan-3" onclick="jumpToSection('phan-3')"><span class="toc-roman">III</span><span><span class="vi">4 Đề&nbsp;tài hoạt&nbsp;chất nấm Linh&nbsp;Chi</span><span class="en">4 Reishi Bioactive Studies</span></span></button></li>
-      <li><button type="button" class="toc-jump-btn" data-target="phan-4" onclick="jumpToSection('phan-4')"><span class="toc-roman">IV</span><span><span class="vi">Bảng đối&nbsp;chiếu dược&nbsp;lý tổng&nbsp;hợp</span><span class="en">Summary Comparison Table</span></span></button></li>
-      <li><button type="button" class="toc-jump-btn" data-target="phan-5" onclick="jumpToSection('phan-5', 'acc-ref-dossier')"><span class="toc-roman">V</span><span><span class="vi">5 Công&nbsp;trình nghiên&nbsp;cứu PubMed / NIH</span><span class="en">5 PubMed / NIH References</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="phan-1" onclick="jumpToSection('phan-1')"><span class="toc-roman">I</span><span><span class="vi">Tam giác bệnh lý tuần hoàn – tim – ngủ</span><span class="en">Vascular – Cardiac – Sleep Triad</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="phan-2" onclick="jumpToSection('phan-2', 'acc-clin-1')"><span class="toc-roman">II</span><span><span class="vi">Tác dụng phụ hóa dược đơn đích</span><span class="en">Synthetic Drug Adverse Effects</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="phan-3" onclick="jumpToSection('phan-3')"><span class="toc-roman">III</span><span><span class="vi">4 Đề tài hoạt chất nấm Linh&nbsp;Chi</span><span class="en">4 Reishi Bioactive Studies</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="phan-4" onclick="jumpToSection('phan-4')"><span class="toc-roman">IV</span><span><span class="vi">Bảng đối chiếu dược lý tổng hợp</span><span class="en">Summary Comparison Table</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="phan-5" onclick="jumpToSection('phan-5', 'acc-ref-dossier')"><span class="toc-roman">V</span><span><span class="vi">5 Công trình nghiên cứu PubMed / NIH</span><span class="en">5 PubMed / NIH References</span></span></button></li>
     </ul>
   </div>
 
-  <!-- 6. CHÂN TRANG ĐỒNG BỘ TOÀN HỆ THỐNG -->
+  <!-- 6. CHÂN TRANG ĐỒNG BỘ CÓ LOGO BÁCH PHỤC -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <h3><span class="vi">CÔNG&nbsp;TY TNHH TRÀ THẢO&nbsp;MỘC BÁCH&nbsp;PHỤC</span><span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span></h3>
+        <div class="footer-brand-head">
+          <img src="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri" alt="Logo Trà Thảo Mộc Bách Phục" class="footer-logo-img">
+          <h3><span class="vi">CÔNG TY TNHH TRÀ THẢO MỘC BÁCH&nbsp;PHỤC</span><span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span></h3>
+        </div>
         <p style="font-size:12.5px; color:#D6C7B8; margin-bottom:6px;">
-          <span class="vi"><strong>Mã&nbsp;số doanh&nbsp;nghiệp (MST):</strong> 4300901179</span>
-          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> 4300901179</span>
+          <span class="vi"><strong>Mã số doanh nghiệp (MST):</strong> <span class="nowrap">4300901179</span></span>
+          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> <span class="nowrap">4300901179</span></span>
         </p>
-        <p class="vi">Chắt&nbsp;chiu từng tai&nbsp;nấm Linh&nbsp;Chi chọn&nbsp;lọc từ rừng&nbsp;già tự&nbsp;nhiên Quảng&nbsp;Ngãi thành những ấm&nbsp;trà túi&nbsp;lọc mộc thanh&nbsp;khiết. Đồng&nbsp;hành cùng nếp&nbsp;sống an&nbsp;dưỡng, giúp thân&nbsp;tâm an&nbsp;định, nâng&nbsp;đỡ thể&nbsp;trạng và mang&nbsp;lại sự an&nbsp;yên cho mỗi gia&nbsp;đình.</p>
+        <p class="vi">Chắt chiu từng tai nấm Linh&nbsp;Chi chọn lọc từ rừng già tự nhiên Quảng&nbsp;Ngãi thành những ấm trà túi lọc mộc thanh khiết. Đồng hành cùng nếp sống an dưỡng, giúp thân tâm an định, nâng đỡ thể trạng và mang lại sự an yên cho mỗi gia đình.</p>
         <p class="en">Carefully crafting selected 100% wild-harvested Reishi from the primeval forests of Quang&nbsp;Ngai into pure artisanal filter tea infusions—accompanying mindful living, nurturing physical resilience, and bringing peace to every family.</p>
         <p style="color:var(--gold-light); font-family:'Playfair Display',serif; font-style:italic;">
-          <span class="vi">“Cha&nbsp;mẹ bình&nbsp;an, chúng&nbsp;con vững&nbsp;vàng.”</span>
+          <span class="vi">“Cha mẹ bình an, chúng con vững&nbsp;vàng.”</span>
           <span class="en">“When our parents are at peace, we stand&nbsp;strong.”</span>
         </p>
       </div>
 
       <div class="footer-col">
-        <h4><span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục &amp; Tri&nbsp;Thức</span><span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span></h4>
+        <h4><span class="vi">Trà Thảo Mộc Bách&nbsp;Phục &amp; Tri Thức</span><span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span></h4>
         <ul>
           <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng (Bách&nbsp;Phục Thượng&nbsp;Hoàng)</span><span class="en">1. Thuong&nbsp;Hoang (Bach&nbsp;Phuc Thuong&nbsp;Hoang)</span></a></li>
           <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng (Bách&nbsp;Phục Kim&nbsp;Hoàng)</span><span class="en">2. Kim&nbsp;Hoang (Bach&nbsp;Phuc Kim&nbsp;Hoang)</span></a></li>
           <li><a href="/dongsanpham/minhhoang"><span class="vi">3. Minh&nbsp;Hoàng (Bách&nbsp;Phục Minh&nbsp;Hoàng)</span><span class="en">3. Minh&nbsp;Hoang (Bach&nbsp;Phuc Minh&nbsp;Hoang)</span></a></li>
-          <li style="margin-top:8px;"><a href="/tracuu" style="color:var(--gold-bright);"><span class="vi">→ Tra&nbsp;cứu &amp; Xác&nbsp;thực Mộc&nbsp;bản</span><span class="en">→ 1-to-1 Box Authentication</span></a></li>
-          <li><a href="/suckhoe" style="color:var(--gold-light);"><span class="vi">→ Giải&nbsp;mã cơ&nbsp;chế tự&nbsp;chữa&nbsp;lành</span><span class="en">→ Cellular Self-Healing Science</span></a></li>
-          <li><a href="/tailieu" style="color:var(--gold-primary);"><span class="vi">← Thư&nbsp;viện Tài&nbsp;liệu chuyên&nbsp;khảo</span><span class="en">← Monograph Library</span></a></li>
-          <li><a href="/thuhai"><span class="vi">→ Hành&nbsp;trình thu&nbsp;hái rừng&nbsp;già</span><span class="en">→ Wild Harvesting Journey</span></a></li>
+          <li style="margin-top:8px;"><a href="/tracuu" style="color:var(--gold-bright);"><span class="vi">→ Tra cứu &amp; Xác thực Mộc bản</span><span class="en">→ 1-to-1 Box Authentication</span></a></li>
+          <li><a href="/suckhoe" style="color:var(--gold-light);"><span class="vi">→ Giải mã cơ chế tự chữa lành</span><span class="en">→ Cellular Self-Healing Science</span></a></li>
+          <li><a href="/tailieu" style="color:var(--gold-primary);"><span class="vi">← Thư viện Tài liệu chuyên khảo</span><span class="en">← Monograph Library</span></a></li>
+          <li><a href="/thuhai"><span class="vi">→ Hành trình thu hái rừng già</span><span class="en">→ Wild Harvesting Journey</span></a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4><span class="vi">Thông&nbsp;Tin Kết&nbsp;Nối</span><span class="en">Contact &amp; Consultation</span></h4>
+        <h4><span class="vi">Thông Tin Kết Nối</span><span class="en">Contact &amp; Consultation</span></h4>
         <ul>
-          <li class="contact-item"><span class="icon">📍</span><span class="vi"><strong>Địa&nbsp;chỉ:</strong> 136 Mạc&nbsp;Đĩnh&nbsp;Chi, Phường Nghĩa&nbsp;Lộ, Tỉnh Quảng&nbsp;Ngãi</span><span class="en"><strong>Address:</strong> 136 Mac&nbsp;Dinh&nbsp;Chi St., Nghia&nbsp;Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span></li>
-          <li class="contact-item"><span class="icon">📞</span><span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link" href="tel:0796674679">0796&nbsp;674&nbsp;679</a></span></li>
+          <li class="contact-item"><span class="icon">📍</span><span class="vi"><strong>Địa chỉ:</strong> 136 Mạc Đĩnh Chi, Phường Nghĩa Lộ, Tỉnh Quảng&nbsp;Ngãi</span><span class="en"><strong>Address:</strong> 136 Mac Dinh Chi St., Nghia Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span></li>
+          <li class="contact-item"><span class="icon">📞</span><span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link nowrap" href="tel:0796674679">0796 674 679</a></span></li>
           <li class="contact-item"><span class="icon">🌐</span><span><strong>Website:</strong> <a href="/" style="color:#D6C7B8;">www.trathaomocbachphuc.vn</a></span></li>
-          <li style="margin-top:6px;"><a href="/lienhe" style="color:var(--gold-light); font-weight:600;"><span class="vi">→ Xem trang Liên&nbsp;Hệ chi&nbsp;tiết</span><span class="en">→ View Detailed Contact Page</span></a></li>
+          <li style="margin-top:6px;"><a href="/lienhe" style="color:var(--gold-light); font-weight:600;"><span class="vi">→ Xem trang Liên Hệ chi tiết</span><span class="en">→ View Detailed Contact Page</span></a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-disclaimer-wrap">
-      <p class="footer-disclaimer vi">* Lưu&nbsp;ý: Các sản&nbsp;phẩm của Trà Thảo&nbsp;Mộc Bách&nbsp;Phục là thức&nbsp;uống thảo&nbsp;mộc dưỡng&nbsp;sinh tự&nbsp;nhiên theo hồ&nbsp;sơ tự công&nbsp;bố, không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh. Website chỉ giới&nbsp;thiệu thông&nbsp;tin văn&nbsp;hóa trà và kết&nbsp;nối tư&nbsp;vấn, không giao&nbsp;dịch thương&nbsp;mại điện&nbsp;tử trực&nbsp;tuyến.</p>
+      <p class="footer-disclaimer vi">* Lưu ý: Các sản phẩm của Trà Thảo Mộc Bách&nbsp;Phục là thức uống thảo mộc dưỡng sinh tự nhiên theo hồ sơ tự công bố, không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh. Website chỉ giới thiệu thông tin văn hóa trà và kết nối tư vấn, không giao dịch thương mại điện tử trực tuyến.</p>
       <p class="footer-disclaimer en">* Notice: Bach&nbsp;Phuc Herbal Tea products are natural botanical infusions compliant with statutory self-declaration standards. They are not medicines and do not replace medical treatment. This website provides cultural information and consultation only, with no online commercial transactions.</p>
     </div>
 
     <div class="footer-bottom">
-      <span class="vi">© Bản&nbsp;quyền thuộc về Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục. Bảo&nbsp;lưu mọi&nbsp;quyền.</span>
+      <span class="vi">© Bản quyền thuộc về Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục. Bảo lưu mọi quyền.</span>
       <span class="en">© Copyright by Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. All rights reserved.</span>
     </div>
   </footer>
 
-  <!-- ================= HỆ THỐNG MỤC LỤC SCROLLSPY, AUTO-EXPAND ACCORDION & SONG NGỮ ================= -->
+  <!-- ================= HỆ THỐNG MỤC LỤC SCROLLSPY, AUTO-EXPAND ACCORDION, CHỐNG RỚT CHỮ & SONG NGỮ ================= -->
   <script>
     function syncNavPadding() {
       const nav = document.getElementById('main-fixed-nav');
@@ -1891,8 +1900,7 @@
     function toggleAcc(btn, panelId) {
       const panel = document.getElementById(panelId);
       if (!panel) return;
-      const nextState = !panel.classList.contains('open');
-      setAccState(panelId, nextState);
+      setAccState(panelId, !panel.classList.contains('open'));
     }
 
     function toggleGroup(groupBtn, panelIds) {
@@ -1918,17 +1926,13 @@
 
     function jumpToSection(targetId, autoOpenPanelId) {
       closeTocDrawer();
-      setAccState('panel-mobile-toc', false);
-
       if (targetId === 'top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
-
       if (autoOpenPanelId) {
         setAccState(autoOpenPanelId, true);
       }
-
       setTimeout(() => {
         const el = document.getElementById(targetId);
         if (el) {
@@ -1951,19 +1955,13 @@
         fill.style.width = pct.toFixed(1) + '%';
       }
 
-      const fab = document.getElementById('fab-toc-btn');
-      if (fab) {
-        fab.classList.toggle('visible', scrollTop > 280);
-      }
-
       const sections = document.querySelectorAll('.spy-section');
       const nav = document.getElementById('main-fixed-nav');
-      const offset = (nav ? nav.offsetHeight : 56) + 90;
+      const offset = (nav ? nav.offsetHeight : 56) + 95;
       let activeId = 'phan-1';
 
       sections.forEach((sec) => {
-        const top = sec.getBoundingClientRect().top;
-        if (top <= offset) {
+        if (sec.getBoundingClientRect().top <= offset) {
           activeId = sec.id;
         }
       });
@@ -1990,8 +1988,28 @@
       try { localStorage.setItem('bachphuc_lang', targetLang); } catch (e) {}
     }
 
+    function fixOrphans(selector) {
+      document.querySelectorAll(selector).forEach((el) => {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+        let lastText = null;
+        let current;
+        while ((current = walker.nextNode())) {
+          if (current.nodeValue && current.nodeValue.trim().length > 0) {
+            lastText = current;
+          }
+        }
+        if (lastText) {
+          lastText.nodeValue = lastText.nodeValue.replace(/\s+([^\s]+)\s*$/, '\u00A0$1');
+        }
+      });
+    }
+
     window.addEventListener('resize', syncNavPadding);
+    window.addEventListener('load', syncNavPadding);
     window.addEventListener('scroll', updateReadingAndSpy, { passive: true });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeTocDrawer();
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       syncNavPadding();
@@ -2003,17 +2021,13 @@
         }
       } catch (e) {}
 
-      const textElements = document.querySelectorAll(
-        ".doc-prose p .vi, .patho-box p .vi, .clinical-list li .vi, .study-detail-text .vi, .compare-pharma-table td .vi, .disclaimer-body p .vi, .bridge-desc .vi"
+      fixOrphans(
+        ".doc-prose p .vi, .doc-prose p .en, .patho-box p .vi, .patho-box p .en, " +
+        ".clinical-list li .vi, .clinical-list li .en, .study-key-point .vi, .study-key-point .en, " +
+        ".study-detail-text .vi, .study-detail-text .en, .compare-pharma-table td .vi, .compare-pharma-table td .en, " +
+        ".disclaimer-body p .vi, .disclaimer-body p .en, .bridge-desc .vi, .bridge-desc .en, " +
+        ".footer-brand p.vi, .footer-brand p.en, .footer-disclaimer, .footer-bottom .vi, .footer-bottom .en"
       );
-      textElements.forEach((el) => {
-        if (el.childNodes.length > 0) {
-          const lastNode = el.childNodes[el.childNodes.length - 1];
-          if (lastNode.nodeType === Node.TEXT_NODE) {
-            lastNode.nodeValue = lastNode.nodeValue.replace(/\s+(\S+)\s*$/, "\u00A0$1");
-          }
-        }
-      });
     });
   </script>
 </body>
