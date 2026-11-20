@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trà Thảo Mộc Bách Phục Minh Hoàng - 100% Nấm Linh Chi Rừng Quảng Ngãi</title>
+<link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -26,32 +27,51 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   body, p, li, td, th, div, button {
     text-align: left !important;
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
+    word-break: normal;
+    overflow-wrap: break-word;
     -webkit-hyphens: none;
     hyphens: none;
   }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--cream-bg);
     color: var(--text-dark);
-    line-height: 1.75;
-    padding-top: 52px;
+    line-height: 1.72;
+    padding-top: 56px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+
+  img { max-width: 100%; }
 
   /* CƠ CHẾ CHUYỂN ĐỔI SONG NGỮ VI | EN TỨC THÌ */
   body[data-lang="vi"] .en { display: none !important; }
   body[data-lang="en"] .vi { display: none !important; }
 
   .nowrap { white-space: nowrap; }
-  h1, h2, h3, h4, .section-title, .bio-card h3, .sensory-card h4 { text-wrap: balance; }
-  p, li, td, .quote-banner, .sensory-card p, .ref-card p { text-wrap: pretty; }
+  h1, h2, h3, h4, .section-title, .bio-card h3, .sensory-card h4, .product-main-title { text-wrap: balance; }
+  p, li, td, .quote-banner, .sensory-card p, .ref-card p, .disclaimer-body p, .footer-disclaimer { text-wrap: pretty; }
 
-  /* 0. THANH MENU NGANG SONG NGỮ GHIM CỐ ĐỊNH */
+  /* KHÓA CHỐNG TRÀN NGANG CHO MỌI KHUNG FLEX / GRID / ACCORDION / BẢNG */
+  .doc-workspace, .doc-main-col, .product-overview-card, .overview-info-col,
+  .content-block-card, .acc-panel, .acc-inner, .table-responsive,
+  .wellness-2col > *, .bioactive-grid-3 > *, .sensory-grid-3 > *,
+  .ritual-grid-4 > *, .ref-grid-3 > *, .badge-grid-4 > *,
+  .block-header-text, .monograph-bridge-text {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* ================= 0. THANH MENU NGANG CÓ LOGO BÁCH PHỤC + THANH TIẾN ĐỘ ĐỌC ================= */
   .top-bilingual-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -69,15 +89,76 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 52px;
+    min-height: 56px;
     gap: 10px;
+  }
+  .reading-progress-track {
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 3px;
+    background: rgba(197, 160, 89, 0.18);
+    overflow: hidden;
+  }
+  .reading-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #C5A059 0%, #FFF2C8 60%, #D4AF37 100%);
+    transition: width 0.1s linear;
+  }
+
+  .nav-brand-tools {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+  }
+  .nav-logo-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 0;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
+    transition: transform 0.2s ease;
+  }
+  .nav-logo-link:hover .nav-logo-img { transform: scale(1.04); }
+
+  .nav-mobile-toc-btn {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: rgba(197, 160, 89, 0.14);
+    color: var(--gold-bright);
+    border: 1px solid rgba(197, 160, 89, 0.65);
+    border-radius: 4px;
+    padding: 4.5px 9px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  .nav-mobile-toc-btn:hover { background: rgba(197, 160, 89, 0.28); color: #FFFFFF; }
+
+  .nav-menu-scroll-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
   }
   .nav-menu-list {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
+    gap: 2px;
+    flex-wrap: nowrap;
     margin: 0;
     padding: 0;
   }
@@ -89,12 +170,12 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 8px 11px;
+    padding: 8px 9px;
     color: #EFE6D8;
     text-decoration: none;
-    font-size: 12.5px;
+    font-size: 12.2px;
     font-weight: 500;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     border-radius: 4px;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -107,12 +188,12 @@
     border-bottom: 2px solid var(--gold-primary);
     font-weight: 600;
   }
-  .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 2px; }
+  .nav-caret { font-size: 9px; color: var(--gold-primary); margin-left: 1px; }
 
   .nav-dropdown {
     position: absolute;
     top: 100%; left: 0;
-    min-width: 240px;
+    min-width: 245px;
     background: #1B0B05;
     border: 1px solid var(--gold-primary);
     border-radius: 0 0 6px 6px;
@@ -164,9 +245,9 @@
     font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 600;
-    padding: 5px 9px;
+    padding: 5px 8px;
     cursor: pointer;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.3px;
     border-radius: 2px;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -179,12 +260,13 @@
   }
   .lang-btn:hover:not(.active) { color: #FFFFFF; background: rgba(197, 160, 89, 0.2); }
 
-  /* 1. BREADCRUMB */
+  /* ================= 1. BREADCRUMB & SUBNAV CHUYỂN NHANH 3 DÒNG TRÀ ================= */
   .breadcrumb-nav {
     max-width: 1180px;
-    margin: 18px auto 0;
+    width: 100%;
+    margin: 16px auto 0;
     padding: 0 20px;
-    font-size: 13px;
+    font-size: 12.8px;
     color: var(--text-muted);
     display: flex;
     align-items: center;
@@ -192,242 +274,657 @@
     flex-wrap: wrap;
   }
   .breadcrumb-nav a { color: var(--text-muted); text-decoration: none; transition: color 0.2s ease; }
-  .breadcrumb-nav a:hover { color: var(--wine-red); }
+  .breadcrumb-nav a:hover { color: var(--bio-green); }
   .breadcrumb-nav .sep { color: var(--gold-primary); font-size: 10px; }
   .breadcrumb-nav .current { color: var(--espresso); font-weight: 600; }
 
-  /* BỐ CỤC CHÍNH */
-  .page-container {
+  .subnav-bar { max-width: 1180px; width: 100%; margin: 12px auto 0; padding: 0 20px; }
+  .subnav-shell {
+    position: relative;
+    background: #F4EFE6;
+    border: 1px solid var(--border-warm);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .subnav-inner {
+    padding: 9px 14px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .subnav-inner::-webkit-scrollbar { display: none; }
+  .subnav-link {
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    border: none;
+    font-size: 12.2px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .subnav-link:hover { color: var(--espresso); background: rgba(197, 160, 89, 0.16); }
+  .subnav-link.active { background: var(--bio-green); color: #FFFFFF; }
+
+  /* ================= 2. BỐ CỤC 2 CỘT: NỘI DUNG + MỤC LỤC TRƯỢT DÍNH ================= */
+  .doc-workspace {
     max-width: 1180px;
-    margin: 22px auto 60px;
+    width: 100%;
+    margin: 22px auto 56px;
     padding: 0 20px;
     display: flex;
+    gap: 26px;
+    align-items: flex-start;
+  }
+  .doc-main-col {
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 26px;
   }
 
-  /* KHỐI 1: THÔNG TIN MỞ ĐẦU SẢN PHẨM (VIỀN XANH LỤC BẢO MINH HOÀNG) */
+  /* CƠ CHẾ CUỘN GỌN MƯỢT (ACCORDION DÙNG CHUNG) */
+  .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.32s ease;
+  }
+  .acc-panel.open { grid-template-rows: 1fr; }
+  .acc-inner { overflow: hidden; }
+  .acc-chevron {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+  .acc-btn {
+    font-family: 'Inter', sans-serif;
+    background: #F4FAF6;
+    color: var(--bio-green);
+    border: 1px solid #D4E6DA;
+    border-left: 3px solid var(--bio-green);
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 12.3px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+  .acc-btn.full-bar { width: 100%; }
+  .acc-btn:hover { background: var(--espresso); color: var(--gold-bright); border-color: var(--espresso); }
+  .acc-btn[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
+
+  .expand-all-chip {
+    font-family: 'Inter', sans-serif;
+    background: #F4EFE6;
+    color: var(--espresso);
+    border: 1px solid var(--border-warm);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .expand-all-chip:hover { background: var(--espresso); color: var(--gold-bright); border-color: var(--espresso); }
+
+  /* ================= KHỐI 1: THÔNG TIN MỞ ĐẦU SẢN PHẨM (SẮC XANH LỤC BẢO MINH HOÀNG) ================= */
   .product-overview-card {
+    width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--border-warm);
     border-top: 4px solid var(--bio-green);
     border-radius: 8px;
-    padding: 34px 30px 26px;
-    box-shadow: 0 8px 24px rgba(35, 18, 11, 0.05);
+    padding: 26px 24px;
+    box-shadow: 0 8px 22px rgba(35, 18, 11, 0.05);
+    scroll-margin-top: 76px;
+  }
+  .overview-top-grid {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .overview-visual-col {
+    width: 270px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 10px;
   }
-  .overview-top-grid { display: flex; gap: 34px; align-items: flex-start; }
-  .overview-visual-col { width: 350px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
   .product-main-visual {
-    width: 100%; height: 330px; border-radius: 6px;
+    width: 100%;
+    height: 265px;
+    border-radius: 6px;
     background: radial-gradient(circle, #FDFBF8 0%, #F1ECE2 100%);
     border: 1px solid var(--border-warm);
-    display: flex; align-items: center; justify-content: center; padding: 16px; overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    overflow: hidden;
   }
   .product-main-visual img { max-width: 100%; max-height: 100%; object-fit: contain; }
   .box-placeholder-inner {
     width: 100%; height: 100%; border-radius: 4px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 18px; border: 1.5px solid var(--gold-primary);
+    text-align: center; padding: 14px;
+    border: 1.5px solid var(--gold-primary);
     background: linear-gradient(135deg, #2C1810 0%, #170B06 100%);
   }
-  .box-placeholder-inner .bp-brand {
-    font-size: 10px; letter-spacing: 2px; color: var(--gold-light);
-    text-transform: uppercase; text-align: center !important;
-  }
-  .box-placeholder-inner .bp-name {
-    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
-    color: var(--gold-bright); margin: 6px 0; text-align: center !important;
-  }
-  .box-placeholder-inner .bp-sub { font-size: 11px; color: #D6C6B8; text-align: center !important; }
+  .box-placeholder-inner .bp-brand { font-size: 9.5px; letter-spacing: 2px; color: var(--gold-light); text-transform: uppercase; text-align: center !important; }
+  .box-placeholder-inner .bp-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--gold-bright); margin: 5px 0; text-align: center !important; }
+  .box-placeholder-inner .bp-sub { font-size: 10px; color: #D6C6B8; text-align: center !important; line-height: 1.4; }
 
-  .badge-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .badge-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .spec-mini-badge {
-    background: #FAF5EB; border: 1px solid #EFE4D2; border-left: 3px solid var(--bio-green);
-    padding: 7px 10px; border-radius: 0 4px 4px 0; font-size: 12px; color: var(--text-dark);
+    background: #FAF5EB;
+    border: 1px solid #EFE4D2;
+    border-left: 3px solid var(--bio-green);
+    padding: 6px 8px;
+    border-radius: 0 4px 4px 0;
+    font-size: 11.4px;
+    line-height: 1.4;
+    color: var(--text-dark);
   }
   .spec-mini-badge strong {
-    display: block; font-size: 10.5px; text-transform: uppercase;
-    letter-spacing: 0.4px; color: var(--espresso); margin-bottom: 1px;
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--espresso);
+    margin-bottom: 1px;
   }
 
   .overview-info-col { flex: 1; display: flex; flex-direction: column; }
   .line-eyebrow {
-    font-size: 11.5px; text-transform: uppercase; letter-spacing: 2px;
-    color: var(--bio-green); font-weight: 700; margin-bottom: 4px;
+    font-size: 10.8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--bio-green);
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.45;
   }
   .product-main-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(23px, 2.8vw, 30px); color: var(--espresso); line-height: 1.28; margin-bottom: 12px;
+    font-size: clamp(21px, 2.5vw, 27px);
+    color: var(--espresso);
+    line-height: 1.28;
+    margin-bottom: 10px;
   }
 
   .price-banner-box {
-    display: flex; align-items: baseline; gap: 10px; padding: 12px 16px;
-    background: #FAF7F2; border: 1px solid #EFE8DC; border-radius: 6px; margin-bottom: 16px; flex-wrap: wrap;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #FAF7F2;
+    border: 1px solid #EFE8DC;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
   }
-  .price-value { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--espresso); }
-  .price-spec-note { font-size: 13px; color: var(--text-muted); }
+  .price-value { font-family: 'Playfair Display', Georgia, serif; font-size: 20.5px; font-weight: 700; color: var(--espresso); }
+  .price-spec-note { font-size: 12.4px; color: var(--text-muted); }
   .edition-pill {
-    margin-left: auto; font-size: 11.5px; font-weight: 600; color: var(--bio-green);
-    background: #EFF6F1; border: 1px solid rgba(30, 107, 56, 0.3); padding: 3px 10px; border-radius: 3px; white-space: nowrap;
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bio-green);
+    background: #EFF6F1;
+    border: 1px solid rgba(30, 107, 56, 0.32);
+    padding: 2.5px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
   }
 
   .quote-banner {
-    background: #FDFBF8; border-left: 3px solid var(--bio-green); padding: 12px 16px;
-    border-radius: 0 4px 4px 0; font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 17.5px; font-style: italic; color: var(--espresso); line-height: 1.62; margin-bottom: 16px;
+    background: #FDFBF8;
+    border-left: 3px solid var(--bio-green);
+    padding: 10px 14px;
+    border-radius: 0 4px 4px 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16.5px;
+    font-style: italic;
+    color: var(--espresso);
+    line-height: 1.6;
+    margin-bottom: 12px;
   }
 
-  .summary-points { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-  .summary-points li { font-size: 14px; color: var(--text-dark); line-height: 1.72; padding-left: 20px; position: relative; }
-  .summary-points li::before { content: "❖"; position: absolute; left: 0; top: 2px; color: var(--bio-green); font-size: 9.5px; }
+  .summary-points { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .summary-points li { font-size: 13.5px; color: var(--text-dark); line-height: 1.66; padding-left: 17px; position: relative; }
+  .summary-points li::before { content: "❖"; position: absolute; left: 0; top: 2px; color: var(--bio-green); font-size: 8.5px; }
   .summary-points strong { color: var(--espresso); }
 
-  .cta-action-row { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 14px; border-top: 1px dashed var(--border-warm); }
+  .cta-action-row { display: flex; gap: 9px; flex-wrap: wrap; padding-top: 14px; border-top: 1px dashed var(--border-warm); }
   .btn-primary-gold {
-    background: linear-gradient(135deg, #D4AF37 0%, #B38728 100%); color: var(--espresso-dark);
-    font-weight: 600; font-size: 12.5px; padding: 11px 18px; border-radius: 4px; text-decoration: none;
-    letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid #FFF3D1;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14); transition: all 0.25s ease;
-    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    background: linear-gradient(135deg, #D4AF37 0%, #B38728 100%);
+    color: var(--espresso-dark);
+    font-weight: 700;
+    font-size: 11.8px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border: 1px solid #FFF3D1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
   }
   .btn-primary-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(212, 175, 55, 0.3); }
 
   .btn-secondary-dark {
-    background: var(--espresso); color: var(--gold-light); font-weight: 500; font-size: 12.5px;
-    padding: 11px 16px; border-radius: 4px; text-decoration: none; letter-spacing: 0.5px;
-    text-transform: uppercase; border: 1px solid var(--gold-primary); transition: all 0.25s ease;
-    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    background: var(--espresso);
+    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 11.8px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border: 1px solid var(--gold-primary);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
   }
-  .btn-secondary-dark:hover { background: var(--wine-red); color: #FFF; transform: translateY(-1px); }
+  .btn-secondary-dark:hover { background: var(--bio-green); color: #FFF; border-color: var(--bio-green); transform: translateY(-1px); }
 
   .btn-tertiary-cream {
-    background: #FAF5EB; color: var(--espresso); font-weight: 600; font-size: 12.5px;
-    padding: 11px 16px; border-radius: 4px; text-decoration: none; letter-spacing: 0.4px;
-    text-transform: uppercase; border: 1px solid var(--border-warm); transition: all 0.25s ease;
-    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    background: #FAF5EB;
+    color: var(--espresso);
+    font-weight: 600;
+    font-size: 11.8px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    border: 1px solid var(--border-warm);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
   }
   .btn-tertiary-cream:hover { background: var(--espresso); color: var(--gold-bright); border-color: var(--espresso); }
 
-  .internal-jump-bar {
-    background: #FAF7F2; border: 1px solid var(--border-warm); border-radius: 6px;
-    padding: 10px 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  }
-  .jump-bar-label { font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: var(--bio-green); letter-spacing: 0.8px; margin-right: 4px; }
-  .sec-jump-btn {
-    font-family: 'Inter', sans-serif; background: #FFFFFF; color: var(--espresso);
-    border: 1px solid var(--border-warm); border-radius: 4px; padding: 6px 11px;
-    font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
-  }
-  .sec-jump-btn:hover { background: var(--espresso); color: var(--gold-bright); border-color: var(--gold-primary); }
-
   /* KHUNG CHUẨN CHO CÁC KHỐI NỘI DUNG 2 -> 7 */
   .content-block-card {
-    background: var(--card-bg); border: 1px solid var(--border-warm); border-radius: 8px;
-    padding: 32px 30px; box-shadow: 0 6px 20px rgba(35, 18, 11, 0.04);
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-warm);
+    border-radius: 8px;
+    padding: 28px 26px;
+    box-shadow: 0 6px 20px rgba(35, 18, 11, 0.04);
+    position: relative;
+    scroll-margin-top: 76px;
   }
-  .block-header { border-bottom: 2px solid #F3EDE3; padding-bottom: 12px; margin-bottom: 22px; }
-  .block-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--bio-green); display: block; margin-bottom: 4px; }
-  .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(20px, 2.5vw, 25px); color: var(--espresso); line-height: 1.32; }
+  .content-block-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 3.5px;
+    background: linear-gradient(90deg, var(--bio-green), var(--gold-primary));
+    border-radius: 8px 8px 0 0;
+  }
+  .block-header {
+    border-bottom: 1.5px solid #F3EDE3;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .block-header-text { flex: 1; }
+  .block-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--bio-green);
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.45;
+  }
+  .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(19.5px, 2.3vw, 23.5px); color: var(--espresso); line-height: 1.32; }
 
-  .wellness-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  /* KHỐI 2: GÓC NHÌN DƯỠNG SINH 2 CỘT & BẢNG ĐỐI CHIẾU */
+  .wellness-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   .wellness-col-box {
-    background: #FAF7F2; border: 1px solid var(--border-warm); border-left: 3.5px solid var(--wine-red);
-    border-radius: 0 6px 6px 0; padding: 20px;
+    background: #FAF7F2;
+    border: 1px solid var(--border-warm);
+    border-left: 3.5px solid var(--wine-red);
+    border-radius: 0 6px 6px 0;
+    padding: 18px;
   }
   .wellness-col-box.solution-col { border-left-color: var(--bio-green); background: #FDFBF7; }
-  .wellness-col-box h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; color: var(--espresso); margin-bottom: 10px; }
-  .wellness-col-box p { font-size: 13.8px; color: var(--text-dark); line-height: 1.72; margin-bottom: 10px; }
+  .wellness-col-box h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; color: var(--espresso); margin-bottom: 8px; line-height: 1.34; }
+  .wellness-col-box p { font-size: 13.4px; color: var(--text-dark); line-height: 1.68; margin-bottom: 9px; }
   .wellness-col-box p:last-child { margin-bottom: 0; }
 
-  .table-responsive { overflow-x: auto; border: 1px solid var(--border-warm); border-radius: 6px; -webkit-overflow-scrolling: touch; }
-  .std-table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: #FFFFFF; min-width: 640px; }
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-warm);
+    border-radius: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .std-table { width: 100%; border-collapse: collapse; font-size: 13.2px; background: #FFFFFF; min-width: 580px; }
   .std-table th {
-    background: var(--espresso); color: var(--gold-bright); font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 600; padding: 12px 15px; border-right: 1px solid rgba(197, 160, 89, 0.2);
+    background: var(--espresso);
+    color: var(--gold-bright);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    padding: 12px 14px;
+    border-right: 1px solid rgba(197, 160, 89, 0.2);
   }
   .std-table th:last-child { border-right: none; }
   .std-table td {
-    padding: 12px 15px; border-bottom: 1px solid var(--border-warm); border-right: 1px solid var(--border-warm);
-    vertical-align: top; line-height: 1.65; color: var(--text-dark);
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-warm);
+    border-right: 1px solid var(--border-warm);
+    vertical-align: top;
+    line-height: 1.6;
+    color: var(--text-dark);
   }
   .std-table td:last-child { border-right: none; }
   .std-table tr:last-child td { border-bottom: none; }
   .std-table tr:nth-child(even) td { background: #FAF7F2; }
 
-  .bioactive-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  /* KHỐI 3: 3 NHÓM DƯỠNG CHẤT ĐỊNH MỨC CAO (MỞ NHÃN CỐT LÕI + CUỘN PHÂN TÍCH CHUYÊN SÂU) */
+  .bioactive-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .bio-card {
-    background: #FAF7F2; border: 1px solid var(--border-warm); border-top: 3.5px solid var(--bio-green);
-    border-radius: 6px; padding: 22px 18px; display: flex; flex-direction: column; gap: 8px;
+    background: #FAF7F2;
+    border: 1px solid var(--border-warm);
+    border-top: 3.5px solid var(--bio-green);
+    border-radius: 6px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
   .bio-card:nth-child(2) { border-top-color: var(--gold-primary); }
   .bio-card:nth-child(3) { border-top-color: var(--academic-blue); }
-  .bio-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--bio-green); }
-  .bio-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; color: var(--espresso); line-height: 1.35; }
+  .bio-tag { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--bio-green); }
+  .bio-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; color: var(--espresso); line-height: 1.32; }
   .bio-metric-highlight {
-    display: inline-block; background: #FFFFFF; border: 1px solid var(--border-warm);
-    padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; color: var(--bio-green); margin: 2px 0 4px;
+    display: inline-block;
+    background: #FFFFFF;
+    border: 1px solid var(--border-warm);
+    padding: 4px 9px;
+    border-radius: 4px;
+    font-size: 11.8px;
+    font-weight: 700;
+    color: var(--bio-green);
+    line-height: 1.4;
   }
-  .bio-card p { font-size: 13.5px; color: var(--text-dark); line-height: 1.7; margin: 0; }
+  .bio-detail-text { font-size: 13.2px; color: var(--text-dark); line-height: 1.66; padding-top: 8px; margin: 0; }
 
+  /* KHỐI 4: KỸ NGHỆ CHẾ BIẾN MỘC BẢN & 3 TẦNG CHUYỂN VỊ */
   .craft-highlight-box {
-    background: radial-gradient(circle at 50% 50%, #2B1309 0%, #160803 100%);
-    border: 1.5px solid var(--gold-primary); border-radius: 6px; padding: 22px 24px; color: #FAF4EB; margin-bottom: 22px;
+    background: radial-gradient(circle at 50% 50%, #172B1F 0%, #160803 100%);
+    border: 1.5px solid var(--gold-primary);
+    border-radius: 6px;
+    padding: 20px 22px;
+    color: #FAF4EB;
+    margin-bottom: 18px;
   }
-  .craft-highlight-box h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 18.5px; color: var(--gold-bright); margin-bottom: 8px; }
-  .craft-highlight-box p { font-size: 13.8px; color: #DFD3C3; line-height: 1.72; margin: 0; }
+  .craft-highlight-box h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 17.5px; color: var(--gold-bright); margin-bottom: 8px; line-height: 1.35; }
+  .craft-highlight-box p { font-size: 13.5px; color: #DFD3C3; line-height: 1.7; margin: 0; }
 
-  .sensory-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .sensory-card { background: #FAF7F2; border: 1px solid var(--border-warm); border-top: 3px solid var(--bio-green); border-radius: 6px; padding: 18px 16px; }
-  .sensory-stage { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--bio-green); display: block; margin-bottom: 4px; }
-  .sensory-card h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; color: var(--espresso); margin-bottom: 6px; }
-  .sensory-card p { font-size: 13.3px; color: var(--text-dark); line-height: 1.68; margin: 0; }
+  .sensory-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .sensory-card {
+    background: #FAF7F2;
+    border: 1px solid var(--border-warm);
+    border-top: 3px solid var(--bio-green);
+    border-radius: 6px;
+    padding: 16px 15px;
+  }
+  .sensory-stage { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--bio-green); display: block; margin-bottom: 4px; }
+  .sensory-card h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; color: var(--espresso); margin-bottom: 6px; line-height: 1.32; }
+  .sensory-card p { font-size: 13.1px; color: var(--text-dark); line-height: 1.64; margin: 0; }
 
-  .ritual-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .ritual-step-card { background: #FAF7F2; border: 1px solid var(--border-warm); border-top: 3px solid var(--bio-green); border-radius: 6px; padding: 18px 16px; }
-  .ritual-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--bio-green); display: block; }
-  .ritual-step-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; color: var(--espresso); margin: 4px 0 8px; }
-  .ritual-step-card p { font-size: 13.2px; color: var(--text-dark); line-height: 1.68; margin: 0; }
+  /* KHỐI 6: 4 BƯỚC THƯỞNG TRÀ (LƯỚI 2x2 THOÁNG CHỮ) */
+  .ritual-grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .ritual-step-card {
+    background: #FAF7F2;
+    border: 1px solid var(--border-warm);
+    border-top: 3px solid var(--bio-green);
+    border-radius: 6px;
+    padding: 18px 16px;
+  }
+  .ritual-num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--bio-green); display: block; }
+  .ritual-step-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; color: var(--espresso); margin: 4px 0 7px; line-height: 1.32; }
+  .ritual-step-card p { font-size: 13.2px; color: var(--text-dark); line-height: 1.66; margin: 0; }
 
-  .ref-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 22px; }
+  /* KHỐI 7: 3 NGUỒN THAM CHIẾU KHOA HỌC (CUỘN GỌN) & CẦU NỐI & PHÁP LÝ */
+  .ref-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 14px; }
   .ref-card {
-    background: #FAF7F2; border: 1px solid var(--border-warm); border-left: 3.5px solid var(--academic-blue);
-    border-radius: 0 6px 6px 0; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px;
+    background: #FAF7F2;
+    border: 1px solid var(--border-warm);
+    border-left: 3.5px solid var(--academic-blue);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
   }
-  .ref-source-tag { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--academic-blue); }
-  .ref-card h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; color: var(--espresso); line-height: 1.35; }
-  .ref-card p { font-size: 13px; color: var(--text-dark); line-height: 1.65; margin: 0; }
+  .ref-source-tag { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--academic-blue); }
+  .ref-card h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; color: var(--espresso); line-height: 1.35; }
+  .ref-card p { font-size: 12.8px; color: var(--text-dark); line-height: 1.62; margin: 0; }
   .ref-ext-link {
-    margin-top: auto; padding-top: 8px; font-size: 12px; font-weight: 600; color: var(--academic-blue);
-    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+    margin-top: auto;
+    padding-top: 7px;
+    font-size: 11.8px;
+    font-weight: 600;
+    color: var(--academic-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
-  .ref-ext-link:hover { text-decoration: underline; color: var(--wine-red); }
+  .ref-ext-link:hover { text-decoration: underline; color: var(--bio-green); }
 
   .monograph-bridge-box {
-    background: #FAF5EB; border: 1px solid var(--border-warm); border-left: 4px solid var(--bio-green);
-    border-radius: 6px; padding: 18px 20px; display: flex; justify-content: space-between;
-    align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;
+    background: #FAF5EB;
+    border: 1px solid var(--border-warm);
+    border-left: 4px solid var(--bio-green);
+    border-radius: 6px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 18px;
   }
-  .monograph-bridge-text { flex: 1; min-width: 240px; }
-  .monograph-bridge-text h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 16.5px; color: var(--espresso); margin-bottom: 4px; }
-  .monograph-bridge-text p { font-size: 13.3px; color: var(--text-dark); margin: 0; }
+  .monograph-bridge-text { flex: 1; }
+  .monograph-bridge-text h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; color: var(--espresso); margin-bottom: 4px; line-height: 1.35; }
+  .monograph-bridge-text p { font-size: 13.2px; color: var(--text-dark); margin: 0; line-height: 1.6; }
 
-  .legal-disclaimer-box {
-    background: #F8F4EE; border: 1px solid #DFD6C6; border-left: 4px solid var(--wine-red);
-    border-radius: 6px; padding: 20px 22px;
+  .disclaimer-card {
+    width: 100%;
+    background: #F8F4EE;
+    border: 1px solid #DFD6C6;
+    border-left: 4px solid var(--wine-red);
+    border-radius: 6px;
+    padding: 14px 20px;
   }
-  .legal-disclaimer-box h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; color: var(--wine-red); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .legal-disclaimer-box p { font-size: 13px; color: var(--text-dark); line-height: 1.65; margin-bottom: 6px; }
-  .legal-disclaimer-box p:last-child { margin-bottom: 0; }
+  .disclaimer-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--wine-red);
+    cursor: pointer;
+    line-height: 1.38;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .disclaimer-title-inner { display: inline-flex; align-items: flex-start; gap: 7px; }
+  .disclaimer-trigger[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
+  .disclaimer-body { padding-top: 10px; margin-top: 8px; border-top: 1px dashed #D8CCB8; }
+  .disclaimer-body p { font-size: 13px; color: var(--text-dark); line-height: 1.66; margin-bottom: 8px; }
+  .disclaimer-body p:last-child { margin-bottom: 0; }
 
+  /* ================= 4. CỘT PHẢI: MỤC LỤC TRƯỢT DÍNH (DESKTOP STICKY TOC + SCROLLSPY) ================= */
+  .doc-sidebar {
+    width: 285px;
+    position: sticky;
+    top: 72px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .toc-widget {
+    background: #FFFFFF;
+    border: 1px solid var(--border-warm);
+    border-top: 3.5px solid var(--bio-green);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 6px 18px rgba(35, 18, 11, 0.04);
+  }
+  .toc-widget-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--espresso);
+    text-transform: uppercase;
+    padding-bottom: 9px;
+    margin-bottom: 10px;
+    border-bottom: 1.5px solid var(--border-warm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .toc-jump-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-left: 2.5px solid transparent;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 7px 8px;
+    border-radius: 0 4px 4px 0;
+    color: var(--text-dark);
+    font-size: 12.6px;
+    font-weight: 500;
+    line-height: 1.42;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .toc-jump-btn:hover { background: #F1F8F3; color: var(--bio-green); border-left-color: var(--bio-green); }
+  .toc-jump-btn.active { background: #EDF6F0; color: var(--bio-green); border-left-color: var(--bio-green); font-weight: 700; }
+  .toc-roman {
+    flex-shrink: 0;
+    min-width: 22px;
+    height: 20px;
+    border-radius: 3px;
+    background: var(--espresso);
+    color: var(--gold-bright);
+    font-size: 10px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .toc-jump-btn.active .toc-roman { background: var(--bio-green); color: #FFFFFF; }
+
+  .sidebar-series-list { list-style: none; }
+  .sidebar-series-list li { padding: 7px 0; border-bottom: 1px dashed var(--border-warm); }
+  .sidebar-series-list li:last-child { border-bottom: none; }
+  .sidebar-series-list a {
+    text-decoration: none;
+    color: var(--espresso);
+    font-size: 12.6px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.38;
+    transition: color 0.2s ease;
+  }
+  .sidebar-series-list a:hover { color: var(--bio-green); }
+  .sidebar-series-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.42; }
+
+  /* ================= 5. NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI ================= */
+  .toc-drawer-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(14, 5, 2, 0.62);
+    z-index: 99990;
+    opacity: 0; visibility: hidden;
+    transition: all 0.25s ease;
+  }
+  .toc-drawer-backdrop.open { opacity: 1; visibility: visible; }
+  .toc-drawer-sheet {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    z-index: 99995;
+    background: #FFFFFF;
+    border-top: 3px solid var(--bio-green);
+    border-radius: 14px 14px 0 0;
+    padding: 18px 18px 28px;
+    max-height: 75vh;
+    overflow-y: auto;
+    transform: translateY(105%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  }
+  .toc-drawer-sheet.open { transform: translateY(0); }
+  .drawer-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1.5px solid var(--border-warm);
+  }
+  .drawer-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--espresso); }
+  .drawer-close {
+    background: #F4EFE6; border: 1px solid var(--border-warm); color: var(--espresso);
+    width: 30px; height: 30px; border-radius: 50%; font-size: 14px; font-weight: 700;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* ================= 6. FOOTER ĐỒNG BỘ CÓ LOGO ================= */
   .site-footer { background-color: var(--espresso); color: #D6C7B8; border-top: 3px solid var(--gold-primary); padding: 38px 20px 22px; }
-  .footer-inner {
-    max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1.3fr;
-    gap: 28px; padding-bottom: 22px; border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+  .footer-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1.3fr; gap: 28px; padding-bottom: 22px; border-bottom: 1px solid rgba(197, 160, 89, 0.25); }
+  .footer-brand-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .footer-logo-img {
+    height: 48px; width: auto; object-fit: contain; flex-shrink: 0; display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
   }
-  .footer-brand h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 18px; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .footer-brand h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 16.5px; margin: 0; letter-spacing: 0.4px; line-height: 1.35; }
   .footer-brand p { font-size: 13px; line-height: 1.7; color: #C2B4A8; margin-bottom: 8px; }
   .footer-col h4 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .footer-col ul { list-style: none; }
@@ -438,787 +935,806 @@
   .contact-item .icon { color: var(--gold-primary); font-size: 12.5px; line-height: 1.55; flex-shrink: 0; }
   .contact-link { color: var(--gold-bright) !important; font-weight: 600; }
   .footer-disclaimer-wrap { max-width: 1180px; margin: 16px auto 0; padding: 0 10px; text-align: center; }
-  .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.55; text-align: center !important; text-wrap: balance; }
+  .footer-disclaimer { font-size: 11.8px; color: #A99688; font-style: italic; line-height: 1.58; text-align: center !important; }
   .footer-bottom { max-width: 1180px; margin: 10px auto 0; text-align: center !important; font-size: 11.5px; color: #8C7B6E; }
 
-  @media (max-width: 960px) {
-    .top-nav-inner { padding: 6px 12px; gap: 8px; }
+  /* ================= RESPONSIVE CHỐNG VỠ HÀNG LAPTOP NHỎ & ĐIỆN THOẠI ================= */
+  @media (max-width: 1080px) {
+    .top-nav-inner { flex-wrap: wrap; padding: 7px 14px 6px; gap: 6px 10px; min-height: auto; }
+    .nav-brand-tools { order: 1; }
+    .nav-logo-img { height: 34px; }
+    .lang-switch-box { order: 2; }
+    .nav-menu-scroll-wrap {
+      order: 3; width: 100%; flex-basis: 100%; justify-content: flex-start;
+      position: relative; border-top: 1px solid rgba(197, 160, 89, 0.22); padding-top: 5px;
+    }
+    .nav-menu-scroll-wrap::after {
+      content: ""; position: absolute; top: 5px; right: 0; bottom: 0; width: 28px; pointer-events: none;
+      background: linear-gradient(90deg, rgba(20, 7, 2, 0), rgba(20, 7, 2, 0.96));
+    }
     .nav-menu-list {
-      overflow-x: auto; flex-wrap: nowrap; flex: 1; min-width: 0; padding-bottom: 2px;
+      overflow-x: auto; flex-wrap: nowrap; width: 100%; padding-right: 26px; gap: 4px;
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
     }
     .nav-menu-list::-webkit-scrollbar { display: none; }
     .nav-dropdown { display: none; }
-    .overview-top-grid { flex-direction: column; gap: 22px; }
+
+    .subnav-shell::after {
+      content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 28px; pointer-events: none;
+      background: linear-gradient(90deg, rgba(244, 239, 230, 0), rgba(244, 239, 230, 0.98));
+    }
+    .subnav-inner { padding-right: 28px; }
+  }
+
+  @media (max-width: 960px) {
+    .nav-mobile-toc-btn { display: inline-flex; }
+    .doc-workspace { flex-direction: column; align-items: stretch; width: 100%; }
+    .doc-main-col { width: 100%; flex: none; }
+    .doc-sidebar { display: none; }
+    .overview-top-grid { flex-direction: column; gap: 18px; }
     .overview-visual-col { width: 100%; }
-    .product-main-visual { height: 270px; }
+    .product-main-visual { height: 245px; }
     .wellness-2col, .bioactive-grid-3, .sensory-grid-3, .ref-grid-3 { grid-template-columns: 1fr; gap: 14px; }
-    .ritual-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .footer-inner { grid-template-columns: 1fr; gap: 22px; }
   }
 
   @media (max-width: 640px) {
-    body { line-height: 1.65; padding-top: 84px; }
-    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 8px; gap: 6px; }
-    .lang-switch-box { align-self: flex-end; }
-    .lang-btn { font-size: 10.5px; padding: 3px 8px; }
-    .nav-menu-list { width: 100%; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 5px; gap: 6px; }
+    body { line-height: 1.65; padding-top: 90px; }
+    .top-nav-inner { padding: 6px 10px 6px; }
+    .nav-logo-img { height: 30px; }
+    .nav-mobile-toc-btn { font-size: 11px; padding: 4px 8px; }
+    .lang-btn { font-size: 10.5px; padding: 4px 7px; }
     .nav-link { font-size: 12px; padding: 5px 9px; }
 
-    .product-overview-card, .content-block-card { padding: 22px 16px; }
-    .badge-grid-4, .ritual-grid-4 { grid-template-columns: 1fr; gap: 10px; }
-    .cta-action-row { flex-direction: column; width: 100%; }
-    .btn-primary-gold, .btn-secondary-dark, .btn-tertiary-cream { width: 100%; justify-content: center; }
+    .breadcrumb-nav, .subnav-bar { padding-left: 14px; padding-right: 14px; }
+    .doc-workspace { padding: 0 14px; margin-top: 18px; }
+    .product-overview-card, .content-block-card { padding: 20px 16px; }
+    .block-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .ritual-grid-4 { grid-template-columns: 1fr; gap: 12px; }
+    .cta-action-row { flex-direction: column; width: 100%; gap: 9px; }
+    .btn-primary-gold, .btn-secondary-dark, .btn-tertiary-cream {
+      width: 100%; white-space: normal; text-align: center !important; line-height: 1.4;
+    }
+    .monograph-bridge-box { flex-direction: column; align-items: stretch; }
+  }
+
+  @media (max-width: 420px) {
+    .lang-code { display: none; }
+    .nav-brand-tools { gap: 6px; }
   }
 </style>
 </head>
 <body id="top-minh-hoang" data-lang="vi">
 
-  <!-- 0. THANH MENU NGANG SONG NGỮ GHIM CỐ ĐỊNH TRÊN ĐỈNH TRANG -->
+  <!-- 0. THANH MENU NGANG CÓ LOGO BÁCH PHỤC + MỤC LỤC DI ĐỘNG + SONG NGỮ -->
   <nav class="top-bilingual-nav" id="main-fixed-nav" aria-label="Main Navigation">
     <div class="top-nav-inner">
-      <ul class="nav-menu-list">
-        <li class="nav-item">
-          <a href="/" class="nav-link">
-            <span class="vi">Trang&nbsp;Chủ</span>
-            <span class="en">Home</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/dongsanpham" class="nav-link active">
-            <span class="vi">Sản&nbsp;Phẩm</span>
-            <span class="en">Products</span>
-            <span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang</span></a></li>
-            <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang</span></a></li>
-            <li>
-              <button type="button" onclick="bpScrollTo('top')" class="sub-active">
-                <span class="vi">3. Minh&nbsp;Hoàng (Đang&nbsp;xem)</span>
-                <span class="en">3. Minh&nbsp;Hoang (Current)</span>
-              </button>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/tailieu" class="nav-link">
-            <span class="vi">Tài&nbsp;Liệu Chuyên&nbsp;Khảo</span>
-            <span class="en">Scientific Monographs</span>
-            <span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/tailieu/tuanhoan"><span class="vi">01. Tuần&nbsp;Hoàn &amp; Thần&nbsp;Kinh</span><span class="en">01. Vascular &amp; Neural Harmony</span></a></li>
-            <li><a href="/tailieu/tebao"><span class="vi">02. Miễn&nbsp;Dịch &amp; Tế&nbsp;Bào</span><span class="en">02. Immunity &amp; Cellular Resilience</span></a></li>
-            <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc</span><span class="en">03. Metabolic &amp; Detoxification</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/suckhoe" class="nav-link">
-            <span class="vi">Cơ&nbsp;Chế Tự&nbsp;Chữa&nbsp;Lành</span>
-            <span class="en">Self-Healing Science</span>
-            <span class="nav-caret">▾</span>
-          </a>
-          <ul class="nav-dropdown">
-            <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân&nbsp;Bằng Nội&nbsp;Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
-            <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự&nbsp;Chữa&nbsp;Lành Tế&nbsp;Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
-            <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa&nbsp;Học Thích&nbsp;Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
-            <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh&nbsp;Học Thân&nbsp;Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="/tracuu" class="nav-link">
-            <span class="vi">Tra&nbsp;Cứu</span>
-            <span class="en">Authentication</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/thuhai" class="nav-link">
-            <span class="vi">Thu&nbsp;Hái</span>
-            <span class="en">Wild Harvesting</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/lienhe" class="nav-link">
-            <span class="vi">Liên&nbsp;Hệ</span>
-            <span class="en">Contact</span>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Công tắc chuyển đổi ngôn ngữ VI | EN -->
-      <div class="lang-switch-box" role="group" aria-label="Language Switcher">
-        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')">VI • Tiếng Việt</button>
-        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')">EN • English</button>
+      <div class="nav-brand-tools">
+        <a href="/" class="nav-logo-link" aria-label="Trà Thảo Mộc Bách Phục">
+          <img src="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri" alt="Logo Trà Thảo Mộc Bách Phục" class="nav-logo-img">
+        </a>
+        <button type="button" class="nav-mobile-toc-btn" onclick="openTocDrawer()" aria-label="Mở mục lục">
+          <span>☰</span>
+          <span class="vi">Mục&nbsp;Lục</span>
+          <span class="en">Contents</span>
+        </button>
       </div>
+
+      <div class="nav-menu-scroll-wrap">
+        <ul class="nav-menu-list">
+          <li class="nav-item"><a href="/" class="nav-link"><span class="vi">Trang Chủ</span><span class="en">Home</span></a></li>
+          <li class="nav-item">
+            <a href="/dongsanpham" class="nav-link active"><span class="vi">Sản Phẩm</span><span class="en">Products</span><span class="nav-caret">▾</span></a>
+            <ul class="nav-dropdown">
+              <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng Hoàng</span><span class="en">1. Thuong Hoang</span></a></li>
+              <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim Hoàng</span><span class="en">2. Kim Hoang</span></a></li>
+              <li>
+                <button type="button" onclick="jumpToSection('top')" class="sub-active">
+                  <span class="vi">3. Minh Hoàng (Đang xem)</span>
+                  <span class="en">3. Minh Hoang (Current)</span>
+                </button>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/tailieu" class="nav-link"><span class="vi">Tài Liệu Chuyên Khảo</span><span class="en">Scientific Monographs</span><span class="nav-caret">▾</span></a>
+            <ul class="nav-dropdown">
+              <li><a href="/tailieu/tuanhoan"><span class="vi">01. Tuần Hoàn &amp; Thần Kinh</span><span class="en">01. Vascular &amp; Neural</span></a></li>
+              <li><a href="/tailieu/tebao"><span class="vi">02. Miễn Dịch &amp; Tế Bào</span><span class="en">02. Immunity &amp; Cells</span></a></li>
+              <li><a href="/tailieu/chuyenhoa"><span class="vi">03. Chuyển Hóa &amp; Thanh Lọc</span><span class="en">03. Metabolic &amp; Detox</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/suckhoe" class="nav-link"><span class="vi">Cơ Chế Tự Chữa Lành</span><span class="en">Self-Healing Science</span><span class="nav-caret">▾</span></a>
+            <ul class="nav-dropdown">
+              <li><a href="/suckhoe/noicanbang"><span class="vi">01. Cân Bằng Nội Môi</span><span class="en">01. Biological Homeostasis</span></a></li>
+              <li><a href="/suckhoe/tuchualanh"><span class="vi">02. Tự Chữa Lành Tế Bào</span><span class="en">02. Cellular Self-Healing</span></a></li>
+              <li><a href="/suckhoe/thichnghi"><span class="vi">03. Khoa Học Thích Nghi</span><span class="en">03. Adaptogenic Science</span></a></li>
+              <li><a href="/suckhoe/nhipsinhhoc"><span class="vi">04. Nhịp Sinh Học Thân Tâm</span><span class="en">04. Circadian Rhythm</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/tracuu" class="nav-link"><span class="vi">Tra Cứu</span><span class="en">Authentication</span></a></li>
+          <li class="nav-item"><a href="/thuhai" class="nav-link"><span class="vi">Thu Hái</span><span class="en">Wild Harvesting</span></a></li>
+          <li class="nav-item"><a href="/lienhe" class="nav-link"><span class="vi">Liên Hệ</span><span class="en">Contact</span></a></li>
+        </ul>
+      </div>
+
+      <div class="lang-switch-box" role="group" aria-label="Language Switcher">
+        <button type="button" class="lang-btn active" id="btn-lang-vi" onclick="setBachPhucLang('vi')"><span class="lang-code">VI • </span>Tiếng Việt</button>
+        <button type="button" class="lang-btn" id="btn-lang-en" onclick="setBachPhucLang('en')"><span class="lang-code">EN • </span>English</button>
+      </div>
+    </div>
+    <div class="reading-progress-track" aria-hidden="true">
+      <div class="reading-progress-fill" id="reading-progress-fill"></div>
     </div>
   </nav>
 
-  <!-- 1. BREADCRUMB -->
+  <!-- 1. BREADCRUMB & SUBNAV CHUYỂN NHANH 3 DÒNG TRÀ -->
   <nav class="breadcrumb-nav">
-    <a href="/">
-      <span class="vi">Trang&nbsp;chủ</span>
-      <span class="en">Home</span>
-    </a>
+    <a href="/"><span class="vi">Trang chủ</span><span class="en">Home</span></a>
     <span class="sep">❖</span>
-    <a href="/dongsanpham">
-      <span class="vi">Danh&nbsp;mục Sản&nbsp;phẩm</span>
-      <span class="en">Product Catalog</span>
-    </a>
+    <a href="/dongsanpham"><span class="vi">Danh mục Sản phẩm</span><span class="en">Product Catalog</span></a>
     <span class="sep">❖</span>
-    <span class="current">
-      <span class="vi">3. Minh&nbsp;Hoàng</span>
-      <span class="en">3. Minh&nbsp;Hoang</span>
-    </span>
+    <span class="current"><span class="vi">3. Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang</span></span>
   </nav>
 
-  <main class="page-container">
+  <div class="subnav-bar">
+    <div class="subnav-shell">
+      <div class="subnav-inner">
+        <a href="/dongsanpham" class="subnav-link"><span class="vi">❖ Tất Cả 3 Dòng Trà</span><span class="en">❖ All 3 Tea Lines</span></a>
+        <a href="/dongsanpham/thuonghoang" class="subnav-link"><span class="vi">1. Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang</span></a>
+        <a href="/dongsanpham/kimhoang" class="subnav-link"><span class="vi">2. Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang</span></a>
+        <button type="button" class="subnav-link active" onclick="jumpToSection('top')"><span class="vi">3. Minh&nbsp;Hoàng</span><span class="en">3. Minh&nbsp;Hoang</span></button>
+      </div>
+    </div>
+  </div>
 
-    <!-- KHỐI 1: THÔNG TIN MỞ ĐẦU SẢN PHẨM -->
-    <section class="product-overview-card">
-      <div class="overview-top-grid">
-        <div class="overview-visual-col">
-          <div class="product-main-visual">
-            <img id="img-main-minh-hoang" alt="Trà Thảo Mộc Bách Phục Minh Hoàng" style="display:none;">
-            <div class="box-placeholder-inner" id="placeholder-main-minh-hoang">
-              <span class="bp-brand">Bách&nbsp;Phục</span>
-              <span class="bp-name">MINH&nbsp;HOÀNG</span>
-              <span class="bp-sub">
-                <span class="vi">Bảo&nbsp;Vật Đại&nbsp;Ngàn • Định&nbsp;Mức Dưỡng&nbsp;Chất Cao</span>
-                <span class="en">Primeval Forest Treasure • High-Potency Reserve</span>
+  <!-- 2. KHÔNG GIAN 2 CỘT: CHI TIẾT MINH HOÀNG + MỤC LỤC TRƯỢT DÍNH -->
+  <div class="doc-workspace">
+
+    <main class="doc-main-col">
+
+      <!-- KHỐI 1: THÔNG TIN MỞ ĐẦU SẢN PHẨM -->
+      <section id="khoi-tong-quan" class="product-overview-card spy-section">
+        <div class="overview-top-grid">
+          <div class="overview-visual-col">
+            <div class="product-main-visual">
+              <img id="img-main-minh-hoang" alt="Trà Thảo Mộc Bách Phục Minh Hoàng" style="display:none;">
+              <div class="box-placeholder-inner" id="placeholder-main-minh-hoang">
+                <span class="bp-brand">Bách&nbsp;Phục</span>
+                <span class="bp-name">MINH&nbsp;HOÀNG</span>
+                <span class="bp-sub">
+                  <span class="vi">Bảo Vật Đại Ngàn • Định Mức Dưỡng Chất Cao</span>
+                  <span class="en">Primeval Forest Treasure • High-Potency Reserve</span>
+                </span>
+              </div>
+            </div>
+            <div class="badge-grid-4">
+              <div class="spec-mini-badge">
+                <strong><span class="vi">Thành phần</span><span class="en">Ingredients</span></strong>
+                <span class="vi">100% Nấm Linh&nbsp;Chi Rừng</span>
+                <span class="en">100% Wild Reishi</span>
+              </div>
+              <div class="spec-mini-badge">
+                <strong><span class="vi">Quy cách</span><span class="en">Specification</span></strong>
+                <span class="vi">24&nbsp;túi lọc (100g)</span>
+                <span class="en">24&nbsp;Filter Bags (100g)</span>
+              </div>
+              <div class="spec-mini-badge">
+                <strong><span class="vi">Định mức</span><span class="en">Potency</span></strong>
+                <span class="vi" id="ui-lab-short-vi">Hoạt chất mức cao</span>
+                <span class="en" id="ui-lab-short-en">High Bioactive Potency</span>
+              </div>
+              <div class="spec-mini-badge">
+                <strong><span class="vi">Bảo chứng 1-1</span><span class="en">1-to-1 Security</span></strong>
+                <span class="vi">QR &amp; PIN 4&nbsp;số</span>
+                <span class="en">QR &amp; 4-Digit PIN</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="overview-info-col">
+            <span class="line-eyebrow">
+              <span class="vi">Dòng Mộc Bản Tuyển Chọn • Thanh Lọc Nội Môi, Chuyển Hóa &amp; Dưỡng&nbsp;Trí</span>
+              <span class="en">High-Potency Reserve • Internal Balance, Metabolism &amp; Mental&nbsp;Clarity</span>
+            </span>
+            <h1 class="product-main-title">
+              <span class="vi">3. Minh&nbsp;Hoàng (Trà Thảo Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng)</span>
+              <span class="en">3. Minh&nbsp;Hoang (Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal&nbsp;Tea)</span>
+            </h1>
+
+            <div class="price-banner-box">
+              <span class="price-value">
+                <span class="vi" id="ui-price-vi">Chưa công bố</span>
+                <span class="en" id="ui-price-en">To Be Announced</span>
+              </span>
+              <span class="price-spec-note">
+                <span class="vi">/ Hộp 24&nbsp;túi lọc (100g)</span>
+                <span class="en">/ Box of 24&nbsp;filter bags (100g)</span>
+              </span>
+              <span class="edition-pill">
+                <span class="vi">✦ Phiên Bản Tuyển Chọn</span>
+                <span class="en">✦ High-Potency Reserve</span>
               </span>
             </div>
+
+            <div class="quote-banner">
+              <span class="vi">“Chắt chiu 100% nấm Linh&nbsp;Chi rừng già Quảng&nbsp;Ngãi đạt định mức dưỡng chất cao — Thức trà thanh khiết làm dịu mát nội môi, nâng đỡ chuyển hóa và giữ cho thân nhẹ, tâm minh mỗi ngày.”</span>
+              <span class="en">“Distilled from high-potency 100% old-growth wild Reishi of Quang&nbsp;Ngai — A pure infusion that cools internal balance, supports metabolism, and sustains a light body and clear mind.”</span>
+            </div>
+
+            <ul class="summary-points">
+              <li>
+                <span class="vi"><strong>Tuyển chọn 100% Nấm Linh&nbsp;Chi Rừng đạt định mức hoạt chất cao:</strong> Chế tác từ tai nấm rừng già đanh chắc lâu năm tại Quảng&nbsp;Ngãi, giàu <em>Triterpenoids (Acid Ganoderic)</em>, <em>Polysaccharides</em> và chất chống oxy hóa tự nhiên.</span>
+                <span class="en"><strong>High-Potency 100% Wild-Harvested Reishi:</strong> Crafted from dense, aged wild fruiting bodies from Quang&nbsp;Ngai primeval forests, rich in <em>Triterpenoids (Ganoderic Acids)</em>, <em>Polysaccharides</em>, and natural antioxidants.</span>
+              </li>
+              <li>
+                <span class="vi"><strong>Nếp sống phù hợp:</strong> Dành cho người lớn tuổi và trung niên dùng thuốc dài ngày, hay nóng bức trong người, khô đắng miệng buổi sáng, cơ thể nặng nề do áp lực chuyển hóa (gan – thận) hoặc lao lực trí óc.</span>
+                <span class="en"><strong>Ideal Lifestyle Profile:</strong> Designed for seniors and adults on long-term medication or facing metabolic load—experiencing internal heat, morning dry/bitter mouth, heaviness, or mental fatigue.</span>
+              </li>
+              <li>
+                <span class="vi"><strong>Nguyên lý “Thanh Bổ Song Hành” an toàn:</strong> Vừa hỗ trợ hệ enzyme nội sinh dọn gốc tự do và thanh dịu nội môi, vừa giữ ấm tỳ vị (không gây lạnh bụng hay tiểu đêm như lá mát tính hàn).</span>
+                <span class="en"><strong>Balanced “Dual Cleansing &amp; Nourishing” Principle:</strong> Supports endogenous antioxidant enzymes and cools internal balance while remaining neutral-warm on digestion (never chilling the stomach).</span>
+              </li>
+              <li>
+                <span class="vi"><strong>Nhịp thưởng trà gợi ý:</strong> Hãm 1 túi lọc với <span class="nowrap">250ml–300ml</span> nước sôi (<span class="nowrap">95°C–100°C</span>) trong <span class="nowrap">7–10 phút</span>; dùng ấm buổi sáng sau ăn (<span class="nowrap">8h–10h</span>) và buổi chiều (<span class="nowrap">14h–16h</span>).</span>
+                <span class="en"><strong>Suggested Daily Ritual:</strong> Steep 1 filter bag in <span class="nowrap">250ml–300ml</span> boiling water (<span class="nowrap">95°C–100°C</span>) for <span class="nowrap">7–10 minutes</span>; enjoy warm after breakfast (<span class="nowrap">8–10 AM</span>) and mid-afternoon (<span class="nowrap">2–4 PM</span>).</span>
+              </li>
+            </ul>
+
+            <div class="cta-action-row">
+              <a class="btn-primary-gold" href="tel:0796674679">
+                <span class="vi">📞 Tư Vấn: <span class="nowrap">0796 674 679</span></span>
+                <span class="en">📞 Consult: <span class="nowrap">0796 674 679</span></span>
+              </a>
+              <a class="btn-secondary-dark" href="/tracuu">
+                <span class="vi">✔ Xác Thực 1-1 →</span>
+                <span class="en">✔ Verify 1-to-1 →</span>
+              </a>
+              <a class="btn-tertiary-cream" href="/tailieu/chuyenhoa">
+                <span class="vi">Chuyên Khảo 03: Chuyển Hóa →</span>
+                <span class="en">Monograph 03: Metabolic →</span>
+              </a>
+            </div>
           </div>
-          <div class="badge-grid-4">
-            <div class="spec-mini-badge">
-              <strong><span class="vi">Thành phần</span><span class="en">Ingredients</span></strong>
-              <span class="vi">100% Nấm Linh&nbsp;Chi Rừng</span>
-              <span class="en">100% Wild Reishi</span>
+        </div>
+      </section>
+
+      <!-- KHỐI 2: GÓC NHÌN DƯỠNG SINH & BẢNG ĐỐI CHIẾU -->
+      <section id="khoi-duong-sinh" class="content-block-card spy-section">
+        <div class="block-header">
+          <div class="block-header-text">
+            <span class="block-eyebrow"><span class="vi">Nguyên Lý “Thanh Bổ Song Hành” • Cân Bằng Nội Môi &amp; Dưỡng Trí</span><span class="en">“Dual Cleansing &amp; Nourishing” • Metabolic Balance &amp; Clarity</span></span>
+            <h2 class="section-title">
+              <span class="vi">Vì Sao Người Quá Tải Chuyển Hóa Cần Thanh Lọc Nội Môi Mà Không Làm Hàn Lạnh Tỳ&nbsp;Vị?</span>
+              <span class="en">Why Do Metabolically Overloaded Adults Need Internal Cleansing Without Chilling&nbsp;Digestion?</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="wellness-2col">
+          <div class="wellness-col-box">
+            <h3>
+              <span class="vi">1. Áp Lực Chuyển Hóa &amp; Cái Bẫy Của Các Loại “Lá Mát Tính&nbsp;Hàn”</span>
+              <span class="en">1. Metabolic Overload &amp; The Trap of Cold-Natured “Cooling&nbsp;Herbs”</span>
+            </h3>
+            <p class="vi">Ở tuổi trung niên và cao niên, việc dùng thuốc Tây dài ngày (huyết áp, tiểu đường, mỡ máu, xương khớp) hoặc sinh hoạt căng thẳng khiến hệ enzyme giải độc nội sinh của gan và thận bị quá tải — gây tích nhiệt âm ỉ, khô đắng miệng buổi sáng, cơ thể trì trệ và đầu óc kém minh mẫn.</p>
+            <p class="en">In middle and senior years, long-term pharmaceutical use and daily stress overload the liver and kidneys’ endogenous detoxification enzymes—leading to internal heat, morning dry/bitter mouth, physical sluggishness, and brain fog.</p>
+            <p class="vi">Nhiều người tự nấu các loại lá mát tính hàn lạnh (như nhân trần, diệp hạ châu, râu ngô...) uống thay nước hàng ngày, dẫn đến <strong>lạnh bụng, rối loạn tiêu hóa, tụt huyết áp và đi tiểu đêm nhiều lần làm suy giảm nguyên khí</strong>.</p>
+            <p class="en">Many turn to raw, cold-natured cooling herbs daily, which can inadvertently cause <strong>stomach chills, digestive upset, blood pressure drops, and frequent nighttime urination that depletes vital energy</strong>.</p>
+          </div>
+
+          <div class="wellness-col-box solution-col">
+            <h3>
+              <span class="vi">2. Giải Pháp Từ Minh&nbsp;Hoàng: Thanh Lọc Gốc Tự Do &amp; Giữ Thân Nhẹ, Tâm&nbsp;Minh</span>
+              <span class="en">2. The Minh&nbsp;Hoang Solution: Antioxidant Cleansing with Gentle&nbsp;Warmth</span>
+            </h3>
+            <p class="vi"><strong>Trà Thảo Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</strong> chế tác từ <strong>100% Nấm Linh&nbsp;Chi rừng tự nhiên Quảng&nbsp;Ngãi</strong> tuyển chọn ở độ tuổi già đanh chắc, mang tính bình – ôn hiền hòa nhưng đạt <strong>định mức cao về <em>Triterpenoids (Acid Ganoderic)</em> và chất chống oxy hóa</strong>.</p>
+            <p class="en"><strong>Bach&nbsp;Phuc Minh&nbsp;Hoang</strong> is crafted from <strong>100% wild-harvested Quang&nbsp;Ngai Reishi</strong> selected from dense, aged fruiting bodies—neutral-warm in nature yet rich in <strong><em>Triterpenoids (Ganoderic Acids)</em> and natural antioxidants</strong>.</p>
+            <p class="vi">Thức trà thực thi trọn vẹn nguyên lý <strong>“Thanh Bổ Song Hành”</strong>: vừa hỗ trợ kích hoạt hệ enzyme nội sinh (<em>SOD, Catalase, Glutathione</em>) dọn gốc tự do và làm mát dịu nội môi, vừa bồi đắp nguyên khí và nuôi dưỡng sự sáng suốt cho trí não.</p>
+            <p class="en">It embodies <strong>“Dual Cleansing &amp; Nourishing”</strong>: supporting endogenous antioxidant enzymes (<em>SOD, Catalase, Glutathione</em>) to clear free radicals and cool internal balance, while gently nourishing vitality and mental clarity.</p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="std-table">
+            <thead>
+              <tr>
+                <th style="width: 24%;"><span class="vi">Tiêu Chí Đối Chiếu</span><span class="en">Comparison Criteria</span></th>
+                <th style="width: 38%;"><span class="vi">3. Minh&nbsp;Hoàng (100% Nấm Linh&nbsp;Chi Rừng Định Mức Cao)</span><span class="en">3. Minh&nbsp;Hoang (High-Potency 100% Wild Reishi)</span></th>
+                <th style="width: 38%;"><span class="vi">Các Loại Lá Mát Tính Hàn &amp; Trà Giải Nhiệt Công Nghiệp</span><span class="en">Cold-Natured Cooling Herbs &amp; Sugary Detox Teas</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="vi">Cơ chế sinh học</span><span class="en">Mechanism</span></strong></td>
+                <td><span class="vi"><strong>Thanh bổ song hành:</strong> Hỗ trợ enzyme giải độc nội sinh của tế bào gan – thận và trung hòa gốc tự do đồng thời với việc bồi bổ nguyên khí.</span><span class="en"><strong>Dual Cleansing &amp; Nourishing:</strong> Supports hepatic/renal endogenous antioxidant enzymes and free-radical scavenging while replenishing vitality.</span></td>
+                <td><span class="vi">Chủ yếu lợi tiểu cưỡng bức hoặc dùng tính hàn lạnh để hạ nhiệt tạm thời, dùng lâu ngày dễ làm hao tổn tân dịch và dương khí.</span><span class="en">Primarily relies on forced diuresis or cold-natured cooling, which over time can deplete fluids and digestive warmth.</span></td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Tiêu hóa &amp; Giấc ngủ</span><span class="en">Digestion &amp; Sleep</span></strong></td>
+                <td><span class="vi">Tính bình – ôn ấm bụng, không gây lạnh bụng hay tiêu chảy; hạn chế tiểu đêm và giúp trí não thư thái, ngủ sâu.</span><span class="en">Neutral-warm and soothing on the stomach; does not trigger nighttime urination, supporting uninterrupted sleep and mental calm.</span></td>
+                <td><span class="vi">Dễ gây lạnh bụng, đầy hơi, tiêu chảy ở người lớn tuổi và kích thích đi tiểu đêm nhiều lần gây mất ngủ.</span><span class="en">Often causes abdominal coldness, loose stools in seniors, and frequent nocturia that fragments nighttime sleep.</span></td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Định mức hoạt chất</span><span class="en">Bioactive Potency</span></strong></td>
+                <td><span class="vi">Đạt định mức cao về <em>Triterpenoids (Acid Ganoderic)</em>, <em>Polysaccharides</em> và <em>Polyphenol</em> tự nhiên từ nấm rừng già lâu năm.</span><span class="en">Verified for high concentrations of natural <em>Triterpenoids (Ganoderic Acids)</em>, <em>Polysaccharides</em>, and <em>Polyphenols</em> from aged wild Reishi.</span></td>
+                <td><span class="vi">Trà đóng chai/hòa tan thường chứa nhiều đường tinh luyện và hương liệu, làm tăng thêm gánh nặng chuyển hóa cho gan.</span><span class="en">Commercial detox drinks often contain refined sugars and artificial additives that add to metabolic burden.</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- KHỐI 3: HỒ SƠ 3 NHÓM DƯỠNG CHẤT ĐỊNH MỨC CAO (MỞ NHÃN CỐT LÕI + CUỘN PHÂN TÍCH CHUYÊN SÂU) -->
+      <section id="khoi-hoat-chat" class="content-block-card spy-section">
+        <div class="block-header">
+          <div class="block-header-text">
+            <span class="block-eyebrow"><span class="vi">Hồ Sơ Hóa Thực Vật • Trọng Tâm Chuyển Hóa, Chống Oxy Hóa &amp; Dưỡng Trí</span><span class="en">Phytochemical Profile • Metabolic, Antioxidant &amp; Cognitive Focus</span></span>
+            <h2 class="section-title">
+              <span class="vi">Ba Nhóm Dưỡng Chất Định Mức Cao Trong Bách&nbsp;Phục Minh&nbsp;Hoàng</span>
+              <span class="en">Three High-Potency Bioactive Groups in Bach&nbsp;Phuc Minh&nbsp;Hoang</span>
+            </h2>
+          </div>
+          <button type="button" class="expand-all-chip" onclick="toggleGroup(this, ['acc-bio-1','acc-bio-2','acc-bio-3'])">
+            <span class="vi" data-closed="Mở phân tích cả 3 dưỡng chất ▾" data-open="Thu gọn cả 3 dưỡng chất ▴">Mở phân tích cả 3 dưỡng chất ▾</span>
+            <span class="en" data-closed="Expand all 3 bioactives ▾" data-open="Collapse all 3 ▴">Expand all 3 bioactives ▾</span>
+          </button>
+        </div>
+
+        <div class="bioactive-grid-3">
+          <!-- Dưỡng chất 1 -->
+          <div class="bio-card">
+            <span class="bio-tag"><span class="vi">Nhóm Hoạt Chất 01</span><span class="en">Bioactive Group 01</span></span>
+            <h3><span class="vi">Triterpenoids (Acid Ganoderic Đỉnh Cao)</span><span class="en">High-Potency Triterpenoids</span></h3>
+            <div><span class="bio-metric-highlight"><span class="vi">Hỗ trợ chuyển hóa Gan – Thận &amp; Lipid</span><span class="en">Hepatic, renal &amp; lipid support</span></span></div>
+            <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-bio-1" onclick="toggleAcc(this, 'acc-bio-1')">
+              <span class="vi" data-closed="Xem vai trò sinh học" data-open="Thu gọn">Xem vai trò sinh học</span>
+              <span class="en" data-closed="Read biological role" data-open="Collapse">Read biological role</span>
+              <span class="acc-chevron">▾</span>
+            </button>
+            <div class="acc-panel" id="acc-bio-1">
+              <div class="acc-inner">
+                <p class="bio-detail-text">
+                  <span class="vi">Tuyển chọn từ những tai nấm Linh&nbsp;Chi rừng già đanh chắc trên vách đá và gỗ cổ thụ Quảng&nbsp;Ngãi, <strong>Minh&nbsp;Hoàng</strong> sở hữu hàm lượng cao nhóm <em>Acid Ganoderic</em> tự nhiên — phân tử chủ lực giúp bảo vệ màng tế bào gan, hỗ trợ điều hòa men gan và nâng đỡ chức năng lọc tự nhiên của cầu thận.</span>
+                  <span class="en">Selected from dense, aged wild Reishi in Quang&nbsp;Ngai, <strong>Minh&nbsp;Hoang</strong> delivers elevated natural <em>Ganoderic Acids</em>—key triterpenes documented for protecting hepatocyte membranes, supporting healthy liver enzymes, and aiding renal filtration balance.</span>
+                </p>
+              </div>
             </div>
-            <div class="spec-mini-badge">
-              <strong><span class="vi">Quy cách</span><span class="en">Specification</span></strong>
-              <span class="vi">Hộp 24 túi&nbsp;lọc (100g)</span>
-              <span class="en">24 Filter Bags (100g)</span>
+          </div>
+
+          <!-- Dưỡng chất 2 -->
+          <div class="bio-card">
+            <span class="bio-tag"><span class="vi">Nhóm Hoạt Chất 02</span><span class="en">Bioactive Group 02</span></span>
+            <h3><span class="vi">Polysaccharides &amp; Polyphenol Tự Nhiên</span><span class="en">Polysaccharides &amp; Polyphenols</span></h3>
+            <div><span class="bio-metric-highlight"><span class="vi">Kích hoạt SOD &amp; Dọn gốc tự do</span><span class="en">SOD activation &amp; ROS clearance</span></span></div>
+            <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-bio-2" onclick="toggleAcc(this, 'acc-bio-2')">
+              <span class="vi" data-closed="Xem vai trò sinh học" data-open="Thu gọn">Xem vai trò sinh học</span>
+              <span class="en" data-closed="Read biological role" data-open="Collapse">Read biological role</span>
+              <span class="acc-chevron">▾</span>
+            </button>
+            <div class="acc-panel" id="acc-bio-2">
+              <div class="acc-inner">
+                <p class="bio-detail-text">
+                  <span class="vi">Sự cộng hưởng giữa chuỗi đa đường <em>Polysaccharides</em> hòa tan và <em>Polyphenol</em> tự nhiên giúp thúc đẩy hoạt tính hệ enzyme chống oxy hóa nội sinh (<em>Superoxide Dismutase – SOD, Catalase, Glutathione Peroxidase</em>), trung hòa gốc tự do (ROS) sinh ra do stress và thuốc Tây dài ngày.</span>
+                  <span class="en">The synergy between soluble <em>Polysaccharides</em> and natural <em>Polyphenols</em> enhances endogenous antioxidant defense systems (<em>SOD, Catalase, Glutathione Peroxidase</em>), neutralizing reactive oxygen species (ROS) generated by metabolic stress and prolonged medication.</span>
+                </p>
+              </div>
             </div>
-            <div class="spec-mini-badge">
-              <strong><span class="vi">Chỉ số kiểm định</span><span class="en">Potency Standard</span></strong>
-              <span class="vi" id="ui-lab-short-vi">Định&nbsp;mức hoạt&nbsp;chất cao</span>
-              <span class="en" id="ui-lab-short-en">High Bioactive Potency</span>
+          </div>
+
+          <!-- Dưỡng chất 3 -->
+          <div class="bio-card">
+            <span class="bio-tag"><span class="vi">Nhóm Hoạt Chất 03</span><span class="en">Bioactive Group 03</span></span>
+            <h3><span class="vi">Adenosine &amp; Vi Tuần Hoàn Dưỡng Trí</span><span class="en">Adenosine &amp; Brain Microcirculation</span></h3>
+            <div><span class="bio-metric-highlight"><span class="vi">Giải tỏa “Sương mù não” &amp; Sáng suốt</span><span class="en">Clearing brain fog &amp; focus</span></span></div>
+            <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-bio-3" onclick="toggleAcc(this, 'acc-bio-3')">
+              <span class="vi" data-closed="Xem vai trò sinh học" data-open="Thu gọn">Xem vai trò sinh học</span>
+              <span class="en" data-closed="Read biological role" data-open="Collapse">Read biological role</span>
+              <span class="acc-chevron">▾</span>
+            </button>
+            <div class="acc-panel" id="acc-bio-3">
+              <div class="acc-inner">
+                <p class="bio-detail-text">
+                  <span class="vi">Hoạt chất <em>Adenosine</em> tự nhiên kết hợp phổ dưỡng chất thanh lọc nội môi giúp tối ưu hóa lưu lượng máu và oxy lên não, hỗ trợ hệ thống rửa não <em>Glymphatic</em> hoạt động hiệu quả vào ban đêm — xua tan nặng đầu, mệt mỏi trí óc và giữ tâm trí minh mẫn mỗi ngày.</span>
+                  <span class="en">Natural <em>Adenosine</em> paired with internal-cleansing bioactives optimizes cerebral blood flow and nighttime <em>Glymphatic</em> clearance—dispelling mental heaviness and brain fog to sustain daytime clarity and calm focus.</span>
+                </p>
+              </div>
             </div>
-            <div class="spec-mini-badge">
-              <strong><span class="vi">Bảo chứng 1-1</span><span class="en">1-to-1 Security</span></strong>
-              <span class="vi">Mã QR &amp; PIN 4&nbsp;số</span>
-              <span class="en">QR Code &amp; 4-Digit PIN</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- KHỐI 4: KỸ NGHỆ CHẾ BIẾN MỘC BẢN & 3 TẦNG CHUYỂN VỊ -->
+      <section id="khoi-ky-nghe" class="content-block-card spy-section">
+        <div class="block-header">
+          <div class="block-header-text">
+            <span class="block-eyebrow"><span class="vi">Kỹ Nghệ Chế Tác &amp; Phong Vị Thượng Phẩm</span><span class="en">Artisanal Craft &amp; Reserve Sensory Profile</span></span>
+            <h2 class="section-title">
+              <span class="vi">Mở Khóa Tinh Chất Nấm Rừng Đanh Chắc &amp; Hành Trình 3 Tầng Vị Thanh&nbsp;Tao</span>
+              <span class="en">Unlocking Dense Old-Growth Fibers &amp; The 3-Stage Crisp Sensory&nbsp;Evolution</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="craft-highlight-box">
+          <h3>
+            <span class="vi">❖ Kỹ Nghệ Chế Biến Mộc Bản — Chiết Xuất Tối Đa Hoạt Chất Triterpenoids Trong <span class="nowrap">7–10 Phút</span></span>
+            <span class="en">❖ Proprietary Artisanal Craft — Maximizing Triterpenoid Infusion in <span class="nowrap">7–10 Minutes</span></span>
+          </h3>
+          <p class="vi">Những tai nấm Linh&nbsp;Chi rừng già được tuyển chọn cho dòng <strong>Minh&nbsp;Hoàng</strong> có thớ gỗ cực kỳ đanh chắc và lớp vỏ bóng giàu <em>Acid Ganoderic</em> vốn rất khó tan nếu chỉ thái lát đun nước thông thường. Nhờ <strong>kỹ nghệ chế biến mộc bản độc quyền của Bách&nbsp;Phục</strong> giúp mở khóa vách tế bào <em>Chitin</em>, các phân tử <em>Triterpenoids</em> và <em>Polysaccharides</em> thoát ra trọn vẹn chỉ sau <span class="nowrap">7–10 phút</span> hãm nước sôi <span class="nowrap">95°C–100°C</span>, tạo nên chén trà sáng trong, giàu dưỡng chất.</p>
+          <p class="en">The aged wild Reishi fruiting bodies selected for <strong>Minh&nbsp;Hoang</strong> possess an exceptionally dense woody grain and a glossy crust rich in <em>Ganoderic Acids</em> that resist simple boiling. Through <strong>Bach&nbsp;Phuc’s proprietary artisanal Chitin-unlocking craft</strong>, both <em>Triterpenoids</em> and <em>Polysaccharides</em> release fully within <span class="nowrap">7–10 minutes</span> of steeping in <span class="nowrap">95°C–100°C</span> water—yielding a bright, potent infusion.</p>
+        </div>
+
+        <div class="sensory-grid-3">
+          <div class="sensory-card">
+            <span class="sensory-stage"><span class="vi">Tầng Vị 01 • Khởi Hương</span><span class="en">Stage 01 • Forest Aroma</span></span>
+            <h4><span class="vi">Hương Rừng Sâu Sắc Nét &amp; Tinh Khiết</span><span class="en">Crisp, Noble Old-Growth Aroma</span></h4>
+            <p class="vi">Hương thơm thanh khiết, sâu lắng của những tai nấm già trên gỗ cổ thụ vùng cao Quảng&nbsp;Ngãi lan tỏa ngay khi châm nước sôi, mang lại cảm giác tĩnh tại và tỉnh táo tức thì.</p>
+            <p class="en">A crisp, noble aroma of aged wild Reishi from Quang&nbsp;Ngai’s high mountain forests rises with the steam, bringing an immediate sense of clarity and composure.</p>
+          </div>
+
+          <div class="sensory-card">
+            <span class="sensory-stage"><span class="vi">Tầng Vị 02 • Chạm Vị</span><span class="en">Stage 02 • Initial Palate</span></span>
+            <h4><span class="vi">Vị Đắng Thanh Tao Nhã Đậm Đà</span><span class="en">Distinct, Elegant Bitterness</span></h4>
+            <p class="vi">Vị đắng thanh sắc nét đặc trưng của hàm lượng cao <em>Acid Ganoderic</em> đánh thức trọn vẹn khoang miệng đang khô đắng, nhưng rất sang trọng, êm mượt mà không hề gắt.</p>
+            <p class="en">A distinct, refined bitterness from elevated <em>Ganoderic Acids</em> awakens a dry or sluggish palate with remarkable smoothness and zero harshness.</p>
+          </div>
+
+          <div class="sensory-card">
+            <span class="sensory-stage"><span class="vi">Tầng Vị 03 • Lưu Hậu</span><span class="en">Stage 03 • Lingering Finish</span></span>
+            <h4><span class="vi">Hậu Ngọt Thanh Mát Sảng Khoái</span><span class="en">Refreshing, Clean Sweet Finish</span></h4>
+            <p class="vi">Vị đắng nhanh chóng chuyển hóa thành hậu ngọt thanh mát lan tỏa khắp vòm họng, giúp giải tỏa cảm giác nóng bức nội môi và để lại hơi thở nhẹ nhõm, sảng khoái.</p>
+            <p class="en">The initial bitterness swiftly transforms into a clean, cooling sweet aftertaste across the throat—relieving internal heat and leaving the palate refreshed and light.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- KHỐI 5: BẢNG THÔNG SỐ TIÊU CHUẨN SẢN PHẨM (ĐỒNG BỘ KÍCH THƯỚC 18x8x7 CM) -->
+      <section id="khoi-thong-so" class="content-block-card spy-section">
+        <div class="block-header">
+          <div class="block-header-text">
+            <span class="block-eyebrow"><span class="vi">Hồ Sơ Tiêu Chuẩn &amp; Quy Cách</span><span class="en">Standard Specifications &amp; Packaging</span></span>
+            <h2 class="section-title">
+              <span class="vi">Bảng Thông Số Tiêu Chuẩn Trà Thảo Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</span>
+              <span class="en">Technical Specifications — Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal&nbsp;Tea</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="std-table">
+            <tbody>
+              <tr>
+                <td style="width: 32%;"><strong><span class="vi">Tên sản phẩm chính thức</span><span class="en">Official Product Name</span></strong></td>
+                <td style="width: 68%;">
+                  <span class="vi"><strong>Trà Thảo Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</strong> (Dòng trà mộc bản số&nbsp;3: <strong>Minh&nbsp;Hoàng</strong>)</span>
+                  <span class="en"><strong>Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal Tea</strong> (Artisanal Line No.&nbsp;3: <strong>Minh&nbsp;Hoang</strong>)</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Thành phần định lượng</span><span class="en">Ingredients</span></strong></td>
+                <td>
+                  <span class="vi"><strong>100% Nấm Linh&nbsp;Chi rừng tự nhiên</strong> (<em>Ganoderma lucidum</em>) — Không chất bảo quản, không hương liệu, không phụ gia.</span>
+                  <span class="en"><strong>100% Wild-Harvested Reishi</strong> (<em>Ganoderma lucidum</em>) — Zero preservatives, zero artificial flavorings, zero additives.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Nguồn gốc nguyên liệu</span><span class="en">Botanical Origin</span></strong></td>
+                <td>
+                  <span class="vi">Tuyển lựa từ những tai nấm Linh&nbsp;Chi rừng già đanh chắc lâu năm tại vùng núi rừng tỉnh Quảng&nbsp;Ngãi, Việt Nam.</span>
+                  <span class="en">Selected from dense, multi-season aged wild Reishi harvested in the primeval mountain forests of Quang&nbsp;Ngai Province, Vietnam.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Hồ sơ dưỡng chất trọng tâm</span><span class="en">Core Bioactive Profile</span></strong></td>
+                <td>
+                  <span class="vi">Đạt định mức cao về hợp chất <strong>Triterpenoids (Acid Ganoderic)</strong>, <strong>Polysaccharides hòa tan</strong>, <em>Polyphenol</em> chống oxy hóa và <em>Adenosine</em> tự nhiên (Chỉ số định lượng chi tiết đang cập nhật từ Lab).</span>
+                  <span class="en">High-potency profile of <strong>Triterpenoids (Ganoderic Acids)</strong>, <strong>soluble Polysaccharides</strong>, antioxidant <em>Polyphenols</em>, and natural <em>Adenosine</em> (Detailed lab metrics pending update).</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Quy cách &amp; Kích thước hộp</span><span class="en">Packaging &amp; Box Size</span></strong></td>
+                <td>
+                  <span class="vi">Hộp cứng Kraft mỹ thuật (<span class="nowrap">18 cm × 8 cm × 7 cm</span>) • <strong>24&nbsp;túi lọc</strong> • Khối lượng tịnh: <strong>100g</strong>.</span>
+                  <span class="en">Rigid artisanal Kraft box (<span class="nowrap">18 cm × 8 cm × 7 cm</span>) • <strong>24&nbsp;filter bags</strong> • Net weight: <strong>100g</strong>.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Hệ thống bảo chứng 1-1</span><span class="en">1-to-1 Serialization</span></strong></td>
+                <td>
+                  <span class="vi">Mỗi hộp trà được cấp một <strong>Mã QR định danh riêng</strong> và <strong>Mã PIN 4&nbsp;số</strong> in mặt trong nắp hộp, xác thực trực tiếp tại cổng <a href="/tracuu" style="color:var(--wine-red);font-weight:600;">trathaomocbachphuc.vn/tracuu →</a>.</span>
+                  <span class="en">Each box is assigned a unique <strong>serialized QR Code</strong> and <strong>4-digit PIN</strong> printed inside the lid, verifiable at <a href="/tracuu" style="color:var(--wine-red);font-weight:600;">trathaomocbachphuc.vn/tracuu →</a>.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Hạn dùng &amp; Bảo quản</span><span class="en">Shelf Life &amp; Storage</span></strong></td>
+                <td>
+                  <span class="vi"><strong>12&nbsp;tháng</strong> kể từ ngày sản xuất. Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp.</span>
+                  <span class="en"><strong>12&nbsp;months</strong> from manufacture date. Store in a cool, dry place away from direct sunlight.</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong><span class="vi">Đơn vị chịu trách nhiệm</span><span class="en">Producer &amp; Legal Entity</span></strong></td>
+                <td>
+                  <span class="vi"><strong>Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục</strong> (MST: <span class="nowrap">4300901179</span>) — 136 Mạc Đĩnh Chi, Phường Nghĩa Lộ, Tỉnh Quảng&nbsp;Ngãi.</span>
+                  <span class="en"><strong>Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd.</strong> (Tax ID: <span class="nowrap">4300901179</span>) — 136 Mac Dinh Chi St., Nghia Lo Ward, Quang&nbsp;Ngai Province, Vietnam.</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- KHỐI 6: HƯỚNG DẪN 4 BƯỚC THƯỞNG TRÀ (LƯỚI 2x2 THOÁNG CHỮ) -->
+      <section id="khoi-pha-tra" class="content-block-card spy-section">
+        <div class="block-header">
+          <div class="block-header-text">
+            <span class="block-eyebrow"><span class="vi">Nghi Thức Thưởng Trà Dưỡng Sinh</span><span class="en">Mindful Brewing Ritual</span></span>
+            <h2 class="section-title">
+              <span class="vi">Hướng Dẫn 4&nbsp;Bước Pha Trà Bách&nbsp;Phục Minh&nbsp;Hoàng Chuẩn&nbsp;Vị</span>
+              <span class="en">The 4-Step Brewing Guide for Bach&nbsp;Phuc Minh&nbsp;Hoang</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="ritual-grid-4">
+          <div class="ritual-step-card">
+            <span class="ritual-num">01</span>
+            <h3><span class="vi">Khởi Nhiệt Ấm Chén</span><span class="en">Warm the Teaware</span></h3>
+            <p class="vi">Tráng đều lòng ấm hoặc tách sứ bằng nước sôi rồi đổ đi để làm nóng dụng cụ, giữ mức nhiệt cao ổn định giúp chiết xuất tối đa <em>Triterpenoids</em>.</p>
+            <p class="en">Swirl boiling water inside your ceramic teapot or cup and discard to pre-warm the vessel and maintain high heat for optimal <em>Triterpenoid</em> extraction.</p>
+          </div>
+
+          <div class="ritual-step-card">
+            <span class="ritual-num">02</span>
+            <h3><span class="vi">Đánh Thức Sợi Trà</span><span class="en">Awaken the Fibers</span></h3>
+            <p class="vi">Cho 1 túi lọc vào ấm, rót lượng nhỏ nước sôi (<span class="nowrap">95°C–100°C</span>) vừa ngập túi trà, lắc nhẹ <span class="nowrap">3–5 giây</span> rồi chắt bỏ để thớ nấm rừng già giãn nở đều.</p>
+            <p class="en">Place 1 filter bag in the pot, pour just enough boiling water (<span class="nowrap">95°C–100°C</span>) to cover, swirl for <span class="nowrap">3–5 seconds</span>, and decant immediately.</p>
+          </div>
+
+          <div class="ritual-step-card">
+            <span class="ritual-num">03</span>
+            <h3><span class="vi">Ủ Tĩnh <span class="nowrap">7–10 Phút</span></span><span class="en">Steep <span class="nowrap">7–10 Minutes</span></span></h3>
+            <p class="vi">Rót <span class="nowrap">250ml–300ml</span> nước sôi (<span class="nowrap">95°C–100°C</span>) vào ấm, đậy kín nắp và ủ tĩnh <span class="nowrap">7–10 phút</span> để các hợp chất quý thẩm thấu trọn vẹn ra nước trà.</p>
+            <p class="en">Pour <span class="nowrap">250ml–300ml</span> of boiling water (<span class="nowrap">95°C–100°C</span>), cover tightly, and steep undisturbed for <span class="nowrap">7–10 minutes</span> for full bioactive release.</p>
+          </div>
+
+          <div class="ritual-step-card">
+            <span class="ritual-num">04</span>
+            <h3><span class="vi">Thưởng Trà &amp; Châm Lần 2</span><span class="en">Savor &amp; Re-Steep</span></h3>
+            <p class="vi">Thưởng thức ấm nóng sau bữa ăn sáng và chiều. Sau tuần trà đầu, châm thêm <span class="nowrap">200ml</span> nước sôi lần 2 và ủ <span class="nowrap">10–12 phút</span> để lấy hết tinh chất.</p>
+            <p class="en">Savor warm after morning and afternoon meals. Afterward, add <span class="nowrap">200ml</span> of boiling water for a second steeping of <span class="nowrap">10–12 minutes</span>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- KHỐI 7: 3 NGUỒN THAM CHIẾU KHOA HỌC (CUỘN GỌN + TỰ BUNG TỪ MỤC LỤC) & CẦU NỐI -->
+      <section id="khoi-tham-chieu" class="content-block-card spy-section">
+        <div class="block-header" style="margin-bottom:14px;">
+          <div class="block-header-text">
+            <span class="block-eyebrow"><span class="vi">Tham Chiếu Học Thuật &amp; Đối Chiếu</span><span class="en">Academic References &amp; Monographs</span></span>
+            <h2 class="section-title">
+              <span class="vi">Nguồn Tư Liệu Khoa Học Tham Chiếu Về Nguyên Liệu Nấm Linh&nbsp;Chi</span>
+              <span class="en">Scientific &amp; Classical References on Reishi (<em>Ganoderma lucidum</em>)</span>
+            </h2>
+          </div>
+        </div>
+
+        <button type="button" class="acc-btn full-bar" aria-expanded="false" aria-controls="acc-ref-dossier" onclick="toggleAcc(this, 'acc-ref-dossier')">
+          <span class="vi" data-closed="❖ Mở 3 nguồn tư liệu gốc: NCBI/NIH (NBK92757), Cổ thư & GS. Đỗ Tất Lợi" data-open="❖ Thu gọn danh mục 3 nguồn tham chiếu">❖ Mở 3 nguồn tư liệu gốc: NCBI/NIH (NBK92757), Cổ thư &amp; GS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi</span>
+          <span class="en" data-closed="❖ Expand 3 original references: NCBI/NIH (NBK92757), Classical Texts & Prof. Do Tat Loi" data-open="❖ Collapse reference list">❖ Expand 3 original references: NCBI/NIH (NBK92757), Classical Texts &amp; Prof.&nbsp;Do&nbsp;Tat&nbsp;Loi</span>
+          <span class="acc-chevron">▾</span>
+        </button>
+
+        <div class="acc-panel" id="acc-ref-dossier">
+          <div class="acc-inner">
+            <div class="ref-grid-3">
+              <div class="ref-card">
+                <span class="ref-source-tag">01 • NCBI / NIH (USA)</span>
+                <h4><span class="vi">Thư Viện Y Khoa Quốc Gia Hoa Kỳ (NBK92757)</span><span class="en">U.S. National Library of Medicine (NBK92757)</span></h4>
+                <p class="vi">Chuyên luận <em>“Ganoderma lucidum (Lingzhi or Reishi)”</em> phân tích hoạt tính bảo vệ tế bào gan, điều hòa chuyển hóa lipid và kích hoạt hệ enzyme chống oxy hóa nội sinh (<em>SOD, Catalase, Glutathione</em>).</p>
+                <p class="en">Chapter 9 <em>“Ganoderma lucidum (Lingzhi or Reishi)”</em> in <em>Herbal Medicine: Biomolecular and Clinical Aspects</em>, detailing hepatoprotective, lipid-modulating, and endogenous antioxidant enzyme (<em>SOD, Catalase, Glutathione</em>) mechanisms.</p>
+                <a href="https://www.ncbi.nlm.nih.gov/books/NBK92757/" target="_blank" rel="noopener noreferrer" class="ref-ext-link"><span class="vi">Xem trên NCBI / NIH ↗</span><span class="en">View on NCBI / NIH ↗</span></a>
+              </div>
+
+              <div class="ref-card">
+                <span class="ref-source-tag">02 • Classical Pharmacopeia</span>
+                <h4><span class="vi">Thần Nông Bản Thảo Kinh &amp; Bản Thảo Cương Mục</span><span class="en">Shennong Ben Cao Jing &amp; Compendium of Materia Medica</span></h4>
+                <p class="vi">Kinh điển dược học cổ ghi nhận nhóm Linh&nbsp;Chi (đặc biệt <em>Thanh&nbsp;Chi, Hắc&nbsp;Chi, Xích&nbsp;Chi</em>) chủ về <strong>bổ can khí, ích thận khí, sáng mắt, tăng trí nhớ</strong>, dùng lâu giúp thanh nhẹ cơ thể mà không gây hàn lạnh.</p>
+                <p class="en">Classical Eastern herbology documents Reishi varieties (notably <em>Thanh&nbsp;Chi, Hac&nbsp;Chi, and Xich&nbsp;Chi</em>) for <strong>nourishing liver and kidney qi, brightening vision, and sharpening memory</strong> without chilling digestion.</p>
+                <a href="https://en.wikipedia.org/wiki/Lingzhi_(mushroom)" target="_blank" rel="noopener noreferrer" class="ref-ext-link"><span class="vi">Xem khảo cứu cổ thư ↗</span><span class="en">View overview ↗</span></a>
+              </div>
+
+              <div class="ref-card">
+                <span class="ref-source-tag">03 • Vietnamese Materia Medica</span>
+                <h4><span class="vi">Những Cây Thuốc Và Vị Thuốc Việt Nam — GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi</span><span class="en">Medicinal Plants and Remedies of Vietnam — Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi</span></h4>
+                <p class="vi">Công trình khảo cứu dược liệu Việt Nam (trang&nbsp;831–833, NXB Y học) ghi nhận tính vị của <em>Thanh&nbsp;Chi (bổ can khí, an thần, tăng trí nhớ)</em> và <em>Hắc&nbsp;Chi (chủ trị cơ quan bài tiết, thận)</em> giúp cơ thể nhẹ nhõm.</p>
+                <p class="en">Vietnam’s authoritative pharmacognosy encyclopedia (pp.&nbsp;831–833, Medical Publishing House) documenting <em>Thanh&nbsp;Chi (supporting liver qi, calm spirit, and memory)</em> and <em>Hac&nbsp;Chi (supporting renal and excretory balance)</em>.</p>
+                <a href="https://vi.wikipedia.org/wiki/%C4%90%E1%BB%97_T%E1%BA%A5t_L%E1%BB%A3i" target="_blank" rel="noopener noreferrer" class="ref-ext-link"><span class="vi">Tìm hiểu tác phẩm ↗</span><span class="en">About Prof. Do Tat Loi ↗</span></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="overview-info-col">
-          <span class="line-eyebrow">
-            <span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục • Dòng Mộc&nbsp;Bản Tuyển&nbsp;Chọn • Thanh&nbsp;Lọc Nội&nbsp;Môi, Chuyển&nbsp;Hóa &amp; Dưỡng&nbsp;Trí</span>
-            <span class="en">Bach&nbsp;Phuc Herbal Tea • High-Potency Reserve • Internal Balance, Metabolism &amp; Mental&nbsp;Clarity</span>
+        <div class="monograph-bridge-box">
+          <div class="monograph-bridge-text">
+            <h4><span class="vi">❖ Đọc Chuyên Khảo Khoa Học Đối Ứng Với Dòng Trà Minh&nbsp;Hoàng</span><span class="en">❖ Read the Scientific Monograph Paired with Minh&nbsp;Hoang</span></h4>
+            <p class="vi">Khám phá phân tích chuyên sâu về hệ thống enzyme giải độc nội sinh (Cytochrome P450, SOD, Glutathione), cân bằng chuyển hóa gan – thận và cơ chế dọn gốc tự do tại Thư viện Chuyên khảo Bách&nbsp;Phục.</p>
+            <p class="en">Explore our in-depth monograph on endogenous detoxification enzymes (Cytochrome P450, SOD, Glutathione), hepatic-renal metabolic balance, and free-radical clearance in the Bach&nbsp;Phuc Monograph Library.</p>
+          </div>
+          <a class="btn-secondary-dark" href="/tailieu/chuyenhoa">
+            <span class="vi">Mở Chuyên Khảo 03: Chuyển Hóa →</span>
+            <span class="en">Open Monograph 03: Metabolic →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- KHUYẾN CÁO PHÁP LÝ CUỘN GỌN -->
+      <section class="disclaimer-card">
+        <button type="button" class="disclaimer-trigger" aria-expanded="false" aria-controls="acc-doc-legal" onclick="toggleAcc(this, 'acc-doc-legal')">
+          <span class="disclaimer-title-inner">
+            <span>❖</span>
+            <span>
+              <span class="vi">Khuyến Cáo Minh Bạch Pháp Lý &amp; Phạm Vi Thông&nbsp;Tin</span>
+              <span class="en">Legal Transparency &amp; Regulatory Disclaimer</span>
+            </span>
           </span>
-          <h1 class="product-main-title">
-            <span class="vi">3. Minh&nbsp;Hoàng (Trà Thảo&nbsp;Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng)</span>
-            <span class="en">3. Minh&nbsp;Hoang (Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal&nbsp;Tea)</span>
-          </h1>
-
-          <div class="price-banner-box">
-            <span class="price-value">
-              <span class="vi" id="ui-price-vi">Chưa công&nbsp;bố</span>
-              <span class="en" id="ui-price-en">To Be Announced</span>
-            </span>
-            <span class="price-spec-note">
-              <span class="vi">/ Hộp 24 túi&nbsp;lọc (Khối&nbsp;lượng&nbsp;tịnh:&nbsp;100g)</span>
-              <span class="en">/ Box of 24 filter bags (Net weight:&nbsp;100g)</span>
-            </span>
-            <span class="edition-pill">
-              <span class="vi">✦ Phiên&nbsp;Bản Tuyển&nbsp;Chọn</span>
-              <span class="en">✦ High-Potency Reserve</span>
-            </span>
+          <span class="acc-chevron">▾</span>
+        </button>
+        <div class="acc-panel" id="acc-doc-legal">
+          <div class="acc-inner">
+            <div class="disclaimer-body">
+              <p class="vi">Thực phẩm <strong>Trà Thảo Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</strong> được sản xuất từ 100% nấm Linh&nbsp;Chi rừng tự nhiên theo hồ sơ tự công bố hợp quy định pháp luật của Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục. Sản phẩm là thức uống thảo mộc dưỡng sinh hàng ngày, <strong>không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh</strong>.</p>
+              <p class="vi">Các dẫn liệu khoa học và y điển cổ truyền trên trang được trích dẫn nhằm mục đích cung cấp tri thức văn hóa — sinh học thường thức về nguyên liệu nấm Linh&nbsp;Chi tự nhiên. Website chỉ giới thiệu thông tin và kết nối tư vấn trực tiếp, không thực hiện giao dịch thương mại điện tử trực tuyến.</p>
+              <p class="en"><strong>Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal Tea</strong> is a natural dietary herbal infusion crafted from 100% wild-harvested Reishi in compliance with statutory product self-declaration regulations by Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. <strong>This product is not a pharmaceutical and is not intended to diagnose, treat, cure, or prevent any disease.</strong></p>
+              <p class="en">Scientific and classical herbology citations are provided solely for educational and cultural reference regarding natural <em>Ganoderma lucidum</em>. This website operates for informational and consultation purposes only, without online e-commerce transactions.</p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div class="quote-banner">
-            <span class="vi">“Chắt&nbsp;chiu 100% nấm Linh&nbsp;Chi rừng&nbsp;già Quảng&nbsp;Ngãi đạt định&nbsp;mức dưỡng&nbsp;chất cao — Thức&nbsp;trà thanh&nbsp;khiết làm dịu&nbsp;mát nội&nbsp;môi, nâng&nbsp;đỡ chuyển&nbsp;hóa và giữ cho thân&nbsp;nhẹ, tâm&nbsp;minh mỗi&nbsp;ngày.”</span>
-            <span class="en">“Distilled from high-potency 100% old-growth wild Reishi of Quang&nbsp;Ngai — A pure infusion that cools internal balance, supports metabolism, and sustains a light body and clear mind.”</span>
-          </div>
+    </main>
 
-          <ul class="summary-points">
-            <li>
-              <span class="vi"><strong>Tuyển&nbsp;chọn 100% Nấm Linh&nbsp;Chi Rừng đạt định&nbsp;mức hoạt&nbsp;chất cao:</strong> Chế&nbsp;tác từ những tai&nbsp;nấm Linh&nbsp;Chi rừng già đanh&nbsp;chắc lâu&nbsp;năm tại Quảng&nbsp;Ngãi, giàu <em>Triterpenoids (Acid&nbsp;Ganoderic)</em>, <em>Polysaccharides</em> và hợp&nbsp;chất chống oxy&nbsp;hóa tự&nbsp;nhiên.</span>
-              <span class="en"><strong>High-Potency 100% Wild-Harvested Reishi:</strong> Crafted from dense, aged wild fruiting bodies from the primeval forests of Quang&nbsp;Ngai, verified for elevated concentrations of <em>Triterpenoids (Ganoderic Acids)</em>, <em>Polysaccharides</em>, and natural antioxidants.</span>
-            </li>
-            <li>
-              <span class="vi"><strong>Nếp&nbsp;sống thưởng&nbsp;trà phù&nbsp;hợp:</strong> Dành cho người lớn&nbsp;tuổi và người trung&nbsp;niên phải dùng thuốc&nbsp;Tây dài&nbsp;ngày, thường cảm&nbsp;thấy nóng&nbsp;bức âm&nbsp;ỉ trong người, khô&nbsp;đắng miệng buổi&nbsp;sáng, cơ&nbsp;thể nặng&nbsp;nề do áp&nbsp;lực chuyển&nbsp;hóa (gan – thận) hoặc lao&nbsp;lực trí&nbsp;óc.</span>
-              <span class="en"><strong>Ideal Lifestyle Profile:</strong> Designed for seniors and middle-aged adults on long-term medication or facing high metabolic load—experiencing internal heat, morning dry/bitter mouth, physical heaviness, or mental fatigue.</span>
-            </li>
-            <li>
-              <span class="vi"><strong>Nguyên&nbsp;lý “Thanh&nbsp;Bổ Song&nbsp;Hành” an&nbsp;toàn:</strong> Vừa hỗ&nbsp;trợ hệ&nbsp;thống enzyme nội&nbsp;sinh dọn&nbsp;dẹp gốc tự&nbsp;do và thanh&nbsp;dịu nội&nbsp;môi, vừa giữ ấm tỳ&nbsp;vị (không gây lạnh&nbsp;bụng hay tiểu&nbsp;đêm như các loại lá mát tính&nbsp;hàn).</span>
-              <span class="en"><strong>Balanced “Dual Cleansing &amp; Nourishing” Principle:</strong> Supports endogenous antioxidant enzymes and cools internal balance while remaining neutral-warm on digestion (never chilling the stomach like cold-natured herbs).</span>
-            </li>
-            <li>
-              <span class="vi"><strong>Nhịp&nbsp;dùng dưỡng&nbsp;sinh mỗi&nbsp;ngày:</strong> Hãm 1 túi&nbsp;lọc với <span class="nowrap">250ml – 300ml</span> nước&nbsp;sôi (<span class="nowrap">95°C – 100°C</span>) trong 7–10&nbsp;phút; dùng ấm&nbsp;nóng buổi&nbsp;sáng sau ăn (8h–10h) và buổi&nbsp;chiều (14h–16h).</span>
-              <span class="en"><strong>Suggested Daily Ritual:</strong> Steep 1 filter bag in <span class="nowrap">250ml – 300ml</span> boiling water (<span class="nowrap">95°C – 100°C</span>) for 7–10 minutes; enjoy warm after breakfast (8–10 AM) and mid-afternoon (2–4 PM).</span>
-            </li>
-          </ul>
+    <!-- 4. CỘT PHẢI: MỤC LỤC TRƯỢT DÍNH (DESKTOP STICKY TOC + SCROLLSPY) -->
+    <aside class="doc-sidebar" aria-label="Mục lục trang Minh Hoàng">
+      <div class="toc-widget">
+        <div class="toc-widget-head">
+          <span class="vi">Mục Lục Sản Phẩm</span>
+          <span class="en">On This Page</span>
+          <span style="color:var(--gold-primary);">❖</span>
+        </div>
+        <ul class="toc-list">
+          <li><button type="button" class="toc-jump-btn active" data-target="khoi-tong-quan" onclick="jumpToSection('khoi-tong-quan')"><span class="toc-roman">✦</span><span><span class="vi">Tổng quan &amp; Thông tin chung</span><span class="en">Overview &amp; Profile</span></span></button></li>
+          <li><button type="button" class="toc-jump-btn" data-target="khoi-duong-sinh" onclick="jumpToSection('khoi-duong-sinh')"><span class="toc-roman">1</span><span><span class="vi">Góc nhìn “Thanh Bổ” &amp; So sánh</span><span class="en">“Dual Cleansing” View</span></span></button></li>
+          <li><button type="button" class="toc-jump-btn" data-target="khoi-hoat-chat" onclick="jumpToSection('khoi-hoat-chat')"><span class="toc-roman">2</span><span><span class="vi">3 Nhóm dưỡng chất định mức cao</span><span class="en">3 High-Potency Bioactives</span></span></button></li>
+          <li><button type="button" class="toc-jump-btn" data-target="khoi-ky-nghe" onclick="jumpToSection('khoi-ky-nghe')"><span class="toc-roman">3</span><span><span class="vi">Kỹ nghệ mộc bản &amp; 3 tầng vị</span><span class="en">Craft &amp; 3 Taste Stages</span></span></button></li>
+          <li><button type="button" class="toc-jump-btn" data-target="khoi-thong-so" onclick="jumpToSection('khoi-thong-so')"><span class="toc-roman">4</span><span><span class="vi">Bảng thông số tiêu chuẩn</span><span class="en">Specifications</span></span></button></li>
+          <li><button type="button" class="toc-jump-btn" data-target="khoi-pha-tra" onclick="jumpToSection('khoi-pha-tra')"><span class="toc-roman">5</span><span><span class="vi">Hướng dẫn 4 bước pha trà</span><span class="en">4-Step Brewing Guide</span></span></button></li>
+          <li><button type="button" class="toc-jump-btn" data-target="khoi-tham-chieu" onclick="jumpToSection('khoi-tham-chieu', 'acc-ref-dossier')"><span class="toc-roman">6</span><span><span class="vi">3 Nguồn tham chiếu khoa học</span><span class="en">3 Scientific References</span></span></button></li>
+        </ul>
+      </div>
 
-          <div class="cta-action-row">
-            <a class="btn-primary-gold" href="tel:0796674679">
-              <span class="vi">📞 Tư&nbsp;Vấn &amp; Kết&nbsp;Nối: 0796&nbsp;674&nbsp;679</span>
-              <span class="en">📞 Direct Consultation: 0796&nbsp;674&nbsp;679</span>
+      <div class="toc-widget" style="border-top-color: var(--gold-primary);">
+        <div class="toc-widget-head">
+          <span class="vi">Dòng Trà &amp; Liên Kết</span>
+          <span class="en">Other Lines &amp; Links</span>
+        </div>
+        <ul class="sidebar-series-list">
+          <li>
+            <a href="/dongsanpham/thuonghoang">
+              <span><span class="vi">1. Trà Bách&nbsp;Phục Thượng&nbsp;Hoàng</span><span class="en">1. Thuong&nbsp;Hoang Herbal Tea</span></span>
+              <span style="color:var(--gold-primary);">→</span>
             </a>
-            <a class="btn-secondary-dark" href="/tracuu">
-              <span class="vi">✔ Xác&nbsp;Thực Hộp&nbsp;Trà 1-1 →</span>
-              <span class="en">✔ Verify Box 1-to-1 →</span>
+            <div class="sidebar-series-meta"><span class="vi">Thư thái thân tâm &amp; giấc ngủ êm lành</span><span class="en">Calm mind &amp; restorative sleep</span></div>
+          </li>
+          <li>
+            <a href="/dongsanpham/kimhoang">
+              <span><span class="vi">2. Trà Bách&nbsp;Phục Kim&nbsp;Hoàng</span><span class="en">2. Kim&nbsp;Hoang Herbal Tea</span></span>
+              <span style="color:var(--gold-primary);">→</span>
             </a>
-            <a class="btn-tertiary-cream" href="/tailieu/chuyenhoa">
-              <span class="vi">Chuyên&nbsp;Khảo 03: Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc →</span>
-              <span class="en">Monograph 03: Metabolic &amp; Detox →</span>
+            <div class="sidebar-series-meta"><span class="vi">Bồi đắp nguyên khí &amp; thể trạng</span><span class="en">Vitality &amp; physical recovery</span></div>
+          </li>
+          <li>
+            <a href="/tailieu/chuyenhoa" style="color:var(--bio-green);">
+              <span><span class="vi">✦ Chuyên Khảo 03: Chuyển Hóa</span><span class="en">✦ Monograph 03: Metabolic</span></span>
+              <span>→</span>
             </a>
-          </div>
-        </div>
+            <div class="sidebar-series-meta"><span class="vi">Gan thận, gốc tự do &amp; dưỡng trí</span><span class="en">Hepato-renal &amp; antioxidants</span></div>
+          </li>
+          <li>
+            <a href="/tracuu">
+              <span><span class="vi">✔ Xác Thực Hộp Trà 1-1</span><span class="en">✔ 1-to-1 Box Verification</span></span>
+              <span style="color:var(--gold-primary);">→</span>
+            </a>
+            <div class="sidebar-series-meta"><span class="vi">Kiểm tra Mã QR &amp; PIN 4&nbsp;số</span><span class="en">QR Code &amp; 4-Digit PIN</span></div>
+          </li>
+        </ul>
       </div>
+    </aside>
 
-      <!-- Thanh điều hướng nhanh nội bộ -->
-      <div class="internal-jump-bar">
-        <span class="jump-bar-label">
-          <span class="vi">❖ Nội&nbsp;dung chi&nbsp;tiết:</span>
-          <span class="en">❖ On this page:</span>
-        </span>
-        <button type="button" class="sec-jump-btn" onclick="bpScrollTo('khoi-duong-sinh')">
-          <span class="vi">1. Góc&nbsp;Nhìn Dưỡng&nbsp;Sinh</span>
-          <span class="en">1. Wellness Perspective</span>
-        </button>
-        <button type="button" class="sec-jump-btn" onclick="bpScrollTo('khoi-hoat-chat')">
-          <span class="vi">2. Ba Nhóm Dưỡng&nbsp;Chất</span>
-          <span class="en">2. Three Bioactive Groups</span>
-        </button>
-        <button type="button" class="sec-jump-btn" onclick="bpScrollTo('khoi-ky-nghe')">
-          <span class="vi">3. Kỹ&nbsp;Nghệ &amp; 3 Tầng&nbsp;Vị</span>
-          <span class="en">3. Craft &amp; 3 Taste Stages</span>
-        </button>
-        <button type="button" class="sec-jump-btn" onclick="bpScrollTo('khoi-thong-so')">
-          <span class="vi">4. Thông&nbsp;Số Tiêu&nbsp;Chuẩn</span>
-          <span class="en">4. Specifications</span>
-        </button>
-        <button type="button" class="sec-jump-btn" onclick="bpScrollTo('khoi-pha-tra')">
-          <span class="vi">5. Nghi&nbsp;Thức Pha&nbsp;Trà</span>
-          <span class="en">5. Brewing Ritual</span>
-        </button>
-        <button type="button" class="sec-jump-btn" onclick="bpScrollTo('khoi-tham-chieu')">
-          <span class="vi">6. Tham&nbsp;Chiếu Khoa&nbsp;Học</span>
-          <span class="en">6. Scientific References</span>
-        </button>
+  </div>
+
+  <!-- 5. NGĂN KÉO MỤC LỤC CHO ĐIỆN THOẠI -->
+  <div class="toc-drawer-backdrop" id="toc-drawer-backdrop" onclick="closeTocDrawer()"></div>
+  <div class="toc-drawer-sheet" id="toc-drawer-sheet" role="dialog" aria-modal="true" aria-label="Mục lục Minh Hoàng">
+    <div class="drawer-head">
+      <div class="drawer-title">
+        <span class="vi">❖ Mục Lục: 3. Minh&nbsp;Hoàng</span>
+        <span class="en">❖ Contents: 3. Minh&nbsp;Hoang</span>
       </div>
-    </section>
+      <button type="button" class="drawer-close" onclick="closeTocDrawer()" aria-label="Đóng">✕</button>
+    </div>
+    <ul class="toc-list">
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-tong-quan" onclick="jumpToSection('khoi-tong-quan')"><span class="toc-roman">✦</span><span><span class="vi">Tổng quan &amp; Thông tin chung</span><span class="en">Overview &amp; Profile</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-duong-sinh" onclick="jumpToSection('khoi-duong-sinh')"><span class="toc-roman">1</span><span><span class="vi">Góc nhìn “Thanh Bổ” &amp; So sánh</span><span class="en">“Dual Cleansing” View</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-hoat-chat" onclick="jumpToSection('khoi-hoat-chat')"><span class="toc-roman">2</span><span><span class="vi">3 Nhóm dưỡng chất định mức cao</span><span class="en">3 High-Potency Bioactives</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-ky-nghe" onclick="jumpToSection('khoi-ky-nghe')"><span class="toc-roman">3</span><span><span class="vi">Kỹ nghệ mộc bản &amp; 3 tầng vị</span><span class="en">Craft &amp; 3 Taste Stages</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-thong-so" onclick="jumpToSection('khoi-thong-so')"><span class="toc-roman">4</span><span><span class="vi">Bảng thông số tiêu chuẩn</span><span class="en">Specifications</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-pha-tra" onclick="jumpToSection('khoi-pha-tra')"><span class="toc-roman">5</span><span><span class="vi">Hướng dẫn 4 bước pha trà</span><span class="en">4-Step Brewing Guide</span></span></button></li>
+      <li><button type="button" class="toc-jump-btn" data-target="khoi-tham-chieu" onclick="jumpToSection('khoi-tham-chieu', 'acc-ref-dossier')"><span class="toc-roman">6</span><span><span class="vi">3 Nguồn tham chiếu khoa học</span><span class="en">3 Scientific References</span></span></button></li>
+    </ul>
+  </div>
 
-    <!-- KHỐI 2: GÓC NHÌN DƯỠNG SINH & BẢNG ĐỐI CHIẾU -->
-    <section id="khoi-duong-sinh" class="content-block-card">
-      <div class="block-header">
-        <span class="block-eyebrow">
-          <span class="vi">Nguyên&nbsp;Lý “Thanh&nbsp;Bổ Song&nbsp;Hành” • Cân&nbsp;Bằng Nội&nbsp;Môi &amp; Dưỡng&nbsp;Trí</span>
-          <span class="en">“Dual Cleansing &amp; Nourishing” • Metabolic Balance &amp; Mental Clarity</span>
-        </span>
-        <h2 class="section-title">
-          <span class="vi">Vì&nbsp;Sao Người Quá&nbsp;Tải Chuyển&nbsp;Hóa Cần Thanh&nbsp;Lọc Nội&nbsp;Môi Mà Không Làm Hàn&nbsp;Lạnh Tỳ&nbsp;Vị?</span>
-          <span class="en">Why Do Metabolically Overloaded Adults Need Internal Cleansing Without Chilling Digestion?</span>
-        </h2>
-      </div>
-
-      <div class="wellness-2col">
-        <div class="wellness-col-box">
-          <h3>
-            <span class="vi">1. Áp&nbsp;Lực Chuyển&nbsp;Hóa &amp; Cái&nbsp;Bẫy Của Các Loại “Lá&nbsp;Mát Tính&nbsp;Hàn”</span>
-            <span class="en">1. Metabolic Overload &amp; The Trap of Cold-Natured “Cooling Herbs”</span>
-          </h3>
-          <p class="vi">Ở tuổi trung&nbsp;niên và cao&nbsp;niên, việc phải sử&nbsp;dụng thuốc&nbsp;Tây dài&nbsp;ngày (huyết&nbsp;áp, tiểu&nbsp;đường, mỡ&nbsp;máu, xương&nbsp;khớp) hoặc chế&nbsp;độ sinh&nbsp;hoạt căng&nbsp;thẳng khiến hệ&nbsp;thống enzyme giải&nbsp;độc nội&nbsp;sinh của gan và thận bị quá&nbsp;tải — gây tích&nbsp;nhiệt âm&nbsp;ỉ, khô&nbsp;đắng khoang&nbsp;miệng buổi&nbsp;sáng, cơ&nbsp;thể trì&nbsp;trệ và đầu&nbsp;óc kém minh&nbsp;mẫn.</p>
-          <p class="en">In middle and senior years, long-term pharmaceutical use (for blood pressure, blood sugar, lipids, or joints) and daily stress overload the liver and kidneys’ endogenous detoxification enzymes—leading to internal heat, morning dry/bitter mouth, physical sluggishness, and brain fog.</p>
-          <p class="vi">Nhiều người tự nấu các loại lá&nbsp;mát có tính&nbsp;hàn lạnh (như nhân&nbsp;trần, diệp&nbsp;hạ&nbsp;châu, râu&nbsp;ngô...) uống thay nước hàng&nbsp;ngày, dẫn đến <strong>lạnh&nbsp;bụng, rối&nbsp;loạn tiêu&nbsp;hóa, tụt huyết&nbsp;áp và đi tiểu&nbsp;đêm nhiều lần làm suy&nbsp;giảm nguyên&nbsp;khí</strong>.</p>
-          <p class="en">Many people turn to raw, cold-natured cooling herbs daily, which can inadvertently cause <strong>stomach chills, digestive upset, blood pressure drops, and frequent nighttime urination that depletes vital energy</strong>.</p>
-        </div>
-
-        <div class="wellness-col-box solution-col">
-          <h3>
-            <span class="vi">2. Giải&nbsp;Pháp Từ Minh&nbsp;Hoàng: Thanh&nbsp;Lọc Gốc Tự&nbsp;Do &amp; Giữ Thân&nbsp;Nhẹ, Tâm&nbsp;Minh</span>
-            <span class="en">2. The Minh&nbsp;Hoang Solution: Antioxidant Cleansing with Gentle Warmth</span>
-          </h3>
-          <p class="vi"><strong>Trà Thảo&nbsp;Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</strong> được chế&nbsp;tác từ <strong>100% Nấm Linh&nbsp;Chi rừng tự&nbsp;nhiên Quảng&nbsp;Ngãi</strong> tuyển&nbsp;chọn ở độ&nbsp;tuổi già đanh&nbsp;chắc, mang tính&nbsp;bình – ôn hiền&nbsp;hòa nhưng đạt <strong>định&nbsp;mức cao về hoạt&nbsp;chất <em>Triterpenoids (Acid&nbsp;Ganoderic)</em> và chất chống oxy&nbsp;hóa</strong>.</p>
-          <p class="en"><strong>Bach&nbsp;Phuc Minh&nbsp;Hoang</strong> is crafted from <strong>100% wild-harvested Quang&nbsp;Ngai Reishi</strong> selected from dense, aged fruiting bodies—neutral-warm in nature yet possessing <strong>elevated concentrations of <em>Triterpenoids (Ganoderic Acids)</em> and natural antioxidants</strong>.</p>
-          <p class="vi">Thức&nbsp;trà thực&nbsp;thi trọn&nbsp;vẹn nguyên&nbsp;lý <strong>“Thanh&nbsp;Bổ Song&nbsp;Hành”</strong>: vừa hỗ&nbsp;trợ kích&nbsp;hoạt hệ enzyme nội&nbsp;sinh (<em>SOD, Catalase, Glutathione</em>) để dọn&nbsp;dẹp gốc tự&nbsp;do và làm mát&nbsp;dịu nội&nbsp;môi, vừa bồi&nbsp;đắp nguyên&nbsp;khí và nuôi&nbsp;dưỡng sự sáng&nbsp;suốt cho trí&nbsp;não.</p>
-          <p class="en">It embodies the principle of <strong>“Dual Cleansing &amp; Nourishing”</strong>: supporting endogenous antioxidant enzymes (<em>SOD, Catalase, Glutathione</em>) to clear free radicals and cool internal balance, while gently nourishing vitality and mental clarity.</p>
-        </div>
-      </div>
-
-      <div class="table-responsive">
-        <table class="std-table">
-          <colgroup><col style="width: 24%;"><col style="width: 38%;"><col style="width: 38%;"></colgroup>
-          <thead>
-            <tr>
-              <th><span class="vi">Tiêu&nbsp;Chí Đối&nbsp;Chiếu</span><span class="en">Comparison Criteria</span></th>
-              <th><span class="vi">3. Minh&nbsp;Hoàng (100% Nấm Linh&nbsp;Chi Rừng Định&nbsp;Mức Cao)</span><span class="en">3. Minh&nbsp;Hoang (High-Potency 100% Wild Reishi)</span></th>
-              <th><span class="vi">Các Loại Lá&nbsp;Mát Tính&nbsp;Hàn &amp; Trà Giải&nbsp;Nhiệt Công&nbsp;Nghiệp</span><span class="en">Cold-Natured Cooling Herbs &amp; Sugary Detox Teas</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong><span class="vi">Cơ&nbsp;chế tác&nbsp;động sinh&nbsp;học</span><span class="en">Biological Mechanism</span></strong></td>
-              <td>
-                <span class="vi"><strong>Thanh&nbsp;bổ song&nbsp;hành:</strong> Hỗ&nbsp;trợ enzyme giải&nbsp;độc nội&nbsp;sinh của tế&nbsp;bào gan – thận và trung&nbsp;hòa gốc tự&nbsp;do đồng&nbsp;thời với việc bồi&nbsp;bổ nguyên&nbsp;khí.</span>
-                <span class="en"><strong>Dual Cleansing &amp; Nourishing:</strong> Supports hepatic/renal endogenous antioxidant enzymes and free-radical scavenging while replenishing vitality.</span>
-              </td>
-              <td>
-                <span class="vi">Chủ&nbsp;yếu lợi&nbsp;tiểu cưỡng&nbsp;bức hoặc dùng tính&nbsp;hàn lạnh để hạ&nbsp;nhiệt tạm&nbsp;thời, dùng lâu&nbsp;ngày dễ làm hao&nbsp;tổn tân&nbsp;dịch và dương&nbsp;khí.</span>
-                <span class="en">Primarily relies on forced diuresis or cold-natured cooling, which over time can deplete fluids and digestive warmth.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Ảnh&nbsp;hưởng đến tiêu&nbsp;hóa &amp; giấc&nbsp;ngủ đêm</span><span class="en">Impact on Digestion &amp; Night Rest</span></strong></td>
-              <td>
-                <span class="vi">Tính&nbsp;bình – ôn ấm&nbsp;bụng, không gây lạnh&nbsp;bụng hay tiêu&nbsp;chảy; hạn&nbsp;chế tiểu&nbsp;đêm và giúp trí&nbsp;não thư&nbsp;thái, ngủ sâu.</span>
-                <span class="en">Neutral-warm and soothing on the stomach; does not trigger nighttime urination, supporting uninterrupted sleep and mental calm.</span>
-              </td>
-              <td>
-                <span class="vi">Dễ gây lạnh&nbsp;bụng, đầy&nbsp;hơi, tiêu&nbsp;chảy ở người lớn&nbsp;tuổi và kích&nbsp;thích đi tiểu&nbsp;đêm nhiều lần gây mất&nbsp;ngủ.</span>
-                <span class="en">Often causes abdominal coldness, loose stools in seniors, and frequent nocturia that fragments nighttime sleep.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Định&nbsp;mức hoạt&nbsp;chất tự&nbsp;nhiên</span><span class="en">Bioactive Potency</span></strong></td>
-              <td>
-                <span class="vi">Đạt định&nbsp;mức cao về <em>Triterpenoids (Acid&nbsp;Ganoderic)</em>, <em>Polysaccharides</em> và <em>Polyphenol</em> tự&nbsp;nhiên từ nấm rừng già lâu&nbsp;năm.</span>
-                <span class="en">Verified for high concentrations of natural <em>Triterpenoids (Ganoderic Acids)</em>, <em>Polysaccharides</em>, and <em>Polyphenols</em> from aged wild Reishi.</span>
-              </td>
-              <td>
-                <span class="vi">Trà đóng&nbsp;chai/hòa&nbsp;tan thường chứa nhiều đường tinh&nbsp;luyện và hương&nbsp;liệu, làm tăng thêm gánh&nbsp;nặng chuyển&nbsp;hóa cho gan.</span>
-                <span class="en">Commercial detox drinks often contain refined sugars and artificial additives that add to metabolic burden.</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- KHỐI 3: HỒ SƠ 3 NHÓM DƯỠNG CHẤT TỰ NHIÊN -->
-    <section id="khoi-hoat-chat" class="content-block-card">
-      <div class="block-header">
-        <span class="block-eyebrow">
-          <span class="vi">Hồ&nbsp;Sơ Hóa&nbsp;Thực&nbsp;Vật • Trọng&nbsp;Tâm Chuyển&nbsp;Hóa, Chống Oxy&nbsp;Hóa &amp; Dưỡng&nbsp;Trí</span>
-          <span class="en">Phytochemical Profile • Metabolic, Antioxidant &amp; Cognitive Focus</span>
-        </span>
-        <h2 class="section-title">
-          <span class="vi">Ba Nhóm Dưỡng&nbsp;Chất Định&nbsp;Mức Cao Trong Bách&nbsp;Phục Minh&nbsp;Hoàng</span>
-          <span class="en">Three High-Potency Bioactive Groups in Bach&nbsp;Phuc Minh&nbsp;Hoang</span>
-        </h2>
-      </div>
-
-      <div class="bioactive-grid-3">
-        <div class="bio-card">
-          <span class="bio-tag"><span class="vi">Nhóm Hoạt&nbsp;Chất 01</span><span class="en">Bioactive Group 01</span></span>
-          <h3><span class="vi">Triterpenoids (Acid&nbsp;Ganoderic Đỉnh&nbsp;Cao)</span><span class="en">High-Potency Triterpenoids (Ganoderic Acids)</span></h3>
-          <div>
-            <span class="bio-metric-highlight">
-              <span class="vi">Hỗ&nbsp;trợ chuyển&nbsp;hóa Gan – Thận &amp; Lipid</span>
-              <span class="en">Hepatic, renal &amp; lipid metabolic support</span>
-            </span>
-          </div>
-          <p class="vi">Được tuyển&nbsp;chọn từ những tai&nbsp;nấm Linh&nbsp;Chi rừng già đanh&nbsp;chắc trên vách&nbsp;đá và gỗ&nbsp;cổ&nbsp;thụ Quảng&nbsp;Ngãi, <strong>Minh&nbsp;Hoàng</strong> sở&nbsp;hữu hàm&nbsp;lượng cao nhóm <em>Acid&nbsp;Ganoderic</em> tự&nbsp;nhiên — phân&nbsp;tử chủ&nbsp;lực được ghi&nbsp;nhận giúp bảo&nbsp;vệ màng tế&nbsp;bào gan, hỗ&nbsp;trợ điều&nbsp;hòa men&nbsp;gan và nâng&nbsp;đỡ chức&nbsp;năng lọc tự&nbsp;nhiên của cầu&nbsp;thận.</p>
-          <p class="en">Selected from dense, rock-anchored and ancient-hardwood wild Reishi in Quang&nbsp;Ngai, <strong>Minh&nbsp;Hoang</strong> delivers elevated natural <em>Ganoderic Acids</em>—key triterpenes documented for protecting hepatocyte membranes, supporting healthy liver enzymes, and aiding renal filtration balance.</p>
-        </div>
-
-        <div class="bio-card">
-          <span class="bio-tag"><span class="vi">Nhóm Hoạt&nbsp;Chất 02</span><span class="en">Bioactive Group 02</span></span>
-          <h3><span class="vi">Polysaccharides &amp; Polyphenol Tự&nbsp;Nhiên</span><span class="en">Polysaccharides &amp; Natural Polyphenols</span></h3>
-          <div>
-            <span class="bio-metric-highlight">
-              <span class="vi">Kích&nbsp;hoạt Enzyme SOD &amp; Dọn gốc tự&nbsp;do</span>
-              <span class="en">SOD enzyme activation &amp; ROS clearance</span>
-            </span>
-          </div>
-          <p class="vi">Sự cộng&nbsp;hưởng giữa chuỗi đa&nbsp;đường <em>Polysaccharides</em> hòa&nbsp;tan và các hợp&nbsp;chất <em>Polyphenol</em> tự&nbsp;nhiên giúp thúc&nbsp;đẩy hoạt&nbsp;tính của hệ&nbsp;thống enzyme chống oxy&nbsp;hóa nội&nbsp;sinh (<em>Superoxide Dismutase - SOD, Catalase, Glutathione Peroxidase</em>), giúp trung&nbsp;hòa các gốc tự&nbsp;do (ROS) sinh ra do stress và thuốc&nbsp;Tây dài&nbsp;ngày.</p>
-          <p class="en">The synergy between soluble <em>Polysaccharides</em> and natural <em>Polyphenols</em> enhances endogenous antioxidant defense systems (<em>SOD, Catalase, Glutathione Peroxidase</em>), neutralizing reactive oxygen species (ROS) generated by metabolic stress and prolonged medication.</p>
-        </div>
-
-        <div class="bio-card">
-          <span class="bio-tag"><span class="vi">Nhóm Hoạt&nbsp;Chất 03</span><span class="en">Bioactive Group 03</span></span>
-          <h3><span class="vi">Adenosine &amp; Vi&nbsp;Tuần&nbsp;Hoàn Dưỡng&nbsp;Trí</span><span class="en">Adenosine &amp; Cerebral Microcirculation</span></h3>
-          <div>
-            <span class="bio-metric-highlight">
-              <span class="vi">Giải&nbsp;tỏa “Sương&nbsp;mù não” &amp; Sáng&nbsp;suốt</span>
-              <span class="en">Clearing brain fog &amp; sharpening focus</span>
-            </span>
-          </div>
-          <p class="vi">Hoạt&nbsp;chất <em>Adenosine</em> tự&nbsp;nhiên kết&nbsp;hợp cùng phổ dưỡng&nbsp;chất thanh&nbsp;lọc nội&nbsp;môi giúp tối&nbsp;ưu&nbsp;hóa lưu&nbsp;lượng máu và oxy lên não, hỗ&nbsp;trợ hệ thống rửa&nbsp;não <em>Glymphatic</em> hoạt&nbsp;ộng hiệu&nbsp;quả vào ban&nbsp;đêm — giúp xua&nbsp;tan cảm&nbsp;giác nặng&nbsp;đầu, mệt&nbsp;mỏi trí&nbsp;óc và giữ tâm&nbsp;trí minh&nbsp;mẫn mỗi&nbsp;ngày.</p>
-          <p class="en">Natural <em>Adenosine</em> paired with internal-cleansing bioactives optimizes cerebral blood flow and nighttime <em>Glymphatic</em> clearance—dispelling mental heaviness and brain fog to sustain daytime clarity and calm focus.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- KHỐI 4: KỸ NGHỆ CHẾ BIẾN MỘC BẢN & 3 TẦNG CHUYỂN VỊ -->
-    <section id="khoi-ky-nghe" class="content-block-card">
-      <div class="block-header">
-        <span class="block-eyebrow">
-          <span class="vi">Kỹ&nbsp;Nghệ Chế&nbsp;Tác &amp; Phong&nbsp;Vị Thượng&nbsp;Phẩm</span>
-          <span class="en">Artisanal Craft &amp; Reserve Sensory Profile</span>
-        </span>
-        <h2 class="section-title">
-          <span class="vi">Mở&nbsp;Khóa Tinh&nbsp;Chất Nấm&nbsp;Rừng Đanh&nbsp;Chắc &amp; Hành&nbsp;Trình 3 Tầng Vị Thanh&nbsp;Tao</span>
-          <span class="en">Unlocking Dense Old-Growth Fibers &amp; The 3-Stage Crisp Sensory Evolution</span>
-        </h2>
-      </div>
-
-      <div class="craft-highlight-box">
-        <h3>
-          <span class="vi">❖ Kỹ&nbsp;Nghệ Chế&nbsp;Biến Mộc&nbsp;Bản — Chiết&nbsp;Xuất Tối&nbsp;Đa Hoạt&nbsp;Chất Triterpenoids Trong 7–10&nbsp;Phút</span>
-          <span class="en">❖ Proprietary Artisanal Craft — Maximizing Triterpenoid Infusion in 7–10&nbsp;Minutes</span>
-        </h3>
-        <p class="vi">Những tai&nbsp;nấm Linh&nbsp;Chi rừng già được tuyển&nbsp;chọn cho dòng <strong>Minh&nbsp;Hoàng</strong> có thớ&nbsp;gỗ cực&nbsp;kỳ đanh&nbsp;chắc và lớp vỏ bóng giàu <em>Acid&nbsp;Ganoderic</em> vốn rất khó tan nếu chỉ thái&nbsp;lát đun nước thông&nbsp;thường. Bằng <strong>công&nbsp;nghệ sấy hồng&nbsp;ngoại đa&nbsp;tầng kiểm&nbsp;soát nhiệt&nbsp;độ chính&nbsp;xác kết&nbsp;hợp vi&nbsp;nghiền mở&nbsp;khóa màng Chitin</strong>, Bách&nbsp;Phục giúp các phân&nbsp;tử <em>Triterpenoids</em> và <em>Polysaccharides</em> thoát ra trọn&nbsp;vẹn chỉ sau 7 đến 10&nbsp;phút hãm nước&nbsp;sôi <span class="nowrap">95°C – 100°C</span>, tạo nên chén&nbsp;trà sáng&nbsp;trong, giàu dưỡng&nbsp;chất.</p>
-        <p class="en">The aged wild Reishi fruiting bodies selected for <strong>Minh&nbsp;Hoang</strong> possess an exceptionally dense woody grain and a glossy crust rich in <em>Ganoderic Acids</em> that resist simple boiling. Through <strong>precision multi-stage infrared drying and Chitin micro-fiber unlocking</strong>, Bach&nbsp;Phuc enables full release of both <em>Triterpenoids</em> and <em>Polysaccharides</em> within 7–10 minutes of steeping in <span class="nowrap">95°C – 100°C</span> water—yielding a bright, potent infusion.</p>
-      </div>
-
-      <div class="sensory-grid-3">
-        <div class="sensory-card">
-          <span class="sensory-stage"><span class="vi">Tầng Vị 01 • Khởi&nbsp;Hương</span><span class="en">Stage 01 • Forest Aroma</span></span>
-          <h4><span class="vi">Hương Rừng Sâu Sắc&nbsp;Nét &amp; Tinh&nbsp;Khiết</span><span class="en">Crisp, Noble Old-Growth Aroma</span></h4>
-          <p class="vi">Hương thơm thanh&nbsp;khiết, sâu&nbsp;lắng của những tai&nbsp;nấm già trên gỗ&nbsp;cổ&nbsp;thụ vùng&nbsp;cao Quảng&nbsp;Ngãi lan&nbsp;tỏa ngay khi châm nước&nbsp;sôi, mang lại cảm&nbsp;giác tĩnh&nbsp;tại và tỉnh&nbsp;táo tức&nbsp;thì.</p>
-          <p class="en">A crisp, noble aroma of aged wild Reishi from Quang&nbsp;Ngai’s high mountain forests rises with the steam, bringing an immediate sense of clarity and composure.</p>
-        </div>
-
-        <div class="sensory-card">
-          <span class="sensory-stage"><span class="vi">Tầng Vị 02 • Chạm&nbsp;Vị</span><span class="en">Stage 02 • Initial Palate</span></span>
-          <h4><span class="vi">Vị Đắng&nbsp;Thanh Tao&nbsp;Nhã Đậm&nbsp;Đà</span><span class="en">Distinct, Elegant Bitterness</span></h4>
-          <p class="vi">Vị đắng&nbsp;thanh sắc&nbsp;nét đặc&nbsp;trưng của hàm&nbsp;lượng cao <em>Acid&nbsp;Ganoderic</em> đánh&nbsp;thức trọn&nbsp;vẹn khoang&nbsp;miệng đang khô&nbsp;đắng, nhưng rất sang&nbsp;trọng, êm&nbsp;mượt mà không hề gắt.</p>
-          <p class="en">A distinct, refined bitterness from elevated <em>Ganoderic Acids</em> awakens a dry or sluggish palate with remarkable smoothness and zero harshness.</p>
-        </div>
-
-        <div class="sensory-card">
-          <span class="sensory-stage"><span class="vi">Tầng Vị 03 • Lưu&nbsp;Hậu</span><span class="en">Stage 03 • Lingering Finish</span></span>
-          <h4><span class="vi">Hậu&nbsp;Ngọt Thanh&nbsp;Mát Sảng&nbsp;Khoái</span><span class="en">Refreshing, Clean Sweet Finish</span></h4>
-          <p class="vi">Vị đắng nhanh&nbsp;chóng chuyển&nbsp;hóa thành hậu&nbsp;ngọt thanh&nbsp;mát lan&nbsp;tỏa khắp vòm&nbsp;họng, giúp giải&nbsp;tỏa cảm&nbsp;giác nóng&nbsp;bức nội&nbsp;môi và để lại hơi&nbsp;thở nhẹ&nbsp;nhõm, sảng&nbsp;khoái.</p>
-          <p class="en">The initial bitterness swiftly transforms into a clean, cooling sweet aftertaste across the throat—relieving internal heat and leaving the palate refreshed and light.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- KHỐI 5: BẢNG THÔNG SỐ TIÊU CHUẨN SẢN PHẨM -->
-    <section id="khoi-thong-so" class="content-block-card">
-      <div class="block-header">
-        <span class="block-eyebrow">
-          <span class="vi">Hồ&nbsp;Sơ Tiêu&nbsp;Chuẩn &amp; Quy&nbsp;Cách</span>
-          <span class="en">Standard Specifications &amp; Packaging</span>
-        </span>
-        <h2 class="section-title">
-          <span class="vi">Bảng Thông&nbsp;Số Tiêu&nbsp;Chuẩn Trà Thảo&nbsp;Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</span>
-          <span class="en">Technical Specifications — Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal&nbsp;Tea</span>
-        </h2>
-      </div>
-
-      <div class="table-responsive">
-        <table class="std-table">
-          <colgroup><col style="width: 32%;"><col style="width: 68%;"></colgroup>
-          <tbody>
-            <tr>
-              <td><strong><span class="vi">Tên sản&nbsp;phẩm chính&nbsp;thức</span><span class="en">Official Product Name</span></strong></td>
-              <td>
-                <span class="vi"><strong>Trà Thảo&nbsp;Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</strong> (Dòng trà mộc&nbsp;bản số&nbsp;3: <strong>Minh&nbsp;Hoàng</strong>)</span>
-                <span class="en"><strong>Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal&nbsp;Tea</strong> (Artisanal Line No.&nbsp;3: <strong>Minh&nbsp;Hoang</strong>)</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Thành&nbsp;phần định&nbsp;lượng</span><span class="en">Ingredients</span></strong></td>
-              <td>
-                <span class="vi"><strong>100% Nấm Linh&nbsp;Chi rừng tự&nbsp;nhiên</strong> (<em>Ganoderma lucidum</em>) — Không chất bảo&nbsp;quản, không hương&nbsp;liệu, không phụ&nbsp;gia.</span>
-                <span class="en"><strong>100% Wild-Harvested Reishi</strong> (<em>Ganoderma lucidum</em>) — Zero preservatives, zero artificial flavorings, zero additives.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Nguồn&nbsp;gốc xuất&nbsp;xứ nguyên&nbsp;liệu</span><span class="en">Botanical Origin</span></strong></td>
-              <td>
-                <span class="vi">Tuyển&nbsp;lựa từ những tai&nbsp;nấm Linh&nbsp;Chi rừng già đanh&nbsp;chắc lâu&nbsp;năm tại vùng núi&nbsp;rừng tỉnh Quảng&nbsp;Ngãi, Việt&nbsp;Nam.</span>
-                <span class="en">Selected from dense, multi-season aged wild Reishi harvested in the primeval mountain forests of Quang&nbsp;Ngai Province, Vietnam.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Hồ&nbsp;sơ dưỡng&nbsp;chất trọng&nbsp;tâm</span><span class="en">Core Bioactive Profile</span></strong></td>
-              <td>
-                <span class="vi" id="ui-lab-table-vi">Đạt định&nbsp;mức cao về hợp&nbsp;chất <strong>Triterpenoids (Acid&nbsp;Ganoderic)</strong>, <strong>Polysaccharides hòa&nbsp;tan</strong>, <em>Polyphenol</em> chống oxy&nbsp;hóa và <em>Adenosine</em> tự&nbsp;nhiên (Chỉ số định&nbsp;lượng chi&nbsp;tiết đang cập&nbsp;nhật từ&nbsp;Lab).</span>
-                <span class="en" id="ui-lab-table-en">High-potency profile of <strong>Triterpenoids (Ganoderic Acids)</strong>, <strong>soluble Polysaccharides</strong>, antioxidant <em>Polyphenols</em>, and natural <em>Adenosine</em> (Detailed lab metrics pending update).</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Quy&nbsp;cách đóng&nbsp;gói &amp; Kích&nbsp;thước</span><span class="en">Packaging &amp; Dimensions</span></strong></td>
-              <td>
-                <span class="vi">Hộp cứng Kraft mỹ&nbsp;thuật (<span class="nowrap">15 cm × 8 cm × 7 cm</span>) • <strong>24 túi&nbsp;lọc</strong> • Khối&nbsp;lượng&nbsp;tịnh: <strong>100g</strong>.</span>
-                <span class="en">Rigid artisanal Kraft box (<span class="nowrap">15 cm × 8 cm × 7 cm</span>) • <strong>24 filter bags</strong> • Net weight: <strong>100g</strong>.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Hệ&nbsp;thống bảo&nbsp;chứng độc&nbsp;bản 1-1</span><span class="en">1-to-1 Serialization Security</span></strong></td>
-              <td>
-                <span class="vi">Mỗi hộp&nbsp;trà được cấp một <strong>Mã&nbsp;QR định&nbsp;danh riêng</strong> và <strong>Mã&nbsp;PIN 4&nbsp;số</strong> in mặt trong nắp&nbsp;hộp, xác&nbsp;thực trực&nbsp;tiếp tại cổng <a href="/tracuu" style="color:var(--wine-red);font-weight:600;">trathaomocbachphuc.vn/tracuu →</a>.</span>
-                <span class="en">Each box is assigned a unique <strong>serialized QR Code</strong> and <strong>4-digit PIN</strong> printed inside the lid, verifiable at <a href="/tracuu" style="color:var(--wine-red);font-weight:600;">trathaomocbachphuc.vn/tracuu →</a>.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Thời&nbsp;hạn sử&nbsp;dụng &amp; Bảo&nbsp;quản</span><span class="en">Shelf Life &amp; Storage</span></strong></td>
-              <td>
-                <span class="vi"><strong>12&nbsp;tháng</strong> kể từ ngày sản&nbsp;xuất. Bảo&nbsp;quản nơi khô&nbsp;ráo, thoáng&nbsp;mát, tránh ánh&nbsp;nắng trực&nbsp;tiếp.</span>
-                <span class="en"><strong>12&nbsp;months</strong> from manufacture date. Store in a cool, dry place away from direct sunlight.</span>
-              </td>
-            </tr>
-            <tr>
-              <td><strong><span class="vi">Đơn&nbsp;vị chịu trách&nbsp;nhiệm &amp; Sản&nbsp;xuất</span><span class="en">Producer &amp; Legal Entity</span></strong></td>
-              <td>
-                <span class="vi"><strong>Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục</strong> (MST: 4300901179) — 136 Mạc&nbsp;Đĩnh&nbsp;Chi, Phường Nghĩa&nbsp;Lộ, Tỉnh Quảng&nbsp;Ngãi.</span>
-                <span class="en"><strong>Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd.</strong> (Tax ID: 4300901179) — 136 Mac&nbsp;Dinh&nbsp;Chi St., Nghia&nbsp;Lo Ward, Quang&nbsp;Ngai Province, Vietnam.</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- KHỐI 6: HƯỚNG DẪN 4 BƯỚC THƯỞNG TRÀ CHUẨN MỰC -->
-    <section id="khoi-pha-tra" class="content-block-card">
-      <div class="block-header">
-        <span class="block-eyebrow">
-          <span class="vi">Nghi&nbsp;Thức Thưởng&nbsp;Trà Dưỡng&nbsp;Sinh</span>
-          <span class="en">Mindful Brewing Ritual</span>
-        </span>
-        <h2 class="section-title">
-          <span class="vi">Hướng&nbsp;Dẫn 4&nbsp;Bước Pha Trà Bách&nbsp;Phục Minh&nbsp;Hoàng Chuẩn&nbsp;Vị</span>
-          <span class="en">The 4-Step Brewing Guide for Bach&nbsp;Phuc Minh&nbsp;Hoang</span>
-        </h2>
-      </div>
-
-      <div class="ritual-grid-4">
-        <div class="ritual-step-card">
-          <span class="ritual-num">01</span>
-          <h3><span class="vi">Khởi&nbsp;Nhiệt Ấm&nbsp;Chén</span><span class="en">Warm the Teaware</span></h3>
-          <p class="vi">Tráng đều lòng&nbsp;ấm hoặc tách sứ bằng nước&nbsp;sôi rồi đổ&nbsp;đi để làm nóng dụng&nbsp;cụ, giữ mức&nbsp;nhiệt cao ổn&nbsp;định giúp chiết&nbsp;xuất tối&nbsp;đa <em>Triterpenoids</em>.</p>
-          <p class="en">Swirl boiling water inside your ceramic teapot or cup and discard to pre-warm the vessel and maintain high heat for optimal <em>Triterpenoid</em> extraction.</p>
-        </div>
-
-        <div class="ritual-step-card">
-          <span class="ritual-num">02</span>
-          <h3><span class="vi">Đánh&nbsp;Thức Sợi&nbsp;Trà</span><span class="en">Awaken the Fibers</span></h3>
-          <p class="vi">Cho 1 túi&nbsp;lọc vào ấm, rót lượng nhỏ nước&nbsp;sôi (<span class="nowrap">95°C – 100°C</span>) vừa ngập túi&nbsp;trà, lắc nhẹ 3–5&nbsp;giây rồi chắt&nbsp;bỏ để thớ&nbsp;nấm rừng già giãn&nbsp;nở đều.</p>
-          <p class="en">Place 1 filter bag in the pot, pour just enough boiling water (<span class="nowrap">95°C – 100°C</span>) to cover, swirl for 3–5 seconds, and decant immediately.</p>
-        </div>
-
-        <div class="ritual-step-card">
-          <span class="ritual-num">03</span>
-          <h3><span class="vi">Ủ&nbsp;Tĩnh 7–10&nbsp;Phút</span><span class="en">Steep 7–10&nbsp;Minutes</span></h3>
-          <p class="vi">Rót <span class="nowrap">250ml – 300ml</span> nước&nbsp;sôi (<span class="nowrap">95°C – 100°C</span>) vào&nbsp;ấm, đậy kín&nbsp;nắp và ủ&nbsp;tĩnh 7–10&nbsp;phút để các hợp&nbsp;chất quý thẩm&nbsp;thấu trọn&nbsp;vẹn ra nước&nbsp;trà.</p>
-          <p class="en">Pour <span class="nowrap">250ml – 300ml</span> of boiling water (<span class="nowrap">95°C – 100°C</span>), cover tightly, and steep undisturbed for 7–10 minutes for full bioactive release.</p>
-        </div>
-
-        <div class="ritual-step-card">
-          <span class="ritual-num">04</span>
-          <h3><span class="vi">Thưởng&nbsp;Trà &amp; Châm Lần&nbsp;2</span><span class="en">Savor &amp; Re-Steep</span></h3>
-          <p class="vi">Thưởng&nbsp;thức ấm&nbsp;nóng sau bữa&nbsp;ăn sáng và chiều. Sau tuần&nbsp;trà đầu, châm thêm 200ml nước&nbsp;sôi lần&nbsp;2 và ủ 10–12&nbsp;phút để lấy hết tinh&nbsp;chất.</p>
-          <p class="en">Savor warm after morning and afternoon meals. Afterward, add 200ml of boiling water for a second steeping of 10–12 minutes.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- KHỐI 7: 3 NGUỒN THAM CHIẾU KHOA HỌC (MỞ TAB MỚI) & KHUYẾN CÁO PHÁP LÝ -->
-    <section id="khoi-tham-chieu" class="content-block-card">
-      <div class="block-header">
-        <span class="block-eyebrow">
-          <span class="vi">Tham&nbsp;Chiếu Học&nbsp;Thuật &amp; Minh&nbsp;Bạch Pháp&nbsp;Lý</span>
-          <span class="en">Academic References &amp; Regulatory Transparency</span>
-        </span>
-        <h2 class="section-title">
-          <span class="vi">Nguồn Tư&nbsp;Liệu Khoa&nbsp;Học Tham&nbsp;Chiếu Về Nguyên&nbsp;Liệu Nấm Linh&nbsp;Chi</span>
-          <span class="en">Scientific &amp; Classical References on Reishi (<em>Ganoderma lucidum</em>)</span>
-        </h2>
-      </div>
-
-      <!-- 3 Đường link tham khảo bên ngoài mở tab mới -->
-      <div class="ref-grid-3">
-        <div class="ref-card">
-          <span class="ref-source-tag">01 • NCBI / NIH (USA)</span>
-          <h4>
-            <span class="vi">Thư&nbsp;Viện Y&nbsp;Khoa Quốc&nbsp;Gia Hoa&nbsp;Kỳ (NBK92757)</span>
-            <span class="en">U.S. National Library of Medicine (NBK92757)</span>
-          </h4>
-          <p class="vi">Chuyên&nbsp;luận <em>"Ganoderma lucidum (Lingzhi or Reishi)"</em> phân&nbsp;tích hoạt&nbsp;tính bảo&nbsp;vệ tế&nbsp;bào gan (hepatoprotective), điều&nbsp;hòa chuyển&nbsp;hóa lipid và kích&nbsp;hoạt hệ enzyme chống oxy&nbsp;hóa nội&nbsp;sinh (<em>SOD, Catalase, Glutathione</em>) của nhóm <em>Triterpenoids</em> và <em>Polysaccharides</em>.</p>
-          <p class="en">Chapter 9 <em>"Ganoderma lucidum (Lingzhi or Reishi)"</em> in <em>Herbal Medicine: Biomolecular and Clinical Aspects</em>, detailing hepatoprotective, lipid-modulating, and endogenous antioxidant enzyme (<em>SOD, Catalase, Glutathione</em>) mechanisms.</p>
-          <a href="https://www.ncbi.nlm.nih.gov/books/NBK92757/" target="_blank" rel="noopener noreferrer" class="ref-ext-link">
-            <span class="vi">Xem tư&nbsp;liệu gốc trên NCBI / NIH ↗</span>
-            <span class="en">View original monograph on NCBI / NIH ↗</span>
-          </a>
-        </div>
-
-        <div class="ref-card">
-          <span class="ref-source-tag">02 • Classical Pharmacopeia</span>
-          <h4>
-            <span class="vi">Thần&nbsp;Nông Bản&nbsp;Thảo Kinh &amp; Bản&nbsp;Thảo Cương&nbsp;Mục</span>
-            <span class="en">Shennong Ben Cao Jing &amp; Compendium of Materia Medica</span>
-          </h4>
-          <p class="vi">Kinh&nbsp;điển dược&nbsp;học cổ phương&nbsp;Đông ghi&nbsp;nhận nhóm Linh&nbsp;Chi (đặc&nbsp;biệt là <em>Thanh&nbsp;Chi, Hắc&nbsp;Chi, Xích&nbsp;Chi</em>) chủ về <strong>bổ can&nbsp;khí, ích thận&nbsp;khí, sáng&nbsp;mắt, tăng trí&nbsp;nhớ</strong>, dùng lâu&nbsp;ngày giúp thanh&nbsp;nhẹ cơ&nbsp;thể mà không gây hàn&nbsp;lạnh.</p>
-          <p class="en">Classical Eastern herbology texts document Reishi varieties (notably <em>Thanh&nbsp;Chi, Hac&nbsp;Chi, and Xich&nbsp;Chi</em>) for <strong>nourishing liver and kidney qi, brightening vision, and sharpening memory</strong>—lightening the body without chilling digestion.</p>
-          <a href="https://en.wikipedia.org/wiki/Lingzhi_(mushroom)" target="_blank" rel="noopener noreferrer" class="ref-ext-link">
-            <span class="vi">Xem tư&nbsp;liệu khảo&nbsp;cứu cổ&nbsp;thư ↗</span>
-            <span class="en">View classical herbology overview ↗</span>
-          </a>
-        </div>
-
-        <div class="ref-card">
-          <span class="ref-source-tag">03 • Vietnamese Materia Medica</span>
-          <h4>
-            <span class="vi">Những Cây&nbsp;Thuốc Và Vị&nbsp;Thuốc Việt&nbsp;Nam — GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi</span>
-            <span class="en">Medicinal Plants and Remedies of Vietnam — Prof.&nbsp;Dr.&nbsp;Do&nbsp;Tat&nbsp;Loi</span>
-          </h4>
-          <p class="vi">Công&nbsp;trình khảo&nbsp;cứu dược&nbsp;liệu Việt&nbsp;Nam (trang 831–833, NXB Y&nbsp;học) ghi&nbsp;nhận tính&nbsp;vị của <em>Thanh&nbsp;Chi (bổ can&nbsp;khí, an&nbsp;thần, tăng trí&nbsp;nhớ)</em> và <em>Hắc&nbsp;Chi (chủ&nbsp;trị cơ&nbsp;quan bài&nbsp;tiết, thận)</em> giúp cơ&nbsp;thể nhẹ&nbsp;nhõm, bền&nbsp;bỉ.</p>
-          <p class="en">Vietnam’s authoritative pharmacognosy encyclopedia (pp. 831–833, Medical Publishing House) documenting <em>Thanh&nbsp;Chi (supporting liver qi, calm spirit, and memory)</em> and <em>Hac&nbsp;Chi (supporting renal and excretory balance)</em>.</p>
-          <a href="https://vi.wikipedia.org/wiki/%C4%90%E1%BB%97_T%E1%BA%A5t_L%E1%BB%A3i" target="_blank" rel="noopener noreferrer" class="ref-ext-link">
-            <span class="vi">Tìm&nbsp;hiểu về công&nbsp;trình của GS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi ↗</span>
-            <span class="en">Learn about Prof.&nbsp;Do&nbsp;Tat&nbsp;Loi’s work ↗</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Cầu nối sang Chuyên khảo 03 đối ứng (cùng 1 tab) -->
-      <div class="monograph-bridge-box">
-        <div class="monograph-bridge-text">
-          <h4>
-            <span class="vi">❖ Đọc Chuyên&nbsp;Khảo Khoa&nbsp;Học Đối&nbsp;Ứng Với Dòng Trà Minh&nbsp;Hoàng</span>
-            <span class="en">❖ Read the Scientific Monograph Paired with Minh&nbsp;Hoang</span>
-          </h4>
-          <p class="vi">Khám&nbsp;phá phân&nbsp;tích chuyên&nbsp;sâu về hệ&nbsp;thống enzyme giải&nbsp;độc nội&nbsp;sinh (Cytochrome P450, SOD, Glutathione), cân&nbsp;bằng chuyển&nbsp;hóa gan – thận và cơ&nbsp;chế dọn&nbsp;dẹp gốc tự&nbsp;do tại Thư&nbsp;viện Chuyên&nbsp;khảo Bách&nbsp;Phục.</p>
-          <p class="en">Explore our in-depth monograph on endogenous detoxification enzymes (Cytochrome P450, SOD, Glutathione), hepatic-renal metabolic balance, and free-radical clearance in the Bach&nbsp;Phuc Monograph Library.</p>
-        </div>
-        <a class="btn-secondary-dark" href="/tailieu/chuyenhoa">
-          <span class="vi">Mở Chuyên&nbsp;Khảo 03: Chuyển&nbsp;Hóa &amp; Thanh&nbsp;Lọc →</span>
-          <span class="en">Open Monograph 03: Metabolic &amp; Detox →</span>
-        </a>
-      </div>
-
-      <!-- Khuyến cáo pháp lý -->
-      <div class="legal-disclaimer-box">
-        <h4>
-          <span>❖</span>
-          <span class="vi">Khuyến&nbsp;Cáo Minh&nbsp;Bạch Pháp&nbsp;Lý &amp; Phạm&nbsp;Vi Thông&nbsp;Tin</span>
-          <span class="en">Legal Transparency &amp; Regulatory Disclaimer</span>
-        </h4>
-        <p class="vi">
-          Thực&nbsp;phẩm <strong>Trà Thảo&nbsp;Mộc Bách&nbsp;Phục Minh&nbsp;Hoàng</strong> được sản&nbsp;xuất từ 100% nấm Linh&nbsp;Chi rừng tự&nbsp;nhiên theo hồ&nbsp;sơ tự công&nbsp;bố hợp quy&nbsp;định pháp&nbsp;luật của Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục. Sản&nbsp;phẩm là thức&nbsp;uống thảo&nbsp;mộc dưỡng&nbsp;sinh hàng&nbsp;ngày, <strong>không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh</strong>.
-        </p>
-        <p class="vi">
-          Các dẫn&nbsp;liệu khoa&nbsp;học và y&nbsp;điển cổ&nbsp;truyền trên trang được trích&nbsp;dẫn nhằm mục&nbsp;đích cung&nbsp;cấp tri&nbsp;thức văn&nbsp;hóa — sinh&nbsp;học thường&nbsp;thức về nguyên&nbsp;liệu nấm Linh&nbsp;Chi tự&nbsp;nhiên. Website chỉ giới&nbsp;thiệu thông&nbsp;tin và kết&nbsp;nối tư&nbsp;vấn trực&nbsp;tiếp, không thực&nbsp;hiện giao&nbsp;dịch thương&nbsp;mại điện&nbsp;tử trực&nbsp;tuyến.
-        </p>
-        <p class="en">
-          <strong>Bach&nbsp;Phuc Minh&nbsp;Hoang Herbal&nbsp;Tea</strong> is a natural dietary herbal infusion crafted from 100% wild-harvested Reishi in compliance with statutory product self-declaration regulations by Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. <strong>This product is not a pharmaceutical and is not intended to diagnose, treat, cure, or prevent any disease.</strong>
-        </p>
-        <p class="en">
-          Scientific and classical herbology citations are provided solely for educational and cultural reference regarding natural <em>Ganoderma lucidum</em>. This website operates for informational and consultation purposes only, without online e-commerce transactions.
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- CHÂN TRANG ĐỒNG BỘ TOÀN HỆ THỐNG -->
+  <!-- 6. FOOTER ĐỒNG BỘ CÓ LOGO BÁCH PHỤC -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <h3>
-          <span class="vi">CÔNG&nbsp;TY TNHH TRÀ THẢO&nbsp;MỘC BÁCH&nbsp;PHỤC</span>
-          <span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span>
-        </h3>
+        <div class="footer-brand-head">
+          <img src="https://lh3.googleusercontent.com/d/1ej7OBO7Rl0bNRFav8hsDJhtGY-FuGtri" alt="Logo Trà Thảo Mộc Bách Phục" class="footer-logo-img">
+          <h3><span class="vi">CÔNG TY TNHH TRÀ THẢO MỘC BÁCH&nbsp;PHỤC</span><span class="en">BACH&nbsp;PHUC HERBAL TEA COMPANY&nbsp;LIMITED</span></h3>
+        </div>
         <p style="font-size:12.5px; color:#D6C7B8; margin-bottom:6px;">
-          <span class="vi"><strong>Mã&nbsp;số doanh&nbsp;nghiệp (MST):</strong> 4300901179</span>
-          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> 4300901179</span>
+          <span class="vi"><strong>Mã số doanh nghiệp (MST):</strong> <span class="nowrap">4300901179</span></span>
+          <span class="en"><strong>Enterprise Registration No. (Tax ID):</strong> <span class="nowrap">4300901179</span></span>
         </p>
-        <p class="vi">Chắt&nbsp;chiu từng tai&nbsp;nấm Linh&nbsp;Chi chọn&nbsp;lọc từ rừng&nbsp;già tự&nbsp;nhiên Quảng&nbsp;Ngãi thành những ấm&nbsp;trà túi&nbsp;lọc mộc thanh&nbsp;khiết. Đồng&nbsp;hành cùng nếp&nbsp;sống an&nbsp;dưỡng, giúp thân&nbsp;tâm an&nbsp;định, nâng&nbsp;đỡ thể&nbsp;trạng và mang&nbsp;lại sự an&nbsp;yên cho mỗi gia&nbsp;đình.</p>
+        <p class="vi">Chắt chiu từng tai nấm Linh&nbsp;Chi chọn lọc từ rừng già tự nhiên Quảng&nbsp;Ngãi thành những ấm trà túi lọc mộc thanh khiết. Đồng hành cùng nếp sống an dưỡng, giúp thân tâm an định, nâng đỡ thể trạng và mang lại sự an yên cho mỗi gia đình.</p>
         <p class="en">Carefully crafting selected 100% wild-harvested Reishi from the primeval forests of Quang&nbsp;Ngai into pure artisanal filter tea infusions—accompanying mindful living, nurturing physical resilience, and bringing peace to every family.</p>
         <p style="color:var(--gold-light); font-family:'Playfair Display',serif; font-style:italic;">
-          <span class="vi">“Cha&nbsp;mẹ bình&nbsp;an, chúng&nbsp;con vững&nbsp;vàng.”</span>
+          <span class="vi">“Cha mẹ bình an, chúng con vững&nbsp;vàng.”</span>
           <span class="en">“When our parents are at peace, we stand&nbsp;strong.”</span>
         </p>
       </div>
       <div class="footer-col">
-        <h4>
-          <span class="vi">Trà Thảo&nbsp;Mộc Bách&nbsp;Phục &amp; Tri&nbsp;Thức</span>
-          <span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span>
-        </h4>
+        <h4><span class="vi">Trà Thảo Mộc Bách&nbsp;Phục &amp; Tri Thức</span><span class="en">Bach&nbsp;Phuc Tea Lines &amp; Knowledge</span></h4>
         <ul>
           <li><a href="/dongsanpham/thuonghoang"><span class="vi">1. Thượng&nbsp;Hoàng (Bách&nbsp;Phục Thượng&nbsp;Hoàng)</span><span class="en">1. Thuong&nbsp;Hoang (Bach&nbsp;Phuc Thuong&nbsp;Hoang)</span></a></li>
           <li><a href="/dongsanpham/kimhoang"><span class="vi">2. Kim&nbsp;Hoàng (Bách&nbsp;Phục Kim&nbsp;Hoàng)</span><span class="en">2. Kim&nbsp;Hoang (Bach&nbsp;Phuc Kim&nbsp;Hoang)</span></a></li>
           <li><a href="/dongsanpham/minhhoang" style="color:var(--gold-bright);font-weight:600;"><span class="vi">3. Minh&nbsp;Hoàng (Bách&nbsp;Phục Minh&nbsp;Hoàng)</span><span class="en">3. Minh&nbsp;Hoang (Bach&nbsp;Phuc Minh&nbsp;Hoang)</span></a></li>
-          <li style="margin-top:8px;">
-            <a href="/tracuu" style="color:var(--gold-bright);">
-              <span class="vi">→ Tra&nbsp;cứu &amp; Xác&nbsp;thực Mộc&nbsp;bản</span>
-              <span class="en">→ 1-to-1 Box Authentication</span>
-            </a>
-          </li>
-          <li>
-            <a href="/suckhoe" style="color:var(--gold-light);">
-              <span class="vi">→ Giải&nbsp;mã cơ&nbsp;chế tự&nbsp;chữa&nbsp;lành</span>
-              <span class="en">→ Cellular Self-Healing Science</span>
-            </a>
-          </li>
-          <li>
-            <a href="/tailieu" style="color:var(--gold-primary);">
-              <span class="vi">→ Tài&nbsp;liệu chuyên&nbsp;khảo nấm Linh&nbsp;Chi</span>
-              <span class="en">→ Reishi Scientific Monographs</span>
-            </a>
-          </li>
-          <li>
-            <a href="/thuhai">
-              <span class="vi">→ Hành&nbsp;trình thu&nbsp;hái rừng&nbsp;già</span>
-              <span class="en">→ Wild Harvesting Journey</span>
-            </a>
-          </li>
+          <li style="margin-top:8px;"><a href="/tracuu" style="color:var(--gold-bright);"><span class="vi">→ Tra cứu &amp; Xác thực Mộc bản</span><span class="en">→ 1-to-1 Box Authentication</span></a></li>
+          <li><a href="/suckhoe" style="color:var(--gold-light);"><span class="vi">→ Giải mã cơ chế tự chữa lành</span><span class="en">→ Cellular Self-Healing Science</span></a></li>
+          <li><a href="/tailieu" style="color:var(--gold-primary);"><span class="vi">→ Tài liệu chuyên khảo nấm Linh&nbsp;Chi</span><span class="en">→ Reishi Scientific Monographs</span></a></li>
+          <li><a href="/thuhai"><span class="vi">→ Hành trình thu hái rừng già</span><span class="en">→ Wild Harvesting Journey</span></a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>
-          <span class="vi">Thông&nbsp;Tin Kết&nbsp;Nối</span>
-          <span class="en">Contact &amp; Consultation</span>
-        </h4>
+        <h4><span class="vi">Thông Tin Kết Nối</span><span class="en">Contact &amp; Consultation</span></h4>
         <ul>
-          <li class="contact-item">
-            <span class="icon">📍</span>
-            <span class="vi"><strong>Địa&nbsp;chỉ:</strong> 136 Mạc&nbsp;Đĩnh&nbsp;Chi, Phường Nghĩa&nbsp;Lộ, Tỉnh Quảng&nbsp;Ngãi</span>
-            <span class="en"><strong>Address:</strong> 136 Mac&nbsp;Dinh&nbsp;Chi St., Nghia&nbsp;Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span>
-          </li>
-          <li class="contact-item">
-            <span class="icon">📞</span>
-            <span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link" href="tel:0796674679">0796&nbsp;674&nbsp;679</a></span>
-          </li>
-          <li class="contact-item">
-            <span class="icon">🌐</span>
-            <span><strong>Website:</strong> <a href="/" style="color:#D6C7B8;">www.trathaomocbachphuc.vn</a></span>
-          </li>
-          <li style="margin-top:6px;">
-            <a href="/lienhe" style="color:var(--gold-light); font-weight:600;">
-              <span class="vi">→ Xem trang Liên&nbsp;Hệ chi&nbsp;tiết</span>
-              <span class="en">→ View Detailed Contact Page</span>
-            </a>
-          </li>
+          <li class="contact-item"><span class="icon">📍</span><span class="vi"><strong>Địa chỉ:</strong> 136 Mạc Đĩnh Chi, Phường Nghĩa Lộ, Tỉnh Quảng&nbsp;Ngãi</span><span class="en"><strong>Address:</strong> 136 Mac Dinh Chi St., Nghia Lo Ward, Quang&nbsp;Ngai Province, Vietnam</span></li>
+          <li class="contact-item"><span class="icon">📞</span><span><strong>Hotline &amp; Zalo:</strong> <a class="contact-link nowrap" href="tel:0796674679">0796 674 679</a></span></li>
+          <li class="contact-item"><span class="icon">🌐</span><span><strong>Website:</strong> <a href="/" style="color:#D6C7B8;">www.trathaomocbachphuc.vn</a></span></li>
+          <li style="margin-top:6px;"><a href="/lienhe" style="color:var(--gold-light); font-weight:600;"><span class="vi">→ Xem trang Liên Hệ chi tiết</span><span class="en">→ View Detailed Contact Page</span></a></li>
         </ul>
       </div>
     </div>
     <div class="footer-disclaimer-wrap">
-      <p class="footer-disclaimer vi">* Lưu&nbsp;ý: Các sản&nbsp;phẩm của Trà Thảo&nbsp;Mộc Bách&nbsp;Phục là thức&nbsp;uống thảo&nbsp;mộc dưỡng&nbsp;sinh tự&nbsp;nhiên theo hồ&nbsp;sơ tự công&nbsp;bố, không&nbsp;phải là thuốc và không có tác&nbsp;dụng thay&nbsp;thế thuốc chữa&nbsp;bệnh. Website chỉ giới&nbsp;thiệu thông&nbsp;tin văn&nbsp;hóa trà và kết&nbsp;nối tư&nbsp;vấn, không giao&nbsp;dịch thương&nbsp;mại điện&nbsp;tử trực&nbsp;tuyến.</p>
+      <p class="footer-disclaimer vi">* Lưu ý: Các sản phẩm của Trà Thảo Mộc Bách&nbsp;Phục là thức uống thảo mộc dưỡng sinh tự nhiên theo hồ sơ tự công bố, không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh. Website chỉ giới thiệu thông tin văn hóa trà và kết nối tư vấn, không giao dịch thương mại điện tử trực tuyến.</p>
       <p class="footer-disclaimer en">* Notice: Bach&nbsp;Phuc Herbal Tea products are natural botanical infusions compliant with statutory self-declaration standards. They are not medicines and do not replace medical treatment. This website provides cultural information and consultation only, with no online commercial transactions.</p>
     </div>
     <div class="footer-bottom">
-      <span class="vi">© Bản&nbsp;quyền thuộc về Công&nbsp;ty TNHH Trà Thảo&nbsp;Mộc Bách&nbsp;Phục. Bảo&nbsp;lưu mọi&nbsp;quyền.</span>
+      <span class="vi">© Bản quyền thuộc về Công ty TNHH Trà Thảo Mộc Bách&nbsp;Phục. Bảo lưu mọi quyền.</span>
       <span class="en">© Copyright by Bach&nbsp;Phuc Herbal Tea Co.,&nbsp;Ltd. All rights reserved.</span>
     </div>
   </footer>
 
-  <!-- BẢNG CẤU HÌNH NHANH MINH HOÀNG & HÀM CUỘN -->
+  <!-- ================= CẤU HÌNH ẢNH, MỤC LỤC SCROLLSPY, ACCORDION, CHỐNG RỚT CHỮ & SONG NGỮ ================= -->
   <script>
     const CAU_HINH_MINH_HOANG = {
-      linkAnhHop:       "", // Khi có ảnh hộp Minh Hoàng, bạn chỉ cần dán link vào giữa 2 dấu nháy kép này
-      giaHienThi_VI:    "Chưa công\u00A0bố",
-      giaHienThi_EN:    "To Be Announced",
-      chiSoLabNgan_VI:  "Định\u00A0mức hoạt\u00A0chất cao",
-      chiSoLabNgan_EN:  "High Bioactive Potency"
+      linkAnhHop:      "", // Khi có ảnh hộp Minh Hoàng, bạn chỉ cần dán link vào giữa 2 dấu nháy kép này
+      giaHienThi_VI:   "Chưa công bố",
+      giaHienThi_EN:   "To Be Announced",
+      chiSoLabNgan_VI: "Hoạt chất mức cao",
+      chiSoLabNgan_EN: "High Bioactive Potency"
     };
 
     const imgEl = document.getElementById("img-main-minh-hoang");
@@ -1246,18 +1762,91 @@
       }
     }
 
-    function bpScrollTo(targetId) {
+    function setAccState(panelId, openState) {
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+      panel.classList.toggle('open', openState);
+      const trigger = document.querySelector('[aria-controls="' + panelId + '"]');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', openState ? 'true' : 'false');
+        trigger.querySelectorAll('[data-open][data-closed]').forEach((el) => {
+          el.textContent = openState ? el.getAttribute('data-open') : el.getAttribute('data-closed');
+        });
+      }
+    }
+
+    function toggleAcc(btn, panelId) {
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+      setAccState(panelId, !panel.classList.contains('open'));
+    }
+
+    function toggleGroup(groupBtn, panelIds) {
+      const anyClosed = panelIds.some((id) => {
+        const p = document.getElementById(id);
+        return p && !p.classList.contains('open');
+      });
+      panelIds.forEach((id) => setAccState(id, anyClosed));
+      groupBtn.querySelectorAll('[data-open][data-closed]').forEach((el) => {
+        el.textContent = anyClosed ? el.getAttribute('data-open') : el.getAttribute('data-closed');
+      });
+    }
+
+    function openTocDrawer() {
+      document.getElementById('toc-drawer-backdrop').classList.add('open');
+      document.getElementById('toc-drawer-sheet').classList.add('open');
+    }
+
+    function closeTocDrawer() {
+      document.getElementById('toc-drawer-backdrop').classList.remove('open');
+      document.getElementById('toc-drawer-sheet').classList.remove('open');
+    }
+
+    function jumpToSection(targetId, autoOpenPanelId) {
+      closeTocDrawer();
       if (targetId === 'top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
-      const el = document.getElementById(targetId);
-      if (el) {
-        const nav = document.getElementById('main-fixed-nav');
-        const navH = nav ? nav.offsetHeight : 56;
-        const topPos = el.getBoundingClientRect().top + window.pageYOffset - navH - 14;
-        window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+      if (autoOpenPanelId) {
+        setAccState(autoOpenPanelId, true);
       }
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          const nav = document.getElementById('main-fixed-nav');
+          const navH = nav ? nav.offsetHeight : 56;
+          const topPos = el.getBoundingClientRect().top + window.pageYOffset - navH - 14;
+          window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+        }
+      }, autoOpenPanelId ? 60 : 0);
+    }
+
+    function bpScrollTo(targetId) { jumpToSection(targetId); }
+
+    function updateReadingAndSpy() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const fill = document.getElementById('reading-progress-fill');
+      if (fill && docHeight > 0) {
+        const pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+        fill.style.width = pct.toFixed(1) + '%';
+      }
+
+      const sections = document.querySelectorAll('.spy-section');
+      const nav = document.getElementById('main-fixed-nav');
+      const offset = (nav ? nav.offsetHeight : 56) + 95;
+      let activeId = 'khoi-tong-quan';
+
+      sections.forEach((sec) => {
+        if (sec.getBoundingClientRect().top <= offset) {
+          activeId = sec.id;
+        }
+      });
+
+      document.querySelectorAll('.toc-jump-btn[data-target]').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-target') === activeId);
+      });
     }
 
     function setBachPhucLang(lang) {
@@ -1274,15 +1863,35 @@
         btnEn.classList.toggle('active', targetLang === 'en');
       }
       syncNavPadding();
-      try {
-        localStorage.setItem('bachphuc_lang', targetLang);
-      } catch (e) {}
+      try { localStorage.setItem('bachphuc_lang', targetLang); } catch (e) {}
+    }
+
+    function fixOrphans(selector) {
+      document.querySelectorAll(selector).forEach((el) => {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+        let lastText = null;
+        let current;
+        while ((current = walker.nextNode())) {
+          if (current.nodeValue && current.nodeValue.trim().length > 0) {
+            lastText = current;
+          }
+        }
+        if (lastText) {
+          lastText.nodeValue = lastText.nodeValue.replace(/\s+([^\s]+)\s*$/, '\u00A0$1');
+        }
+      });
     }
 
     window.addEventListener('resize', syncNavPadding);
+    window.addEventListener('load', syncNavPadding);
+    window.addEventListener('scroll', updateReadingAndSpy, { passive: true });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeTocDrawer();
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       syncNavPadding();
+      updateReadingAndSpy();
       try {
         const savedLang = localStorage.getItem('bachphuc_lang');
         if (savedLang === 'en' || savedLang === 'vi') {
@@ -1290,17 +1899,15 @@
         }
       } catch (e) {}
 
-      const blocks = document.querySelectorAll(
-        ".summary-points li .vi, .wellness-col-box p.vi, .std-table td .vi, .bio-card p.vi, .craft-highlight-box p.vi, .sensory-card p.vi, .ritual-step-card p.vi, .ref-card p.vi, .legal-disclaimer-box p.vi"
+      fixOrphans(
+        ".quote-banner .vi, .quote-banner .en, .summary-points li .vi, .summary-points li .en, " +
+        ".wellness-col-box p.vi, .wellness-col-box p.en, .std-table td .vi, .std-table td .en, " +
+        ".bio-detail-text .vi, .bio-detail-text .en, .craft-highlight-box p.vi, .craft-highlight-box p.en, " +
+        ".sensory-card p.vi, .sensory-card p.en, .ritual-step-card p.vi, .ritual-step-card p.en, " +
+        ".ref-card p.vi, .ref-card p.en, .monograph-bridge-text p.vi, .monograph-bridge-text p.en, " +
+        ".disclaimer-body p.vi, .disclaimer-body p.en, .footer-brand p.vi, .footer-brand p.en, " +
+        ".footer-disclaimer, .footer-bottom .vi, .footer-bottom .en"
       );
-      blocks.forEach((node) => {
-        if (node.childNodes.length > 0) {
-          const last = node.childNodes[node.childNodes.length - 1];
-          if (last.nodeType === Node.TEXT_NODE) {
-            last.nodeValue = last.nodeValue.replace(/\s+(\S+)\s*$/, "\u00A0$1");
-          }
-        }
-      });
     });
   </script>
 </body>
