@@ -26,6 +26,12 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   body, p, li, td, th, div, button {
     text-align: left !important;
     word-break: keep-all !important;
@@ -33,13 +39,13 @@
     -webkit-hyphens: none;
     hyphens: none;
   }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--cream-bg);
     color: var(--text-dark);
     line-height: 1.72;
     padding-top: 52px;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -51,6 +57,14 @@
   .nowrap { white-space: nowrap; }
   h1, h2, h3, h4, .doc-title, .bridge-title { text-wrap: balance; }
   p, li, td, .doc-quote-box, .academic-framing-note { text-wrap: pretty; }
+
+  /* KHÓA CHỐNG TRÀN NGANG CHO MỌI KHUNG FLEX / GRID / ACCORDION */
+  .doc-workspace, .doc-main-col, .doc-section-card,
+  .acc-panel, .acc-inner, .table-responsive,
+  .patho-3col-grid > *, .study-grid-2x2 > *, .ref-item-info {
+    min-width: 0;
+    max-width: 100%;
+  }
 
   /* ================= 0. THANH MENU NGANG SONG NGỮ + THANH TIẾN ĐỘ ĐỌC ================= */
   .top-bilingual-nav {
@@ -197,6 +211,7 @@
   /* ================= 1. BREADCRUMB ================= */
   .breadcrumb-nav {
     max-width: 1180px;
+    width: 100%;
     margin: 16px auto 0;
     padding: 0 20px;
     font-size: 12.8px;
@@ -256,7 +271,7 @@
     font-family: 'Inter', sans-serif;
     color: var(--gold-light);
     font-size: clamp(11px, 1.6vw, 12.5px);
-    letter-spacing: 3px;
+    letter-spacing: 2.8px;
     text-transform: uppercase;
     font-weight: 600;
     margin-bottom: 10px;
@@ -307,31 +322,33 @@
     font-style: italic;
     line-height: 1.62;
     text-align: center !important;
-    padding: 0 12px;
+    padding: 0 10px;
     opacity: 0.94;
   }
 
   /* DẢI ĐỊNH DANH & THANH ĐIỀU HƯỚNG PHỤ */
   .origin-ribbon {
+    width: 100%;
     background: linear-gradient(90deg, #150702 0%, #2A1107 50%, #150702 100%);
     border-top: 1.5px solid rgba(197, 160, 89, 0.45);
     border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-    padding: 10px 20px;
+    padding: 10px 16px;
     text-align: center;
   }
   .origin-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; }
-  .origin-inner .symbol { color: var(--gold-primary); font-size: 12px; }
+  .origin-inner .symbol { color: var(--gold-primary); font-size: 12px; flex-shrink: 0; }
   .origin-text {
     font-family: 'Inter', sans-serif;
     color: var(--gold-bright);
     font-size: clamp(11px, 1.5vw, 12.8px);
     font-weight: 700;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
     text-align: center !important;
   }
 
   .subpage-nav-bar {
+    width: 100%;
     background: #F4EFE6;
     border-bottom: 1px solid var(--border-warm);
     padding: 10px 20px;
@@ -345,12 +362,17 @@
     gap: 10px;
     flex-wrap: wrap;
   }
+  .subpage-nav-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
   .nav-pill-btn {
     background: #FFFFFF;
     color: var(--espresso);
     border: 1px solid var(--border-warm);
     border-left: 3px solid var(--gold-accent);
-    padding: 6.5px 13px;
+    padding: 7px 13px;
     border-radius: 4px;
     font-size: 12.2px;
     font-weight: 600;
@@ -367,6 +389,7 @@
   /* ================= 3. BỐ CỤC 2 CỘT: NỘI DUNG CHÍNH + MỤC LỤC TRƯỢT DÍNH ================= */
   .doc-workspace {
     max-width: 1180px;
+    width: 100%;
     margin: 28px auto 56px;
     padding: 0 20px;
     display: flex;
@@ -375,7 +398,6 @@
   }
   .doc-main-col {
     flex: 1;
-    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 26px;
@@ -384,6 +406,7 @@
   /* HỘP MỤC LỤC CUỘN GỌN ĐẦU BÀI (HIỆN TRÊN ĐIỆN THOẠI / TABLET) */
   .mobile-inline-toc {
     display: none;
+    width: 100%;
     background: #FFFFFF;
     border: 1.5px solid var(--gold-primary);
     border-radius: 8px;
@@ -451,6 +474,7 @@
 
   /* ================= KHỐI NỘI DUNG TỪNG PHẦN ================= */
   .doc-section-card {
+    width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--border-warm);
     border-radius: 8px;
@@ -477,7 +501,7 @@
     gap: 12px;
     flex-wrap: wrap;
   }
-  .doc-header-text { flex: 1; min-width: 240px; }
+  .doc-header-text { flex: 1; min-width: 0; }
   .doc-tag {
     font-size: 11px;
     text-transform: uppercase;
@@ -686,8 +710,9 @@
     font-style: italic;
   }
 
-  /* PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (LUÔN MỞ) */
+  /* PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (CUỘN GỌN TRONG KHUNG RIÊNG) */
   .table-responsive {
+    width: 100%;
     overflow-x: auto;
     margin: 12px 0 4px;
     border: 1px solid var(--border-warm);
@@ -744,6 +769,7 @@
   .ref-item-card.green-bar { border-left-color: var(--bio-green); }
   .ref-item-card.wine-bar { border-left-color: var(--wine-red); }
   .ref-item-card.gold-bar { border-left-color: var(--gold-deep); }
+  .ref-item-info { flex: 1; }
   .ref-btn {
     font-size: 11.8px;
     font-weight: 600;
@@ -759,6 +785,7 @@
 
   /* CẦU NỐI CUỐI BÀI & MIỄN TRỪ PHÁP LÝ CUỘN GỌN */
   .academic-bridge-card {
+    width: 100%;
     background: radial-gradient(circle at 50% 50%, #2B1309 0%, #150702 100%);
     border: 1.5px solid var(--gold-primary);
     border-radius: 8px;
@@ -770,7 +797,7 @@
     gap: 18px;
     flex-wrap: wrap;
   }
-  .bridge-info { flex: 1; min-width: 240px; }
+  .bridge-info { flex: 1; min-width: 0; }
   .bridge-tag { font-size: 10.5px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-light); font-weight: 700; display: block; margin-bottom: 4px; }
   .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.2vw, 21px); color: var(--gold-bright); margin-bottom: 5px; }
   .bridge-desc { font-size: 13.2px; color: #DFD3C3; line-height: 1.62; }
@@ -810,6 +837,7 @@
   .btn-outline-cta:hover { background: var(--wine-red); color: #FFFFFF; border-color: #FFFFFF; }
 
   .disclaimer-card {
+    width: 100%;
     background: #F8F4EE;
     border: 1px solid #DFD6C6;
     border-left: 4px solid var(--wine-red);
@@ -885,17 +913,8 @@
     cursor: pointer;
     transition: all 0.2s ease;
   }
-  .toc-jump-btn:hover {
-    background: #FAF5EB;
-    color: var(--gold-deep);
-    border-left-color: var(--gold-primary);
-  }
-  .toc-jump-btn.active {
-    background: #FAF4E6;
-    color: var(--gold-deep);
-    border-left-color: var(--gold-deep);
-    font-weight: 700;
-  }
+  .toc-jump-btn:hover { background: #FAF5EB; color: var(--gold-deep); border-left-color: var(--gold-primary); }
+  .toc-jump-btn.active { background: #FAF4E6; color: var(--gold-deep); border-left-color: var(--gold-deep); font-weight: 700; }
   .toc-roman {
     flex-shrink: 0;
     min-width: 22px;
@@ -933,7 +952,7 @@
   .fab-toc-btn {
     position: fixed;
     right: 16px;
-    bottom: 20px;
+    bottom: 78px;
     z-index: 99980;
     background: linear-gradient(135deg, #23120B 0%, #3E2008 100%);
     color: var(--gold-bright);
@@ -953,11 +972,7 @@
     transform: translateY(14px);
     transition: all 0.25s ease;
   }
-  .fab-toc-btn.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+  .fab-toc-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .toc-drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -975,7 +990,7 @@
     background: #FFFFFF;
     border-top: 3px solid var(--gold-primary);
     border-radius: 14px 14px 0 0;
-    padding: 18px 18px 24px;
+    padding: 18px 18px 28px;
     max-height: 75vh;
     overflow-y: auto;
     transform: translateY(105%);
@@ -1031,7 +1046,8 @@
     }
     .nav-menu-list::-webkit-scrollbar { display: none; }
     .nav-dropdown { display: none; }
-    .doc-workspace { flex-direction: column; }
+    .doc-workspace { flex-direction: column; align-items: stretch; width: 100%; }
+    .doc-main-col { width: 100%; flex: none; }
     .doc-sidebar { display: none; }
     .mobile-inline-toc { display: block; }
     .fab-toc-btn { display: inline-flex; }
@@ -1040,17 +1056,26 @@
   }
   @media (max-width: 640px) {
     body { line-height: 1.64; padding-top: 84px; }
-    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 8px; gap: 6px; }
+    .top-nav-inner { flex-direction: column; align-items: stretch; padding: 6px 10px 7px; gap: 6px; }
     .lang-switch-box { align-self: flex-end; }
     .lang-btn { font-size: 10.5px; padding: 3px 8px; }
-    .nav-menu-list { width: 100%; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 5px; gap: 6px; }
+    .nav-menu-list { width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 5px; gap: 6px; }
     .nav-link { font-size: 12px; padding: 5px 9px; }
 
-    .doc-hero { padding: 32px 14px 26px; }
+    .breadcrumb-nav, .subpage-nav-bar { padding-left: 14px; padding-right: 14px; }
+    .doc-hero { padding: 30px 14px 24px; }
+    .doc-hero::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
     .doc-workspace { padding: 0 14px; margin-top: 20px; }
     .doc-section-card, .academic-bridge-card { padding: 20px 16px; }
-    .bridge-btn-row, .subpage-nav-inner { flex-direction: column; width: 100%; }
-    .btn-gold-cta, .btn-outline-cta, .nav-pill-btn { width: 100%; justify-content: center; }
+    .bridge-btn-row, .subpage-nav-inner, .subpage-nav-group { flex-direction: column; width: 100%; }
+    .btn-gold-cta, .btn-outline-cta, .nav-pill-btn {
+      width: 100%;
+      justify-content: center;
+      white-space: normal;
+      text-align: center !important;
+      line-height: 1.4;
+    }
+    .ref-item-card { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -1171,7 +1196,7 @@
         <span class="vi">← Quay&nbsp;về Thư&nbsp;Viện Chuyên&nbsp;Khảo</span>
         <span class="en">← Back to Monograph Library</span>
       </a>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div class="subpage-nav-group">
         <a href="/tailieu/tuanhoan" class="nav-pill-btn wine-pill">
           <span class="vi">← Chuyên&nbsp;Khảo 01: Thành&nbsp;Mạch</span>
           <span class="en">← Monograph 01: Vascular</span>
@@ -1511,7 +1536,7 @@
         </div>
       </article>
 
-      <!-- PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (LUÔN MỞ ĐỂ DỄ QUÉT) -->
+      <!-- PHẦN IV: BẢNG ĐỐI CHIẾU TỔNG HỢP (LUÔN MỞ, VUỐT NGANG GỌN TRONG KHUNG) -->
       <article id="phan-4" class="doc-section-card spy-section">
         <div class="doc-header">
           <div class="doc-header-text">
@@ -1586,7 +1611,7 @@
           <div class="acc-inner">
             <div class="ref-list-stack">
               <div class="ref-item-card green-bar">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1E6B38; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">1. U.S. NLM / PubMed Central (PMC6923688)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Sohretoglu, D., &amp; Huang, S. (2018). “Ganoderma lucidum Polysaccharides: Immunomodulation and Signaling Mechanisms”</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ&nbsp;chế Beta-D-Glucan gắn thụ&nbsp;thể Dectin-1, CR3, TLR-4 hoạt&nbsp;hóa Đại&nbsp;thực&nbsp;bào, NK&nbsp;cells; ức&nbsp;chế VEGF và thúc&nbsp;đẩy Apoptosis.</span><span class="en">Beta-D-Glucan binding to Dectin-1, CR3, TLR-4 activating Macrophages and NK cells; suppressing VEGF and inducing Apoptosis.</span></p>
@@ -1595,7 +1620,7 @@
               </div>
 
               <div class="ref-item-card">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">2. Cochrane Database of Systematic Reviews (PMC6479085)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Jin, X., Ruiz Beguerie, J., Sze, D. M., &amp; Chan, G. C. (2016). “Ganoderma lucidum (Reishi mushroom) for cancer treatment”</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Tổng&nbsp;quan RCTs chứng&nbsp;minh tăng T-lymphocytes (CD3, CD4, CD8), nâng hoạt&nbsp;lực NK&nbsp;cells, giảm hạ bạch&nbsp;cầu và tăng điểm Karnofsky.</span><span class="en">Systematic review of RCTs demonstrating higher CD3/CD4/CD8, NK activity, reduced leukopenia, and higher Karnofsky scores.</span></p>
@@ -1604,7 +1629,7 @@
               </div>
 
               <div class="ref-item-card">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#1A5276; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">3. PubMed / International Immunopharmacology (PMID: 12899699)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Gao, Y. et al. (2003). “Effects of Ganopoly (a Ganoderma lucidum polysaccharide extract) on immune functions in advanced-stage cancer patients”</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Ghi&nbsp;nhận gia&nbsp;tăng đáng&nbsp;kể IL-2, IL-6, IFN-γ và hoạt&nbsp;lực tế&nbsp;bào NK ở người thể&nbsp;trạng suy&nbsp;kiệt.</span><span class="en">Clinical trial recording elevated IL-2, IL-6, IFN-γ levels and NK cell cytotoxicity in convalescing patients.</span></p>
@@ -1613,7 +1638,7 @@
               </div>
 
               <div class="ref-item-card gold-bar">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:#8A6409; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">4. PubMed / Biochem. Biophys. Res. Commun. (PMID: 15946922 &amp; PMID: 15118196)</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Stanley, G. et al. (2005). “Ganoderma lucidum suppresses angiogenesis through inhibition of VEGF and TGF-beta1” &amp; Jiang, J. et al. (2004)</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Cơ&nbsp;chế ức&nbsp;chế yếu&nbsp;tố tăng&nbsp;sinh vi&nbsp;mạch (VEGF, TGF-β1) và thúc&nbsp;đẩy tự&nbsp;hủy tế&nbsp;bào lỗi (Apoptosis).</span><span class="en">Mechanisms suppressing VEGF/TGF-β1 angiogenesis and triggering error-cell apoptosis.</span></p>
@@ -1622,7 +1647,7 @@
               </div>
 
               <div class="ref-item-card wine-bar">
-                <div style="flex:1; min-width:240px;">
+                <div class="ref-item-info">
                   <div style="font-size:10.5px; font-weight:700; color:var(--wine-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">5. NIH Bookshelf (NBK92757) &amp; Dược&nbsp;Điển Việt&nbsp;Nam</div>
                   <h4 style="font-family:'Playfair Display',serif; font-size:14.8px; color:var(--espresso); margin-bottom:3px;">Wachtel-Galor, S. et al. (2011) &amp; Cố GS.&nbsp;TS.&nbsp;Đỗ&nbsp;Tất&nbsp;Lợi (“Những cây&nbsp;thuốc và vị&nbsp;thuốc Việt&nbsp;Nam”, tr. 831–833)</h4>
                   <p style="font-size:12.6px; color:var(--text-dark); margin:0;"><span class="vi">Công&nbsp;năng làm mạnh miễn&nbsp;dịch của Hoàng&nbsp;Chi và hàm&nbsp;lượng Germanium hữu&nbsp;cơ cao gấp 5–8&nbsp;lần Nhân&nbsp;sâm.</span><span class="en">Hoang Chi immune-strengthening record and organic Germanium (5–8x Ginseng) for cellular oxygenation.</span></p>
@@ -1917,6 +1942,8 @@
         }
       }, autoOpenPanelId ? 60 : 0);
     }
+
+    function bpScrollTo(targetId) { jumpToSection(targetId); }
 
     function updateReadingAndSpy() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
